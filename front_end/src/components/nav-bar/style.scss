@@ -1,0 +1,140 @@
+$font : 'Noto Sans',
+'Noto Sans Thai UI',
+sans-serif;
+$font-semibold : 'Noto Sans Semibold',
+'Noto Sans Thai UI Semibold',
+sans-serif;
+$shadow : 0 3px 6px 0 #00000048;
+
+.nav-bar {
+  background     : rgba(255, 255, 255, 0.466);
+  color          : black;
+  width          : 100%;
+  height         : 110px;
+  display        : flex;
+  flex-direction : column;
+  backdrop-filter: blur(30px) saturate(200%);
+  align-items    : center;
+  font-family    : $font-semibold;
+  box-shadow     : $shadow;
+  overflow       : hidden;
+  position       : fixed;
+  z-index        : 999;
+  top            : 0;
+
+  .nav-header {
+    width    : 1050px;
+    height   : 20px;
+    display  : block;
+    margin   : 0.5em 0;
+    font-size: 14px;
+
+    .nav-menu {
+      float: right;
+
+      a {
+        text-decoration: none;
+        color          : black;
+        margin-left    : 1em;
+      }
+    }
+  }
+
+  .nav-search-line {
+    display        : flex;
+    flex-direction : row;
+    justify-content: center;
+    align-items    : center;
+    width          : 1200px;
+    height         : 60%;
+
+    .nav-logo {
+      width: 100px;
+
+      img {
+        width : 100%;
+        height: 100%;
+      }
+    }
+
+    .form-group {
+      width         : 60%;
+      display       : flex;
+      flex-direction: column;
+      margin-left   : 1em;
+
+      label {
+        font-family: $font;
+        font-size  : 20px;
+      }
+
+      input {
+        width             : 100%;
+        box-shadow        : $shadow;
+        height            : 38px;
+        box-sizing        : border-box;
+        -webkit-box-sizing: border-box;
+        padding           : 0 10px;
+        font-size         : 16px;
+        font-family       : $font;
+        background-color  : #f3f3f3;
+        border-radius     : 5px 0 0 5px;
+        transition        : all 250ms ease-in-out;
+        border            : 0px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .nav-btn {
+      display       : flex;
+      flex-direction: row;
+
+      .search-btn {
+        height          : 38px;
+        font-size       : 18px;
+        font-family     : $font-semibold;
+        padding         : 7px 10px;
+        border          : 0;
+        border-radius   : 0 5px 5px 0;
+        color           : white;
+        background-color: #0082FF;
+        transition      : all 300ms ease-in-out;
+        box-shadow      : $shadow;
+        margin-right    : 1em;
+        cursor          : pointer;
+
+        &:hover {
+          background-color: rgb(38, 150, 255);
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .login-btn {
+        font-size       : 18px;
+        font-family     : $font-semibold;
+        padding         : 7px 40px;
+        border          : 0;
+        border-radius   : 5px;
+        color           : white;
+        background-color: #ff9100;
+        transition      : all 300ms ease-in-out;
+        box-shadow      : $shadow;
+        cursor          : pointer;
+
+        &:hover {
+          background-color: #ffa32b;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}

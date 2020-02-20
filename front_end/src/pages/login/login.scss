@@ -1,0 +1,139 @@
+.login-page {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../assets/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .base-container {
+    background-color: #ffffffaf;
+    box-shadow: 0 3px 6px 0 #00000041;
+    border-radius: 10px;
+    padding: 3em 3em;
+    backdrop-filter: blur(10px);
+  
+    .header {
+      font-family: 'Noto Sans Thai UI Semibold', sans-serif;
+      font-size: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: end;
+      
+      .image {
+        height: 65px;
+        img {
+          height: 100%;
+        }
+      }
+    }
+  
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-family: 'Noto Sans Thai UI Semibold', sans-serif;
+  
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+  
+        .form-group {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+  
+          label {
+            font-family: 'Noto Sans Thai UI', sans-serif;
+            font-size: 20px;
+          }
+  
+          input {
+            width: 100%;
+            box-shadow: 0 3px 6px 0 #00000041;
+            margin-top:  5px;
+            height: 37px;
+            box-sizing: border-box;
+            padding: 0 10px;
+            font-size: 16px;
+            font-family: 'Noto Sans Thai UI', sans-serif;
+            background-color: #f3f3f3;
+            border: 0px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: all 250ms ease-in-out;
+          }
+        }
+      }
+  
+      .extra {
+        font-family: 'Noto Sans Thai Ui', sans-serif;
+        margin-bottom: 2em;
+        a{
+          color: #0082FF;
+          transition: all 100ms ease-in-out;
+          &:hover {
+            color: #49a7ff;
+          }
+        }
+  
+        p {
+          margin: 0;
+        }
+      }
+  
+      .button-wrapper {
+        flex-wrap: wrap;
+        display: flex;
+        flex-direction: row;
+  
+        .btn {
+          font-size: 18px;
+          font-family: 'Noto Sans Thai UI Semibold', sans-serif;
+          padding: 10px 50px;
+          border: 0;
+          border-radius: 5px;
+          color: white;
+          background-color: #ff9100;
+          transition: all 300ms ease-in-out;
+          box-shadow: 0 3px 16px 0 #ff9100a4;
+          cursor: pointer;
+          &:hover {
+            background-color: #ffa32b;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+    
+        .btn_s {
+          @extend .btn;
+          margin-right: 1em;
+          color: #0082FF;
+          background-color: #ffffff00;
+          box-shadow: none;
+          cursor: pointer;
+          &:hover {
+            background-color: #ffffff5b;
+          }
+        }
+      }
+    
+    }
+  
+    .footer {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 3em 0;
+    }
+  }
+}
