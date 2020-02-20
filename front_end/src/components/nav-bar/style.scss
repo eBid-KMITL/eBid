@@ -83,7 +83,36 @@ $shadow : 0 3px 6px 0 #00000048;
         border            : 0px;
 
         &:focus {
-          outline: none;
+          outline   : none;
+        }
+      }
+      
+      .search-box {
+        display: flex;
+        flex-direction: row;
+
+
+        .search-btn {
+          height          : 38px;
+          font-size       : 18px;
+          font-family     : $font-semibold;
+          padding         : 7px 10px;
+          border          : 0;
+          border-radius   : 0 5px 5px 0;
+          color           : white;
+          background-color: #0082FF;
+          transition      : all 300ms ease-in-out;
+          box-shadow      : $shadow;
+          margin-right    : 1em;
+          cursor          : pointer;
+  
+          &:hover {
+            background-color: rgb(38, 150, 255);
+          }
+  
+          &:focus {
+            outline: none;
+          }
         }
       }
     }
@@ -91,29 +120,6 @@ $shadow : 0 3px 6px 0 #00000048;
     .nav-btn {
       display       : flex;
       flex-direction: row;
-
-      .search-btn {
-        height          : 38px;
-        font-size       : 18px;
-        font-family     : $font-semibold;
-        padding         : 7px 10px;
-        border          : 0;
-        border-radius   : 0 5px 5px 0;
-        color           : white;
-        background-color: #0082FF;
-        transition      : all 300ms ease-in-out;
-        box-shadow      : $shadow;
-        margin-right    : 1em;
-        cursor          : pointer;
-
-        &:hover {
-          background-color: rgb(38, 150, 255);
-        }
-
-        &:focus {
-          outline: none;
-        }
-      }
 
       .login-btn {
         font-size       : 18px;
@@ -129,11 +135,16 @@ $shadow : 0 3px 6px 0 #00000048;
 
         &:hover {
           background-color: #ffa32b;
+          box-shadow: 0 0 16px 3px #ff9100da;
         }
 
         &:focus {
           outline: none;
         }
+      }
+
+      .user-status {
+        margin-left: 1em;
       }
     }
   }
