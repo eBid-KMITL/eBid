@@ -1,7 +1,7 @@
 .login-page {
   width: 100%;
   height: 100vh;
-  background-image: url("../../assets/bg.jpg");
+  background-image: url("../../assets/bg.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
@@ -70,6 +70,11 @@
             border-radius: 5px;
             margin-bottom: 10px;
             transition: all 250ms ease-in-out;
+
+            &:focus {
+              box-shadow: 0 7px 20px 2px #00000067;
+              outline: none;
+            }
           }
         }
       }
@@ -99,15 +104,16 @@
           font-size: 18px;
           font-family: 'Noto Sans Thai UI Semibold', sans-serif;
           padding: 10px 50px;
-          border: 0;
           border-radius: 5px;
+          border: 0;
           color: white;
           background-color: #ff9100;
           transition: all 300ms ease-in-out;
-          box-shadow: 0 3px 16px 0 #ff9100a4;
+          box-shadow: 0 0 7px 0 #ff9100da;
           cursor: pointer;
           &:hover {
             background-color: #ffa32b;
+            box-shadow: 0 0 16px 3px #ff9100da;
           }
           &:focus {
             outline: none;
@@ -115,14 +121,22 @@
         }
     
         .btn_s {
-          @extend .btn;
+          font-size: 18px;
+          font-family: 'Noto Sans Thai UI Semibold', sans-serif;
+          padding: 10px 50px;
+          border-radius: 5px;
           margin-right: 1em;
+          border: 0;
+          transition: all 300ms ease-in-out;
           color: #0082FF;
           background-color: #ffffff00;
           box-shadow: none;
           cursor: pointer;
           &:hover {
             background-color: #ffffff5b;
+          }
+          &:focus {
+            outline: none;
           }
         }
       }
