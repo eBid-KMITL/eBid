@@ -2,8 +2,9 @@ import React from "react";
 import Clock from 'react-live-clock';
 import logo from "../../assets/eBid.png";
 import { Link } from "react-router-dom";
+import { FaUserCircle, FaCoins } from "react-icons/fa"
 
-export const NavBar = () => {
+export const NavBar = ({ status, userInfo }) => {
   return (
     <div className="nav-bar">
       <div className="nav-header">
@@ -21,15 +22,22 @@ export const NavBar = () => {
         <div className="form-group">
           <div className="search-box">
             <input type="text" name="Search" placeholder="ค้นหา" />
+            <Link to="/#">
+              <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
+            </Link>
           </div>
         </div>
         <div className="nav-btn">
-          <Link to="/#">
-            <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
-          </Link>
-          <Link to="/login">
-            <button type="button" className="login-btn">ลงชื่อเข้าใช้</button>
-          </Link>
+          {!status ? (
+            <Link to="/login">
+              <button type="button" className="login-btn">ลงชื่อเข้าใช้</button>
+            </Link>
+          ) : (
+              <div className="user-status">
+                <FaUserCircle /> {userInfo.username}<br />
+                <FaCoins /> {userInfo.amount}
+              </div>
+            )}
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
-import { FaHammer, FaClock, FaUserCircle } from "react-icons/fa";
+import { FaClock, FaUserCircle } from "react-icons/fa";
+import { IoMdPricetags } from "react-icons/io"
 
 export const ProductFrame = ({ image, details }) => {
   return (
@@ -12,12 +13,12 @@ export const ProductFrame = ({ image, details }) => {
           {details.name}
       </div>
         <div className="b-product-description">
-          <FaClock /> {details.time}<br />
-          <FaHammer /> ประมูลแล้ว {details.nbid} ครั้ง<br />
-          <FaUserCircle /> e_shop<br />
+          <FaClock style={{ fontSize: 14 }}/> {details.time}<br />
+          <IoMdPricetags style={{ fontSize: 14 }}/> ประมูลแล้ว {details.nbid} ครั้ง<br />
+          <FaUserCircle style={{ fontSize: 14 }}/> e_shop<br />
         </div>
         <div className="b-product-price">
-          {details.price}
+            ฿{details.price}
       </div>
       </div>
     </div>
