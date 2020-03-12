@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { NavBar } from "../../components";
 
-export const Welcome = () => {
+export const Profile = () => {
   return (
     <div className="welcome-main">
       <div className="head-text">
