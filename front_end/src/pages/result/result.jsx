@@ -1,10 +1,9 @@
 import React from "react";
 import { NavBar } from "../../components";
 
-export const Result = ({status}) => {
+export const Result = () => {
   return (
     <div className="result-main">
-      <NavBar />
     </div>
   )
 }

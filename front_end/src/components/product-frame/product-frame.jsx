@@ -1,6 +1,6 @@
 import React from "react";
 import { FaClock, FaUserCircle } from "react-icons/fa";
-import { IoMdPricetags } from "react-icons/io"
+import { IoMdPricetags } from "react-icons/io";
 
 export const ProductFrame = ({ image, details }) => {
   return (

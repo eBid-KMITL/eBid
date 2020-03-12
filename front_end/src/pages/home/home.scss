@@ -65,18 +65,16 @@ $shadow : 0 3px 6px 0 #00000048;
     }
 
     ul {
+      padding-left: 2em;
       list-style: none;
       line-height: 2em;
     }
 
     li {
-      transition: 120ms all ease-in-out;
+      transition: 75ms all ease-in-out;
       cursor: pointer;
       &:hover {
-        color: #0082FF;
-        font-weight: bold;
-        // font-size: 20px;
-        background: white;
+        font-size: 20px;
         border-radius: 5px;
       }
     }
