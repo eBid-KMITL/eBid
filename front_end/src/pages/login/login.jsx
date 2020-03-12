@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import logoID from "../../assets/eID.png";
 import { Link } from "react-router-dom";
-
+import firebase from "firebase"
+import {firebaseConfig} from '../../firebase_config'
+import { useHistory } from "react-router-dom";
 
 export const Login = () => {
+  
+  
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  let history = useHistory()
+
+  
+  function onLogin() {
+      firebase.auth().signInWithEmailAndPassword('zuzu.wc@gmail.com','12345678').then(() => {
+        alert('Authentication Completed');
+        history.replace('/welcome')
+      })
+      .catch(err => {
+        alert(err);
+      });
+
+      console.log('asdasdasd')
+    }
+   
+   
+
   return (
     <div className="login-page">
       <div className="base-container">
@@ -17,12 +41,12 @@ export const Login = () => {
           <div className="form-container">
             <form>
               <div className="form-group">
-                <label htmlFor="username">ชื่อผู้ใช้</label>
-                <input type="text" name="Username" placeholder="กรอกชื่อผู้ใช้" required />
+                <label htmlFor="email">อีเมล</label>
+                <input type="text" name="Email" placeholder="กรอกอีเมล" required   />
               </div>
               <div className="form-group">
                 <label htmlFor="password">รหัสผ่าน</label>
-                <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required minLength="8" />
+                <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required minLength="8"  />
               </div>
               <div className="extra">
                 <p>ยังไม่ได้เป็นสมาชิก? <Link to="/register">สมัครสมาชิก</Link></p>
@@ -34,7 +58,9 @@ export const Login = () => {
                     <u>กลับหน้าหลัก</u>
                   </button>
                 </Link>
-                <button type="submit" className="btn">
+                <button type="submit" className="btn"
+                  onClick= {onLogin} 
+                >
                   ลงชื่อเข้าใช้
               </button>
               </div>
@@ -44,4 +70,5 @@ export const Login = () => {
       </div>
     </div>
   )
+
 }
