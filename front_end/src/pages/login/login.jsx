@@ -23,7 +23,7 @@ export const Login = () => {
         alert(err);
       });
 
-      console.log('asdasdasd')
+      // console.log('asdasdasd')
     }
    
    

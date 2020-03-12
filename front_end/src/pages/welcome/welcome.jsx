@@ -11,7 +11,7 @@ export const Welcome = () => {
   function onLogout() {
     firebase.auth().signOut()
     history.replace('/')
-    console.log('asdasdasd')
+    // console.log('asdasdasd')
   }
 
   return (
