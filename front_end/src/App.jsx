@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Login, Register, Forgot, Home, Error, Result } from "./pages"
+import { Login, Register, Forgot, Home, Error, Result, Welcome } from "./pages"
 import { NavBar } from "./components"
 import {
   BrowserRouter as Router,
@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/register" component={Register}/>
         <Route path="/forgot" component={Forgot}/>
         <Route path="/result" component={Result}/>
+        <Route path="/welcome" component={Welcome}/>
         <Route path="/" component={Error}/>
       </Switch>
     </Router>
