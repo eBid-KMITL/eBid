@@ -13,12 +13,10 @@ export const Home = () => {
     { name: "กระเป๋าหนังแท้ญี่ปุ่น", price: "1,328", owner: "e_shop", time:"2d 12:12:33", nbid: 4, image: p4 },
     { name: "MacBook Pro 16\"", price: "47,100", owner: "e_shop", time:"2d 00:43:46", nbid: 21, image: p2 },
   ]
-
-  const userInfo = {username: "adminqwertyu", amount: 99999}
-
+  
   return (
     <div className="main">
-      <NavBar status={0} userInfo={userInfo}/>
+      
       <div className="home-banner">
         <Slideshow />
       </div>

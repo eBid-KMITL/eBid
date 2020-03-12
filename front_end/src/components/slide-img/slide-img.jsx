@@ -20,30 +20,40 @@ const properties = {
 }
 
 export const Slideshow = () => {
-    return (
-      <div className="slide-container">
-        <Slide {...properties}>
-          <div className="each-slide">
-            <div style={{'backgroundImage': `url(${slideImages[0]})`}}>
+  return (
+    <div className="slide-container">
+      <Slide {...properties}>
+        <div className="each-slide">
+          <Link to="/error">
+            <div style={{ 'backgroundImage': `url(${slideImages[0]})` }}>
             </div>
-          </div>
-          <div className="each-slide">
-            <div style={{'backgroundImage': `url(${slideImages[1]})`}}>
+          </Link>
+        </div>
+        <div className="each-slide">
+          <Link to="/error">
+            <div style={{ 'backgroundImage': `url(${slideImages[1]})` }}>
             </div>
-          </div>
-          <div className="each-slide">
-            <div style={{'backgroundImage': `url(${slideImages[2]})`}}>
+          </Link>
+        </div>
+        <div className="each-slide">
+          <Link to="/error">
+            <div style={{ 'backgroundImage': `url(${slideImages[2]})` }}>
             </div>
-          </div>
-          <div className="each-slide">
-            <div style={{'backgroundImage': `url(${slideImages[3]})`}}>
+          </Link>
+        </div>
+        <div className="each-slide">
+          <Link to="/error">
+            <div style={{ 'backgroundImage': `url(${slideImages[3]})` }}>
             </div>
-          </div>
-          <div className="each-slide">
-            <div style={{'backgroundImage': `url(${slideImages[4]})`}}>
+          </Link>
+        </div>
+        <div className="each-slide">
+          <Link to="/error">
+            <div style={{ 'backgroundImage': `url(${slideImages[4]})` }}>
             </div>
-          </div>
-        </Slide>
-      </div>
-    )
+          </Link>
+        </div>
+      </Slide>
+    </div>
+  )
 }
