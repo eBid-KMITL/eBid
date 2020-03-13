@@ -25,8 +25,6 @@ export const Login = () => {
 
       // console.log('asdasdasd')
     }
-   
-   
 
   return (
     <div className="login-page">
@@ -58,7 +56,7 @@ export const Login = () => {
                     <u>กลับหน้าหลัก</u>
                   </button>
                 </Link>
-                <button type="submit" className="btn"
+                <button type="button" className="btn"
                   onClick= {onLogin} 
                 >
                   ลงชื่อเข้าใช้
