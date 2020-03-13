@@ -2,30 +2,24 @@ import React, { useState } from "react";
 import logoID from "../../assets/eID.png";
 import { Link } from "react-router-dom";
 import firebase from "firebase"
-import {firebaseConfig} from '../../firebase_config'
-import { useHistory } from "react-router-dom";
 
-export const Login = () => {
+export const Login = ({history}) => {
   
   
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  let history = useHistory()
 
   
   function onLogin() {
-      firebase.auth().signInWithEmailAndPassword('zuzu.wc@gmail.com','12345678').then(() => {
+      firebase.auth().signInWithEmailAndPassword(email,password).then(() => {
         alert('Authentication Completed');
         history.replace('/welcome')
       })
-      .catch(err => {
+      .catch(err => { 
         alert(err);
       });
-
-      // console.log('asdasdasd')
     }
-
   return (
     <div className="login-page">
       <div className="base-container">
@@ -40,11 +34,11 @@ export const Login = () => {
             <form>
               <div className="form-group">
                 <label htmlFor="email">อีเมล</label>
-                <input type="text" name="Email" placeholder="กรอกอีเมล" required   />
+                <input type="text" name="Email" placeholder="กรอกอีเมล" required value={email} onChange={e => setEmail(e.target.value)} />
               </div>
               <div className="form-group">
                 <label htmlFor="password">รหัสผ่าน</label>
-                <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required minLength="8"  />
+                <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required minLength="8" value={password} onChange={e => setPassword(e.target.value)} />
               </div>
               <div className="extra">
                 <p>ยังไม่ได้เป็นสมาชิก? <Link to="/register">สมัครสมาชิก</Link></p>
