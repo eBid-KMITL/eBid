@@ -17,13 +17,11 @@ export const Login = () => {
   function onLogin() {
       firebase.auth().signInWithEmailAndPassword('zuzu.wc@gmail.com','12345678').then(() => {
         alert('Authentication Completed');
-        history.replace('/welcome')
+        history.replace('/profile')
       })
       .catch(err => {
         alert(err);
       });
-
-      // console.log('asdasdasd')
     }
 
   return (

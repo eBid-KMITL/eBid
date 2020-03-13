@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/register" component={Register} />
         <Route path="/forgot" component={Forgot} />
         <Route path="/result" component={Result} />
-        <Route path="/welcome" component={Welcome} />
+        <Route path="/profile" component={Profile} />
         <Route path="/" component={Error} />
       </Switch>
     </Router>

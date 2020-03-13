@@ -5,7 +5,7 @@ import firebase from "firebase"
 import {firebaseConfig} from '../../firebase_config'
 import { useHistory } from "react-router-dom";
 
-export const Welcome = () => {
+export const Profile = () => {
   let history = useHistory()
 
   function onLogout() {
