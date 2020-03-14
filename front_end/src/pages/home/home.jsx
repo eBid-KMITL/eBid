@@ -1,5 +1,5 @@
 import React from "react";
-import { NavBar, Slideshow, ProductFrame } from "../../components";
+import { NavBar, Slideshow, ProductFrame, Footer } from "../../components";
 import p1 from "../../assets/products-pics/ip11.png"
 import p2 from "../../assets/products-pics/macbook.png"
 import p3 from "../../assets/products-pics/watch.jpg"
@@ -11,12 +11,11 @@ export const Home = () => {
     { name: "MacBook Pro 16\"", price: "47,100", owner: "e_shop", time:"3d 3:21:17", nbid: 15, image: p2 },
     { name: "นาฬิกา VIGOROSO", price: "7,360", owner: "e_shop", time:"0d 12:00:08", nbid: 9, image: p3 },
     { name: "กระเป๋าหนังแท้ญี่ปุ่น", price: "1,328", owner: "e_shop", time:"2d 12:12:33", nbid: 4, image: p4 },
-    { name: "MacBook Pro 16\"", price: "47,100", owner: "e_shop", time:"2d 00:43:46", nbid: 21, image: p2 },
+    { name: "MacBook Pro 15\"", price: "47,100", owner: "e_shop", time:"2d 00:43:46", nbid: 21, image: p2 },
   ]
   
   return (
     <div className="main">
-      
       <div className="home-banner">
         <Slideshow />
       </div>
@@ -46,7 +45,7 @@ export const Home = () => {
         </div>
       </div>
       <div className="home-footer">
-        <p>©2020 eBid</p>
+        <Footer />
       </div>
     </div>
   )

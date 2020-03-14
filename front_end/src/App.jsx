@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import { Login, Register, Forgot, Home, Error, Result, Profile } from "./pages"
-import { NavBar } from "./components"
+import { Login, Register, Forgot, Home, Error, Result, Profile, Product } from "./pages"
+import { NavBar, Footer } from "./components"
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,7 +12,7 @@ import {firebaseConfig} from './firebase_config'
 
 
 const App = () => {
-  const userInfo = { username: "prayuth007", amount: "999,999" }  
+  const userInfo = { username: "admin", amount: "999,999" }  
   firebase.initializeApp(firebaseConfig)
 
   return (
@@ -25,8 +25,10 @@ const App = () => {
         <Route path="/forgot" component={Forgot} />
         <Route path="/result" component={Result} />
         <Route path="/profile" component={Profile} />
+        <Route path="/product" component={Product} />
         <Route path="/" component={Error} />
       </Switch>
+      <Footer />
     </Router>
   )
 }
