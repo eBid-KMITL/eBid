@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { NavBar } from "../../components";
 import firebase from "firebase"
-import {firebaseConfig} from '../../firebase_config'
+import { firebaseConfig } from '../../firebase_config'
 import { useHistory } from "react-router-dom";
 
 export const Profile = () => {
@@ -11,7 +10,6 @@ export const Profile = () => {
   function onLogout() {
     firebase.auth().signOut()
     history.replace('/')
-    // console.log('asdasdasd')
   }
 
   return (
@@ -26,13 +24,11 @@ export const Profile = () => {
           </button>
         </Link>
         <button type="submit" className="btn"
-        onClick={onLogout}
+          onClick={onLogout}
         >
-          ออกจากระบบ
-          
-              </button>
+          ออกจากระบบ</button>
       </div>
     </div>
   )
-  
+
 }

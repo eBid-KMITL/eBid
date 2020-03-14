@@ -6,9 +6,6 @@ import {firebaseConfig} from '../../firebase_config'
 import { useHistory } from "react-router-dom";
 
 export const Login = () => {
-  
-  
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   let history = useHistory()
@@ -55,7 +52,7 @@ export const Login = () => {
                   </button>
                 </Link>
                 <button type="button" className="btn"
-                  onClick= {onLogin} 
+                  onClick={onLogin} 
                 >
                   ลงชื่อเข้าใช้
               </button>
