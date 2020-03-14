@@ -21,14 +21,14 @@ export const NavBar = ({ status, userInfo }) => {
           {status ? (
             <div>
               <Link to="/register">การประมูลของฉัน</Link>
-              <Link to="/">เติมเงิน</Link>
+              <Link to="/topup">เติมเงิน</Link>
               <a href="#">ออกจากระบบ</a>
-              <a href="#">ติดต่อเรา</a>
+              <Link to="/contact">ติดต่อเรา</Link>
             </div>
           ) : (
               <div>
                 <Link to="/register">สมัครสมาชิก</Link>
-                <a href="#">ติดต่อเรา</a>
+                <Link to="/contact">ติดต่อเรา</Link>
               </div>
             )}
         </span>

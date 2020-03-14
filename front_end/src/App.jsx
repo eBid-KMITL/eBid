@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import { Login, Register, Forgot, Home, Error, Result, Profile, Product } from "./pages"
+import { Login, Register, Forgot, Home, Error, Result, Profile, Product, Contact } from "./pages"
 import { NavBar, Footer } from "./components"
 import {
   BrowserRouter as Router,
@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <Router>
-      <NavBar status={0} userInfo={userInfo} />
+      <NavBar status={1} userInfo={userInfo} />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
@@ -26,6 +26,7 @@ const App = () => {
         <Route path="/result" component={Result} />
         <Route path="/profile" component={Profile} />
         <Route path="/product" component={Product} />
+        <Route path="/contact" component={Contact} />
         <Route path="/" component={Error} />
       </Switch>
       <Footer />
