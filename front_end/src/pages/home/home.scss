@@ -8,10 +8,10 @@
   src        : url(../../assets/fonts/noto_thai/NotoSansThaiUI-SemiBold.ttf) format("truetype");
 }
 
-$font : 'Noto Sans',
+$font : 'Roboto',
 'Noto Sans Thai UI',
 sans-serif;
-$font-semibold : 'Noto Sans Semibold',
+$font-semibold : 'Roboto Bold',
 'Noto Sans Thai UI Semibold',
 sans-serif;
 $shadow : 0 3px 6px 0 #00000048;
@@ -82,10 +82,10 @@ $shadow : 0 3px 6px 0 #00000048;
 
   .home-footer {
     background : #2c2c2c;
-    height     : 50px;
     font-family: $font;
     color      : white;
-    display    : block;
-    text-align : center;
+    display    : flex;
+    flex-direction: row;
+    justify-content: center;
   }
 }
