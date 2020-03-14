@@ -1,10 +1,11 @@
-import "./login/login.scss"
-import "./home/home.scss"
-import "./error/error.scss"
-import "./result/result.scss"
-import "./profile/profile.scss"
-import "./product/product.scss"
-import "./contact/contact.scss"
+import "./login/login.scss";
+import "./home/home.scss";
+import "./error/error.scss";
+import "./result/result.scss";
+import "./profile/profile.scss";
+import "./product/product.scss";
+import "./contact/contact.scss";
+import "./topup/topup.scss";
 
 export { Login } from "./login/login";
 export { Register } from "./login/register";
@@ -15,3 +16,4 @@ export { Result } from "./result/result"
 export { Profile } from "./profile/profile";
 export { Product } from "./product/product";
 export { Contact } from "./contact/contact";
+export { Topup } from "./topup/topup";
