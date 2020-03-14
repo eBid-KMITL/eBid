@@ -1,14 +1,28 @@
-.App {
-  width: 100%;
-  height: 100vh;
+.page-container {
+	width     : 100%;
+	// height    : 100vh;
+	position  : relative;
+	min-height: 100vh;
+
+	.content-wrap {
+		padding-bottom: 2.5rem;
+	}
+
+	.footer {
+		position: absolute;
+		bottom  : 0;
+		width   : 100%;
+		height  : 2.5rem;
+	}
 }
+
 #loader {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	display: flex;
+	position       : fixed;
+	top            : 0;
+	left           : 0;
+	width          : 100%;
+	height         : 100%;
+	display        : flex;
 	justify-content: center;
-	align-items: center;
+	align-items    : center;
 }
