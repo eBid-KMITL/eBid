@@ -44,9 +44,6 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="home-footer">
-        <Footer />
-      </div>
     </div>
   )
 }

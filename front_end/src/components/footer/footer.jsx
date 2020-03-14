@@ -12,7 +12,7 @@ export const Footer = () => {
         && location.pathname !== '/forgot'
         &&
         <div className="footer-container">
-          <p>©2020 eBid-KMITL : For Education Purpose Only<br />Software Development Processes</p>
+          <p>Software Development Processes<br />©2020 eBid-KMITL : For Education Purpose Only</p>
         </div>
       }
     </>
