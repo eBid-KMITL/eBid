@@ -9,6 +9,9 @@ export const Register = () => {
     <div className="login-page">
       <div className="base-container">
         <div className="header">
+          <Link to="/">
+            <a><u>&lt; กลับหน้าหลัก</u></a>
+          </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
           </div>
@@ -30,7 +33,7 @@ export const Register = () => {
                 <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required minLength="8" />
               </div>
               <div className="extra">
-                <p><input type="checkbox" required />ฉันยอมรับ <Link to="#">ข้อตกลงและเงื่อนไข</Link></p>
+                <p><input type="checkbox" required />ฉันยอมรับ <a href="#">ข้อตกลงและเงื่อนไข</a></p>
               </div>
               <div className="button-wrapper">
                 <Link to="/login">

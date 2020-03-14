@@ -26,8 +26,20 @@
       align-items   : flex-start;
       text-align    : end;
 
+      a {
+        text-decoration: none;
+        color          : #0082FF;
+        font-size      : 18px;
+        font-weight    : normal;
+
+        &:hover {
+          color: #49a7ff;
+        }
+      }
+
       .image {
-        height: 65px;
+        height    : 65px;
+        margin-top: 1em;
 
         img {
           height: 100%;
