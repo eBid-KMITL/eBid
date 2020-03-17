@@ -111,6 +111,7 @@
       }
 
       .button-wrapper {
+        margin-top: 3em;
         flex-wrap     : wrap;
         display       : flex;
         flex-direction: row;
@@ -159,14 +160,6 @@
           }
         }
       }
-
-    }
-
-    .footer {
-      display       : flex;
-      flex-direction: row;
-      align-items   : flex-start;
-      padding       : 3em 0;
     }
   }
 }
