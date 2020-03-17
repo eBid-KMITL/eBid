@@ -1,11 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import firebase from "firebase"
-import { firebaseConfig } from '../../firebase_config'
-import { useHistory } from "react-router-dom";
 
-export const Profile = () => {
-  let history = useHistory()
+export const Welcome = ({history}) => {
 
   function onLogout() {
     firebase.auth().signOut()
@@ -15,7 +12,7 @@ export const Profile = () => {
   return (
     <div className="welcome-main">
       <div className="head-text">
-        ยินดีต้อนรับ {firebase.auth().currentUser.email}
+        ยินดีต้อนรับ {firebase.auth().currentUser.displayName}
       </div>
       <div className="button-wrapper">
         <Link to="/">
