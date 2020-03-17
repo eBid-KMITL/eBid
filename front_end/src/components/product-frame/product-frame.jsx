@@ -1,9 +1,11 @@
 import React from "react";
 import { FaClock, FaUserCircle } from "react-icons/fa";
 import { IoMdPricetags } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 export const ProductFrame = ({ image, details }) => {
   return (
+    <Link to="/product">
     <div className="product-box">
       <div className="b-product-img">
         <img src={image} />
@@ -22,5 +24,6 @@ export const ProductFrame = ({ image, details }) => {
       </div>
       </div>
     </div>
+    </Link>
   )
 }

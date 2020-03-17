@@ -6,34 +6,36 @@ export const Forgot = () => {
   return (
     <div className="login-page">
       <div className="base-container">
-      <div className="header">
-        <div className="image">
-          <img src={logoID} alt="eID" />
+        <div className="header">
+          <Link to="/">
+            <a><u>&lt; กลับหน้าหลัก</u></a>
+          </Link>
+          <div className="image">
+            <img src={logoID} alt="eID" />
+          </div>
+          <h1>ลืมรหัสใช่ไหม?</h1>
         </div>
-        <h1>ลืมรหัสใช่ไหม?</h1>
-      </div>
-      <div className="content">
-        <div className="form-container">
-          <form action="">
-            <div className="form-group">
-              <label htmlFor="email">อีเมล</label>
-              <input type="email" name="Email" placeholder="กรอกอีเมล" required />
-            </div>
-            <div className="footer"></div>
-            <div className="button-wrapper">
-              <Link to="/login">
-                <button type="button" className="btn_s">
-                  <u>ย้อนกลับ</u>
+        <div className="content">
+          <div className="form-container">
+            <form action="">
+              <div className="form-group">
+                <label htmlFor="email">อีเมล</label>
+                <input type="email" name="Email" placeholder="กรอกอีเมล" required />
+              </div>
+              <div className="button-wrapper">
+                <Link to="/login">
+                  <button type="button" className="btn_s">
+                    <u>ย้อนกลับ</u>
+                  </button>
+                </Link>
+                <button type="submit" className="btn">
+                  ส่งรหัสยืนยัน
                 </button>
-              </Link>
-              <button type="submit" className="btn">
-                ส่งรหัสยืนยัน
-          </button>
-            </div>
-          </form>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   )
 }
