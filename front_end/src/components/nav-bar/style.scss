@@ -36,6 +36,11 @@ $shadow : 0 3px 6px 0 #00000048;
         text-decoration: none;
         color          : black;
         margin-left    : 1em;
+
+        &:hover {
+          color: #0082FF;
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -144,6 +149,16 @@ $shadow : 0 3px 6px 0 #00000048;
 
       .user-status {
         margin-left: 1em;
+
+        a{
+          text-decoration: none;
+          color: black;
+
+          &:hover {
+            color: #0082FF;
+            text-decoration: underline;
+          }
+        }
       }
     }
   }

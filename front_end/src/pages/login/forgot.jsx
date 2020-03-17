@@ -22,7 +22,6 @@ export const Forgot = () => {
                 <label htmlFor="email">อีเมล</label>
                 <input type="email" name="Email" placeholder="กรอกอีเมล" required />
               </div>
-              <div className="footer"></div>
               <div className="button-wrapper">
                 <Link to="/login">
                   <button type="button" className="btn_s">
@@ -31,7 +30,7 @@ export const Forgot = () => {
                 </Link>
                 <button type="submit" className="btn">
                   ส่งรหัสยืนยัน
-          </button>
+                </button>
               </div>
             </form>
           </div>

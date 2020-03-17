@@ -20,7 +20,7 @@ export const NavBar = ({ status, userInfo }) => {
         <span className="nav-menu">
           {status ? (
             <div>
-              <Link to="/register">การประมูลของฉัน</Link>
+              <Link to="#">การประมูลของฉัน</Link>
               <Link to="/topup">เติมเงิน</Link>
               <a href="#">ออกจากระบบ</a>
               <Link to="/contact">ติดต่อเรา</Link>
@@ -50,7 +50,7 @@ export const NavBar = ({ status, userInfo }) => {
         <div className="nav-btn">
           {status ? (
             <div className="user-status">
-              <FaUserCircle /> {userInfo.username}<br />
+              <FaUserCircle /> <Link to="/profile">{userInfo.username}</Link><br />
               <FaCoins /> {userInfo.amount} eCoins
             </div>
           ) : (
