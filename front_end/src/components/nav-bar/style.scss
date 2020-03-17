@@ -1,7 +1,7 @@
-$font : 'Noto Sans',
+$font : 'Roboto',
 'Noto Sans Thai UI',
 sans-serif;
-$font-semibold : 'Noto Sans Semibold',
+$font-semibold : 'Roboto',
 'Noto Sans Thai UI Semibold',
 sans-serif;
 $shadow : 0 3px 6px 0 #00000048;
@@ -23,7 +23,7 @@ $shadow : 0 3px 6px 0 #00000048;
   top            : 0;
 
   .nav-header {
-    width    : 1050px;
+    width    : 1100px;
     height   : 20px;
     display  : block;
     margin   : 0.5em 0;
@@ -36,6 +36,11 @@ $shadow : 0 3px 6px 0 #00000048;
         text-decoration: none;
         color          : black;
         margin-left    : 1em;
+
+        &:hover {
+          color: #0082FF;
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -45,7 +50,7 @@ $shadow : 0 3px 6px 0 #00000048;
     flex-direction : row;
     justify-content: center;
     align-items    : center;
-    width          : 1200px;
+    width          : 1170px;
     height         : 60%;
 
     .nav-logo {
@@ -144,6 +149,16 @@ $shadow : 0 3px 6px 0 #00000048;
 
       .user-status {
         margin-left: 1em;
+
+        a{
+          text-decoration: none;
+          color: black;
+
+          &:hover {
+            color: #0082FF;
+            text-decoration: underline;
+          }
+        }
       }
     }
   }
