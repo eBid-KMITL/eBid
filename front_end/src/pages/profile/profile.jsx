@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { NavBar } from "../../components";
 import firebase from "firebase"
 
-export const Welcome = ({history}) => {
+export const Profile = ({history}) => {
 
   function onLogout() {
     firebase.auth().signOut()
@@ -22,13 +21,11 @@ export const Welcome = ({history}) => {
           </button>
         </Link>
         <button type="submit" className="btn"
-        onClick={onLogout}
+          onClick={onLogout}
         >
-          ออกจากระบบ
-          
-              </button>
+          ออกจากระบบ</button>
       </div>
     </div>
   )
-  
+
 }

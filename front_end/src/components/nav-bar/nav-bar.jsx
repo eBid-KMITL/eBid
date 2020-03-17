@@ -16,15 +16,19 @@ export const NavBar = ({ status, userInfo }) => {
         &&
         <div className="nav-bar" >
         <div className="nav-header">
-        <Clock format={'วันที่ DD/MM/YYYY เวลา HH:mm:ss น.'} ticking={true} timezone={'Asia/Bangkok'} />
+        <Clock format={'วันที่ DD/MM/YYYY เวลา HH:mm:ss น.'} ticking={true} timezone={'Asia/Bangkok'}/>
         <span className="nav-menu">
           {status ? (
             <div>
-              <Link to="/register">การประมูลของฉัน</Link><a href="#">ติดต่อเรา</a>
+              <Link to="#">การประมูลของฉัน</Link>
+              <Link to="/topup">เติมเงิน</Link>
+              <a href="#">ออกจากระบบ</a>
+              <Link to="/contact">ติดต่อเรา</Link>
             </div>
           ) : (
               <div>
-                <Link to="/register">สมัครสมาชิก</Link><a href="#">ติดต่อเรา</a>
+                <Link to="/register">สมัครสมาชิก</Link>
+                <Link to="/contact">ติดต่อเรา</Link>
               </div>
             )}
         </span>
@@ -46,7 +50,7 @@ export const NavBar = ({ status, userInfo }) => {
         <div className="nav-btn">
           {status ? (
             <div className="user-status">
-              <FaUserCircle /> {userInfo.username}<br />
+              <FaUserCircle /> <Link to="/profile">{userInfo.username}</Link><br />
               <FaCoins /> {userInfo.amount} eCoins
             </div>
           ) : (

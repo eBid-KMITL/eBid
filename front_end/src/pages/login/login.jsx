@@ -10,11 +10,11 @@ export const Login = ({history}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  
+
   function onLogin() {
       firebase.auth().signInWithEmailAndPassword(email,password).then(() => {
         alert('Authentication Completed');
-        history.replace('/welcome')
+        history.replace('/profile')
       })
       .catch(err => { 
         alert(err);
@@ -24,6 +24,9 @@ export const Login = ({history}) => {
     <div className="login-page">
       <div className="base-container">
         <div className="header">
+          <Link to="/">
+            <a><u>&lt; กลับหน้าหลัก</u></a>
+          </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
           </div>
@@ -42,16 +45,15 @@ export const Login = ({history}) => {
               </div>
               <div className="extra">
                 <p>ยังไม่ได้เป็นสมาชิก? <Link to="/register">สมัครสมาชิก</Link></p>
-                <p><Link to="/forgot" >ลืมรหัสผ่าน</Link></p>
               </div>
               <div className="button-wrapper">
-                <Link to="/">
+                <Link to="/forgot">
                   <button type="button" className="btn_s">
-                    <u>กลับหน้าหลัก</u>
+                    <u>ลืมรหัสผ่าน</u>
                   </button>
                 </Link>
                 <button type="button" className="btn"
-                  onClick= {onLogin} 
+                  onClick={onLogin}
                 >
                   ลงชื่อเข้าใช้
               </button>
