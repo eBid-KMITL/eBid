@@ -1,5 +1,5 @@
 import React from "react";
-import { NavBar, Slideshow, ProductFrame, Footer } from "../../components";
+import { Slideshow, ProductFrame } from "../../components";
 import p1 from "../../assets/products-pics/ip11.png"
 import p2 from "../../assets/products-pics/macbook.png"
 import p3 from "../../assets/products-pics/watch.jpg"
@@ -24,8 +24,9 @@ export const Home = () => {
           <b style={{ fontSize: 22 }}>ประเภท</b>
           <ul>
           <li>การ์ตูน</li>
-          <li>ของเล่น | เกมส์</li>
           <li>ของสะสม</li>
+          <li>ของเล่น | เกมส์</li>
+          <li>คอมพิวเตอร์ | กล้อง</li>
           <li>หนังสือ | สิ่งพิมพ์</li>
           <li>ภาพยนตร์ | วิดีโอ | ดีวีดี</li>
           <li>สัตว์เลี้ยง</li>

@@ -2,24 +2,21 @@ import React, { useState, useEffect } from 'react';
 import './App.scss';
 import { Login, Register, Forgot, Home, Error, Result, Profile, Product, Contact, Topup } from "./pages"
 import { NavBar, Footer } from "./components"
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase"
 import { firebaseConfig } from './firebase_config'
 
 
 const App = () => {
-  const userInfo = { username: "admin", amount: "999,999" }
+  const status = 1
+  const userInfo = { username: "admin", amount: "0" }
   firebase.initializeApp(firebaseConfig)
 
   return (
     <div className="page-container">
       <Router>
         <div className="content-wrap">
-          <NavBar status={1} userInfo={userInfo} />
+          <NavBar status={status} userInfo={userInfo} />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />

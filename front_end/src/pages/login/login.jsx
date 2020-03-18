@@ -25,7 +25,7 @@ export const Login = ({history}) => {
       <div className="base-container">
         <div className="header">
           <Link to="/">
-            <a><u>&lt; กลับหน้าหลัก</u></a>
+            <a>&lt; กลับหน้าหลัก</a>
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
