@@ -13,6 +13,7 @@ export const NavBar = ({ status, userInfo, history }) => {
   }
 
   const location = useLocation();
+  var user = firebase.auth().currentUser;
 
   return (
     <>
@@ -25,7 +26,7 @@ export const NavBar = ({ status, userInfo, history }) => {
           <div className="nav-header">
             <Clock format={'วันที่ DD/MM/YYYY เวลา HH:mm:ss น.'} ticking={true} timezone={'Asia/Bangkok'} />
             <span className="nav-menu">
-              {status ? (
+              {user ? (
                 <div>
                   <Link to="#">การประมูลของฉัน</Link>
                   <Link to="/topup">เติมเงิน</Link>
@@ -55,9 +56,9 @@ export const NavBar = ({ status, userInfo, history }) => {
               </div>
             </div>
             <div className="nav-btn">
-              {status ? (
+              {user ? (
                 <div className="user-status">
-                  <FaUserCircle /> <Link to="/profile">{userInfo.username}</Link><br />
+                  <FaUserCircle /> <Link to="/profile">{firebase.auth().currentUser.displayName}</Link><br />
                   <FaCoins /> {userInfo.amount} eCoins
                 </div>
               ) : (
