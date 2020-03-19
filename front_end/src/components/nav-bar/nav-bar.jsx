@@ -7,13 +7,13 @@ import firebase from "firebase"
 
 export const NavBar = ({ status, userInfo, history }) => {
 
+  const location = useLocation();
+
   function onLogout() {
     firebase.auth().signOut()
-    history.replace('/')
   }
 
-  const location = useLocation();
-  var user = firebase.auth().currentUser;
+  
 
   return (
     <>
@@ -26,11 +26,11 @@ export const NavBar = ({ status, userInfo, history }) => {
           <div className="nav-header">
             <Clock format={'วันที่ DD/MM/YYYY เวลา HH:mm:ss น.'} ticking={true} timezone={'Asia/Bangkok'} />
             <span className="nav-menu">
-              {user ? (
+              {firebase.auth().currentUser ? (
                 <div>
                   <Link to="#">การประมูลของฉัน</Link>
                   <Link to="/topup">เติมเงิน</Link>
-                  <a href="#" onClick = {onLogout} >ออกจากระบบ</a>
+                  <Link to="/" onClick = {onLogout} >ออกจากระบบ</Link>
                   <Link to="/contact">ติดต่อเรา</Link>
                 </div>
               ) : (
@@ -56,7 +56,7 @@ export const NavBar = ({ status, userInfo, history }) => {
               </div>
             </div>
             <div className="nav-btn">
-              {user ? (
+              {firebase.auth().currentUser ? (
                 <div className="user-status">
                   <FaUserCircle /> <Link to="/profile">{firebase.auth().currentUser.displayName}</Link><br />
                   <FaCoins /> {userInfo.amount} eCoins
