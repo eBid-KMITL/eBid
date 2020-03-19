@@ -30,7 +30,7 @@ const App = () => {
             <Route path="/product" component={Product} />
             <Route path="/contact" component={Contact} />
             <Route path="/topup" component={Topup} />
-            <Route path="/" component={Error} />
+            <Route path="/error" component={Error} />
           </Switch>
         </div>
         <div className="footer">

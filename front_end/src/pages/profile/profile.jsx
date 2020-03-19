@@ -20,7 +20,7 @@ export const Profile = ({history}) => {
             <u>กลับหน้าหลัก</u>
           </button>
         </Link>
-        <button type="submit" className="btn"
+        <button type="button" className="btn"
           onClick={onLogout}
         >
           ออกจากระบบ</button>
