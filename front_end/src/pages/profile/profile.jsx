@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import firebase from "firebase"
 
-export const Welcome = ({history}) => {
+export const Profile = ({history}) => {
 
   function onLogout() {
     firebase.auth().signOut()
