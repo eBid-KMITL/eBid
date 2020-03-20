@@ -33,7 +33,7 @@
         font-weight    : normal;
 
         &:hover {
-          color: #49a7ff;
+          text-decoration: underline;
         }
       }
 
@@ -111,7 +111,7 @@
       }
 
       .button-wrapper {
-        margin-top: 3em;
+        margin-top    : 3em;
         flex-wrap     : wrap;
         display       : flex;
         flex-direction: row;

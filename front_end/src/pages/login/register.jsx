@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 import firebase from "firebase"
 
 export const Register = ({ history }) => {
-
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
   function onRegister() {
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       firebase.auth().currentUser.updateProfile({
@@ -27,7 +25,7 @@ export const Register = ({ history }) => {
       <div className="base-container">
         <div className="header">
           <Link to="/">
-            <a>&lt; กลับหน้าหลัก</a>
+            <a>﹤ กลับหน้าหลัก</a>
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />

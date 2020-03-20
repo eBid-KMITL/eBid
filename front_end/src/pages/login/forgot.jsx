@@ -8,7 +8,7 @@ export const Forgot = () => {
       <div className="base-container">
         <div className="header">
           <Link to="/">
-            <a>&lt; กลับหน้าหลัก</a>
+            <a>﹤ กลับหน้าหลัก</a>
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />

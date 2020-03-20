@@ -2,7 +2,7 @@
   align-items: center;
   margin     : auto auto;
   text-align : left;
-  padding    : 150px 0;
+  padding-top: 150px;
 
   .topup-wrap {
     display        : flex;
@@ -15,7 +15,7 @@
 
     img {
       border-radius: 20px 0 0 20px;
-      box-shadow: 0 4px 6px 0 #00000071;
+      box-shadow   : 0 4px 6px 0 #00000071;
     }
   }
 
