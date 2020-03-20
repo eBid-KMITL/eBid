@@ -1,29 +1,32 @@
 .topup-main {
   align-items: center;
-  margin: auto auto;
-  text-align: left;
-  padding: 150px 0;
+  margin     : auto auto;
+  text-align : left;
+  padding-top: 150px;
 
   .topup-wrap {
     display        : flex;
     flex-direction : row;
     justify-content: center;
+
   }
 
   .topup-banner {
 
     img {
       border-radius: 20px 0 0 20px;
+      box-shadow   : 0 4px 6px 0 #00000071;
     }
   }
 
   .topup-container {
-    padding: 0 2em;
+    padding         : 0 2em;
     width           : 400px;
     height          : 375px;
     background-color: #ebebeb;
     border-radius   : 0 20px 20px 0;
-    align-items: center;
+    align-items     : center;
+    box-shadow      : 0 3px 6px 0 #00000048;
 
     .form-group {
       width         : 100%;
@@ -44,7 +47,7 @@
         padding         : 0 10px;
         font-size       : 16px;
         font-family     : 'Noto Sans Thai UI', sans-serif;
-        background-color: #f3f3f3;
+        background-color: #ffffff;
         border          : 0px;
         border-radius   : 5px;
         margin-bottom   : 10px;
@@ -79,8 +82,8 @@
       flex-wrap     : wrap;
       display       : flex;
       flex-direction: row;
-      float: right;
-      margin-top: 9em;
+      float         : right;
+      margin-top    : 9em;
 
       .btn {
         font-size       : 18px;
