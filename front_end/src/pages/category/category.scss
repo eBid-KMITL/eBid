@@ -1,0 +1,12 @@
+.category-main {
+  padding-top    : 130px;
+  width          : 100%;
+  display        : flex;
+  justify-content: center;
+
+  .category-container {
+    width           : 1100px;
+    background-color: #cecece;
+    border-radius   : 10px;
+  }
+}

@@ -1,32 +1,24 @@
 import React, { useState } from "react";
 import logoID from "../../assets/eID.png";
-import {
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import firebase from "firebase"
 
-export const Register = ({history}) => {
-
+export const Register = ({ history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  
-  function onRegister(){
-    firebase.auth().createUserWithEmailAndPassword(email,password).then(() => {
+  function onRegister() {
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       firebase.auth().currentUser.updateProfile({
-        displayName : name
+        displayName: name
       })
       alert('Register Completed')
       history.replace('/login')
     })
-    .catch(err => { 
-      alert(err);
-    });
+      .catch(err => {
+        alert(err);
+      });
   }
-
-
-
-
 
   return (
     <div className="login-page">
@@ -34,7 +26,7 @@ export const Register = ({history}) => {
       <div className="base-container">
         <div className="header">
           <Link to="/">
-            <a><u>&lt; กลับหน้าหลัก</u></a>
+            <a>﹤ กลับหน้าหลัก</a>
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
@@ -46,7 +38,7 @@ export const Register = ({history}) => {
             <form action="">
               <div className="form-group">
                 <label htmlFor="username">ชื่อผู้ใช้</label>
-                <input type="text" name="Username" placeholder="กรอกชื่อผู้ใช้" required value={name} onChange={e => setName(e.target.value)}/>
+                <input type="text" name="Username" placeholder="กรอกชื่อผู้ใช้" required value={name} onChange={e => setName(e.target.value)} />
               </div>
               <div className="form-group">
                 <label htmlFor="email">อีเมล</label>
@@ -54,7 +46,7 @@ export const Register = ({history}) => {
               </div>
               <div className="form-group">
                 <label htmlFor="password">รหัสผ่าน</label>
-                <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required minLength="8" value={password} onChange={e => setPassword(e.target.value)}/>
+                <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required minLength="8" value={password} onChange={e => setPassword(e.target.value)} />
               </div>
               <div className="extra">
                 <p><input type="checkbox" required />ฉันยอมรับ <a href="#">ข้อตกลงและเงื่อนไข</a></p>
@@ -66,7 +58,7 @@ export const Register = ({history}) => {
                   </button>
                 </Link>
                 <button type="button" className="btn"
-                 onClick= {onRegister} 
+                  onClick={onRegister}
                 >
                   สมัครสมาชิก
           </button>
