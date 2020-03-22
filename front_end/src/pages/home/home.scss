@@ -71,7 +71,7 @@ $shadow : 0 3px 6px 0 #00000048;
     }
 
     li {
-      transition: 75ms all ease-in-out;
+      transition: 200ms all cubic-bezier(0.68, -0.55, 0.27, 1.55);
       cursor: pointer;
       &:hover {
         font-size: 20px;

@@ -6,6 +6,7 @@ import "./profile/profile.scss";
 import "./product/product.scss";
 import "./contact/contact.scss";
 import "./topup/topup.scss";
+import "./category/category.scss";
 
 export { Login } from "./login/login";
 export { Register } from "./login/register";
@@ -17,3 +18,4 @@ export { Profile } from "./profile/profile";
 export { Product } from "./product/product";
 export { Contact } from "./contact/contact";
 export { Topup } from "./topup/topup";
+export { Category } from "./category/category";
