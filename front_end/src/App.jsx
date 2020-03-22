@@ -14,30 +14,30 @@ import { firebaseConfig } from './firebase_config'
 const App = () => {
   const userInfo = { username: "admin", amount: "999,999" }
   firebase.initializeApp(firebaseConfig)
-
+ 
   return (
-    <div className="page-container">
-      <Router>
-        <div className="content-wrap">
-          <NavBar status={1} userInfo={userInfo} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/forgot" component={Forgot} />
-            <Route path="/result" component={Result} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/product" component={Product} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/topup" component={Topup} />
-            <Route path="/error" component={Error} />
-          </Switch>
-        </div>
-        <div className="footer">
-          <Footer />
-        </div>
-      </Router>
-    </div>
+      <div className="page-container">
+        <Router>
+          <div className="content-wrap">
+            <NavBar status={1} userInfo={userInfo} />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/forgot" component={Forgot} />
+              <Route path="/result" component={Result} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/product" component={Product} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/topup" component={Topup} />
+              <Route path="/error" component={Error} />
+            </Switch>
+          </div>
+          <div className="footer">
+            <Footer />
+          </div>
+        </Router>
+      </div>
   )
 }
 

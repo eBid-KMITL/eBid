@@ -30,6 +30,7 @@ export const Register = ({history}) => {
 
   return (
     <div className="login-page">
+      <title>signup</title>
       <div className="base-container">
         <div className="header">
           <Link to="/">

@@ -11,6 +11,7 @@ export const Profile = ({history}) => {
 
   return (
     <div className="welcome-main">
+      <title>profile</title>
       <div className="head-text">
         ยินดีต้อนรับ {firebase.auth().currentUser.displayName}
       </div>
