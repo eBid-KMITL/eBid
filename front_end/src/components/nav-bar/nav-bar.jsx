@@ -5,15 +5,11 @@ import { Link, useLocation } from "react-router-dom";
 import { FaUserCircle, FaCoins } from "react-icons/fa"
 import firebase from "firebase"
 
-export const NavBar = ({ status, userInfo, history }) => {
-
+export const NavBar = ({ userInfo }) => {
   const location = useLocation();
-
   function onLogout() {
     firebase.auth().signOut()
   }
-
-  
 
   return (
     <>

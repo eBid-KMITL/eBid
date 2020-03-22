@@ -4,8 +4,10 @@ import { IoMdPricetags } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 export const ProductFrame = ({ image, details }) => {
+  const link = details.link
+
   return (
-    <Link to="/product">
+    <Link to={link}>
     <div className="product-box">
       <div className="b-product-img">
         <img src={image} />
