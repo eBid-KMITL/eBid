@@ -10,11 +10,9 @@ export const Login = ({ history }) => {
   const [loginFail, setFail] = useState(0)
   function onLogin() {
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-      // alert('Authentication Completed');
       history.replace('/profile')
     })
       .catch(err => {
-        // alert(err);
         setFail(1)
       });
   }
