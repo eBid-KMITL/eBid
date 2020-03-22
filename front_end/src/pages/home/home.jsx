@@ -15,7 +15,7 @@ export const Home = () => {
   ]
   
   return (
-    <div className="main">
+    <div id="main" className="main">
       <div className="home-banner">
         <Slideshow />
       </div>
