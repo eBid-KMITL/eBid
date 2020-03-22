@@ -6,6 +6,7 @@ import firebase from "firebase"
 export const Login = ({ history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loginFail, setFail] = useState(0)
   function onLogin() {
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
       alert('Authentication Completed');
@@ -13,9 +14,10 @@ export const Login = ({ history }) => {
     })
       .catch(err => {
         alert(err);
+        setFail(1)
       });
   }
-
+  
   return (
     <div className="content-wrap" id="login">
       <div className="login-page">
@@ -42,6 +44,12 @@ export const Login = ({ history }) => {
                 </div>
                 <div className="extra">
                   <p>ยังไม่ได้เป็นสมาชิก? <Link to="/register">สมัครสมาชิก</Link></p>
+                  { loginFail ? (
+                    <p id="login-error">อีเมลหรือรหัสผ่านไม่มีอยู่ หรือไม่ถูกต้อง</p>
+                  ) : (
+                    null
+                  )
+                  }
                 </div>
                 <div className="button-wrapper">
                   <Link to="/forgot">
