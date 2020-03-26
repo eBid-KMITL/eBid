@@ -1,0 +1,45 @@
+$font: "SF Display", "Noto Sans Thai UI", sans-serif;
+$font-semibold: "Noto Sans", "Noto Sans Thai UI Semibold", sans-serif;
+$shadow: 0 10px 15px 0 #00000048;
+
+.myproduct-box {
+  width: 1000px;
+  height: 700px;
+  margin-left: 100px;
+  padding-right: 20px;
+  border-radius: 10px;
+  box-shadow: $shadow;
+  display: block;
+  background: #f1f1f1;
+
+  h {
+    margin: auto;
+    padding-top: 3%;
+    padding-left: 3%;
+    display: flex;
+    font-size: 25px;
+    justify-content: left;
+    align-items: center;
+    object-fit: scale-down;
+  }
+
+  .mystatement-table {
+    width: 1020px;
+    padding-top: 1.5%;
+
+    table {
+      width: 1020px;
+
+      tr {
+        padding: 10%;
+
+        td {
+          background-color: white;
+          align-items: center;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+}
