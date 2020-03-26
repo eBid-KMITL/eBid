@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "Noto Sans Thai UI";
+  src: url(../../assets/fonts/noto_thai/NotoSansThaiUI-Regular.ttf)
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Sans Thai UI Semibold";
+  src: url(../../assets/fonts/noto_thai/NotoSansThaiUI-SemiBold.ttf)
+    format("truetype");
+}
+
+$font: "Noto Sans", "Noto Sans Thai UI", sans-serif;
+$font-semibold: "Noto Sans Semibold", "Noto Sans Thai UI Semibold", sans-serif;
+$shadow: 0 3px 6px 0 #00000048;
+
+.main {
+  width: 100%;
+
+  .user-container {
+    width: 1500px;
+    height: 800px;
+    margin: auto;
+    margin-top: 150px;
+    font-family: $font;
+    display: flex;
+    flex-direction: row;
+
+    .user-left-bar {
+      width: 100%;
+      height: 500px;
+      margin-top: 20px;
+      height: fit-content;
+      border-radius: 10px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    line-height: 3em;
+
+    .selected {
+      font-weight: bold;
+      color: #ff9100;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+      margin-left: 1em;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      margin: auto;
+      padding-bottom: 10%;
+      justify-content: center;
+      align-items: center;
+      object-fit: scale-down;
+    }
+
+    .btn {
+      font-size: 15px;
+      font-family: "Noto Sans Thai UI Semibold", sans-serif;
+      padding: 10px 30px;
+      border: 0;
+      border-radius: 30px;
+      color: white;
+      background-color: #ff9100;
+      transition: all 300ms ease-in-out;
+      cursor: pointer;
+      &:hover {
+        background-color: #ffa32b;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .user-footer {
+    background: #2c2c2c;
+    height: 50px;
+    font-family: $font;
+    color: white;
+    display: block;
+    text-align: center;
+  }
+}
