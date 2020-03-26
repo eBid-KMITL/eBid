@@ -47,10 +47,11 @@ $shadow : 0 3px 6px 0 #00000048;
       background   : #f1f1f1;
 
       .content-hot {
-        float        : left;
+        float: left;
       }
+
       .content-timeout {
-        float        : left;
+        float: left;
       }
     }
 
@@ -64,17 +65,23 @@ $shadow : 0 3px 6px 0 #00000048;
       background   : #f1f1f1;
     }
 
+    a {
+      text-decoration: none;
+      color          : black;
+    }
+
     ul {
       padding-left: 0;
-      list-style: none;
-      line-height: 2em;
+      list-style  : none;
+      line-height : 2em;
     }
 
     li {
       transition: 200ms all cubic-bezier(0.68, -0.55, 0.27, 1.55);
-      cursor: pointer;
+      cursor    : pointer;
+
       &:hover {
-        font-size: 20px;
+        font-size    : 20px;
         border-radius: 5px;
       }
     }
