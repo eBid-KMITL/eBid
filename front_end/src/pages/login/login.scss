@@ -1,165 +1,139 @@
 .login-page {
-  width              : 100%;
-  height             : 100vh;
-  background-image   : url("../../assets/bg.png");
-  background-size    : cover;
-  background-repeat  : no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../assets/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: top center;
-  display            : flex;
-  flex-direction     : column;
-  align-items        : center;
-  justify-content    : center;
-  overflow           : hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 
   .base-container {
     background-color: #ffffffaf;
-    box-shadow      : 0 3px 6px 0 #00000041;
-    border-radius   : 10px;
-    padding         : 3em 3em;
-    backdrop-filter : blur(10px);
-
+    box-shadow: 0 3px 6px 0 #00000041;
+    border-radius: 10px;
+    padding: 3em 3em;
+    backdrop-filter: blur(10px);
+  
     .header {
-      font-family   : 'Noto Sans Thai UI Semibold', sans-serif;
-      font-size     : 24px;
-      display       : flex;
+      font-family: 'Noto Sans Thai UI Semibold', sans-serif;
+      font-size: 24px;
+      display: flex;
       flex-direction: column;
-      align-items   : flex-start;
-      text-align    : end;
-
-      a {
-        text-decoration: none;
-        color          : #0082FF;
-        font-size      : 18px;
-        font-weight    : normal;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
+      align-items: flex-start;
+      text-align: end;
+      
       .image {
-        height    : 65px;
-        margin-top: 1em;
-
+        height: 65px;
         img {
           height: 100%;
         }
       }
     }
-
-
+  
+  
     .content {
-      display       : flex;
+      display: flex;
       flex-direction: column;
-      align-items   : flex-start;
-      font-family   : 'Noto Sans Thai UI Semibold', sans-serif;
-
+      align-items: flex-start;
+      font-family: 'Noto Sans Thai UI Semibold', sans-serif;
+  
       .form-container {
-        display       : flex;
+        display: flex;
         flex-direction: column;
-        width         : 100%;
-
+        width: 100%;
+  
         .form-group {
-          width         : 100%;
-          display       : flex;
+          width: 100%;
+          display: flex;
           flex-direction: column;
-
+  
           label {
             font-family: 'Noto Sans Thai UI', sans-serif;
-            font-size  : 20px;
+            font-size: 20px;
           }
-
+  
           input {
-            width           : 100%;
-            box-shadow      : 0 3px 6px 0 #00000041;
-            margin-top      : 5px;
-            height          : 37px;
-            box-sizing      : border-box;
-            padding         : 0 10px;
-            font-size       : 16px;
-            font-family     : 'Noto Sans Thai UI', sans-serif;
+            width: 100%;
+            box-shadow: 0 3px 6px 0 #00000041;
+            margin-top:  5px;
+            height: 37px;
+            box-sizing: border-box;
+            padding: 0 10px;
+            font-size: 16px;
+            font-family: 'Noto Sans Thai UI', sans-serif;
             background-color: #f3f3f3;
-            border          : 0px;
-            border-radius   : 5px;
-            margin-bottom   : 10px;
-            transition      : all 250ms ease-in-out;
-
-            &:focus {
-              box-shadow: 0 7px 20px 2px #00000067;
-              outline   : none;
-            }
+            border: 0px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: all 250ms ease-in-out;
           }
         }
       }
-
+  
       .extra {
-        font-family  : 'Noto Sans Thai Ui', sans-serif;
+        font-family: 'Noto Sans Thai Ui', sans-serif;
         margin-bottom: 2em;
-
-        a {
-          color     : #0082FF;
+        a{
+          color: #0082FF;
           transition: all 100ms ease-in-out;
-
           &:hover {
             color: #49a7ff;
           }
         }
-
+  
         p {
           margin: 0;
         }
       }
-
+  
       .button-wrapper {
-        margin-top    : 3em;
-        flex-wrap     : wrap;
-        display       : flex;
+        flex-wrap: wrap;
+        display: flex;
         flex-direction: row;
-
+  
         .btn {
-          font-size       : 18px;
-          font-family     : 'Noto Sans Thai UI Semibold', sans-serif;
-          padding         : 10px 50px;
-          border-radius   : 5px;
-          border          : 0;
-          color           : white;
+          font-size: 18px;
+          font-family: 'Noto Sans Thai UI Semibold', sans-serif;
+          padding: 10px 50px;
+          border: 0;
+          border-radius: 5px;
+          color: white;
           background-color: #ff9100;
-          transition      : all 300ms ease-in-out;
-          box-shadow      : 0 0 7px 0 #ff9100da;
-          cursor          : pointer;
-
+          transition: all 300ms ease-in-out;
+          box-shadow: 0 3px 16px 0 #ff9100a4;
+          cursor: pointer;
           &:hover {
             background-color: #ffa32b;
-            box-shadow      : 0 0 16px 3px #ff9100da;
           }
-
           &:focus {
             outline: none;
           }
         }
-
+    
         .btn_s {
-          font-size       : 18px;
-          font-family     : 'Noto Sans Thai UI Semibold', sans-serif;
-          padding         : 10px 50px;
-          border-radius   : 5px;
-          margin-right    : 1em;
-          border          : 0;
-          transition      : all 300ms ease-in-out;
-          color           : #0082FF;
+          @extend .btn;
+          margin-right: 1em;
+          color: #0082FF;
           background-color: #ffffff00;
-          box-shadow      : none;
-          cursor          : pointer;
-
+          box-shadow: none;
+          cursor: pointer;
           &:hover {
             background-color: #ffffff5b;
           }
-
-          &:focus {
-            outline: none;
-          }
         }
       }
+    
+    }
+  
+    .footer {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 3em 0;
     }
   }
 }

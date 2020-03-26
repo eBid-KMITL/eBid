@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export const Error = () => {
   return (
     <div className="main">
+      <NavBar />
       <div className="error">
         <Link to="/">
           <button type="button" className="btn-b">
