@@ -9,7 +9,7 @@ export const Home = () => {
   const details = [
     { name: "iPhone 11 64GB", price: "35,800", owner: "e_shop", time:"0d 17:12:33", nbid: 22, image: p1, link: "/iPhone-11-64GB" },
     { name: "MacBook Pro 16\"", price: "47,100", owner: "e_shop", time:"3d 3:21:17", nbid: 15, image: p2, link: "/MacBook-Pro-16" },
-    { name: "นาฬิกา VIGOROSO", price: "7,360", owner: "e_shop", time:"0d 12:00:08", nbid: 9, image: p3, link: "/นาฬิกา-VIGOROSO" },
+    { name: "VIGOROSO Watch", price: "7,360", owner: "e_shop", time:"0d 12:00:08", nbid: 9, image: p3, link: "/นาฬิกา-VIGOROSO" },
     { name: "กระเป๋าหนังแท้ญี่ปุ่น", price: "1,328", owner: "e_shop", time:"2d 12:12:33", nbid: 4, image: p4, link: "/กระเป๋าหนังแท้ญี่ปุ่น" },
     { name: "MacBook Pro 15\"", price: "47,100", owner: "e_shop", time:"2d 00:43:46", nbid: 21, image: p2, link: "/MacBook-Pro-15" },
   ]
@@ -26,7 +26,7 @@ export const Home = () => {
           <li>การ์ตูน</li>
           <li>ของสะสม</li>
           <li>ของเล่น | เกมส์</li>
-          <li>คอมพิวเตอร์ | กล้อง</li>
+          <li>คอมพิวเตอร์ | โทรศัพท์มือถือ</li>
           <li>หนังสือ | สิ่งพิมพ์</li>
           <li>ภาพยนตร์ | วิดีโอ | ดีวีดี</li>
           <li>สัตว์เลี้ยง</li>
