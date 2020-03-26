@@ -17,6 +17,11 @@ export const UserAccount = ({ details }) => {
         <br />
         ได้รับเงินแล้ว : {details.moneyGain} - บิด
         <br />
+        <div className="button">
+          <button type="submit" className="btn">
+            ถอนเงิน
+          </button>
+        </div>
       </div>
     </div>
   );

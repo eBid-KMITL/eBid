@@ -47,6 +47,27 @@ $shadow: 0 10px 15px 0 #00000048;
     }
   }
 
+  .button {
+    margin-left: 1%;
+    .btn {
+      font-size: 18px;
+      font-family: "Noto Sans Thai UI Semibold", sans-serif;
+      padding: 10px 30px;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      background-color: #ff9100;
+      transition: all 300ms ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ffa32b;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
   img {
     width: 100%;
   }
