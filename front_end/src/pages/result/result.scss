@@ -1,0 +1,32 @@
+$font : 'Roboto',
+'Noto Sans Thai UI',
+sans-serif;
+$font-semibold : 'Roboto Bold',
+'Noto Sans Thai UI Semibold',
+sans-serif;
+$shadow : 0 3px 6px 0 #00000048;
+
+.result-main {
+  width          : 100%;
+  padding-top    : 130px;
+  padding-bottom : 50px;
+  display        : flex;
+  flex-direction : row;
+  justify-content: center;
+  align-items    : center;
+
+  .search-content {
+    width           : 1100px;
+    // height       : 50vh;
+    padding         : 20px 20px;
+    border-radius   : 10px;
+    box-shadow      : $shadow;
+    display         : block;
+    background      : #f1f1f1;
+
+    .content {
+      float: left;
+
+    }
+  }
+}
