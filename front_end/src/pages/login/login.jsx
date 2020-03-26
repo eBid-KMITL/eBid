@@ -3,6 +3,7 @@ import logoID from "../../assets/eID.png";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
 import { FaExclamationCircle } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 export const Login = ({ history }) => {
   const [email, setEmail] = useState('')
@@ -19,6 +20,7 @@ export const Login = ({ history }) => {
 
   return (
     <div className="login-page">
+      <Helmet><title>Login | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
           <Link to="/">

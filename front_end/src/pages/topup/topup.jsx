@@ -1,9 +1,11 @@
 import React from "react"
 import topup from "../../assets/topup.png";
+import { Helmet } from "react-helmet";
 
 export const Topup = () => {
   return (
     <div className="topup-main">
+      <Helmet><title>Topup | eBid</title></Helmet>
       <div className="topup-wrap">
         <div className="topup-banner">
           <img src={topup} alt="eBid Logo" />

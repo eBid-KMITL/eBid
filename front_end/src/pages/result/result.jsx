@@ -1,5 +1,6 @@
 import React from "react";
 import { ProductFrame } from "../../components";
+import { Helmet } from "react-helmet";
 import p1 from "../../assets/products-pics/ip11.png"
 import p2 from "../../assets/products-pics/macbook.png"
 import p3 from "../../assets/products-pics/watch.jpg"
@@ -21,6 +22,7 @@ export const Result = () => {
 
   return (
     <div className="result-main">
+      <Helmet><title>eBid - Online Bidding | Software Development Processes KMITL</title></Helmet>
       <div className="search-content">
         <div className="content">
           {details ? (

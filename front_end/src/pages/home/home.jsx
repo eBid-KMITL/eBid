@@ -1,5 +1,7 @@
 import React from "react";
 import { Slideshow, ProductFrame } from "../../components";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import p1 from "../../assets/products-pics/ip11.png"
 import p2 from "../../assets/products-pics/macbook.png"
 import p3 from "../../assets/products-pics/watch.jpg"
@@ -16,6 +18,7 @@ export const Home = () => {
   
   return (
     <div className="main">
+      <Helmet><title>eBid - Online Bidding | Software Development Processes KMITL</title></Helmet>
       <div className="home-banner">
         <Slideshow />
       </div>
@@ -26,7 +29,7 @@ export const Home = () => {
           <li>การ์ตูน</li>
           <li>ของสะสม</li>
           <li>ของเล่น | เกมส์</li>
-          <li>คอมพิวเตอร์ | โทรศัพท์มือถือ</li>
+          <Link to="/category"><li>คอมพิวเตอร์ | โทรศัพท์มือถือ</li></Link>
           <li>หนังสือ | สิ่งพิมพ์</li>
           <li>ภาพยนตร์ | วิดีโอ | ดีวีดี</li>
           <li>สัตว์เลี้ยง</li>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import firebase from "firebase"
+import firebase from "firebase";
+import { Helmet } from "react-helmet";
 
 export const Profile = ({history}) => {
 
@@ -11,6 +12,7 @@ export const Profile = ({history}) => {
 
   return (
     <div className="welcome-main">
+      <Helmet><title>Profile | eBid</title></Helmet>
       <div className="head-text">
         ยินดีต้อนรับ {firebase.auth().currentUser.displayName}
       </div>
