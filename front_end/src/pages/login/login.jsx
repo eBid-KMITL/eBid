@@ -70,4 +70,5 @@ export const Login = ({ history }) => {
       </div>
     </div>
   )
+
 }

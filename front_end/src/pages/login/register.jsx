@@ -26,49 +26,31 @@ export const Register = ({ history }) => {
       <Helmet><title>Register | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
+          <Link to="/">
+            <a>﹤ กลับหน้าหลัก</a>
+          </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
           </div>
-          <div align="right">
-            <h1>สมัครสมาชิก</h1>
-          </div>
+          <div align="right"><h1>สมัครสมาชิก</h1></div>
         </div>
         <div className="content">
           <div className="form-container">
             <form action="">
               <div className="form-group">
                 <label htmlFor="username">ชื่อผู้ใช้</label>
-                <input
-                  type="text"
-                  name="Username"
-                  placeholder="กรอกชื่อผู้ใช้"
-                  required
-                />
+                <input type="text" name="Username" placeholder="กรอกชื่อผู้ใช้" required value={name} onChange={e => setName(e.target.value)} />
               </div>
               <div className="form-group">
                 <label htmlFor="email">อีเมล</label>
-                <input
-                  type="email"
-                  name="Email"
-                  placeholder="กรอกอีเมล"
-                  required
-                />
+                <input type="email" name="Email" placeholder="กรอกอีเมล" required required value={email} onChange={e => setEmail(e.target.value)} />
               </div>
               <div className="form-group">
                 <label htmlFor="password">รหัสผ่าน</label>
-                <input
-                  type="password"
-                  name="Password"
-                  placeholder="กรอกรหัสผ่าน"
-                  required
-                  minLength="8"
-                />
+                <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required minLength="8" value={password} onChange={e => setPassword(e.target.value)} />
               </div>
               <div className="extra">
-                <p>
-                  <input type="checkbox" required />
-                  ฉันยอมรับ <Link to="#">ข้อตกลงและเงื่อนไข</Link>
-                </p>
+                <p><input type="checkbox" required />ฉันยอมรับ <a href="#">ข้อตกลงและเงื่อนไข</a></p>
               </div>
               <div className="button-wrapper">
                 <Link to="/login">
@@ -76,9 +58,11 @@ export const Register = ({ history }) => {
                     <u>ลงชื่อเข้าใช้</u>
                   </button>
                 </Link>
-                <button type="submit" className="btn">
+                <button type="button" className="btn"
+                  onClick={onRegister}
+                >
                   สมัครสมาชิก
-                </button>
+          </button>
               </div>
             </form>
           </div>

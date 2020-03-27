@@ -38,32 +38,15 @@ export const Home = () => {
         </div>
         <div className="home-content">
           <div className="content-hot">
-            <h2 style={{ margin: 0, fontSize: 22 }}>
-              <span role="img" alt="fire">
-                🔥
-              </span>{" "}
-              กำลังมาแรง!
-            </h2>
-            {details.map(detail => (
-              <ProductFrame image={detail.image} details={detail} />
-            ))}
+            <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="fire">🔥</span> กำลังมาแรง!</h2>
+            {details.map(detail => <ProductFrame image={detail.image} details={detail} />)}
           </div>
           <div className="content-timeout">
-            <h2 style={{ margin: 0, fontSize: 22 }}>
-              <span role="img" alt="clock">
-                ⏰
-              </span>{" "}
-              ใกล้หมดเวลาแล้ว!
-            </h2>
-            {details.map(detail => (
-              <ProductFrame image={detail.image} details={detail} />
-            ))}
+            <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="clock">⏰</span> ใกล้หมดเวลาแล้ว!</h2>
+            {details.map(detail => <ProductFrame image={detail.image} details={detail} />)}
           </div>
         </div>
       </div>
-      <div className="home-footer">
-        <p>©2020 eBid</p>
-      </div>
     </div>
-  );
-};
+  )
+}
