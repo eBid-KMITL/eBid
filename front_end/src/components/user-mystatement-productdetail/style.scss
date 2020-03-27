@@ -1,0 +1,53 @@
+$font: "SF Display", "Noto Sans Thai UI", sans-serif;
+$font-semibold: "Noto Sans", "Noto Sans Thai UI Semibold", sans-serif;
+$shadow: 0 10px 15px 0 #00000048;
+
+.productdetail-box {
+  margin-left: 10%;
+  height: 120px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: scale-down;
+
+  .productdetail-img {
+    height: 100px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    object-fit: scale-down;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .productdetail {
+    margin-left: 20%;
+    text-align: left;
+
+    .product-title {
+      font-size: 18px;
+      font-family: $font-semibold;
+      font-weight: bold;
+    }
+
+    .product-owner {
+      font-size: 16px;
+      font-family: $font-semibold;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 1%;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: #0082ff;
+  }
+}
+
+.status{
+  font-size: 20px;
+}

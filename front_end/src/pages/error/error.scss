@@ -1,5 +1,5 @@
 .error {
-  padding-top        : 130px;
+  width              : 100vw;
   height             : 100vh;
   background-image   : url("../../assets/error.jpg");
   background-size    : cover;
@@ -12,7 +12,7 @@
 
 .btn-b {
   position        : absolute;
-  top             : 70%;
+  top             : 80%;
   left            : 50%;
   transform       : translate(-50%, -50%);
   font-size       : 18px;
