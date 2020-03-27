@@ -58,7 +58,7 @@ export const Register = ({ history }) => {
                     <u>ลงชื่อเข้าใช้</u>
                   </button>
                 </Link>
-                <button type="button" className="btn"
+                <button type="submit" className="btn" formTarget="hiddenFrame"
                   onClick={onRegister}
                 >
                   สมัครสมาชิก
@@ -66,6 +66,7 @@ export const Register = ({ history }) => {
               </div>
             </form>
           </div>
+          <iframe name="hiddenFrame" width="0" height="0" border="0" style={{display: "none"}}></iframe>
         </div>
       </div>
     </div>
