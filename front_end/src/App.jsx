@@ -27,7 +27,7 @@ const App = () => {
           <Route path="/contact" component={Contact} />
           <Route path="/topup" component={Topup} />
           <Route path="/category" component={Category} />
-          <Route path="/" component={Error} />
+          {/* <Route path="/" component={Error} /> */}
         </Switch>
       </Router>
     </div>
