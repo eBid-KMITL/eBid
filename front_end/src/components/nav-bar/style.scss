@@ -38,7 +38,7 @@ $shadow : 0 3px 6px 0 #00000048;
         margin-left    : 1em;
 
         &:hover {
-          color: #0082FF;
+          color          : #0082FF;
           text-decoration: underline;
         }
       }
@@ -88,12 +88,12 @@ $shadow : 0 3px 6px 0 #00000048;
         border            : 0px;
 
         &:focus {
-          outline   : none;
+          outline: none;
         }
       }
-      
+
       .search-box {
-        display: flex;
+        display       : flex;
         flex-direction: row;
 
 
@@ -110,10 +110,11 @@ $shadow : 0 3px 6px 0 #00000048;
           box-shadow      : 0 3px 6px 0 #00000079;
           margin-right    : 1em;
           cursor          : pointer;
+
           &:hover {
             background-color: rgb(38, 150, 255);
           }
-  
+
           &:focus {
             outline: none;
           }
@@ -139,7 +140,7 @@ $shadow : 0 3px 6px 0 #00000048;
 
         &:hover {
           background-color: #ffa32b;
-          box-shadow: 0 0 16px 3px #ff9100da;
+          box-shadow      : 0 0 16px 3px #ff9100da;
         }
 
         &:focus {
@@ -150,12 +151,13 @@ $shadow : 0 3px 6px 0 #00000048;
       .user-status {
         margin-left: 1em;
 
-        a{
+        a {
+          font-family    : $font-semibold;
           text-decoration: none;
-          color: black;
+          color          : black;
 
           &:hover {
-            color: #0082FF;
+            color          : #0082FF;
             text-decoration: underline;
           }
         }

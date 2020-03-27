@@ -54,7 +54,7 @@ export const NavBar = ({ userInfo }) => {
             <div className="nav-btn">
               {firebase.auth().currentUser ? (
                 <div className="user-status">
-                  <FaUserCircle /> <Link to="/profile">{firebase.auth().currentUser.displayName}</Link><br />
+                  <FaUserCircle /> คุณ&nbsp;<Link to="/profile">{firebase.auth().currentUser.displayName}</Link><br />
                   <FaCoins /> {userInfo.amount} eCoins
                 </div>
               ) : (
