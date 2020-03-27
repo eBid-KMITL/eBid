@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logoID from "../../assets/eID.png";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
@@ -20,7 +20,7 @@ export const Register = ({ history }) => {
         alert(err);
       });
   }
-  
+
   return (
     <div className="login-page">
       <Helmet><title>Register | eBid</title></Helmet>

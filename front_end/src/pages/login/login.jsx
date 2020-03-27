@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logoID from "../../assets/eID.png";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
@@ -17,7 +17,7 @@ export const Login = ({ history }) => {
         setFail(1)
       });
   }
-  
+
   return (
     <div className="login-page">
       <Helmet><title>Login | eBid</title></Helmet>
