@@ -6,26 +6,24 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase"
 import { firebaseConfig } from './firebase_config'
 
-
 const App = () => {
-  const status = 0
-  const userInfo = { username: "admin", amount: "9,999,999" }
+  const userInfo = { amount: 1234567 }
   firebase.initializeApp(firebaseConfig)
 
   return (
     <div className="page-container">
       <Router>
-        <NavBar status={status} userInfo={userInfo} />
+        <NavBar userInfo={userInfo} />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/forgot" component={Forgot} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/forgot" component={Forgot} />
           <Route path="/result" component={Result} />
           <Route path="/profile" component={Profile} />
           <Route path="/product" component={Product} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/topup" component={Topup} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/topup" component={Topup} />
           <Route path="/category" component={Category} />
           <Route path="/" component={Error} />
         </Switch>
