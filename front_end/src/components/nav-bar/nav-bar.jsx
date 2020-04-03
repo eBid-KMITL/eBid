@@ -1,5 +1,6 @@
 import React from "react";
-import Clock from 'react-live-clock';
+import Moment from 'react-moment';
+import 'moment/locale/th'
 import logo from "../../assets/eBid.png";
 import { Link, useLocation } from "react-router-dom";
 import { FaUserCircle, FaCoins } from "react-icons/fa"
@@ -7,6 +8,10 @@ import firebase from "firebase"
 
 export const NavBar = ({ userInfo }) => {
   const location = useLocation();
+  var formatter = new Intl.NumberFormat('th-TH', {
+    style: 'currency',
+    currency: 'THB',
+  });
   function onLogout() {
     firebase.auth().signOut()
   }
@@ -20,13 +25,13 @@ export const NavBar = ({ userInfo }) => {
         &&
         <div className="nav-bar" >
           <div className="nav-header">
-            <Clock format={'วันที่ DD/MM/YYYY เวลา HH:mm:ss น.'} ticking={true} timezone={'Asia/Bangkok'} />
+            <Moment interval={1000} format={'[วันที่] D MMMM YYYY [เวลา] HH:mm:ss [น.]'} />
             <span className="nav-menu">
               {firebase.auth().currentUser ? (
                 <div>
                   <Link to="#">การประมูลของฉัน</Link>
                   <Link to="/topup">เติมเงิน</Link>
-                  <Link to="/" onClick = {onLogout} >ออกจากระบบ</Link>
+                  <Link to="/" onClick={onLogout} >ออกจากระบบ</Link>
                   <Link to="/contact">ติดต่อเรา</Link>
                 </div>
               ) : (
@@ -55,7 +60,7 @@ export const NavBar = ({ userInfo }) => {
               {firebase.auth().currentUser ? (
                 <div className="user-status">
                   <FaUserCircle /> <Link to="/profile">{firebase.auth().currentUser.displayName}</Link><br />
-                  <FaCoins /> {userInfo.amount} eCoins
+                  <FaCoins /> {formatter.format(userInfo.amount)} eCoins
                 </div>
               ) : (
                   <Link to="/login">
