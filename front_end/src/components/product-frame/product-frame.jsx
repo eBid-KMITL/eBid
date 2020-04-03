@@ -25,7 +25,7 @@ export const ProductFrame = ({ image, details }) => {
           <FaUserCircle style={{ fontSize: 14 }}/> e_shop<br />
         </div>
         <div className="b-product-price">
-            {formatter.format(details.price)}
+            ฿{formatter.format(details.price)}
       </div>
       </div>
     </div>
