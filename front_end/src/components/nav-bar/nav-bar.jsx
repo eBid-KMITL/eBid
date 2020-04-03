@@ -49,12 +49,14 @@ export const NavBar = ({ userInfo }) => {
               </Link>
             </div>
             <div className="form-group">
-              <div className="search-box">
-                <input type="text" name="Search" placeholder="ค้นหา" />
-                <Link to="/result">
-                  <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
-                </Link>
-              </div>
+              <form action="">
+                <div className="search-box">
+                  <input type="text" name="Search" placeholder="ค้นหา" />
+                  <Link to="/result">
+                    <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
+                  </Link>
+                </div>
+              </form>
             </div>
             <div className="nav-btn">
               {firebase.auth().currentUser ? (
