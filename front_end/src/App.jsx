@@ -7,7 +7,7 @@ import firebase from "firebase"
 import { firebaseConfig } from './firebase_config'
 
 const App = () => {
-  const userInfo = { amount: 1234567 }
+  const userInfo = { amount: 999999 }
   firebase.initializeApp(firebaseConfig)
 
   return (

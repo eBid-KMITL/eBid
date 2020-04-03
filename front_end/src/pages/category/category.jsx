@@ -5,9 +5,9 @@ import p2 from "../../assets/products-pics/macbook.png"
 
 export const Category = () => {
   const details = [
-    { name: "iPhone 11 64GB", price: "35,800", owner: "e_shop", time:"0d 17:12:33", nbid: 22, image: p1, link: "/iPhone-11-64GB" },
-    { name: "MacBook Pro 16\"", price: "47,100", owner: "e_shop", time:"3d 3:21:17", nbid: 15, image: p2, link: "/MacBook-Pro-16" },
-    { name: "MacBook Pro 15\"", price: "47,100", owner: "e_shop", time:"2d 00:43:46", nbid: 21, image: p2, link: "/MacBook-Pro-15" },
+    { name: "iPhone 11 64GB", price: 35800, owner: "e_shop", time:"0d 17:12:33", nbid: 22, image: p1, id: 1 },
+    { name: "MacBook Pro 16\"", price: 47100, owner: "e_shop", time:"3d 3:21:17", nbid: 15, image: p2, id: 2 },
+    { name: "MacBook Pro 15\"", price: 47100, owner: "e_shop", time:"2d 00:43:46", nbid: 21, image: p2, id: 5 },
   ]
 
   return (

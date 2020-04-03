@@ -9,11 +9,11 @@ import firebase from "firebase"
 export const NavBar = ({ userInfo }) => {
   const location = useLocation();
   var formatter = new Intl.NumberFormat('th-TH', {
-    style: 'currency',
-    currency: 'THB',
+    style: 'decimal',
   });
   function onLogout() {
     firebase.auth().signOut()
+    window.location.reload(false);
   }
 
   return (
@@ -31,7 +31,7 @@ export const NavBar = ({ userInfo }) => {
                 <div>
                   <Link to="#">การประมูลของฉัน</Link>
                   <Link to="/topup">เติมเงิน</Link>
-                  <Link to="/" onClick={onLogout} >ออกจากระบบ</Link>
+                  <Link to="#" onClick={onLogout} >ออกจากระบบ</Link>
                   <Link to="/contact">ติดต่อเรา</Link>
                 </div>
               ) : (

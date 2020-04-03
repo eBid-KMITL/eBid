@@ -24,31 +24,31 @@ export const Slideshow = () => {
     <div className="slide-container">
       <Slide {...properties}>
         <div className="each-slide">
-          <Link to="/error">
+          <Link to="/">
             <div style={{ 'backgroundImage': `url(${slideImages[0]})` }}>
             </div>
           </Link>
         </div>
         <div className="each-slide">
-          <Link to="/error">
+          <Link to="/">
             <div style={{ 'backgroundImage': `url(${slideImages[1]})` }}>
             </div>
           </Link>
         </div>
         <div className="each-slide">
-          <Link to="/error">
+          <Link to="/">
             <div style={{ 'backgroundImage': `url(${slideImages[2]})` }}>
             </div>
           </Link>
         </div>
         <div className="each-slide">
-          <Link to="/error">
+          <Link to="/">
             <div style={{ 'backgroundImage': `url(${slideImages[3]})` }}>
             </div>
           </Link>
         </div>
         <div className="each-slide">
-          <Link to="/error">
+          <Link to="/">
             <div style={{ 'backgroundImage': `url(${slideImages[4]})` }}>
             </div>
           </Link>

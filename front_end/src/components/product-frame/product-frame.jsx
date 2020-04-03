@@ -4,7 +4,10 @@ import { IoMdPricetags } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 export const ProductFrame = ({ image, details }) => {
-  const link = details.link
+  const link = "/product?id=" + details.id
+  var formatter = new Intl.NumberFormat('th-TH', {
+    style: 'decimal',
+  });
 
   return (
     <Link to={link}>
@@ -22,7 +25,7 @@ export const ProductFrame = ({ image, details }) => {
           <FaUserCircle style={{ fontSize: 14 }}/> e_shop<br />
         </div>
         <div className="b-product-price">
-            ฿{details.price}
+            {formatter.format(details.price)}
       </div>
       </div>
     </div>
