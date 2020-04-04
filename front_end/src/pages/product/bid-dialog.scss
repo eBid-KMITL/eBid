@@ -94,19 +94,21 @@ h3 {
 
 .btn_s#bid-cancel {
   font-size       : 18px;
-  font-family     : 'Roboto', 'Noto Sans Thai UI', sans-serif;
-  padding         : 10px 50px;
+  font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
+  text-decoration : underline;
+  width           : 150px;
+  height          : 50px;
   border-radius   : 5px;
-  margin-right    : 1em;
+  margin-left     : 1em;
   border          : 0;
   transition      : all 300ms ease-in-out;
   color           : #0082FF;
-  background-color: #ffffff00;
+  background-color: #FFFFFF;
   box-shadow      : none;
   cursor          : pointer;
 
   &:hover {
-    background-color: #ffffff5b;
+    background-color: rgb(231, 231, 231);
   }
 
   &:focus {
