@@ -49,9 +49,9 @@ export const NavBar = ({ userInfo }) => {
               </Link>
             </div>
             <div className="form-group">
-              <form action="">
+              <form>
                 <div className="search-box">
-                  <input type="text" name="Search" placeholder="ค้นหา" />
+                  <input type="search" name="Search" placeholder="ค้นหา" />
                   <Link to="/result">
                     <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
                   </Link>
