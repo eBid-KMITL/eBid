@@ -8,13 +8,13 @@ import { Helmet } from "react-helmet";
 export const Login = ({ history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [loginFail, setFail] = useState(0)
+  const [loginFail, setFail] = useState(false)
   function onLogin() {
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
       history.replace('/')
     })
       .catch(err => {
-        setFail(1)
+        setFail(true)
       });
   }
 

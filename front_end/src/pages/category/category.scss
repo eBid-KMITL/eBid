@@ -26,6 +26,13 @@ $shadow : 0 3px 6px 0 #00000048;
       display      : block;
       background   : #f1f1f1;
 
+      h2 {
+        font-family: $font-semibold;
+        border-radius: 5px;
+        color: white;
+        background: linear-gradient(321deg, rgba(255, 37, 244, 0.5) 0%, rgb(16, 100, 255) 100%);
+      }
+
       .content {
         float: left;
       }
