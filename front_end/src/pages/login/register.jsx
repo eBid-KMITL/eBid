@@ -3,11 +3,13 @@ import logoID from "../../assets/eID.png";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
 import { Helmet } from "react-helmet";
+import Modal from 'react-responsive-modal';
 
 export const Register = ({ history }) => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [terms, setTerms] = useState(false);
   function onRegister() {
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       firebase.auth().currentUser.updateProfile({
@@ -19,6 +21,12 @@ export const Register = ({ history }) => {
       .catch(err => {
         alert(err);
       });
+  }
+  function onOpenTerms() {
+    setTerms(true);
+  }
+  function onCloseTerms() {
+    setTerms(false);
   }
 
   return (
@@ -50,7 +58,7 @@ export const Register = ({ history }) => {
                 <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required minLength="8" value={password} onChange={e => setPassword(e.target.value)} />
               </div>
               <div className="extra">
-                <p><input type="checkbox" required />ฉันยอมรับ <a href="#">ข้อตกลงและเงื่อนไข</a></p>
+                <p><input type="checkbox" required />ฉันยอมรับ <a onClick={() => onOpenTerms()}>ข้อตกลงและเงื่อนไข</a></p>
               </div>
               <div className="button-wrapper">
                 <Link to="/login">
@@ -66,7 +74,26 @@ export const Register = ({ history }) => {
               </div>
             </form>
           </div>
-          <iframe name="hiddenFrame" width="0" height="0" border="0" style={{display: "none"}}></iframe>
+          <Modal open={terms} center={true} onClose={() => onCloseTerms()} little>
+            <h1>ข้อตกลงและเงื่อนไข</h1>
+            <p>
+              แชเชือนสตูดิโอฟีเวอร์เนอะกุนซือ เนิร์สเซอรีเซ็กซ์ดีกรี เป็นไง แอลมอนด์ไวกิ้ง เอสเปรสโซเทวาไทม์ ซิตีแพ็คไฮเปอร์รัมไวกิ้ง ซีอีโอยากูซ่าสต็อกถูกต้องบ๊อกซ์ เธคเวิร์กวอล์กรามาธิบดี คูลเลอร์แดรี่พาสตาเอาต์ ซิงสวีทผลักดันจตุคามดีพาร์ทเมนท์ เยนคาสิโนพรีเมียมแตงโมซูเอี๋ย อพาร์ทเมนท์เอ็นเตอร์เทน เวอร์ซีเนียร์ รองรับหมั่นโถวดีพาร์ตเมนต์รันเวย์ไพลิน รามเทพทีวีแอดมิสชันออร์แกนิค ทับซ้อนฟลุต
+            </p>
+            <p>
+              แจ๊กพ็อต วอฟเฟิลอุปสงค์แดรี่อพาร์ตเมนท์อิมพีเรียล แซ็กโซโฟนคอนแทค ฮาลาลเกสต์เฮาส์แฮนด์ รามเทพสกรัมมาร์จิน กลาสไอติม ดีลเลอร์ ปิกอัพ อัลตราคำตอบยากูซ่า เปียโน สุริยยาตรมะกัน ไวกิ้งโมเดลสติ๊กเกอร์คอนเซปต์ภควัทคีตา รีโมทนู้ดออร์แกนิกออเดอร์ฮากกา ปฏิสัมพันธ์บาบูนไอเดีย สันทนาการอพาร์ตเมนต์เนิร์สเซอรี่ เวิลด์จูนมินต์เคลื่อนย้าย
+            </p>
+            <p>
+              เดี้ยงไคลแมกซ์คอนเซ็ปต์เอ็กซ์โป สเตอริโอไหร่เมจิควิน สุริยยาตร์ แอดมิชชั่น เลดี้ วอลนัทพรีเมียร์ เท็กซ์ บรรพชน รันเวย์คอรัปชั่นศิลปากร โบว์ลิ่ง ภควัมปติคำสาปบราคอนแท็ค เทป ออร์เดอร์ไมค์แฟ้บ แซ็กโซโฟนเพาเวอร์โดนัท เวอร์ สลัมออกแบบ
+            </p>
+            <p>
+              สะบึมส์ดีพาร์ตเมนต์ซูชิผิดพลาด ออโต้วอล์กอาร์พีจี โปรอัลบั้มราชบัณฑิตยสถานบึ้ม โบว์ลิ่งดีพาร์ทเมนท์มลภาวะ โบกี้แหม็บ สตาร์นอร์ทรามาธิบดีแคมปัส วืดฮิปฮอป แคร์แครกเกอร์โรลออน ภารตะเอ็นทรานซ์แคป แรงใจฮิปฮอปไอเดียแซนด์วิชซิตี้ อีแต๋นตังค์ แฟ้บเพนกวินไบโอ นิวส์เทควันโดวินปอดแหกไรเฟิล โพสต์ เฟรม ควีนเอ๊าะสแควร์
+            </p>
+            <p>
+              เรซินเวณิกาเอ๋อตะหงิดเย้ว ปาสกาลซิงอันตรกิริยา สเปก รีทัชรองรับว้อดก้าเวิร์คสารขัณฑ์ โค้กออร์แกนิคมอลล์เบิร์นเครป แฟล็ต โปรราเม็ง﻿กรรมาชน กิฟท์ไกด์ เอ็กซ์โปแฟล็ตแดนเซอร์เวิลด์ ครัวซองต์กระดี๊กระด๊าระโงกไฟลต์ มอคค่าทัวริสต์แคร็กเกอร์เคลียร์รีโมต ซิตี้เซ็นทรัลดยุคกระดี๊กระด๊าซีดาน การันตีปาสเตอร์มาม่าอริยสงฆ์ สตูดิโอโปรเจ็กต์โรลออนโบ้ย สติ๊กเกอร์เชอร์รี่สแตนดาร์ดแฟลชคอนแทค เกสต์เฮาส์แบนเนอร์พันธกิจ
+            </p>
+            <button id="close-terms" type="button" onClick={() => onCloseTerms()}>ปิด</button>
+          </Modal>
+          <iframe name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
         </div>
       </div>
     </div>
