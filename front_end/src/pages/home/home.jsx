@@ -28,11 +28,11 @@ export const Home = () => {
         </div>
         <div className="home-content">
           <div className="content-hot">
-            <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="fire">&nbsp;🔥</span> กำลังมาแรง!</h2>
+            <h2 id="hot"><span role="img" alt="fire">&nbsp;🔥</span> กำลังมาแรง!</h2>
             {details.map(detail => <ProductFrame details={detail} />)}
           </div>
           <div className="content-timeout">
-            <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="clock">&nbsp;⏰</span> ใกล้หมดเวลาแล้ว!</h2>
+            <h2 id="timeout"><span role="img" alt="clock">&nbsp;⏰</span> ใกล้หมดเวลาแล้ว!</h2>
             {details.map(detail => <ProductFrame details={detail} />)}
           </div>
         </div>

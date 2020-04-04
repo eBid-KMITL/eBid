@@ -14,7 +14,7 @@ export const Category = () => {
     { name: "MacBook Pro 16\"", price: 47100, owner: "e_shop", time: "2020-04-15T09:59+0700", nbid: 15, image: p2, id: 2 },
     { name: "MacBook Pro 15\"", price: 47100, owner: "e_shop", time: "2020-04-22T22:59+0700", nbid: 21, image: p2, id: 5 },
   ]
-  
+
   return (
     <div className="category-main">
       <div className="category-container">
@@ -25,31 +25,31 @@ export const Category = () => {
           <div className="content-hot">
             {
               (id === "1") ? (
-                <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="laptop">&nbsp;🎭</span> การ์ตูน</h2>
+                <h2><span role="img" alt="laptop">&nbsp;🎭</span> การ์ตูน</h2>
               )
                 : (id === "2") ? (
-                  <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="laptop">&nbsp;👑</span> ของสะสม</h2>
+                  <h2><span role="img" alt="laptop">&nbsp;👑</span> ของสะสม</h2>
                 )
                   : (id === "3") ? (
-                    <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="laptop">&nbsp;🎮</span> ของเล่น | เกมส์</h2>
+                    <h2><span role="img" alt="laptop">&nbsp;🎮</span> ของเล่น | เกมส์</h2>
                   )
                     : (id === "4") ? (
-                      <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="laptop">&nbsp;💻</span> คอมพิวเตอร์ | โทรศัพท์มือถือ</h2>
+                      <h2><span role="img" alt="laptop">&nbsp;💻</span> คอมพิวเตอร์ | โทรศัพท์มือถือ</h2>
                     )
                       : (id === "5") ? (
-                        <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="laptop">&nbsp;📚</span> หนังสือ | สิ่งพิมพ์</h2>
+                        <h2><span role="img" alt="laptop">&nbsp;📚</span> หนังสือ | สิ่งพิมพ์</h2>
                       )
                         : (id === "6") ? (
-                          <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="laptop">&nbsp;🎬</span> ภาพยนตร์ | วิดีโอ | ดีวีดี</h2>
+                          <h2><span role="img" alt="laptop">&nbsp;🎬</span> ภาพยนตร์ | วิดีโอ | ดีวีดี</h2>
                         )
                           : (id === "7") ? (
-                            <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="laptop">&nbsp;🐶</span> สัตว์เลี้ยง</h2>
+                            <h2><span role="img" alt="laptop">&nbsp;🐶</span> สัตว์เลี้ยง</h2>
                           )
                             : (id === "8") ? (
-                              <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="laptop">&nbsp;📺</span> อิเล็กทรอนิกส์</h2>
+                              <h2><span role="img" alt="laptop">&nbsp;📺</span> อิเล็กทรอนิกส์</h2>
                             )
                               : (id === "9") ? (
-                                <h2 style={{ margin: 0, fontSize: 22 }}><span role="img" alt="laptop">&nbsp;</span> สินค้าทั้งหมด</h2>
+                                <h2><span role="img" alt="laptop">&nbsp;</span> สินค้าทั้งหมด</h2>
                               )
                                 : window.location = "/error"
             }
