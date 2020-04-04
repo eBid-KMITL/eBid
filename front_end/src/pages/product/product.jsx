@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import './modal.scss';
+import './bid-dialog.scss';
 import { FaSyncAlt } from 'react-icons/fa';
 
 export const Product = () => {
