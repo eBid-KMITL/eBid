@@ -38,7 +38,6 @@ export const Product = () => {
       <div className="base-container">
         PRODUCT_PAGE_ID : {id}
         <button type="button" className="bid" onClick={() => onOpenModal()}>ประมูล</button>
-        <button type="button" className="check" onClick={() => check()}>CHECK</button>
         <Modal open={modal} center={true} onClose={() => onCloseModal()}>
           <h1>เสนอราคาประมูล</h1>
           <div className="bid-form">
@@ -55,9 +54,8 @@ export const Product = () => {
             </form>
             <Modal open={confirm} center={true} showCloseIcon={false} closeOnEsc={false} closeOnOverlayClick={false} onClose={() => onCloseConfirm()} little>
               <h1>ยืนยันเสนอราคา ?</h1>
-              <button id="bid" type="submit" className="btn" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onCloseModal()}>ยืนยัน</button>
-              <button id="bid-confirm" type="submit" className="btn_s" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onCloseConfirm()}>ยกเลิก</button>
-              <button id="bid-cancel" type="button" className="check" onClick={() => check()}>CHECK</button>
+              <button id="bid-confirm" type="submit" className="btn_c" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onCloseModal()}>ยืนยัน</button>
+              <button id="bid-cancel" type="button" className="btn_s" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onCloseConfirm()}>ยกเลิก</button>
             </Modal>
           </div>
         </Modal>
