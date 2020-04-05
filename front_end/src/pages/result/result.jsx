@@ -8,16 +8,11 @@ import p4 from "../../assets/products-pics/bag.jpg"
 
 export const Result = () => {
   const details = [
-    { name: "iPhone 11 64GB", price: 35800, owner: "e_shop", time: "0d 17:12:33", nbid: 22, image: p1, link: "/iPhone-11-64GB" },
-    { name: "MacBook Pro 16\"", price: 47100, owner: "e_shop", time: "3d 3:21:17", nbid: 15, image: p2, link: "/MacBook-Pro-16" },
-    { name: "นาฬิกา VIGOROSO", price: 7360, owner: "e_shop", time: "0d 12:00:08", nbid: 9, image: p3, link: "/นาฬิกา-VIGOROSO" },
-    { name: "กระเป๋าหนังแท้ญี่ปุ่น", price: 1328, owner: "e_shop", time: "2d 12:12:33", nbid: 4, image: p4, link: "/กระเป๋าหนังแท้ญี่ปุ่น" },
-    { name: "MacBook Pro 15\"", price: 47100, owner: "e_shop", time: "2d 00:43:46", nbid: 21, image: p2, link: "/MacBook-Pro-15" },
-    { name: "iPhone 11 64GB", price: 35800, owner: "e_shop", time: "0d 17:12:33", nbid: 22, image: p1, link: "/iPhone-11-64GB" },
-    { name: "MacBook Pro 16\"", price: 47100, owner: "e_shop", time: "3d 3:21:17", nbid: 15, image: p2, link: "/MacBook-Pro-16" },
-    { name: "นาฬิกา VIGOROSO", price: 7360, owner: "e_shop", time: "0d 12:00:08", nbid: 9, image: p3, link: "/นาฬิกา-VIGOROSO" },
-    { name: "กระเป๋าหนังแท้ญี่ปุ่น", price: 1328, owner: "e_shop", time: "2d 12:12:33", nbid: 4, image: p4, link: "/กระเป๋าหนังแท้ญี่ปุ่น" },
-    { name: "MacBook Pro 15\"", price: 47100, owner: "e_shop", time: "2d 00:43:46", nbid: 21, image: p2, link: "/MacBook-Pro-15" },
+    { name: "iPhone 11 64GB", price: 35800, owner: "e_shop", time:"2020-04-12T18:59+0700", nbid: 22, image: p1, id: 1 },
+    { name: "MacBook Pro 16\"", price: 47100, owner: "e_shop", time:"2020-04-15T09:59+0700", nbid: 15, image: p2, id: 2 },
+    { name: "VIGOROSO Watch", price: 7360, owner: "e_shop", time:"2020-04-16T11:59+0700", nbid: 9, image: p3, id: 3 },
+    { name: "กระเป๋าหนังแท้ญี่ปุ่น", price: 1328, owner: "e_shop", time:"2020-04-09T14:59+0700", nbid: 4, image: p4, id: 4 },
+    { name: "MacBook Pro 15\"", price: 47100, owner: "e_shop", time:"2020-04-22T22:59+0700", nbid: 21, image: p2, id: 5 },
   ]
 
   return (
