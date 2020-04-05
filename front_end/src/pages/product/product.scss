@@ -198,8 +198,11 @@ $shadow : 0 3px 6px 0 #00000048;
         float         : right;
 
         .love {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           margin-right    : 1em;
-          width           : 150px;
+          width           : 180px;
           height          : 50px;
           font-size       : 18px;
           font-family     : 'Noto Sans Thai UI Semibold', sans-serif;

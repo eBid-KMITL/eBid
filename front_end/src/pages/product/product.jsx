@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import Modal from 'react-responsive-modal';
 import './product.scss';
-import { FaSyncAlt, FaClock, FaUserCircle } from "react-icons/fa";
+import { FaSyncAlt, FaClock, FaUserCircle, FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoMdPricetags } from "react-icons/io";
 import img1 from "../../assets/products-pics/pic-big/mac1.png";
 import img2 from "../../assets/products-pics/pic-big/mac2.png";
@@ -113,7 +113,7 @@ export const Product = () => {
             </div>
           </div>
           <div className="btn-container">
-            <button type="button" className="love" >อยากได้</button>
+            <button type="button" className="love" ><FaRegHeart />&nbsp;เพิ่มในอยากได้</button>
             <button type="button" className="bid" onClick={() => onOpenModal()}>ประมูล</button>
           </div>
         </div>
