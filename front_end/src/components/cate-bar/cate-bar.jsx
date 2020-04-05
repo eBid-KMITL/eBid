@@ -5,7 +5,7 @@ export const CateBar = () => {
   return (
     <div className="cate-main">
       <div className="head">
-        <b style={{ fontSize: 22 }}>หมวดหมู่</b>
+        <b style={{ fontSize: 24 }}>หมวดหมู่</b>
       </div>
       <ul>
         <Link to="/category?id=1"><li>การ์ตูน</li></Link>
