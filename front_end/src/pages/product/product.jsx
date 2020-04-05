@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import './bid-dialog.scss';
+import './product.scss';
 import { FaSyncAlt } from 'react-icons/fa';
 
 export const Product = () => {
@@ -45,7 +45,7 @@ export const Product = () => {
               <input id="bid-price" type="number" placeholder={placeholder} step="10" min={currentPrice + 1} required />
               <p id="ecoin-alert">เมื่อเสนอราคา eCoin ของท่านจะถูกกันไว้จนกว่าจะมีผู้เสนอราคาที่สูงกว่า</p>
               <div className="form-foot">
-                <h3>
+                <h3 id="curPrice">
                   ราคาปัจจุบัน : {formatter.format(currentPrice)} eCoin
                   <button className="refresh" type="button" alt="Refresh" onClick={() => check()}><FaSyncAlt /></button>
                 </h3>
@@ -60,7 +60,7 @@ export const Product = () => {
           </div>
         </Modal>
       </div>
-      <iframe name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
+      <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
     </div>
   )
 }
