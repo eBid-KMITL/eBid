@@ -16,7 +16,6 @@ export const Product = () => {
   var currentPrice = 47810;
   var prodName = "MacBook Pro 16\"";
   var prodEndTime = "2020-04-15T20:18+0700";
-  var loveIcon = "FaRegHeart";
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
