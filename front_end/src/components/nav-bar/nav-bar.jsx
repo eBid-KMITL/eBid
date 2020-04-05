@@ -12,9 +12,10 @@ export const NavBar = ({ userInfo }) => {
     style: 'decimal',
   });
   function onLogout() {
-    firebase.auth().signOut()
+    firebase.auth().signOut();
     window.location.reload(false);
   }
+  
 
   return (
     <>
@@ -49,12 +50,10 @@ export const NavBar = ({ userInfo }) => {
               </Link>
             </div>
             <div className="form-group">
-              <form>
+              <form action="/result">
                 <div className="search-box">
-                  <input type="search" name="Search" placeholder="ค้นหา" />
-                  <Link to="/result">
-                    <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
-                  </Link>
+                  <input type="search" name="search" id="search-input" placeholder="ค้นหา" />
+                  <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
                 </div>
               </form>
             </div>
