@@ -22,9 +22,9 @@ export const ProductFrame = ({ details }) => {
           {details.name}
       </div>
         <div className="b-product-description">
-          <FaClock style={{ fontSize: 14 }}/> <Moment fromNow interval={1000} >{details.time}</Moment><br />
-          <IoMdPricetags style={{ fontSize: 14 }}/> ประมูลแล้ว {details.nbid} ครั้ง<br />
-          <FaUserCircle style={{ fontSize: 14 }}/> e_shop<br />
+          <p id="time"><FaClock style={{ fontSize: 14 }}/>&nbsp;<Moment fromNow interval={1000} >{details.time}</Moment></p>
+          <p id="num"><IoMdPricetags style={{ fontSize: 16 }}/>&nbsp;ประมูลแล้ว {details.nbid} ครั้ง</p>
+          <p id="user"><FaUserCircle style={{ fontSize: 14 }}/>&nbsp;e_shop</p>
         </div>
         <div className="b-product-price">
             ฿{formatter.format(details.price)}
