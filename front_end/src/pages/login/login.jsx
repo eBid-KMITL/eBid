@@ -24,7 +24,7 @@ export const Login = ({ history }) => {
       <div className="base-container">
         <div className="header">
           <Link to="/">
-            <a>﹤ กลับหน้าหลัก</a>
+            ﹤ กลับหน้าหลัก
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
@@ -64,7 +64,7 @@ export const Login = ({ history }) => {
               </button>
               </div>
             </form>
-            <iframe name="hiddenFrame" width="0" height="0" border="0" style={{display: "none"}}></iframe>
+            <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{display: "none"}}></iframe>
           </div>
         </div>
       </div>
