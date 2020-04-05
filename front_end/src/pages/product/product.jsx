@@ -16,6 +16,7 @@ export const Product = () => {
   var currentPrice = 47810;
   var prodName = "MacBook Pro 16\"";
   var prodEndTime = "2020-04-15T20:18+0700";
+  var loveIcon = "FaRegHeart";
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -26,6 +27,7 @@ export const Product = () => {
   const [modal, setModal] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [btn, setBTN] = useState(true);
+  const [love, setLove] = useState(false);
   function onOpenModal() {
     if (firebase.auth().currentUser) {
       setModal(true);
@@ -44,6 +46,14 @@ export const Product = () => {
   }
   function onCloseConfirm() {
     setConfirm(false);
+  }
+  function toggleLove() {
+    if (love) {
+      setLove(false);
+    }
+    else {
+      setLove(true);
+    }
   }
   function check() {
     currentPrice = currentPrice + 1;
@@ -113,7 +123,7 @@ export const Product = () => {
             </div>
           </div>
           <div className="btn-container">
-            <button type="button" className="love" ><FaRegHeart />&nbsp;เพิ่มในอยากได้</button>
+            <button type="button" className="love" onClick={() => toggleLove()}>{(love) ? (<FaHeart />) : (<FaRegHeart />)}&nbsp;เพิ่มในอยากได้</button>
             <button type="button" className="bid" onClick={() => onOpenModal()}>ประมูล</button>
           </div>
         </div>
