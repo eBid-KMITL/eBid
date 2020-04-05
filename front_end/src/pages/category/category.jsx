@@ -1,6 +1,7 @@
 import React from "react";
 import { ProductFrame, CateBar } from "../../components";
 import { useLocation } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 import p1 from "../../assets/products-pics/ip11.png"
 import p2 from "../../assets/products-pics/macbook.png"
 
@@ -17,6 +18,7 @@ export const Category = () => {
 
   return (
     <div className="category-main">
+      <Helmet><title>eBid - Online Bidding | Software Development Processes KMITL</title></Helmet>
       <div className="category-container">
         <div className="category-left-bar">
           <CateBar />
