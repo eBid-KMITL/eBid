@@ -78,12 +78,12 @@ $shadow : 0 3px 6px 0 #00000048;
           margin: 0;
         }
 
-        p {
+        p#status-badge {
           width           : fit-content;
           padding         : 1px 5px;
           margin          : 0;
           border-radius   : 5px;
-          background-color: red;
+          background-color: rgb(45, 223, 0);
           color           : white;
           font-family     : $font-semibold;
         }
