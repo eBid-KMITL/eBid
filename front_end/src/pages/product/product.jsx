@@ -80,7 +80,7 @@ export const Product = () => {
         <div className="prod-details">
           <div className="header">
             <h1>{prodName}</h1>
-            <p>จบการประมูล</p>
+            <p id="status-badge">กำลังประมูล</p>
           </div>
           <div className="details">
             <div className="bid-info">
