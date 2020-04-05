@@ -32,8 +32,8 @@ $shadow : 0 10px 15px 0 #00000048;
     object-fit     : scale-down;
 
     img {
-      width: 100%;
-      border-radius  : 10px 0 0 10px;
+      width        : 100%;
+      border-radius: 10px 0 0 10px;
     }
   }
 
@@ -51,6 +51,12 @@ $shadow : 0 10px 15px 0 #00000048;
 
     .b-product-description {
       font-family: $font;
+
+      p {
+        margin: 0;
+        display    : flex;
+        align-items: center;
+      }
     }
 
     .b-product-price {

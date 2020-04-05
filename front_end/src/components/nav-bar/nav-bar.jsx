@@ -1,5 +1,6 @@
 import React from "react";
-import Clock from 'react-live-clock';
+import Moment from 'react-moment';
+import 'moment/locale/th'
 import logo from "../../assets/eBid.png";
 import { Link, useLocation } from "react-router-dom";
 import { FaUserCircle, FaCoins } from "react-icons/fa"
@@ -7,9 +8,14 @@ import firebase from "firebase"
 
 export const NavBar = ({ userInfo }) => {
   const location = useLocation();
+  var formatter = new Intl.NumberFormat('th-TH', {
+    style: 'decimal',
+  });
   function onLogout() {
-    firebase.auth().signOut()
+    firebase.auth().signOut();
+    window.location.reload(false);
   }
+  
 
   return (
     <>
@@ -20,13 +26,13 @@ export const NavBar = ({ userInfo }) => {
         &&
         <div className="nav-bar" >
           <div className="nav-header">
-            <Clock format={'วันที่ DD/MM/YYYY เวลา HH:mm:ss น.'} ticking={true} timezone={'Asia/Bangkok'} />
+            <Moment interval={1000} format={'[วันที่] D MMMM YYYY [เวลา] HH:mm:ss [น.]'} />
             <span className="nav-menu">
               {firebase.auth().currentUser ? (
                 <div>
                   <Link to="#">การประมูลของฉัน</Link>
                   <Link to="/topup">เติมเงิน</Link>
-                  <Link to="/" onClick = {onLogout} >ออกจากระบบ</Link>
+                  <Link to="#" onClick={onLogout} >ออกจากระบบ</Link>
                   <Link to="/contact">ติดต่อเรา</Link>
                 </div>
               ) : (
@@ -44,18 +50,18 @@ export const NavBar = ({ userInfo }) => {
               </Link>
             </div>
             <div className="form-group">
-              <div className="search-box">
-                <input type="text" name="Search" placeholder="ค้นหา" />
-                <Link to="/result">
+              <form action="/result">
+                <div className="search-box">
+                  <input type="search" name="search" id="search-input" placeholder="ค้นหา" />
                   <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
-                </Link>
-              </div>
+                </div>
+              </form>
             </div>
             <div className="nav-btn">
               {firebase.auth().currentUser ? (
                 <div className="user-status">
                   <FaUserCircle /> <Link to="/profile">{firebase.auth().currentUser.displayName}</Link><br />
-                  <FaCoins /> {userInfo.amount} eCoins
+                  <FaCoins /> {formatter.format(userInfo.amount)} eCoins
                 </div>
               ) : (
                   <Link to="/login">

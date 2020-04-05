@@ -19,7 +19,7 @@
     backdrop-filter: blur(10px) saturate(200%);
 
     .header {
-      font-family   : 'Noto Sans Thai UI Semibold', sans-serif;
+      font-family   : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
       font-size     : 24px;
       display       : flex;
       flex-direction: column;
@@ -55,7 +55,7 @@
         padding         : 5px 0;
         font-size       : 18px;
         font-weight     : normal;
-        font-family     : 'Noto Sans Thai UI';
+        font-family     : 'Roboto', 'Noto Sans Thai UI', sans-serif;
         color           : white;
         background-color: rgb(255, 38, 38);
         box-shadow      : 0 0 7px 0 rgb(255, 38, 38);
@@ -72,7 +72,7 @@
       display       : flex;
       flex-direction: column;
       align-items   : flex-start;
-      font-family   : 'Noto Sans Thai UI Semibold', sans-serif;
+      font-family   : 'Roboto', 'Noto Sans Thai UI', sans-serif;
 
       .form-container {
         display       : flex;
@@ -85,7 +85,7 @@
           flex-direction: column;
 
           label {
-            font-family: 'Noto Sans Thai UI', sans-serif;
+            font-family: 'Roboto', 'Noto Sans Thai UI', sans-serif;
             font-size  : 20px;
           }
 
@@ -97,7 +97,7 @@
             box-sizing      : border-box;
             padding         : 0 10px;
             font-size       : 16px;
-            font-family     : 'Noto Sans Thai UI', sans-serif;
+            font-family     : 'Roboto', 'Noto Sans Thai UI', sans-serif;
             background-color: #f3f3f3;
             border          : 0px;
             border-radius   : 5px;
@@ -113,14 +113,16 @@
       }
 
       .extra {
-        font-family  : 'Noto Sans Thai Ui', sans-serif;
+        font-family  : 'Roboto', 'Noto Sans Thai UI', sans-serif;
         margin-bottom: 2em;
 
         a {
+          
           color     : #0082FF;
           transition: all 100ms ease-in-out;
 
           &:hover {
+            text-decoration: underline;
             color: #2294ff;
           }
         }
@@ -138,7 +140,7 @@
 
         .btn {
           font-size       : 18px;
-          font-family     : 'Noto Sans Thai UI Semibold', sans-serif;
+          font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
           padding         : 10px 50px;
           border-radius   : 5px;
           border          : 0;
@@ -160,7 +162,7 @@
 
         .btn_s {
           font-size       : 18px;
-          font-family     : 'Noto Sans Thai UI Semibold', sans-serif;
+          font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
           padding         : 10px 50px;
           border-radius   : 5px;
           margin-right    : 1em;
@@ -181,5 +183,27 @@
         }
       }
     }
+  }
+}
+
+.btn#close-terms {
+  font-size       : 18px;
+  font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
+  padding         : 10px 50px;
+  border-radius   : 5px;
+  border          : 0;
+  color           : white;
+  background-color: #ff9100;
+  transition      : all 300ms ease-in-out;
+  box-shadow      : 0 0 7px 0 #ff9100da;
+  cursor          : pointer;
+
+  &:hover {
+    background-color: #ffa32b;
+    box-shadow      : 0 0 16px 3px #ff9100da;
+  }
+
+  &:focus {
+    outline: none;
   }
 }

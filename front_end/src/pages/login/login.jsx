@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logoID from "../../assets/eID.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import firebase from "firebase";
 import { FaExclamationCircle } from "react-icons/fa";
 import { Helmet } from "react-helmet";
@@ -8,13 +8,22 @@ import { Helmet } from "react-helmet";
 export const Login = ({ history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [loginFail, setFail] = useState(0)
+  const [loginFail, setFail] = useState(false)
+  function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
+  const to = useQuery().get("to")
   function onLogin() {
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-      history.replace('/profile')
+      if (to) {
+        history.replace('/' + to);
+      }
+      else {
+        history.replace('/');
+      }
     })
       .catch(err => {
-        setFail(1)
+        setFail(true)
       });
   }
 
@@ -24,7 +33,7 @@ export const Login = ({ history }) => {
       <div className="base-container">
         <div className="header">
           <Link to="/">
-            <a>﹤ กลับหน้าหลัก</a>
+            ﹤ กลับหน้าหลัก
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
@@ -64,7 +73,7 @@ export const Login = ({ history }) => {
               </button>
               </div>
             </form>
-            <iframe name="hiddenFrame" width="0" height="0" border="0" style={{display: "none"}}></iframe>
+            <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{display: "none"}}></iframe>
           </div>
         </div>
       </div>
