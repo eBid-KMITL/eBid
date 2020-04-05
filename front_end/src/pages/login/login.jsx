@@ -12,7 +12,7 @@ export const Login = ({ history }) => {
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
-  const to = useQuery().get("to")
+  const to = useQuery().get("from")
   function onLogin() {
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
       if (to) {
@@ -32,8 +32,8 @@ export const Login = ({ history }) => {
       <Helmet><title>Login | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
-          <Link to="/">
-            ﹤ กลับหน้าหลัก
+          <Link to={(to) ? ("/"+to) : ("/")}>
+            ﹤ ย้อนกลับ
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />

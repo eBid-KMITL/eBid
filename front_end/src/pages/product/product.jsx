@@ -33,7 +33,7 @@ export const Product = () => {
       setModal(true);
     }
     else {
-      window.location = "/login?to=product?id=" + id;
+      window.location = "/login?from=product?id=" + id;
     }
   }
   function onCloseModal() {
@@ -48,12 +48,18 @@ export const Product = () => {
     setConfirm(false);
   }
   function toggleLove() {
-    if (love) {
-      setLove(false);
+    if (firebase.auth().currentUser) {
+      if (love) {
+        setLove(false);
+      }
+      else {
+        setLove(true);
+      }
     }
     else {
-      setLove(true);
+      window.location = "/login?from=product?id=" + id;
     }
+
   }
   function check() {
     currentPrice = currentPrice + 1;
