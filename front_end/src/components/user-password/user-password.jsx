@@ -1,5 +1,4 @@
 import React from "react";
-import "./style.scss";
 import psswPicture from "../../assets/password.png";
 
 export const UserPassword = () => {
@@ -11,7 +10,7 @@ export const UserPassword = () => {
       </div>
       <div className="password-detail">
         <div className="form-group">
-          <label htmlFor="password">รหัสผ่านเก่า</label>
+          รหัสผ่านเก่า
           <input
             type="password"
             name="oldPassword"
@@ -21,7 +20,7 @@ export const UserPassword = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">รหัสผ่านใหม่</label>
+          รหัสผ่านใหม่
           <input
             type="password"
             name="newPassword"
@@ -31,10 +30,10 @@ export const UserPassword = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">ยืนยันรหัสผ่านใหม่</label>
+          ยืนยันรหัสผ่านใหม่
           <input
             type="password"
-            name="newPassword"
+            name="submPassword"
             placeholder="ยืนยันรหัสผ่านใหม่"
             required
             minLength="8"

@@ -51,3 +51,23 @@ $shadow: 0 10px 15px 0 #00000048;
 .status{
   font-size: 20px;
 }
+
+.winstatus{
+  font-size: 20px;
+  color: #00AF16;
+}
+
+.losestatus{
+  font-size: 20px;
+  color: red;
+}
+
+.end{
+  font-weight: bold;
+  font-size: 16px;
+  color: red;
+}
+
+.notend{
+  font-size: 16px;
+}

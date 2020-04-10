@@ -3,7 +3,9 @@ import { MyProductDetail } from "../../components";
 import MacBook from "../../assets/products-pics/macbook.png";
 import iPhone from "../../assets/products-pics/ip11.png";
 import Watch from "../../assets/products-pics/watch.jpg";
-import "./style.scss";
+import { useState } from "react";
+
+var maxPage = 3;
 
 export const UserMyProduct = () => {
 
@@ -42,6 +44,20 @@ export const UserMyProduct = () => {
     }
   ];
 
+  const [state,setState] = useState({page : 1});
+
+  const addPage = () => {
+    setState({
+      page : state.page + 1
+    });
+  }
+
+  const minPage = () => {
+    setState({
+      page : state.page - 1
+    });
+  }
+
   return (
     <div className="myproduct-box">
       <h>สินค้าของฉัน</h>
@@ -57,6 +73,10 @@ export const UserMyProduct = () => {
             <MyProductDetail details={detail} />
           ))}
         </table>
+      </div>
+      <div className="page">
+        <button type="button" className={state.page === 1 ? "btnClose" : "btn"} onClick={minPage}>&lt;</button>หน้า {state.page} จาก {maxPage}
+        <button type="button" className={state.page === maxPage ? "btnClose" : "btn"} onClick={addPage}>&gt;</button>
       </div>
     </div>
   );

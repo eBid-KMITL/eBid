@@ -3,7 +3,9 @@ import { ProductDetail } from "../../components";
 import MacBook from "../../assets/products-pics/macbook.png";
 import iPhone from "../../assets/products-pics/ip11.png";
 import Watch from "../../assets/products-pics/watch.jpg";
-import "./style.scss";
+import { useState } from "react";
+
+var maxPage = 1;
 
 export const UserMyStatement = () => {
   const details = [
@@ -14,7 +16,7 @@ export const UserMyStatement = () => {
       lastPrice: "37,650",
       myPrice: "36,750",
       status: "กำลังประมูล",
-      image: MacBook
+      image: MacBook,
     },
     {
       name: "iPhone 11 64GB",
@@ -23,16 +25,7 @@ export const UserMyStatement = () => {
       lastPrice: "23,400",
       myPrice: "23,400",
       status: "ชนะ",
-      image: iPhone
-    },
-    {
-      name: "MacBook Pro 16",
-      owner: "admin_shop",
-      time: "0 วัน 12:00:08",
-      lastPrice: "47,100",
-      myPrice: "45,750",
-      status: "กำลังประมูล",
-      image: MacBook
+      image: iPhone,
     },
     {
       name: "นาฬิกา VIGOROSO",
@@ -41,9 +34,23 @@ export const UserMyStatement = () => {
       lastPrice: "7,360",
       myPrice: "7,240",
       status: "แพ้",
-      image: Watch
-    }
+      image: Watch,
+    },
   ];
+
+  const [state,setState] = useState({page : 1});
+
+  const addPage = () => {
+    setState({
+      page : state.page + 1
+    });
+  }
+
+  const minPage = () => {
+    setState({
+      page : state.page - 1
+    });
+  }
 
   return (
     <div className="mystatement-box">
@@ -56,10 +63,14 @@ export const UserMyStatement = () => {
             <th>ราคาที่เสนอไว้</th>
             <th>สถานะการประมูล</th>
           </tr>
-          {details.map(detail => (
+          {details.map((detail) => (
             <ProductDetail details={detail} />
           ))}
         </table>
+      </div>
+      <div className="page">
+        <button type="button" className={state.page === 1 ? "btnClose" : "btn"} onClick={minPage}>&lt;</button>หน้า {state.page} จาก {maxPage}
+        <button type="button" className={state.page === maxPage ? "btnClose" : "btn"} onClick={addPage}>&gt;</button>
       </div>
     </div>
   );

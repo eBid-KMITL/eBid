@@ -1,7 +1,17 @@
 import React from "react";
 import "./style.scss";
+import moneyPicture from "../../assets/money.png";
 
-export const UserAccount = ({ details }) => {
+const details = 
+  {
+    profileName: "admin_alps",
+    money: "9,999,999,999,999,999,999,999",
+    moneyUse: "1,000,0000,000,000,000,000",
+    moneyGain: "1,000,0000,000,000,000,000,000",
+    image: moneyPicture
+  }
+
+export const UserAccount = () => {
   return (
     <div className="account-box">
       <h>เงินในบัญชีของฉัน</h>
@@ -18,7 +28,7 @@ export const UserAccount = ({ details }) => {
         ได้รับเงินแล้ว : {details.moneyGain} - บิด
         <br />
         <div className="button">
-          <button type="submit" className="btn">
+          <button type="button" className="btn">
             ถอนเงิน
           </button>
         </div>

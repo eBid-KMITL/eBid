@@ -1,5 +1,4 @@
 import React from "react";
-import "./style.scss";
 import { Link } from "react-router-dom";
 
 export const MyProductDetail = ({ details }) => {
@@ -12,7 +11,7 @@ export const MyProductDetail = ({ details }) => {
           </div>
           <div className="productdetail">
             <div className="product-title">{details.name}</div>
-            <div>{details.time}</div>
+            <div className={details.time==="จบแล้ว" ? "end" : "notend"}>{details.time}</div>
           </div>
         </div>
       </td>
@@ -20,7 +19,7 @@ export const MyProductDetail = ({ details }) => {
         <div className="status">{details.lastPrice}</div>
       </td>
       <td>
-        <div className="status">{details.status}</div>
+        <div className={details.status==="เสร็จสิ้น" ? "endstatus" : "status"}>{details.status}</div>
       </td>
       <td>
         <div className="product-owner">

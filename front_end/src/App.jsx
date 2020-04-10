@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase"
 import { firebaseConfig } from './firebase_config'
 
-
 const App = () => {
   const status = 0
   const userInfo = { username: "admin", amount: "9,999,999" }

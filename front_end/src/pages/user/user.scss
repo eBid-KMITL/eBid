@@ -21,7 +21,7 @@ $shadow: 0 3px 6px 0 #00000048;
     width: 1500px;
     height: 800px;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 130px;
     font-family: $font;
     display: flex;
     flex-direction: row;
@@ -38,16 +38,14 @@ $shadow: 0 3px 6px 0 #00000048;
   ul {
     list-style: none;
     line-height: 3em;
-
+    margin-left: 1em;
+    cursor: pointer;
+    
+    text-decoration: none;
+      color: black;
     .selected {
       font-weight: bold;
       color: #ff9100;
-    }
-
-    a {
-      text-decoration: none;
-      color: black;
-      margin-left: 1em;
     }
 
     img {
@@ -64,7 +62,7 @@ $shadow: 0 3px 6px 0 #00000048;
     .btn {
       font-size: 15px;
       font-family: "Noto Sans Thai UI Semibold", sans-serif;
-      padding: 10px 30px;
+      padding: 10px 25px;
       border: 0;
       border-radius: 30px;
       color: white;
