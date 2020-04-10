@@ -15,7 +15,7 @@ import firebase from "firebase"
 
 export const Product = () => {
   // var product_id;
-  var prodName = "MacBook Pro 16\"";
+  // var prodName = "MacBook Pro 16\"";
   var prodEndTime = "2020-04-15T20:18+0700";
   function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -30,7 +30,7 @@ export const Product = () => {
   const [confirm, setConfirm] = useState(false);
   const [btn, setBTN] = useState(true);
   const [love, setLove] = useState(false);
-  const [status, setStatus] = useState(0);
+  const [status, setStatus] = useState(1);
   const [pic, setPic] = useState(1);
   const [bigImg, setBigImg] = useState(img1)
   const [badgeStyle, setBadgeStyle] = useState({
@@ -47,8 +47,8 @@ export const Product = () => {
     setPrice(price);
     setTitle(title);
     setStatus(status);
-    // check();
-  }, [status])
+    check();
+  }, [status, price, title])
   function onOpenModal() {
     if (firebase.auth().currentUser) {
       setModal(true);
@@ -147,7 +147,7 @@ export const Product = () => {
 
   return (
     <div className="product-main">
-      <Helmet><title>{prodName} | eBid - Online Bidding</title></Helmet>
+      <Helmet><title>{title} | eBid - Online Bidding</title></Helmet>
       <div className="breadcrums"><a href="/">eBid</a> > <a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> > {title}</div>
       <div className="base-container">
         <div className="img-container">
@@ -227,6 +227,9 @@ export const Product = () => {
             </Modal>
           </div>
         </Modal>
+      </div>
+      <div className="description-container">
+        <h1>รายละเอียดสินค้า</h1>
       </div>
       <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
     </div>
