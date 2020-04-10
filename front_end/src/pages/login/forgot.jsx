@@ -45,7 +45,7 @@ export const Forgot = () => {
                     <u>ย้อนกลับ</u>
                   </button>
                 </Link>
-                <button type="submit" className="btn" formTarget="hiddenFrame"
+                <button type="submit" className="btn"
                   onClick={onForgot}>
                   ส่งรหัสยืนยัน
                 </button>
