@@ -1,8 +1,14 @@
 import React from "react";
 import logoID from "../../assets/eID.png";
 import { Link } from "react-router-dom";
-
+import firebase from "firebase"
 export const Forgot = () => {
+
+  
+
+
+
+
   return (
     <div className="login-page">
       <div className="base-container">
@@ -20,7 +26,7 @@ export const Forgot = () => {
             <form action="">
               <div className="form-group">
                 <label htmlFor="email">อีเมล</label>
-                <input type="email" name="Email" placeholder="กรอกอีเมล" required />
+                <input type="email" name="Email" placeholder="กรอกอีเมล" required value={email} onChange={e => setEmail(e.target.value)} />
               </div>
               <div className="button-wrapper">
                 <Link to="/login">
