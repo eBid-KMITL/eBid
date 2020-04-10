@@ -25,13 +25,13 @@ export const Product = () => {
   });
   const id = useQuery().get("id")
   const [modal, setModal] = useState(false);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(9999);
   const [title, setTitle] = useState("ProductName");
   const [confirm, setConfirm] = useState(false);
   const [btn, setBTN] = useState(true);
   const [love, setLove] = useState(false);
   const [status, setStatus] = useState(1);
-  const [pic, setPic] = useState(["hovered","","",""]);
+  const [pic, setPic] = useState(["hovered", "", "", ""]);
   const [bigImg, setBigImg] = useState(img1)
   const [badgeStyle, setBadgeStyle] = useState({
     width: "fit-content",
@@ -120,24 +120,24 @@ export const Product = () => {
   function picSelect(sel) {
     if (sel === 1) {
       setBigImg(img1);
-      setPic(["hovered","","",""]);
+      setPic(["hovered", "", "", ""]);
     }
     else if (sel === 2) {
       setBigImg(img2);
-      setPic(["","hovered","",""]);
+      setPic(["", "hovered", "", ""]);
     }
     else if (sel === 3) {
       setBigImg(img3);
-      setPic(["","","hovered",""]);
+      setPic(["", "", "hovered", ""]);
     }
     else if (sel === 4) {
       setBigImg(img4);
-      setPic(["","","","hovered"]);
+      setPic(["", "", "", "hovered"]);
     }
   }
   function validateForm() {
     var a = document.forms["bid-price"]["bid-input"].value;
-    if (a >= price) {
+    if (a > price) {
       setBTN(false);
     }
     else {
@@ -207,7 +207,7 @@ export const Product = () => {
         </div>
         <Modal open={modal} center={true} onClose={() => onCloseModal()}>
           <h1 id="bidmodal-head">เสนอราคาประมูล</h1>
-          <p id="prodName">{title}</p>
+          <p id="prodName">▸{title}</p>
           <div className="bid-form">
             <form name="bid-price">
               <input name="bid-input" id="bid-price" type="number" placeholder="กรอกราคาที่มากกว่าราคาปัจจุบัน" min={price + 1} onBlur={() => validateForm()} required />
@@ -221,7 +221,7 @@ export const Product = () => {
               </div>
             </form>
             <Modal open={confirm} center={true} showCloseIcon={false} closeOnEsc={false} closeOnOverlayClick={false} onClose={() => onCloseConfirm()} little>
-              <h1>ยืนยันเสนอราคา ?</h1>
+              <h1>ยืนยันการเสนอราคา</h1>
               <button id="bid-confirm" type="submit" className="btn_c" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onCloseModal()}>ยืนยัน</button>
               <button id="bid-cancel" type="button" className="btn_s" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onCloseConfirm()}>ยกเลิก</button>
             </Modal>
@@ -230,6 +230,23 @@ export const Product = () => {
       </div>
       <div className="description-container">
         <h1>รายละเอียดสินค้า</h1>
+        <div className="content-desc">
+          <p>
+            1. แชเชือนสตูดิโอฟีเวอร์เนอะกุนซือ เนิร์สเซอรีเซ็กซ์ดีกรี เป็นไง แอลมอนด์ไวกิ้ง เอสเปรสโซเทวาไทม์ ซิตีแพ็คไฮเปอร์รัมไวกิ้ง ซีอีโอยากูซ่าสต็อกถูกต้องบ๊อกซ์ เธคเวิร์กวอล์กรามาธิบดี คูลเลอร์แดรี่พาสตาเอาต์ ซิงสวีทผลักดันจตุคามดีพาร์ทเมนท์ เยนคาสิโนพรีเมียมแตงโมซูเอี๋ย อพาร์ทเมนท์เอ็นเตอร์เทน เวอร์ซีเนียร์ รองรับหมั่นโถวดีพาร์ตเมนต์รันเวย์ไพลิน รามเทพทีวีแอดมิสชันออร์แกนิค ทับซ้อนฟลุต
+            </p>
+          <p>
+            2. แจ๊กพ็อต วอฟเฟิลอุปสงค์แดรี่อพาร์ตเมนท์อิมพีเรียล แซ็กโซโฟนคอนแทค ฮาลาลเกสต์เฮาส์แฮนด์ รามเทพสกรัมมาร์จิน กลาสไอติม ดีลเลอร์ ปิกอัพ อัลตราคำตอบยากูซ่า เปียโน สุริยยาตรมะกัน ไวกิ้งโมเดลสติ๊กเกอร์คอนเซปต์ภควัทคีตา รีโมทนู้ดออร์แกนิกออเดอร์ฮากกา ปฏิสัมพันธ์บาบูนไอเดีย สันทนาการอพาร์ตเมนต์เนิร์สเซอรี่ เวิลด์จูนมินต์เคลื่อนย้าย
+            </p>
+          <p>
+            3. เดี้ยงไคลแมกซ์คอนเซ็ปต์เอ็กซ์โป สเตอริโอไหร่เมจิควิน สุริยยาตร์ แอดมิชชั่น เลดี้ วอลนัทพรีเมียร์ เท็กซ์ บรรพชน รันเวย์คอรัปชั่นศิลปากร โบว์ลิ่ง ภควัมปติคำสาปบราคอนแท็ค เทป ออร์เดอร์ไมค์แฟ้บ แซ็กโซโฟนเพาเวอร์โดนัท เวอร์ สลัมออกแบบ
+            </p>
+          <p>
+            4. สะบึมส์ดีพาร์ตเมนต์ซูชิผิดพลาด ออโต้วอล์กอาร์พีจี โปรอัลบั้มราชบัณฑิตยสถานบึ้ม โบว์ลิ่งดีพาร์ทเมนท์มลภาวะ โบกี้แหม็บ สตาร์นอร์ทรามาธิบดีแคมปัส วืดฮิปฮอป แคร์แครกเกอร์โรลออน ภารตะเอ็นทรานซ์แคป แรงใจฮิปฮอปไอเดียแซนด์วิชซิตี้ อีแต๋นตังค์ แฟ้บเพนกวินไบโอ นิวส์เทควันโดวินปอดแหกไรเฟิล โพสต์ เฟรม ควีนเอ๊าะสแควร์
+            </p>
+          <p>
+            5. เรซินเวณิกาเอ๋อตะหงิดเย้ว ปาสกาลซิงอันตรกิริยา สเปก รีทัชรองรับว้อดก้าเวิร์คสารขัณฑ์ โค้กออร์แกนิคมอลล์เบิร์นเครป แฟล็ต โปรราเม็ง﻿กรรมาชน กิฟท์ไกด์ เอ็กซ์โปแฟล็ตแดนเซอร์เวิลด์ ครัวซองต์กระดี๊กระด๊าระโงกไฟลต์ มอคค่าทัวริสต์แคร็กเกอร์เคลียร์รีโมต ซิตี้เซ็นทรัลดยุคกระดี๊กระด๊าซีดาน การันตีปาสเตอร์มาม่าอริยสงฆ์ สตูดิโอโปรเจ็กต์โรลออนโบ้ย สติ๊กเกอร์เชอร์รี่สแตนดาร์ดแฟลชคอนแทค เกสต์เฮาส์แบนเนอร์พันธกิจ
+            </p>
+        </div>
       </div>
       <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
     </div>
