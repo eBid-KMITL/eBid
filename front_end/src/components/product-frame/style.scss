@@ -4,7 +4,7 @@ sans-serif;
 $font-semibold : 'Roboto',
 'Noto Sans Thai UI Semibold',
 sans-serif;
-$shadow : 0 10px 15px 0 #00000048;
+$shadow : 0 0 10px 0 #00000048;
 
 .product-box {
   width         : 350px;
@@ -30,6 +30,7 @@ $shadow : 0 10px 15px 0 #00000048;
     justify-content: center;
     align-items    : center;
     object-fit     : scale-down;
+    border-right: dotted 3px #b8b8b8;
 
     img {
       width        : 100%;
