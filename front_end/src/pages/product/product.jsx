@@ -31,7 +31,7 @@ export const Product = () => {
   const [btn, setBTN] = useState(true);
   const [love, setLove] = useState(false);
   const [status, setStatus] = useState(1);
-  const [pic, setPic] = useState(1);
+  const [pic, setPic] = useState(["hovered","","",""]);
   const [bigImg, setBigImg] = useState(img1)
   const [badgeStyle, setBadgeStyle] = useState({
     width: "fit-content",
@@ -120,19 +120,19 @@ export const Product = () => {
   function picSelect(sel) {
     if (sel === 1) {
       setBigImg(img1);
-      setPic(sel);
+      setPic(["hovered","","",""]);
     }
     else if (sel === 2) {
       setBigImg(img2);
-      setPic(sel);
+      setPic(["","hovered","",""]);
     }
     else if (sel === 3) {
       setBigImg(img3);
-      setPic(sel);
+      setPic(["","","hovered",""]);
     }
     else if (sel === 4) {
       setBigImg(img4);
-      setPic(sel);
+      setPic(["","","","hovered"]);
     }
   }
   function validateForm() {
@@ -156,10 +156,10 @@ export const Product = () => {
           </div>
           <div className="img-small-cont">
             <div className="img-small">
-              <img src={img1} alt="product-pic1" onMouseOver={() => picSelect(1)} />
-              <img src={img2} alt="product-pic2" onMouseOver={() => picSelect(2)} />
-              <img src={img3} alt="product-pic3" onMouseOver={() => picSelect(3)} />
-              <img src={img4} alt="product-pic4" onMouseOver={() => picSelect(4)} />
+              <img src={img1} id={pic[0]} alt="product-pic1" onMouseOver={() => picSelect(1)} />
+              <img src={img2} id={pic[1]} alt="product-pic2" onMouseOver={() => picSelect(2)} />
+              <img src={img3} id={pic[2]} alt="product-pic3" onMouseOver={() => picSelect(3)} />
+              <img src={img4} id={pic[3]} alt="product-pic4" onMouseOver={() => picSelect(4)} />
             </div>
           </div>
         </div>

@@ -62,10 +62,12 @@ $shadow : 0 3px 6px 0 #00000048;
           img {
             width : 100%;
             margin: 0 1.875px;
+          }
 
-            &:hover {
-              box-shadow: 0 0 0 2px orange;
-            }
+          img#hovered {
+            width : 100%;
+            margin: 0 1.875px;
+            box-shadow: 0 0 0 2px orange;
           }
         }
       }
