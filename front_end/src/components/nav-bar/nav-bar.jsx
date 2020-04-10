@@ -1,5 +1,6 @@
 import React from "react";
-import Clock from 'react-live-clock';
+import Moment from 'react-moment';
+import 'moment/locale/th'
 import logo from "../../assets/eBid.png";
 import { Link, useLocation, Router } from "react-router-dom";
 import { FaUserCircle, FaCoins } from "react-icons/fa"
@@ -7,22 +8,34 @@ import firebase from "firebase"
 
 export const NavBar = ({ userInfo }) => {
   const location = useLocation();
+  var formatter = new Intl.NumberFormat('th-TH', {
+    style: 'decimal',
+  });
   function onLogout() {
-    firebase.auth().signOut()
+    firebase.auth().signOut();
+    window.location.reload(false);
   }
+  
 
   return (
     <>
-        {
-          location.pathname !== '/login'
-          && location.pathname !== '/register'
-          && location.pathname !== '/forgot'
-          &&
-          <div className="nav-bar" >
-            <div className="nav-header">
-              <Clock format={'วันที่ DD/MM/YYYY เวลา HH:mm:ss น.'} ticking={true} timezone={'Asia/Bangkok'} />
-              <span className="nav-menu">
-                {firebase.auth().currentUser ? (
+      {
+        location.pathname !== '/login'
+        && location.pathname !== '/register'
+        && location.pathname !== '/forgot'
+        &&
+        <div className="nav-bar" >
+          <div className="nav-header">
+            <Moment interval={1000} format={'[วันที่] D MMMM YYYY [เวลา] HH:mm:ss [น.]'} />
+            <span className="nav-menu">
+              {firebase.auth().currentUser ? (
+                <div>
+                  <Link to="#">การประมูลของฉัน</Link>
+                  <Link to="/topup">เติมเงิน</Link>
+                  <Link to="#" onClick={onLogout} >ออกจากระบบ</Link>
+                  <Link to="/contact">ติดต่อเรา</Link>
+                </div>
+              ) : (
                   <div>
                     <Link to="#">การประมูลของฉัน</Link>
                     <Link to="/topup">เติมเงิน</Link>
@@ -37,17 +50,23 @@ export const NavBar = ({ userInfo }) => {
                   )}
               </span>
             </div>
-            <div className="nav-search-line">
-              <div className="nav-logo">
-                <Link to="/">
-                  <img src={logo} alt="eBid Logo" />
-                </Link>
-              </div>
-              <div className="form-group">
+            <div className="form-group">
+              <form action="/result">
                 <div className="search-box">
-                  <input type="text" name="Search" placeholder="ค้นหา" />
-                  <Link to="/result">
-                    <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
+                  <input type="search" name="search" id="search-input" placeholder="ค้นหา" />
+                  <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
+                </div>
+              </form>
+            </div>
+            <div className="nav-btn">
+              {firebase.auth().currentUser ? (
+                <div className="user-status">
+                  <FaUserCircle /> <Link to="/profile">{firebase.auth().currentUser.displayName}</Link><br />
+                  <FaCoins /> {formatter.format(userInfo.amount)} eCoins
+                </div>
+              ) : (
+                  <Link to="/login">
+                    <button type="button" className="login-btn">ลงชื่อเข้าใช้</button>
                   </Link>
                 </div>
               </div>

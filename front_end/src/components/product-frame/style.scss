@@ -24,16 +24,16 @@ $shadow : 0 10px 15px 0 #00000048;
   }
 
   .b-product-img {
-    border-radius  : 5px 5px 0 0;
-    height         : 120px;
-    width          : 120px;
+    height         : 150px;
+    width          : 150px;
     display        : flex;
     justify-content: center;
     align-items    : center;
     object-fit     : scale-down;
 
     img {
-      width: 100%;
+      width        : 100%;
+      border-radius: 10px 0 0 10px;
     }
   }
 
@@ -51,6 +51,12 @@ $shadow : 0 10px 15px 0 #00000048;
 
     .b-product-description {
       font-family: $font;
+
+      p {
+        margin         : 0;
+        display        : flex;
+        align-items    : center;
+      }
     }
 
     .b-product-price {

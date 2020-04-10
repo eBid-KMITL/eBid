@@ -47,10 +47,29 @@ $shadow : 0 3px 6px 0 #00000048;
       background   : #f1f1f1;
 
       .content-hot {
-        float        : left;
+        float: left;
+
+        h2#hot {
+          margin: 5px 10px;
+          font-family: $font-semibold;
+          font-size: 22px;
+          border-radius: 5px;
+          color: white;
+          background: linear-gradient(321deg, rgba(255, 136, 0, 0.25) 0%, rgb(255, 0, 0) 100%);
+        }
       }
+
       .content-timeout {
-        float        : left;
+        float: left;
+
+        h2#timeout {
+          margin: 5px 10px;
+          font-family: $font-semibold;
+          font-size: 22px;
+          border-radius: 5px;
+          color: white;
+          background: linear-gradient(321deg, rgba(255,252,0,0.25) 0%, rgb(21, 212, 14) 100%);
+        }
       }
     }
 
@@ -63,29 +82,5 @@ $shadow : 0 3px 6px 0 #00000048;
       box-shadow   : $shadow;
       background   : #f1f1f1;
     }
-
-    ul {
-      padding-left: 0;
-      list-style: none;
-      line-height: 2em;
-    }
-
-    li {
-      transition: 200ms all cubic-bezier(0.68, -0.55, 0.27, 1.55);
-      cursor: pointer;
-      &:hover {
-        font-size: 20px;
-        border-radius: 5px;
-      }
-    }
-  }
-
-  .home-footer {
-    background : #2c2c2c;
-    font-family: $font;
-    color      : white;
-    display    : flex;
-    flex-direction: row;
-    justify-content: center;
   }
 }

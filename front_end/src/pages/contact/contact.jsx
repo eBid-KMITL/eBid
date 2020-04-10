@@ -1,8 +1,10 @@
-import React from "react"
+import React from "react";
+import { Helmet } from "react-helmet";
 
 export const Contact = () => {
   return (
     <div className="contact-main">
+      <Helmet><title>Contact | eBid</title></Helmet>
       <h1>Created by</h1>
       <h2>Software Development Processes Group 9</h2>
       <h3>60015020 ณัฐพันธุ์ เครือติ๊บ</h3>

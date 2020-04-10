@@ -1,7 +1,8 @@
 import React from "react";
 import logoID from "../../assets/eID.png";
 import { Link } from "react-router-dom";
-import firebase from "firebase"
+import { Helmet } from "react-helmet";
+
 export const Forgot = () => {
 
   
@@ -11,10 +12,11 @@ export const Forgot = () => {
 
   return (
     <div className="login-page">
+      <Helmet><title>Forgot | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
           <Link to="/">
-            <a>﹤ กลับหน้าหลัก</a>
+            ﹤ กลับหน้าหลัก
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
