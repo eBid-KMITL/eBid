@@ -1,10 +1,11 @@
 import React from "react";
-import { NavBar } from "../../components"
 import { Link } from "react-router-dom";
+import Helmet from "react-helmet";
 
 export const Error = () => {
   return (
     <div className="main">
+      <Helmet><title>Page Not Found | eBid</title></Helmet>
       <div className="error">
         <Link to="/">
           <button type="button" className="btn-b">
