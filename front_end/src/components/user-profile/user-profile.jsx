@@ -120,7 +120,6 @@ export const UserProfile = () => {
                     name="eMail"
                   />
                 </label>
-
                 <br />
                 <div className="button">
                   <button

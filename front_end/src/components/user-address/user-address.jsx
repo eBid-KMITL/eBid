@@ -38,7 +38,7 @@ export const UserAddress = () => {
                 <br />
                 {details.otherAddress}
                 <br />
-                ตำบล {details.subDistrict} อำเภอ {details.district}
+                ตำบล/แขวง {details.subDistrict} อำเภอ/เขต {details.district}
                 <br />
                 จังหวัด {details.province}
                 <br />
@@ -75,9 +75,11 @@ export const UserAddress = () => {
                   ที่อยู่
                   <input
                     type="text"
-                    className="inpAddress2"
+                    className="inpAddressOther"
                     placeholder="กรอกที่อยู่"
                     name="OtherAddress"
+                    required
+                    minLength="5"
                   />
                 </label>
                 <br />
@@ -85,9 +87,11 @@ export const UserAddress = () => {
                   แขวง
                   <input
                     type="text"
-                    className="inpAddress3"
+                    className="inpAddressSubDis"
                     placeholder="กรอกตำบล/แขวง"
                     name="Subdistrict"
+                    required
+                    minLength="5"
                   />
                 </label>
                 <br />
@@ -95,9 +99,11 @@ export const UserAddress = () => {
                   เขต
                   <input
                     type="text"
-                    className="inpAddress4"
+                    className="inpAddressDis"
                     placeholder="กรอกอำเภอ/เขต"
                     name="District"
+                    required
+                    minLength="5"
                   />
                 </label>
                 <br />
@@ -105,9 +111,11 @@ export const UserAddress = () => {
                   จังหวัด
                   <input
                     type="text"
-                    className="inpAddress"
+                    className="inpAddressProv"
                     placeholder="กรอกจังหวัด"
                     name="Province"
+                    required
+                    minLength="5"
                   />
                 </label>
                 <br />
@@ -119,6 +127,7 @@ export const UserAddress = () => {
                     placeholder="กรอกรหัสไปรษณีย์"
                     name="PostalCode"
                     required
+                    minLength="5"
                   />
                 </label>
                 <br />
