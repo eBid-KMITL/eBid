@@ -52,7 +52,7 @@ export const Profile = () => {
             <li onClick={() => setMode(4)} className={ mode === 4 ? 'selected' : '' }>การซื้อของฉัน</li>
             <li onClick={() => setMode(5)} className={ mode === 5 ? 'selected' : '' }>สินค้าของฉัน</li>
             <li>
-              <Link to="#">
+              <Link to="/addproduct">
                 <button type="button" className="btn">
                   ลงสินค้า
                 </button>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import { Login, Register, Forgot, Home, Error, Result, Profile, Product, Contact, Topup, Category } from "./pages"
+import { Login, Register, Forgot, Home, Error, Result, Profile, Product, Contact, Topup, Category, AddProduct } from "./pages"
 import { NavBar, Footer } from "./components"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase"
