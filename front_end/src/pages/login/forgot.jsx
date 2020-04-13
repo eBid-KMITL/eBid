@@ -3,21 +3,20 @@ import logoID from "../../assets/eID.png";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import firebase from "firebase"
+import { FaExclamationCircle } from "react-icons/fa";
 
 export const Forgot = () => {
-
-  const [email, setEmail] = useState('')
-
-  function onForgot() {
-    firebase.auth().sendPasswordResetEmail(email).then(() =>{
-      alert('Send it')
-    }).catch(err =>{
-      alert(err)
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
+  const [email, setEmail] = useState('');
+  function onForgot(e) {
+    e.preventDefault();
+    firebase.auth().sendPasswordResetEmail(email).then(() => {
+      setSent(true);
+    }).catch(err => {
+      setError(true);
     })
   }
-
-
-
 
   return (
     <div className="login-page">
@@ -31,10 +30,18 @@ export const Forgot = () => {
             <img src={logoID} alt="eID" />
           </div>
           <h1>ลืมรหัสใช่ไหม?</h1>
+          {sent ? (
+            <p id="sent-forgot"><FaExclamationCircle /> &nbsp;ส่งรหัสยืนยันเรียบร้อยแล้ว</p>
+          ) : error ? (
+            <p id="input-error"><FaExclamationCircle /> &nbsp;อีเมลไม่ถูกต้องหรือไม่พบผู้ใช้</p>
+          ) : (
+                null
+              )
+          }
         </div>
         <div className="content">
           <div className="form-container">
-            <form action="">
+            <form onSubmit={e => { onForgot(e) }}>
               <div className="form-group">
                 <label htmlFor="email">อีเมล</label>
                 <input type="email" name="Email" placeholder="กรอกอีเมล" required value={email} onChange={e => setEmail(e.target.value)} />
@@ -45,7 +52,7 @@ export const Forgot = () => {
                     <u>ย้อนกลับ</u>
                   </button>
                 </Link>
-                <button type="submit" className="btn"
+                <button type="submit" className="btn" formTarget="hiddenFrame"
                   onClick={onForgot}>
                   ส่งรหัสยืนยัน
                 </button>
@@ -54,6 +61,7 @@ export const Forgot = () => {
           </div>
         </div>
       </div>
+      <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
     </div>
   )
 }
