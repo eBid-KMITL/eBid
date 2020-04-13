@@ -65,8 +65,8 @@ $shadow : 0 3px 6px 0 #00000048;
           }
 
           img#hovered {
-            width : 100%;
-            margin: 0 1.875px;
+            width     : 100%;
+            margin    : 0 1.875px;
             box-shadow: 0 0 0 2px orange;
           }
         }
@@ -320,12 +320,12 @@ $shadow : 0 3px 6px 0 #00000048;
     display         : flex;
     flex-direction  : column;
     align-items     : center;
-    margin          : 0.5em auto;
+    margin-bottom   : 1em;
     padding         : 20px;
     box-shadow      : $shadow;
 
     h1 {
-      width: 100%;
+      width : 100%;
       margin: 0;
     }
 
