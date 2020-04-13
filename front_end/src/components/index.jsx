@@ -9,10 +9,14 @@ import "./user-mystatement/style.scss";
 import "./user-mystatement-productdetail/style.scss";
 import "./user-password/style.scss";
 import "./user-profile/style.scss";
+import "./footer/style.scss";
+import "./cate-bar/style.scss";
 
 export { NavBar } from "./nav-bar/nav-bar";
 export { Slideshow } from "./slide-img/slide-img";
 export { ProductFrame } from "./product-frame/product-frame";
+export { Footer } from "./footer/footer";
+export { CateBar } from "./cate-bar/cate-bar";
 export { UserProfile } from "./user-profile/user-profile";
 export { UserAccount } from "./user-account/user-account";
 export { UserAddress } from "./user-address/user-address";
