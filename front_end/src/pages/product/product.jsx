@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import Modal from 'react-responsive-modal';
 import './product.scss';
@@ -23,6 +23,7 @@ export const Product = () => {
   const formatter = new Intl.NumberFormat('th-TH', {
     style: 'decimal',
   });
+  const history = useHistory();
   const id = useQuery().get("id")
   const [modal, setModal] = useState(false);
   const [price, setPrice] = useState(9999);
@@ -54,7 +55,7 @@ export const Product = () => {
       setModal(true);
     }
     else {
-      window.location = "/login?from=product?id=" + id;
+      history.push("/login?from=product?id=" + id);
     }
   }
   function onCloseModal() {
@@ -78,7 +79,7 @@ export const Product = () => {
       }
     }
     else {
-      window.location = "/login?from=product?id=" + id;
+      history.push("/login?from=product?id=" + id);
     }
   }
   function check() {

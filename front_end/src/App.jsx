@@ -9,7 +9,7 @@ import { firebaseConfig } from './firebase_config'
 const App = () => {
   const userInfo = { amount: 999999 }
   firebase.initializeApp(firebaseConfig)
- 
+  
   return (
     <div className="page-container">
       <Router>
