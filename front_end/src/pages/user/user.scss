@@ -20,10 +20,12 @@ $shadow: 0 3px 6px 0 #00000048;
 
   ul {
     width: 150px;
+    height: fit-content;
     list-style: none;
     line-height: 3em;
-    margin: 12em 0em 0em 15em;
+    margin: 12em 0em 0em 12em;
     cursor: pointer;
+    // background-color: green;
 
     text-decoration: none;
     color: black;
@@ -32,7 +34,8 @@ $shadow: 0 3px 6px 0 #00000048;
       color: #ff9100;
     }
 
-    img {
+    .image-head {
+      padding-left: -520px;
       width: 50px;
       height: 50px;
       display: flex;
@@ -62,7 +65,7 @@ $shadow: 0 3px 6px 0 #00000048;
     }
   }
 
-  .user-component{
-    margin: 10em 0em 0em 0em;
+  .user-component {
+    margin: 10em 27em 0em 0em;
   }
 }

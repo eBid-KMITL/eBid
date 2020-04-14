@@ -103,7 +103,7 @@ export const UserProfile = () => {
                 <label>
                   เบอร์โทร
                   <input
-                    type="text"
+                    type="tel"
                     className="inpPhone"
                     placeholder="กรอกเบอร์โทร"
                     name="Phone"
