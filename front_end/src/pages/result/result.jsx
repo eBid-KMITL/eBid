@@ -37,7 +37,7 @@ export const Result = () => {
               }
             </div>
           </div>
-        </div>) : history.push("/login")
+        </div>) : history.push("/")
       }
     </>
   )
