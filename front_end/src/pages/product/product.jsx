@@ -63,7 +63,8 @@ export const Product = () => {
     setConfirm(false);
     setBTN(true);
   }
-  function onOpenConfirm() {
+  function onOpenConfirm(e) {
+    e.preventDefault();
     setConfirm(true);
   }
   function onCloseConfirm() {
@@ -210,15 +211,18 @@ export const Product = () => {
           <h1 id="bidmodal-head">เสนอราคาประมูล</h1>
           <p id="prodName">▸{title}</p>
           <div className="bid-form">
-            <form name="bid-price">
+            <form name="bid-price" onSubmit={e => onOpenConfirm(e)}>
               <input name="bid-input" id="bid-price" type="number" placeholder="กรอกราคาที่มากกว่าราคาปัจจุบัน" min={price + 1} onBlur={() => validateForm()} required />
               <p id="ecoin-alert">เมื่อเสนอราคา eCoin ของท่านจะถูกกันไว้จนกว่าจะมีผู้เสนอราคาที่สูงกว่า</p>
               <div className="form-foot">
-                <h3 id="curPrice">
-                  ราคาปัจจุบัน : {formatter.format(price)} eCoin
+                <div className="price-container">
+                  <p id="price-tag">ราคาปัจจุบัน</p>
+                  <h3 id="curPrice">
+                    {formatter.format(price)} eCoin
                   <button className="refresh" type="button" alt="Refresh" onClick={() => check()}><FaSyncAlt /></button>
-                </h3>
-                <button id="bid" type="submit" className="btn" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onOpenConfirm()} disabled={btn} >เสนอราคา</button>
+                  </h3>
+                </div>
+                <button id="bid" type="submit" className="btn" alt="เสนอราคา" disabled={btn} >เสนอราคา</button>
               </div>
             </form>
             <Modal open={confirm} center={true} showCloseIcon={false} closeOnEsc={false} closeOnOverlayClick={false} onClose={() => onCloseConfirm()} little>
