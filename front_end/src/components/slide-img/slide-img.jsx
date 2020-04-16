@@ -12,7 +12,7 @@ const slideImages = [
 ];
 
 const properties = {
-  duration: 5000,
+  duration: 150000,
   transitionDuration: 350,
   infinite: true,
   indicators: true,
@@ -25,7 +25,8 @@ export const Slideshow = () => {
       <Slide {...properties}>
         <div className="each-slide">
           <Link to="/">
-            <div style={{ 'backgroundImage': `url(${slideImages[0]})` }}>
+            <div className="videoWrap" style={{ 'backgroundImage': `url(${slideImages[0]})` }}>
+            {/* <iframe width="1100" height="230" src="https://www.youtube.com/embed/-2F8ZkJIMq8?version=3&loop=1&playlist=-2F8ZkJIMq8" frameborder="0" allow="accelerometer; loop; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
             </div>
           </Link>
         </div>
