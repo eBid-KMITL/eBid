@@ -15,7 +15,6 @@ import firebase from "firebase"
 
 export const Product = () => {
   // var product_id;
-  // var prodName = "MacBook Pro 16\"";
   var prodEndTime = "2020-04-15T20:18+0700";
   function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -49,7 +48,7 @@ export const Product = () => {
     setTitle(title);
     setStatus(status);
     check();
-  }, [status, price, title])
+  }, [])
   function onOpenModal() {
     if (firebase.auth().currentUser) {
       setModal(true);
@@ -84,6 +83,7 @@ export const Product = () => {
     }
   }
   function check() {
+    var now = new Date();
     if (status === 0) {
       setBadgeStyle({
         width: "fit-content",
