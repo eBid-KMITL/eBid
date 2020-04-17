@@ -84,13 +84,13 @@ export const Profile = () => {
           >
             สินค้าของฉัน
           </li>
-          <li>
+          {/* <li>
             <Link to="/addproduct">
               <button type="button" className="btn">
                 ลงสินค้า
               </button>
             </Link>
-          </li>
+          </li> */}
         </ul>
         <div className="user-component">
           {(() => {

@@ -3,6 +3,7 @@ import { MyProductDetail } from "../../components";
 import MacBook from "../../assets/products-pics/macbook.png";
 import iPhone from "../../assets/products-pics/ip11.png";
 import Watch from "../../assets/products-pics/watch.jpg";
+import Bag from "../../assets/products-pics/bag.jpg";
 import { useState } from "react";
 
 var maxPage = 3;
@@ -27,12 +28,12 @@ export const UserMyProduct = () => {
       image: iPhone
     },
     {
-      name: "MacBook Pro 16",
+      name: "กระเป๋าหนังแท้ญี่ปุ่น",
       highest: "guest",
       time: "0 วัน 12:00:08",
-      lastPrice: "47,100",
+      lastPrice: "1,328",
       status: "กำลังประมูล",
-      image: MacBook
+      image: Bag
     },
     {
       name: "นาฬิกา VIGOROSO",
