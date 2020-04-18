@@ -6,7 +6,7 @@ export const UserPassword = () => {
     <div className="password-box">
       <h>ตั้งค่ารหัสผ่าน</h>
       <div className="password-img">
-        <img src={psswPicture} />
+        <img src={psswPicture} alt="password-pic"/>
       </div>
       <div className="password-detail">
         <div className="form-group">

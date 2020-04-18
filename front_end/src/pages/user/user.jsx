@@ -14,7 +14,6 @@ import addrPicture from "../../assets/address.png";
 import psswPicture from "../../assets/password.png";
 import hamPicture from "../../assets/hammer2.png";
 import cartPicture from "../../assets/cart.png";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 
@@ -34,17 +33,61 @@ export const Profile = () => {
             {(() => {
               switch (mode) {
                 case 0:
-                  return <img src={profilePicture} className="image-head" />;
+                  return (
+                    <img
+                      src={profilePicture}
+                      className="image-head"
+                      alt="profile-logo"
+                    />
+                  );
                 case 1:
-                  return <img src={moneyPicture} className="image-head" />;
+                  return (
+                    <img
+                      src={moneyPicture}
+                      className="image-head"
+                      alt="account-logo"
+                    />
+                  );
                 case 2:
-                  return <img src={addrPicture} className="image-head" />;
+                  return (
+                    <img
+                      src={addrPicture}
+                      className="image-head"
+                      alt="address-logo"
+                    />
+                  );
                 case 3:
-                  return <img src={psswPicture} className="image-head" />;
+                  return (
+                    <img
+                      src={psswPicture}
+                      className="image-head"
+                      alt="password-logo"
+                    />
+                  );
                 case 4:
-                  return <img src={hamPicture} className="image-head" />;
+                  return (
+                    <img
+                      src={hamPicture}
+                      className="image-head"
+                      alt="statement-logo"
+                    />
+                  );
                 case 5:
-                  return <img src={cartPicture} className="image-head" />;
+                  return (
+                    <img
+                      src={cartPicture}
+                      className="image-head"
+                      alt="product-logo"
+                    />
+                  );
+                default:
+                  return (
+                    <img
+                      src={profilePicture}
+                      className="image-head"
+                      alt="profile-logo"
+                    />
+                  );
               }
             })()}
           </li>
@@ -107,6 +150,8 @@ export const Profile = () => {
                 return <UserMyStatement />;
               case 5:
                 return <UserMyProduct />;
+              default:
+                return <UserProfile />;
             }
           })()}
         </div>

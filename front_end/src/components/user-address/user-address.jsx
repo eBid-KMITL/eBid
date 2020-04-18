@@ -21,7 +21,7 @@ export const UserAddress = () => {
     <div className="address-box">
       <h>ที่อยู่ของฉัน</h>
       <div className="address-img">
-        <img src={details.image} />
+        <img src={details.image} alt="address-pic"/>
       </div>
       {(() => {
         switch (state) {

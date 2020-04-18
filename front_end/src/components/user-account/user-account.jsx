@@ -16,7 +16,7 @@ export const UserAccount = () => {
     <div className="account-box">
       <h>เงินในบัญชีของฉัน</h>
       <div className="account-img">
-        <img src={details.image} />
+        <img src={details.image} alt="account-pic"/>
       </div>
       <div className="account-detail">
         Account : {details.profileName}

@@ -20,7 +20,7 @@ export const UserProfile = () => {
     <div className="profile-box">
       <h>ข้อมูลของฉัน</h>
       <div className="profile-img">
-        <img src={details.image} />
+        <img src={details.image} alt="profile-pic"/>
       </div>
       {(() => {
         switch (state) {

@@ -1,74 +1,88 @@
-import React,{ useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import addSymbol from "../../assets/add.svg";
 
-const thumbsContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  marginTop: 16
-};
-
-const thumb = {
-  display: 'inline-flex',
-  borderRadius: 2,
-  border: '1px solid #eaeaea',
-  marginBottom: 8,
-  marginRight: 8,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: 'border-box'
-};
-
-const thumbInner = {
-  display: 'flex',
-  minWidth: 0,
-  overflow: 'hidden'
-};
-
-const img = {
-  display: 'block',
-  width: 'auto',
-  height: '100%'
-};
-
 export const AddProduct = () => {
   const [files, setFiles] = useState([]);
-  const {getRootProps, getInputProps} = useDropzone({
-    accept: 'image/*',
-    onDrop: acceptedFiles => {
-      setFiles(acceptedFiles.map(file => Object.assign(file, {
-        preview: URL.createObjectURL(file)
-      })));
-    }
+  const [upload, setUpload] = useState(false);
+  const [bigImg, setBigImg] = useState("");
+  const [outcome, setOutcome] = useState(0);
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      if (acceptedFiles.length + files.length < 5 && acceptedFiles.length > 0) {
+        setFiles(
+          acceptedFiles.map((file) =>
+            Object.assign(file, {
+              preview: URL.createObjectURL(file),
+            })
+          )
+        );
+        setBigImg(files.preview);
+        setOutcome(0);
+        setUpload(true);
+      } else {
+        setOutcome(1);
+      }
+    },
   });
-  
-  const thumbs = files.map(file => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img
-          src={file.preview}
-          style={img}
-        />
-      </div>
+
+  function resetPicture() {
+    setUpload(false);
+    setFiles([]);
+  }
+
+  const preview = files.map((file) => (
+    <div className="img-box" onMouseOver={() => setBigImg(file.preview)}>
+      <img src={file.preview} className="small-img" alt="small-pic" />
     </div>
   ));
 
-  useEffect(() => () => {
-    // Make sure to revoke the data uris to avoid memory leaks
-    files.forEach(file => URL.revokeObjectURL(file.preview));
-  }, [files]);
+  useEffect(
+    () => () => {
+      files.forEach((file) => URL.revokeObjectURL(file.preview));
+    },
+    [files]
+  );
 
   return (
     <div className="addProduct-main">
       <div className="addPicture-frame">
-        <div {...getRootProps({ className: "dropzone" })}>
-          <input {...getInputProps()} />
-          <img src={addSymbol} className="addlogo" />
-          <p>เพิ่มรูปภาพ</p>
+        {upload === false ? (
+          <div {...getRootProps({ className: "dropzone" })}>
+            <input {...getInputProps()} />
+            <img src={addSymbol} className="addlogo" alt="add-Logo" />
+            <p>เพิ่มรูปภาพ</p>
+          </div>
+        ) : (
+          <div className="big-preview">
+            <img src={bigImg} className="big-img" />
+          </div>
+        )}
+        <div className="preview-box">
+          {outcome === 0 ? (
+            preview
+          ) : (
+            <p className="p5">คุณอัปโหลดรูปภาพมากเกินไป</p>
+          )}
         </div>
-        <div>{thumbs}</div>
+        {files.length !== 0 ? (
+          <div className="button-container">
+            <button type="reset" className="btn" onClick={() => resetPicture()}>
+              รีเซ็ทรูปภาพ
+            </button>
+            <button
+              disabled={files.length === 4}
+              type="button"
+              className="btn"
+              onClick={() => getRootProps()}
+            >
+              เพิ่มรูปภาพ
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="addProduct-detail-box">
         <div className="addProduct-detail">
@@ -112,7 +126,7 @@ export const AddProduct = () => {
               minLength="5"
             />
           </label>
-          <button type="submit" className="btn">
+          <button type="submit" className="btn-submit">
             ยืนยันการลงประมูลสินค้า
           </button>
         </div>
