@@ -30,7 +30,7 @@ export const Product = () => {
   const [confirm, setConfirm] = useState(false);
   const [btn, setBTN] = useState(true);
   const [love, setLove] = useState(false);
-  const [status, setStatus] = useState(1);
+  const [status, setStatus] = useState(2);
   const [pic, setPic] = useState(["hovered", "", "", ""]);
   const [bigImg, setBigImg] = useState(img1)
   const [badgeStyle, setBadgeStyle] = useState({
@@ -48,7 +48,7 @@ export const Product = () => {
     setTitle(title);
     setStatus(status);
     check();
-  }, [])
+  }, [price, title, status])
   function onOpenModal() {
     if (firebase.auth().currentUser) {
       setModal(true);
@@ -83,7 +83,6 @@ export const Product = () => {
     }
   }
   function check() {
-    var now = new Date();
     if (status === 0) {
       setBadgeStyle({
         width: "fit-content",
