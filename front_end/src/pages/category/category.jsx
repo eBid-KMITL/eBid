@@ -22,7 +22,7 @@ export const Category = () => {
       <Helmet><title>eBid - Online Bidding | Software Development Processes KMITL</title></Helmet>
       <div className="category-container">
         <div className="category-left-bar">
-          <CateBar />
+          <CateBar sel={id}/>
         </div>
         <div className="category-content">
           <div className="content-hot">
