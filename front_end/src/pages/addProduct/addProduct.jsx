@@ -4,8 +4,7 @@ import addSymbol from "../../assets/add.svg";
 
 export const AddProduct = () => {
   const [files, setFiles] = useState([]);
-  const [upload, setUpload] = useState(false);
-  const [bigImg, setBigImg] = useState("");
+  const [bigImg, setBigImg] = useState(null);
   const [outcome, setOutcome] = useState(0);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -18,9 +17,7 @@ export const AddProduct = () => {
             })
           )
         );
-        setBigImg(files.preview);
         setOutcome(0);
-        setUpload(true);
       } else {
         setOutcome(1);
       }
@@ -28,12 +25,16 @@ export const AddProduct = () => {
   });
 
   function resetPicture() {
-    setUpload(false);
+    setOutcome(0);
     setFiles([]);
   }
 
   const preview = files.map((file) => (
-    <div className="img-box" onMouseOver={() => setBigImg(file.preview)}>
+    <div
+      className="img-box"
+      onMouseOver={() => setBigImg(file.preview)}
+      onMouseLeave={() => setBigImg(null)}
+    >
       <img src={file.preview} className="small-img" alt="small-pic" />
     </div>
   ));
@@ -48,9 +49,9 @@ export const AddProduct = () => {
   return (
     <div className="addProduct-main">
       <div className="addPicture-frame">
-        {upload === false ? (
+        {bigImg === null ? (
           <div {...getRootProps({ className: "dropzone" })}>
-            <input {...getInputProps()} />
+            <input {...getInputProps()} disabled={files.length === 4} />
             <img src={addSymbol} className="addlogo" alt="add-Logo" />
             <p>เพิ่มรูปภาพ</p>
           </div>
@@ -59,25 +60,12 @@ export const AddProduct = () => {
             <img src={bigImg} className="big-img" />
           </div>
         )}
-        <div className="preview-box">
-          {outcome === 0 ? (
-            preview
-          ) : (
-            <p className="p5">คุณอัปโหลดรูปภาพมากเกินไป</p>
-          )}
-        </div>
+        <div className="preview-box">{preview}</div>
+        {outcome === 1 ? <p className="p5">คุณอัปโหลดรูปภาพมากเกินไป</p> : ""}
         {files.length !== 0 ? (
           <div className="button-container">
             <button type="reset" className="btn" onClick={() => resetPicture()}>
               รีเซ็ทรูปภาพ
-            </button>
-            <button
-              disabled={files.length === 4}
-              type="button"
-              className="btn"
-              onClick={() => getRootProps()}
-            >
-              เพิ่มรูปภาพ
             </button>
           </div>
         ) : (
