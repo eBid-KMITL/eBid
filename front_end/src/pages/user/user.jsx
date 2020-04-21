@@ -15,6 +15,7 @@ import psswPicture from "../../assets/password.png";
 import hamPicture from "../../assets/hammer2.png";
 import cartPicture from "../../assets/cart.png";
 import { useState } from "react";
+import { Link} from "react-router-dom"
 import { Helmet } from "react-helmet";
 
 export const Profile = () => {
@@ -127,13 +128,13 @@ export const Profile = () => {
           >
             สินค้าของฉัน
           </li>
-          {/* <li>
+          <li>
             <Link to="/addproduct">
               <button type="button" className="btn">
                 ลงสินค้า
               </button>
             </Link>
-          </li> */}
+          </li>
         </ul>
         <div className="user-component">
           {(() => {

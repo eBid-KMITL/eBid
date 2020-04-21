@@ -4,7 +4,7 @@ $shadow: 0 10px 15px 0 #00000048;
 
 .mystatement-box {
   width: 1000px;
-  padding-bottom: 3%;
+  padding-bottom: 30px;
   margin-left: 100px;
   padding-right: 20px;
   border-radius: 10px;
@@ -14,8 +14,8 @@ $shadow: 0 10px 15px 0 #00000048;
 
   h {
     margin: auto;
-    padding-top: 3%;
-    padding-left: 3%;
+    padding-top: 30px;
+    padding-left: 30px;
     display: flex;
     font-size: 25px;
     justify-content: left;
@@ -24,14 +24,14 @@ $shadow: 0 10px 15px 0 #00000048;
   }
 
   .mystatement-table {
-    width: 1020px;
-    padding-top: 1.5%;
+    width: 1000px;
+    padding-top: 15px;
 
     table {
       width: 1020px;
 
       tr {
-        padding: 10%;
+        // padding: 10%;
 
         td {
           background-color: white;
@@ -44,11 +44,11 @@ $shadow: 0 10px 15px 0 #00000048;
 
   .page{
     font-size: 20px;
-    padding-left: 38%;
+    padding-left: 350px;
     
     .btn {
       font-size: 25px;
-      margin: 5% 3% 0% 3%;
+      margin: 30px 30px 0px 30px;
       padding: 0px 8px 0px 8px;
       border: 0;
       border-radius: 5px;

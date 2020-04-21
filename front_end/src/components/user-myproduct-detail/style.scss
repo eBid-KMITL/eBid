@@ -3,28 +3,33 @@ $font-semibold: "Noto Sans", "Noto Sans Thai UI Semibold", sans-serif;
 $shadow: 0 10px 15px 0 #00000048;
 
 .productdetail-box {
-  margin-left: 10%;
+  margin-left: 20px;
   height: 120px;
-  width: 300px;
+  width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
   object-fit: scale-down;
 
   .productdetail-img {
-    height: 100px;
-    width: 100px;
+    width: 90px;
+    height: 90px;
+    margin-left: 50px;
     justify-content: center;
     align-items: center;
-    object-fit: scale-down;
-
-    img {
-      height: 100%;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    .prod-pic {
+      height: 90px;
+      width: 90px;
+      object-fit: scale-down;
+      // background-color: red;
     }
   }
 
   .productdetail {
-    margin-left: 20%;
+    margin-left: 80px;
     text-align: left;
 
     .product-title {
@@ -39,7 +44,7 @@ $shadow: 0 10px 15px 0 #00000048;
   font-family: $font-semibold;
   font-weight: bold;
   text-decoration: underline;
-  margin-bottom: 1%;
+  margin-bottom: 5px;
 
   a {
     text-decoration: none;

@@ -13,7 +13,7 @@ $shadow: 0 10px 15px 0 #00000048;
 
   h {
     margin: auto;
-    padding-top: 1%;
+    padding-top: 10px;
     display: flex;
     font-size: 25px;
     justify-content: center;
@@ -23,12 +23,12 @@ $shadow: 0 10px 15px 0 #00000048;
 
   .form-group {
     width: 100%;
-    margin-top: 2%;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
 
     input {
-      width: 95%;
+      width: 900px;
       box-shadow: 0 3px 6px 0 #00000041;
       margin-top: 5px;
       height: 37px;
@@ -49,27 +49,28 @@ $shadow: 0 10px 15px 0 #00000048;
     width: 150px;
     display: flex;
     margin: auto;
-    padding: 2%;
+    padding: 20px;
     justify-content: center;
     align-items: center;
     object-fit: scale-down;
   }
 
   .password-detail {
-    padding-top: 2%;
-    padding-left: 5%;
-    padding-bottom: 5%;
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-bottom: 50px;
     font-size: 20px;
     display: flex;
     flex-direction: column;
 
     .button {
-      margin-top: 3%;
-      margin-left: 1%;
+      margin-top: 30px;
+      margin-left: 10px;
 
       .btn {
         font-size: 18px;
         font-family: "Noto Sans Thai UI Semibold", sans-serif;
+        width: 250px;
         padding: 10px 50px;
         border: 0;
         border-radius: 5px;

@@ -1,9 +1,10 @@
 import React from "react";
 import addrPicture from "../../assets/address.png";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import firebase from "firebase"
 
 const details = {
-  profileName: "admin_alps",
   name: "นายภูวดล   ลิ่มวณิชสินธุ์",
   phone: "0878941296",
   otherAddress: "บ้าน admin_alps 42/2 หมู่ 2",
@@ -16,6 +17,14 @@ const details = {
 
 export const UserAddress = () => {
   const [state, setState] = useState(0);
+  const location = useLocation();
+  var formatter = new Intl.NumberFormat('th-TH', {
+    style: 'decimal',
+  });
+  function onLogout() {
+    firebase.auth().signOut();
+    window.location.reload(false);
+  }
 
   return (
     <div className="address-box">
@@ -28,7 +37,7 @@ export const UserAddress = () => {
           case 0:
             return (
               <div className="address-detail">
-                Account : {details.profileName}
+                Account : {firebase.auth().currentUser.displayName}
                 <br />
                 ชื่อ-นามสกุล : {details.name}
                 <br />

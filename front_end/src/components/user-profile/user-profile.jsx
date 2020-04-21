@@ -1,11 +1,12 @@
 import React from "react";
 import profilePicture from "../../assets/Profile.png";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import firebase from "firebase"
 
 const details = {
   firstName: "ภูวดล",
   surName: "ลิ่มวณิชสินธุ์",
-  profileName: "admin_alps",
   gender: "ชาย",
   birthDay: "23/11/2542",
   email: "alpe_panda@hotmail.co.th",
@@ -15,6 +16,14 @@ const details = {
 
 export const UserProfile = () => {
   const [state, setState] = useState(0);
+  const location = useLocation();
+  var formatter = new Intl.NumberFormat('th-TH', {
+    style: 'decimal',
+  });
+  function onLogout() {
+    firebase.auth().signOut();
+    window.location.reload(false);
+  }
 
   return (
     <div className="profile-box">
@@ -27,7 +36,7 @@ export const UserProfile = () => {
           case 0:
             return (
               <div className="profile-detail">
-                Account : {details.profileName}
+                Account : {firebase.auth().currentUser.displayName}
                 <br />
                 ชื่อ : {details.firstName} นามสกุล : {details.surName}
                 <br />

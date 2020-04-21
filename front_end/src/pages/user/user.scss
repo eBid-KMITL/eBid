@@ -17,13 +17,14 @@ $shadow: 0 3px 6px 0 #00000048;
 .user-main {
   width: 100%;
   display: flex;
+  justify-content: center;
 
   ul {
     width: 150px;
     height: fit-content;
     list-style: none;
     line-height: 3em;
-    margin: 12em 0em 0em 12em;
+    margin: 200px 0em 0em 300px;
     cursor: pointer;
     // background-color: green;
 
@@ -47,6 +48,8 @@ $shadow: 0 3px 6px 0 #00000048;
     }
 
     .btn {
+      width: 120px;
+      height: 50px;
       font-size: 15px;
       font-family: "Noto Sans Thai UI Semibold", sans-serif;
       padding: 10px 25px;
@@ -66,6 +69,7 @@ $shadow: 0 3px 6px 0 #00000048;
   }
 
   .user-component {
-    margin: 10em 27em 0em 0em;
+    margin: 10em 27em 10em 0em;
+
   }
 }

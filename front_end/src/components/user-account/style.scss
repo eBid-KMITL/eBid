@@ -13,7 +13,7 @@ $shadow: 0 10px 15px 0 #00000048;
 
   h {
     margin: auto;
-    padding-top: 1%;
+    padding-top: 10px;
     display: flex;
     font-size: 25px;
     justify-content: center;
@@ -33,9 +33,9 @@ $shadow: 0 10px 15px 0 #00000048;
   }
 
   .account-detail {
-    padding-top: 2%;
-    padding-left: 5%;
-    padding-bottom: 5%;
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-bottom: 50px;
     font-size: 20px;
     display: flex;
     flex-direction: column;
@@ -48,10 +48,11 @@ $shadow: 0 10px 15px 0 #00000048;
   }
 
   .button {
-    margin-left: 1%;
+    margin-left: 10px;
     .btn {
       font-size: 18px;
       font-family: "Noto Sans Thai UI Semibold", sans-serif;
+      width: 150px;
       padding: 10px 30px;
       border: 0;
       border-radius: 15px;

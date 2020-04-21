@@ -7,7 +7,7 @@ export const ProductDetail = ({ details }) => {
       <td>
         <div className="productdetail-box">
           <div className="productdetail-img">
-            <img src={details.image } alt="statement-pic"/>
+            <img src={details.image } alt="statement-pic" className="prod-pic"/>
           </div>
           <div className="productdetail">
             <div className="product-title">{details.name}</div>
