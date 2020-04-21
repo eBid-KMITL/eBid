@@ -1,6 +1,6 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
-import bn1 from "../../assets/banner/bn1.jpg";
+import bn1 from "../../assets/banner/welcome.gif";
 import bn2 from "../../assets/banner/bn2.jpg";
 import bn3 from "../../assets/banner/bn3.jpg";
 import bn4 from "../../assets/banner/bn4.jpg";
@@ -13,7 +13,7 @@ const slideImages = [
 
 const properties = {
   duration: 7000,
-  transitionDuration: 350,
+  transitionDuration: 400,
   infinite: true,
   indicators: true,
   arrows: true
@@ -26,7 +26,7 @@ export const Slideshow = () => {
         <div className="each-slide">
           <Link to="/">
             <div className="videoWrap" style={{ 'backgroundImage': `url(${slideImages[0]})` }}>
-            {/* <iframe width="1100" height="230" src="https://www.youtube.com/embed/0S6pHex-KCo?version=3&loop=1&playlist=0S6pHex-KCo" frameborder="0" allow="accelerometer; loop; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+              {/* <iframe width="1100" height="230" src="https://www.youtube.com/embed/0S6pHex-KCo?version=3&loop=1&playlist=0S6pHex-KCo" frameborder="0" allow="accelerometer; loop; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
             </div>
           </Link>
         </div>
