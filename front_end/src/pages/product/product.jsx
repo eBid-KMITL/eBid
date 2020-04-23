@@ -205,7 +205,7 @@ export const Product = () => {
           </div>
           <div className="btn-container">
             <button type="button" className="love" onClick={() => toggleLove()}>{(love) ? (<FaHeart />) : (<FaRegHeart />)}&nbsp;เพิ่มในอยากได้</button>
-  <button type="button" className="bid" onClick={() => onOpenModal()} disabled={disable}>{(status === 1) ? "ประมูล" : "หมดเวลาแล้ว"}</button>
+            <button type="button" className="bid" onClick={() => onOpenModal()} disabled={disable}>{(status === 1) ? "ประมูล" : "หมดเวลาแล้ว"}</button>
           </div>
         </div>
         <Modal open={modal} center={true} onClose={() => onCloseModal()}>
@@ -223,12 +223,12 @@ export const Product = () => {
                   <button className="refresh" type="button" alt="Refresh" onClick={() => checkStatus()}><FaSyncAlt /></button>
                   </h3>
                 </div>
-                <button id="bid" type="submit" className="btn" alt="เสนอราคา" disabled={btn && disable} >เสนอราคา</button>
+                <button id="bid" type="submit" className="btn" alt="เสนอราคา" disabled={btn && !disable} >เสนอราคา</button>
               </div>
             </form>
             <Modal open={confirm} center={true} showCloseIcon={false} closeOnEsc={false} closeOnOverlayClick={false} onClose={() => onCloseConfirm()} little>
               <h1>ยืนยันการเสนอราคา</h1>
-              <button id="bid-confirm" type="button" className="btn_c" alt="เสนอราคา" onClick={() => {onCloseModal();}}>ยืนยัน</button>
+              <button id="bid-confirm" type="button" className="btn_c" alt="เสนอราคา" onClick={() => { onCloseModal(); }}>ยืนยัน</button>
               <button id="bid-cancel" type="button" className="btn_s" alt="เสนอราคา" onClick={() => onCloseConfirm()}>ยกเลิก</button>
             </Modal>
           </div>
@@ -254,7 +254,6 @@ export const Product = () => {
             </p>
         </div>
       </div>
-      <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
     </div>
   )
 }
