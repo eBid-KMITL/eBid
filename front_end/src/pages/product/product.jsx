@@ -54,7 +54,7 @@ export const Product = () => {
   }, [price, title, now])
   useEffect(() => {
     if (now <= due) setTimeout(() => { setNow(parseInt(now) + 1000) }, 1000);
-  }, [now])
+  }, [now, due])
   function onOpenModal() {
     if (firebase.auth().currentUser) {
       setModal(true);
