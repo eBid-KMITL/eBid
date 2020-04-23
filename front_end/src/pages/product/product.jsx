@@ -12,10 +12,11 @@ import img3 from "../../assets/products-pics/pic-big/mac3.png";
 import img4 from "../../assets/products-pics/pic-big/mac4.png";
 import Moment from 'react-moment';
 import firebase from "firebase"
+import moment from "moment";
 
 export const Product = () => {
   // var product_id;
-  var prodEndTime = "2020-04-15T20:18+0700";
+  const prodEndTime = "2020-04-30T16:00+0700";
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -30,9 +31,12 @@ export const Product = () => {
   const [confirm, setConfirm] = useState(false);
   const [btn, setBTN] = useState(true);
   const [love, setLove] = useState(false);
-  const [status, setStatus] = useState(2);
+  const [status, setStatus] = useState(0);
+  const [disable, setDisable] = useState(true);
   const [pic, setPic] = useState(["hovered", "", "", ""]);
-  const [bigImg, setBigImg] = useState(img1)
+  const [bigImg, setBigImg] = useState(img1);
+  const [now, setNow] = useState(moment().format("x"));
+  const [due, setDue] = useState(moment(prodEndTime, "YYYY-MM-DD HH:mm Z").format("x"));
   const [badgeStyle, setBadgeStyle] = useState({
     width: "fit-content",
     padding: "1px 5px",
@@ -46,9 +50,11 @@ export const Product = () => {
     // const { title, price } = fetch(product_id);
     setPrice(price);
     setTitle(title);
-    setStatus(status);
-    check();
-  }, [price, title, status])
+    checkStatus();
+  }, [price, title, now])
+  useEffect(() => {
+    if (now <= due) setTimeout(() => { setNow(parseInt(now) + 1000) }, 1000);
+  }, [now])
   function onOpenModal() {
     if (firebase.auth().currentUser) {
       setModal(true);
@@ -82,30 +88,26 @@ export const Product = () => {
       history.push("/login?from=product?id=" + id);
     }
   }
-  function check() {
-    if (status === 0) {
+  function checkStatus() {
+    if (now < due) {
+      setStatus(1);
+      setDisable(false);
       setBadgeStyle({
         width: "fit-content",
         padding: "1px 5px",
         margin: 0,
         borderRadius: "5px",
-        backgroundColor: "rgb(100, 100, 100)",
+        backgroundColor: "rgb(6, 190, 0)",
         color: "white",
         fontFamily: "Noto Sans Thai UI",
       })
     }
-    else if (status === 1) {
-      setBadgeStyle({
-        width: "fit-content",
-        padding: "1px 5px",
-        margin: 0,
-        borderRadius: "5px",
-        backgroundColor: "rgb(45, 223, 0)",
-        color: "white",
-        fontFamily: "Noto Sans Thai UI",
-      })
-    }
-    else if (status === 2) {
+    else {
+      setStatus(2);
+      setDisable(true);
+      onCloseModal();
+      onCloseConfirm();
+      setBTN(true);
       setBadgeStyle({
         width: "fit-content",
         padding: "1px 5px",
@@ -116,7 +118,6 @@ export const Product = () => {
         fontFamily: "Noto Sans Thai UI",
       })
     }
-    // window.alert("status= " + status + " a= " + a + " price= " + price);
   }
   function picSelect(sel) {
     if (sel === 1) {
@@ -149,7 +150,7 @@ export const Product = () => {
   return (
     <div className="product-main">
       <Helmet><title>{title} | eBid - Online Bidding</title></Helmet>
-      <div className="breadcrums"><a href="/">eBid</a> > <a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> > {title}</div>
+      <div className="breadcrums"><a href="/">eBid</a> ▸ <a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> ▸ {title}</div>
       <div className="base-container">
         <div className="img-container">
           <div className="img-big">
@@ -167,14 +168,15 @@ export const Product = () => {
         <div className="prod-details">
           <div className="header">
             <h1>{title}</h1>
-            <p style={badgeStyle}>{(status === 0) ? "ยังไม่เปิดประมูล" : (status === 1) ? "กำลังประมูล" : (status === 2) ? "จบการประมูล" : "N/A"}</p>
+            <p style={badgeStyle}>{(status === 0) ? "-" : (status === 1) ? "กำลังประมูล" : (status === 2) ? "จบการประมูล" : "N/A"}</p>
           </div>
           <div className="details">
             <div className="bid-info">
               <div className="time">
-                <h3><FaClock />&nbsp;หมดเวลา</h3>
+                <h3><FaClock />&nbsp;{(status === 1) ? "เวลาที่เหลือ" : "หมดเวลาเมื่อ"}</h3>
                 <div className="time-wrap">
                   <h2><Moment interval={1000} fromNow >{prodEndTime}</Moment></h2>
+                  <p><Moment format={"DD MMMM YYYY HH:mm [น.]"}>{prodEndTime}</Moment></p>
                 </div>
               </div>
               <div className="number">
@@ -188,7 +190,7 @@ export const Product = () => {
               <div className="owner">
                 <h3><FaUserCircle />&nbsp;ผู้ลงประมูล</h3>
                 <div className="name-verify">
-                  <p><div className="tooltip"><MdVerifiedUser /><span id="verify">ได้รับการยืนยัน</span></div>&nbsp;<a id="owner" href="/">e_shop</a></p>
+                  <div className="tooltip-wrap"><div className="tooltip"><MdVerifiedUser /><span id="verify">ได้รับการยืนยัน</span></div>&nbsp;<a id="owner" href="/">e_shop</a></div>
                 </div>
               </div>
               <div className="bidder">
@@ -198,12 +200,12 @@ export const Product = () => {
             </div>
             <div className="live-price">
               <h3>ราคาปัจจุบัน</h3>
-              <h1>{formatter.format(price)} eCoin<button className="refresh" type="button" alt="Refresh" onClick={() => check()}><FaSyncAlt /></button></h1>
+              <h1>{formatter.format(price)} eCoin<button className="refresh" type="button" alt="Refresh" onClick={() => checkStatus()}><FaSyncAlt /></button></h1>
             </div>
           </div>
           <div className="btn-container">
             <button type="button" className="love" onClick={() => toggleLove()}>{(love) ? (<FaHeart />) : (<FaRegHeart />)}&nbsp;เพิ่มในอยากได้</button>
-            <button type="button" className="bid" onClick={() => onOpenModal()}>ประมูล</button>
+  <button type="button" className="bid" onClick={() => onOpenModal()} disabled={disable}>{(status === 1) ? "ประมูล" : "หมดเวลาแล้ว"}</button>
           </div>
         </div>
         <Modal open={modal} center={true} onClose={() => onCloseModal()}>
@@ -218,16 +220,16 @@ export const Product = () => {
                   <p id="price-tag">ราคาปัจจุบัน</p>
                   <h3 id="curPrice">
                     {formatter.format(price)} eCoin
-                  <button className="refresh" type="button" alt="Refresh" onClick={() => check()}><FaSyncAlt /></button>
+                  <button className="refresh" type="button" alt="Refresh" onClick={() => checkStatus()}><FaSyncAlt /></button>
                   </h3>
                 </div>
-                <button id="bid" type="submit" className="btn" alt="เสนอราคา" disabled={btn} >เสนอราคา</button>
+                <button id="bid" type="submit" className="btn" alt="เสนอราคา" disabled={btn && disable} >เสนอราคา</button>
               </div>
             </form>
             <Modal open={confirm} center={true} showCloseIcon={false} closeOnEsc={false} closeOnOverlayClick={false} onClose={() => onCloseConfirm()} little>
               <h1>ยืนยันการเสนอราคา</h1>
-              <button id="bid-confirm" type="submit" className="btn_c" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onCloseModal()}>ยืนยัน</button>
-              <button id="bid-cancel" type="button" className="btn_s" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onCloseConfirm()}>ยกเลิก</button>
+              <button id="bid-confirm" type="button" className="btn_c" alt="เสนอราคา" onClick={() => {onCloseModal();}}>ยืนยัน</button>
+              <button id="bid-cancel" type="button" className="btn_s" alt="เสนอราคา" onClick={() => onCloseConfirm()}>ยกเลิก</button>
             </Modal>
           </div>
         </Modal>

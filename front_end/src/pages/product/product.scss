@@ -176,7 +176,7 @@ $shadow : 0 3px 6px 0 #00000048;
               }
             }
 
-            p {
+            .tooltip-wrap {
               display       : flex;
               flex-direction: row;
               align-items   : center;
@@ -303,6 +303,12 @@ $shadow : 0 3px 6px 0 #00000048;
           &:hover {
             background-color: #ffa32b;
             box-shadow      : 0 0 16px 3px #ff9100da;
+          }
+
+          &:disabled {
+            cursor          : not-allowed;
+            background-color: #c2c2c2;
+            box-shadow      : 0 0 16px 3px #ffffff00;
           }
 
           &:focus {
