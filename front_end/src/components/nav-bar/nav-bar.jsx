@@ -30,7 +30,7 @@ export const NavBar = ({ userInfo }) => {
               {firebase.auth().currentUser ? (
                 <div>
                   <Link to="/addproduct">ลงประมูลสินค้า</Link>
-                  <Link to="#">การประมูลของฉัน</Link>
+                  <Link to="/profile?m=4">การประมูลของฉัน</Link>
                   <Link to="/topup">เติมเงิน</Link>
                   <Link to="#" onClick={onLogout} >ออกจากระบบ</Link>
                   <Link to="/contact">ติดต่อเรา</Link>
