@@ -44,7 +44,7 @@ export const UserProfile = () => {
                 <br />
                 เบอร์โทร : {details.phone}
                 <br />
-                e-mail : {details.email}
+                E-mail : {firebase.auth().currentUser.email}
                 <br />
                 <div className="button">
                   <button
