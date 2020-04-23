@@ -15,7 +15,6 @@ export const NavBar = ({ userInfo }) => {
     firebase.auth().signOut();
     window.location.reload(false);
   }
-  
 
   return (
     <>

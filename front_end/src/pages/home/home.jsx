@@ -22,7 +22,7 @@ export const Home = () => {
         <Slideshow />
       </div>
       <div className="home-container">
-        <div className="home-left-bar" id>
+        <div className="home-left-bar">
           <CateBar />
         </div>
         <div className="home-content">
