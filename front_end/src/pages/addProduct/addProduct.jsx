@@ -4,8 +4,9 @@ import firebase from "firebase";
 import { useDropzone } from "react-dropzone";
 import addSymbol from "../../assets/add.svg";
 
+var pic = 0;
+
 export const AddProduct = () => {
-  var pic = 0;
   const history = useHistory();
   const imageMaxSize = 3000000; // bytes
   const [pic1, setPic1] = useState(null);
