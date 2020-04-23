@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
-import { Login, Register, Forgot, Home, Error, Result, Profile, Product, Contact, Topup, Category } from "./pages"
-import { NavBar } from "./components"
+import { Login, Register, Forgot, Home, Error, Result, Profile, Product, Contact, Topup, Category, AddProduct } from "./pages"
+import { NavBar, Footer } from "./components"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase"
 import { firebaseConfig } from './firebase_config'
@@ -25,7 +25,8 @@ const App = () => {
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/topup" component={Topup} />
           <Route path="/category" component={Category} />
-          <Route path="/" component={Error} />
+          <Route path="/addproduct" component={AddProduct} />
+          {/* <Route path="/" component={Error} /> */}
         </Switch>
       </Router>
     </div>

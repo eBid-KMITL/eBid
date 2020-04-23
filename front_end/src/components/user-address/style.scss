@@ -1,0 +1,196 @@
+$font: "SF Display", "Noto Sans Thai UI", sans-serif;
+$font-semibold: "Noto Sans", "Noto Sans Thai UI Semibold", sans-serif;
+$shadow: 0 10px 15px 0 #00000048;
+
+.address-box {
+  width: 1000px;
+  margin-left: 100px;
+  padding-right: 20px;
+  border-radius: 10px;
+  box-shadow: $shadow;
+  display: block;
+  background: #f1f1f1;
+
+  h {
+    margin: auto;
+    padding-top: 10px;
+    display: flex;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    object-fit: scale-down;
+  }
+
+  .address-img {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    margin: auto;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    object-fit: scale-down;
+  }
+
+  .address-detail {
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+
+    br {
+      display: block;
+      content: "";
+      border-bottom: 20px solid transparent;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .inpName {
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 300px;
+      box-shadow: 0 3px 3px 0 #00000041;
+      height: 25px;
+      box-sizing: border-box;
+      padding: 0 10px;
+      font-size: 16px;
+      font-family: "Noto Sans Thai UI", sans-serif;
+      background-color: white;
+      border: 0px;
+      border-radius: 5px;
+      transition: all 250ms ease-in-out;
+    }
+
+    .inpPhone {
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 186px;
+      box-shadow: 0 3px 3px 0 #00000041;
+      height: 25px;
+      box-sizing: border-box;
+      padding: 0 10px;
+      font-size: 16px;
+      font-family: "Noto Sans Thai UI", sans-serif;
+      background-color: white;
+      border: 0px;
+      border-radius: 5px;
+      transition: all 250ms ease-in-out;
+    }
+
+    .inpAddressProv {
+      margin-left: 15px;
+      margin-right: 10px;
+      width: 195px;
+      box-shadow: 0 3px 3px 0 #00000041;
+      height: 25px;
+      box-sizing: border-box;
+      padding: 0 10px;
+      font-size: 16px;
+      font-family: "Noto Sans Thai UI", sans-serif;
+      background-color: white;
+      border: 0px;
+      border-radius: 5px;
+      transition: all 250ms ease-in-out;
+    }
+
+    .inpAddressOther {
+      margin-left: 40px;
+      margin-right: 10px;
+      width: 300px;
+      box-shadow: 0 3px 3px 0 #00000041;
+      height: 25px;
+      box-sizing: border-box;
+      padding: 0 10px;
+      font-size: 16px;
+      font-family: "Noto Sans Thai UI", sans-serif;
+      background-color: white;
+      border: 0px;
+      border-radius: 5px;
+      transition: all 250ms ease-in-out;
+    }
+
+    .inpAddressSubDis {
+      margin-left: 30px;
+      margin-right: 10px;
+      width: 195px;
+      box-shadow: 0 3px 3px 0 #00000041;
+      height: 25px;
+      box-sizing: border-box;
+      padding: 0 10px;
+      font-size: 16px;
+      font-family: "Noto Sans Thai UI", sans-serif;
+      background-color: white;
+      border: 0px;
+      border-radius: 5px;
+      transition: all 250ms ease-in-out;
+    }
+
+    .inpAddressDis {
+      margin-left: 44px;
+      margin-right: 10px;
+      width: 195px;
+      box-shadow: 0 3px 3px 0 #00000041;
+      height: 25px;
+      box-sizing: border-box;
+      padding: 0 10px;
+      font-size: 16px;
+      font-family: "Noto Sans Thai UI", sans-serif;
+      background-color: white;
+      border: 0px;
+      border-radius: 5px;
+      transition: all 250ms ease-in-out;
+    }
+
+    .inpPostalCode {
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 150px;
+      box-shadow: 0 3px 3px 0 #00000041;
+      height: 25px;
+      box-sizing: border-box;
+      padding: 0 10px;
+      font-size: 16px;
+      font-family: "Noto Sans Thai UI", sans-serif;
+      background-color: white;
+      border: 0px;
+      border-radius: 5px;
+      transition: all 250ms ease-in-out;
+    }
+  }
+
+  .button {
+    margin-top: 10px;
+    margin-left: 10px;
+
+    .btn {
+      font-size: 18px;
+      font-family: "Noto Sans Thai UI Semibold", sans-serif;
+      width: 200px;
+      padding: 10px 30px;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      background-color: #ff9100;
+      transition: all 300ms ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ffa32b;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+}

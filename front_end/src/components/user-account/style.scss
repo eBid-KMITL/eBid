@@ -1,0 +1,75 @@
+$font: "SF Display", "Noto Sans Thai UI", sans-serif;
+$font-semibold: "Noto Sans", "Noto Sans Thai UI Semibold", sans-serif;
+$shadow: 0 10px 15px 0 #00000048;
+
+.account-box {
+  width: 1000px;
+  margin-left: 100px;
+  padding-right: 20px;
+  border-radius: 10px;
+  box-shadow: $shadow;
+  display: block;
+  background: #f1f1f1;
+
+  h {
+    margin: auto;
+    padding-top: 10px;
+    display: flex;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    object-fit: scale-down;
+  }
+
+  .account-img {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    margin: auto;
+    padding: 2%;
+    justify-content: center;
+    align-items: center;
+    object-fit: scale-down;
+  }
+
+  .account-detail {
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+
+    br {
+      display: block;
+      content: "";
+      border-bottom: 20px solid transparent;
+    }
+  }
+
+  .button {
+    margin-left: 10px;
+    .btn {
+      font-size: 18px;
+      font-family: "Noto Sans Thai UI Semibold", sans-serif;
+      width: 150px;
+      padding: 10px 30px;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      background-color: #ff9100;
+      transition: all 300ms ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ffa32b;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  img {
+    width: 100%;
+  }
+}
