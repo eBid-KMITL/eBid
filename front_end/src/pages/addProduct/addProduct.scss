@@ -1,221 +1,229 @@
 @font-face {
   font-family: "Noto Sans Thai UI";
-  src: url(../../assets/fonts/noto_thai/NotoSansThaiUI-Regular.ttf)
-    format("truetype");
+  src        : url(../../assets/fonts/noto_thai/NotoSansThaiUI-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "Noto Sans Thai UI Semibold";
-  src: url(../../assets/fonts/noto_thai/NotoSansThaiUI-SemiBold.ttf)
-    format("truetype");
+  src        : url(../../assets/fonts/noto_thai/NotoSansThaiUI-SemiBold.ttf) format("truetype");
 }
 
-$font: "Noto Sans", "Noto Sans Thai UI", sans-serif;
-$font-semibold: "Noto Sans Semibold", "Noto Sans Thai UI Semibold", sans-serif;
+$font: "Noto Sans",
+"Noto Sans Thai UI",
+sans-serif;
+$font-semibold: "Noto Sans Semibold",
+"Noto Sans Thai UI Semibold",
+sans-serif;
 $shadow: 0 3px 6px 0 #00000048;
 
 .addProduct-main {
-  width: 100%;
-  display: flex;
+  width          : 100%;
+  display        : flex;
   justify-content: center;
 
   .addPicture-frame {
-    width: 400px;
-    min-height: 500px;
-    margin-top: 150px;
-    margin-bottom: 100px;
+    width           : 400px;
+    min-height      : 500px;
+    margin-top      : 150px;
+    margin-bottom   : 100px;
     background-color: #f1f1f1;
-    box-shadow: $shadow;
-    border-radius: 20px;
+    box-shadow      : $shadow;
+    border-radius   : 20px;
 
     .button-container {
       margin: 10px 0px 10px 65px;
-      width: 200px;
+      width : 200px;
 
       .btn {
-        font-size: 15px;
-        font-family: "Noto Sans Thai UI Semibold", sans-serif;
-        margin-left: 70px;
-        padding: 10px 25px;
-        border: 0;
-        border-radius: 30px;
-        color: white;
+        font-size       : 15px;
+        font-family     : "Noto Sans Thai UI Semibold", sans-serif;
+        margin-left     : 70px;
+        padding         : 10px 25px;
+        border          : 0;
+        border-radius   : 30px;
+        color           : white;
         background-color: #ff9100;
-        transition: all 300ms ease-in-out;
-        cursor: pointer;
+        transition      : all 300ms ease-in-out;
+        cursor          : pointer;
+
         &:hover {
           background-color: #ffa32b;
         }
+
         &:focus {
           outline: none;
         }
+
         &:disabled {
-          opacity: 0.6;
-          pointer-events: none;
+          opacity         : 0.6;
+          pointer-events  : none;
         }
       }
     }
 
     .dropzone {
-      margin: 35px 10px 15px 10px;
-      height: 375px;
-      width: 375px;
+      margin      : 35px 10px 15px 10px;
+      height      : 375px;
+      width       : 375px;
       border-style: dashed;
       border-color: #0082ff;
       border-width: 2px;
-      cursor: pointer;
+      cursor      : pointer;
+
       &:disabled {
-        opacity: 0.6;
+        opacity       : 0.6;
         pointer-events: none;
       }
 
       .addlogo {
-        width: 112px;
-        margin: 112px 130px 0% 130px;
+        width  : 112px;
+        margin : 112px 130px 0% 130px;
         opacity: 0.3;
       }
 
       p {
-        font-size: 18px;
+        font-size  : 18px;
         margin-left: 39%;
       }
     }
 
     .big-preview {
-      margin: 35px 10px 15px 10px;
-      height: 375px;
-      width: 375px;
-      width: fit-content;
+      margin      : 35px 10px 15px 10px;
+      height      : 375px;
+      width       : 375px;
+      width       : fit-content;
       border-style: solid;
       border-color: black;
       border-width: 2px;
 
       .big-img {
-        height: 375px;
-        width: 375px;
-        object-fit: scale-down;
+        height          : 375px;
+        width           : 375px;
+        object-fit      : scale-down;
         background-color: white;
       }
     }
   }
 
   .addProduct-detail-box {
-    width: 670px;
-    height: fit-content;
-    margin-top: 150px;
-    margin-left: 30px;
+    width           : 670px;
+    height          : fit-content;
+    margin-top      : 150px;
+    margin-left     : 30px;
     background-color: #f1f1f1;
-    box-shadow: $shadow;
-    border-radius: 20px;
-    font-size: 18px;
+    box-shadow      : $shadow;
+    border-radius   : 20px;
+    font-size       : 18px;
 
     .addProduct-detail {
       margin: 50px 0px 0px 50px;
+
       br {
-        display: block;
-        content: "";
+        display      : block;
+        content      : "";
         border-bottom: 30px solid transparent;
       }
 
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {
         -webkit-appearance: none;
-        margin: 0;
+        margin            : 0;
       }
 
       #productName {
-        margin-left: 10px;
-        width: 240px;
-        box-shadow: 0 3px 3px 0 #00000041;
-        height: 25px;
-        box-sizing: border-box;
-        padding: 0 10px;
-        font-size: 16px;
-        font-family: "Noto Sans Thai UI", sans-serif;
+        margin-left     : 10px;
+        width           : 240px;
+        box-shadow      : 0 3px 3px 0 #00000041;
+        height          : 25px;
+        box-sizing      : border-box;
+        padding         : 0 10px;
+        font-size       : 16px;
+        font-family     : "Noto Sans Thai UI", sans-serif;
         background-color: white;
-        border: 0px;
-        border-radius: 5px;
-        transition: all 250ms ease-in-out;
+        border          : 0px;
+        border-radius   : 5px;
+        transition      : all 250ms ease-in-out;
       }
 
       #productStartPrice {
-        margin-left: 10px;
-        margin-right: 10px;
-        width: 200px;
-        box-shadow: 0 3px 3px 0 #00000041;
-        height: 25px;
-        box-sizing: border-box;
-        padding: 0 10px;
-        font-size: 16px;
-        font-family: "Noto Sans Thai UI", sans-serif;
+        margin-left     : 10px;
+        margin-right    : 10px;
+        width           : 200px;
+        box-shadow      : 0 3px 3px 0 #00000041;
+        height          : 25px;
+        box-sizing      : border-box;
+        padding         : 0 10px;
+        font-size       : 16px;
+        font-family     : "Noto Sans Thai UI", sans-serif;
         background-color: white;
-        border: 0px;
-        border-radius: 5px;
-        transition: all 250ms ease-in-out;
+        border          : 0px;
+        border-radius   : 5px;
+        transition      : all 250ms ease-in-out;
       }
 
       #productTimeOut {
-        margin-left: 10px;
-        width: 200px;
-        box-shadow: 0 3px 3px 0 #00000041;
-        height: 25px;
-        box-sizing: border-box;
-        padding: 0 10px;
-        font-size: 16px;
-        font-family: "Noto Sans Thai UI", sans-serif;
+        margin-left     : 10px;
+        width           : 200px;
+        box-shadow      : 0 3px 3px 0 #00000041;
+        height          : 25px;
+        box-sizing      : border-box;
+        padding         : 0 10px;
+        font-size       : 16px;
+        font-family     : "Noto Sans Thai UI", sans-serif;
         background-color: white;
-        border: 0px;
-        border-radius: 5px;
-        transition: all 250ms ease-in-out;
+        border          : 0px;
+        border-radius   : 5px;
+        transition      : all 250ms ease-in-out;
       }
 
       #productTimeOut2 {
-        margin-left: 10px;
-        width: 80px;
-        box-shadow: 0 3px 3px 0 #00000041;
-        height: 25px;
-        box-sizing: border-box;
-        padding: 0 10px;
-        font-size: 16px;
-        font-family: "Noto Sans Thai UI", sans-serif;
+        margin-left     : 10px;
+        width           : 80px;
+        box-shadow      : 0 3px 3px 0 #00000041;
+        height          : 25px;
+        box-sizing      : border-box;
+        padding         : 0 10px;
+        font-size       : 16px;
+        font-family     : "Noto Sans Thai UI", sans-serif;
         background-color: white;
-        border: 0px;
-        border-radius: 5px;
-        transition: all 250ms ease-in-out;
+        border          : 0px;
+        border-radius   : 5px;
+        transition      : all 250ms ease-in-out;
       }
 
       #productDetail {
-        margin-left: -15px;
-        width: 600px;
-        box-shadow: 0 3px 3px 0 #00000041;
-        height: 150px;
-        box-sizing: border-box;
-        padding: 0 10px;
-        font-size: 16px;
-        font-family: "Noto Sans Thai UI", sans-serif;
+        margin-left     : -15px;
+        width           : 600px;
+        box-shadow      : 0 3px 3px 0 #00000041;
+        height          : 150px;
+        box-sizing      : border-box;
+        padding         : 0 10px;
+        font-size       : 16px;
+        font-family     : "Noto Sans Thai UI", sans-serif;
         background-color: white;
-        border: 0px;
-        border-radius: 5px;
-        transition: all 250ms ease-in-out;
-        resize: none;
+        border          : 0px;
+        border-radius   : 5px;
+        transition      : all 250ms ease-in-out;
+        resize          : none;
       }
 
       .btn-submit {
-        margin: 25px 0px 25px 160px;
-        font-size: 18px;
-        width: 250px;
-        font-family: "Noto Sans Thai UI Semibold", sans-serif;
-        padding: 10px 30px;
-        border: 0;
-        border-radius: 15px;
-        color: white;
+        margin          : 25px 0px 25px 160px;
+        font-size       : 18px;
+        width           : 250px;
+        font-family     : "Noto Sans Thai UI Semibold", sans-serif;
+        padding         : 10px 30px;
+        border          : 0;
+        border-radius   : 15px;
+        color           : white;
         background-color: #ff9100;
-        transition: all 300ms ease-in-out;
-        cursor: pointer;
+        transition      : all 300ms ease-in-out;
+        cursor          : pointer;
 
         &:hover {
           background-color: #ffa32b;
         }
+
         &:focus {
           outline: none;
         }
@@ -225,24 +233,25 @@ $shadow: 0 3px 6px 0 #00000048;
 }
 
 .preview-box {
-  display: flex;
-  width: 375px;
-  margin-left: 8px;
-  height: fit-content;
+  display            : flex;
+  width              : 375px;
+  margin-left        : 8px;
+  height             : fit-content;
   // background-color: red;
 }
 
 .p-big {
-  margin-left: 55px;
-  font-size: 20px;
+  margin-left    : 55px;
+  font-size      : 20px;
   text-decoration: underline;
-  color: red;
+  color          : red;
 }
+
 .img-box {
-  display: flex;
-  width: fit-content;
-  height: fit-content;
-  margin: 1px;
+  display     : flex;
+  width       : fit-content;
+  height      : fit-content;
+  margin      : 1px;
   border-style: solid;
   border-color: black;
   border-width: 2px;
@@ -254,21 +263,21 @@ $shadow: 0 3px 6px 0 #00000048;
   }
 
   .small-img {
-    height: 90px;
-    width: 90px;
-    object-fit: scale-down;
+    height          : 90px;
+    width           : 90px;
+    object-fit      : scale-down;
     background-color: white;
   }
 }
 
-.page-contain{
+.page-contain {
   font-size: 20px;
-  margin: 20px 0px 0px 140px;
+  margin   : 20px 0px 0px 140px;
 }
 
-.page-contain-red{
-  font-size: 20px;
-  color: red;
+.page-contain-red {
+  font-size  : 20px;
+  color      : red;
   font-weight: bold;
-  margin: 20px 0px 0px 140px;
+  margin     : 20px 0px 0px 140px;
 }

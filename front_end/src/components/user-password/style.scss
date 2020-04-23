@@ -1,11 +1,11 @@
-$font: "SF Display", "Noto Sans Thai UI", sans-serif;
-$font-semibold: "Noto Sans", "Noto Sans Thai UI Semibold", sans-serif;
-$shadow: 0 10px 15px 0 #00000048;
+$font: "Roboto", "Noto Sans Thai UI", sans-serif;
+$font-semibold: "Roboto Bold", "Noto Sans Thai UI Semibold", sans-serif;
+$shadow: 0 3px 6px 0 #00000048;
 
 .password-box {
   width: 1000px;
-  margin-left: 100px;
-  padding-right: 20px;
+  // margin-left: 100px;
+  // padding-right: 20px;
   border-radius: 10px;
   box-shadow: $shadow;
   display: block;
