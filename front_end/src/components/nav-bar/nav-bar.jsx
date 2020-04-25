@@ -2,18 +2,19 @@ import React from "react";
 import Moment from 'react-moment';
 import 'moment/locale/th'
 import logo from "../../assets/eBid.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import { FaUserCircle, FaCoins } from "react-icons/fa"
 import firebase from "firebase"
 
 export const NavBar = ({ userInfo }) => {
   const location = useLocation();
+  const history = useHistory();
   var formatter = new Intl.NumberFormat('th-TH', {
     style: 'decimal',
   });
   function onLogout() {
     firebase.auth().signOut();
-    window.location.reload(false);
+    window.location.replace("/");
   }
 
   return (
