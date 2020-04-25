@@ -30,28 +30,24 @@ export const UserAddress = () => {
     <div className="address-box">
       <h>ที่อยู่ของฉัน</h>
       <div className="address-img">
-        <img src={details.image} alt="address-pic"/>
+        <img src={details.image} alt="address-pic" />
       </div>
       {(() => {
         switch (state) {
           case 0:
             return (
               <div className="address-detail">
-                Account : {firebase.auth().currentUser.displayName}
+                <nobr><b>ชื่อผู้รับ : </b>{details.name}</nobr>
                 <br />
-                ชื่อ-นามสกุล : {details.name}
+                <nobr><b>เบอร์โทรศัพท์ : </b>{details.phone}</nobr>
                 <br />
-                เบอร์โทรศัพท์ : {details.phone}
+                <nobr><b>ที่อยู่ : </b>{details.otherAddress}</nobr>
                 <br />
-                ที่อยู่ :
+                <nobr><b>ตำบล/แขวง : </b>{details.subDistrict} <b>อำเภอ/เขต : </b>{details.district}</nobr>
                 <br />
-                {details.otherAddress}
+                <nobr><b>จังหวัด : </b>{details.province}</nobr>
                 <br />
-                ตำบล/แขวง {details.subDistrict} อำเภอ/เขต {details.district}
-                <br />
-                จังหวัด {details.province}
-                <br />
-                {details.postalCode}
+                <nobr><b>รหัสไปรษณีย์ : </b>{details.postalCode}</nobr>
                 <div className="button">
                   <button
                     type="submit"
@@ -69,7 +65,7 @@ export const UserAddress = () => {
                 แก้ไขข้อมูล
                 <br />
                 <label>
-                  ชื่อ-สกุล
+                  <b>ชื่อผู้รับ</b>
                   <input
                     type="text"
                     placeholder="กรอกชื่อ-สกุล"
@@ -81,7 +77,7 @@ export const UserAddress = () => {
                 </label>
                 <br />
                 <label>
-                  ที่อยู่
+                  <b>ที่อยู่</b>
                   <input
                     type="text"
                     className="inpAddressOther"
@@ -93,7 +89,7 @@ export const UserAddress = () => {
                 </label>
                 <br />
                 <label>
-                  แขวง
+                  <b>ตำบล/แขวง</b>
                   <input
                     type="text"
                     className="inpAddressSubDis"
@@ -105,7 +101,7 @@ export const UserAddress = () => {
                 </label>
                 <br />
                 <label>
-                  เขต
+                  <b>อำเภอ/เขต</b>
                   <input
                     type="text"
                     className="inpAddressDis"
@@ -117,7 +113,7 @@ export const UserAddress = () => {
                 </label>
                 <br />
                 <label>
-                  จังหวัด
+                  <b>จังหวัด</b>
                   <input
                     type="text"
                     className="inpAddressProv"
@@ -129,7 +125,7 @@ export const UserAddress = () => {
                 </label>
                 <br />
                 <label>
-                  รหัสไปรษณีย์
+                  <b>รหัสไปรษณีย์</b>
                   <input
                     type="number"
                     className="inpPostalCode"
@@ -141,7 +137,7 @@ export const UserAddress = () => {
                 </label>
                 <br />
                 <label>
-                  เบอร์โทร
+                  <b>เบอร์โทร</b>
                   <input
                     type="tel"
                     className="inpPhone"

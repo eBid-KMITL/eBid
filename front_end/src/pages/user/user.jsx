@@ -9,7 +9,7 @@ import {
 } from "../../components";
 import firebase from "firebase";
 import profilePicture from "../../assets/Profile.png";
-import moneyPicture from "../../assets/money.png";
+import moneyPicture from "../../assets/eGold.png";
 import addrPicture from "../../assets/address.png";
 import psswPicture from "../../assets/password.png";
 import hamPicture from "../../assets/hammer2.png";
@@ -24,7 +24,7 @@ export const Profile = () => {
   }
   const history = useHistory();
   const m = useQuery().get("m")
-  const [mode, setMode] = useState(parseInt(m));
+  const [mode, setMode] = useState((m) ? (parseInt(m)) : 0);
 
   return (
     <>
@@ -99,37 +99,37 @@ export const Profile = () => {
                 onClick={() => setMode(0)}
                 className={mode === 0 ? "selected" : ""}
               >
-                บัญชีของฉัน
+                &nbsp;บัญชีของฉัน
           </li>
               <li
                 onClick={() => setMode(1)}
                 className={mode === 1 ? "selected" : ""}
               >
-                เงินในบัญชี
+                &nbsp;เงินในบัญชี
           </li>
               <li
                 onClick={() => setMode(2)}
                 className={mode === 2 ? "selected" : ""}
               >
-                ที่อยู่
+                &nbsp;ที่อยู่
           </li>
               <li
                 onClick={() => setMode(3)}
                 className={mode === 3 ? "selected" : ""}
               >
-                ตั้งค่ารหัสผ่าน
+                &nbsp;ตั้งค่ารหัสผ่าน
           </li>
               <li
                 onClick={() => setMode(4)}
                 className={mode === 4 ? "selected" : ""}
               >
-                การซื้อของฉัน
+                &nbsp;การซื้อของฉัน
           </li>
               <li
                 onClick={() => setMode(5)}
                 className={mode === 5 ? "selected" : ""}
               >
-                สินค้าของฉัน
+                &nbsp;สินค้าของฉัน
           </li>
               <li>
                 <Link to="/addproduct">

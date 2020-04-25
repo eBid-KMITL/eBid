@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.scss";
-import moneyPicture from "../../assets/money.png";
+import moneyPicture from "../../assets/eGold.png";
 import { useLocation } from "react-router-dom";
 import firebase from "firebase"
 
@@ -29,13 +29,13 @@ export const UserAccount = () => {
         <img src={details.image} alt="account-pic"/>
       </div>
       <div className="account-detail">
-        Account : {firebase.auth().currentUser.displayName}
+        <nobr><b>ชื่อผู้ใช้ : </b>{firebase.auth().currentUser.displayName}</nobr>
         <br />
-        เงินในบัญชี : {details.money} - บิด
+        <nobr><b>เงินในบัญชี : </b>{details.money} eCoin</nobr>
         <br />
-        ใช้เงินไปแล้ว : {details.moneyUse} - บิด
+        <nobr><b>ใช้เงินไปแล้ว : </b>{details.moneyUse} eCoin</nobr>
         <br />
-        ได้รับเงินแล้ว : {details.moneyGain} - บิด
+        <nobr><b>ได้รับเงินแล้ว : </b>{details.moneyGain} eCoin</nobr>
         <br />
         <div className="button">
           <button type="button" className="btn">
