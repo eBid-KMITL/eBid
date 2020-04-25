@@ -176,7 +176,7 @@ $shadow : 0 3px 6px 0 #00000048;
               }
             }
 
-            p {
+            .tooltip-wrap {
               display       : flex;
               flex-direction: row;
               align-items   : center;
@@ -305,6 +305,12 @@ $shadow : 0 3px 6px 0 #00000048;
             box-shadow      : 0 0 16px 3px #ff9100da;
           }
 
+          &:disabled {
+            cursor          : not-allowed;
+            background-color: #c2c2c2;
+            box-shadow      : 0 0 16px 3px #ffffff00;
+          }
+
           &:focus {
             outline: none;
           }
@@ -374,13 +380,19 @@ input#bid-price {
   align-items    : center;
 }
 
+p#price-tag {
+  margin: 0;
+}
+
 p#ecoin-alert {
   color: red;
 }
 
 h3#curPrice {
-  font-size   : 27px;
-  margin-right: 3em;
+  font-size    : 27px;
+  margin-top   : 0;
+  margin-bottom: 0;
+  margin-right : 6em;
 }
 
 .refresh {
