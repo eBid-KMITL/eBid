@@ -121,6 +121,11 @@ $shadow: 0 3px 6px 0 #00000048;
       border          : 0px;
       border-radius   : 5px;
       transition      : all 250ms ease-in-out;
+
+      &:focus {
+        box-shadow: 0 7px 20px 2px #00000067;
+        outline   : none;
+      }
     }
   }
 
