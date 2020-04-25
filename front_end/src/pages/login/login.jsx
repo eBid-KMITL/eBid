@@ -34,7 +34,7 @@ export const Login = () => {
       <Helmet><title>Login | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
-          <Link to={(to) ? ("/" + to) : ("/")}>
+          <Link to="#" onClick={() => history.goBack()}>
             ﹤ ย้อนกลับ
           </Link>
           <div className="image">

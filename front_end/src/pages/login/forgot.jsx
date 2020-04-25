@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import logoID from "../../assets/eID.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import firebase from "firebase"
 import { FaExclamationCircle } from "react-icons/fa";
 
 export const Forgot = () => {
+  const history = useHistory();
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
   const [email, setEmail] = useState('');
@@ -23,8 +24,8 @@ export const Forgot = () => {
       <Helmet><title>Forgot | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
-          <Link to="/">
-            ﹤ กลับหน้าหลัก
+          <Link to="#" onClick={() => history.goBack()}>
+            ﹤ ย้อนกลับ
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
