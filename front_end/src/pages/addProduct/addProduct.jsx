@@ -5,8 +5,9 @@ import { useDropzone } from "react-dropzone";
 import addSymbol from "../../assets/add.svg";
 import moment from "moment";
 
+var pic = 0;
+
 export const AddProduct = () => {
-  var pic = 0;
   const now = moment().add("1", "d").format("YYYY-MM-DD");
   const history = useHistory();
   const imageMaxSize = 3000000; // bytes
