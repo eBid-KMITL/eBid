@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { Helmet } from "react-helmet";
 import { useHistory } from 'react-router-dom';
 import firebase from "firebase";
 import { useDropzone } from "react-dropzone";
@@ -13,8 +14,8 @@ export const AddProduct = () => {
   const [pic2, setPic2] = useState(null);
   const [pic3, setPic3] = useState(null);
   const [pic4, setPic4] = useState(null);
-  const [countPic, setCountPic] = useState(0);
   const [bigImg, setBigImg] = useState(null);
+  const [countPic, setCountPic] = useState(pic);
   const [outcome, setOutcome] = useState(1);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -57,8 +58,8 @@ export const AddProduct = () => {
   function resetPicture() {
     setOutcome(1);
     pic = 0;
+    setCountPic(pic);
     console.log(pic);
-    setCountPic();
     setPic1(null);
     setPic2(null);
     setPic3(null);
@@ -69,6 +70,7 @@ export const AddProduct = () => {
     <>
       {firebase.auth().currentUser ?
         (<div className="addProduct-main">
+          <Helmet><title>eBid - Online Bidding | Software Development Processes KMITL</title></Helmet>
           <div className="addPicture-frame">
             {bigImg === null ? (
               <div {...getRootProps({ className: "dropzone" })}>
