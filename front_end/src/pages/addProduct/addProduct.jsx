@@ -209,6 +209,19 @@ export const AddProduct = () => {
                   />
                 </label>
                 <br />
+                <label for="category">{"  "}หมวดหมู่ : </label>
+                <select id="category" required>
+                  <option disabled>เลือกหมวดหมู่...</option>
+                  <option value="1">การ์ตูน</option>
+                  <option value="2">ของสะสม</option>
+                  <option value="3">ของเล่น | เกมส์</option>
+                  <option value="4">คอมพิวเตอร์ | โทรศัพท์มือถือ</option>
+                  <option value="5">หนังสือ | สิ่งพิมพ์</option>
+                  <option value="6">แฟชั่น</option>
+                  <option value="7">ภาพยนตร์ | วิดีโอ | ดีวีดี</option>
+                  <option value="8">อิเล็กทรอนิกส์</option>
+                </select>
+                <br />
                 <label>
                   ราคาเริ่มต้น :{" "}
                   <input
