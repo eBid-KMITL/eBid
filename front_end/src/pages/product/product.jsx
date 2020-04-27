@@ -35,7 +35,7 @@ export const Product = () => {
   const [disable, setDisable] = useState(true);
   const [pic, setPic] = useState(["hovered", "", "", ""]);
   const [bigImg, setBigImg] = useState(img1);
-  const [now, setNow] = useState(moment().format("x"));
+  const [now, setNow] = useState(moment().format("x")); //eslint-disable-next-line
   const [due, setDue] = useState(moment(prodEndTime, "YYYY-MM-DD HH:mm Z").format("x"));
   const [badgeStyle, setBadgeStyle] = useState({
     width: "fit-content",
@@ -50,7 +50,7 @@ export const Product = () => {
     // const { title, price } = fetch(product_id);
     setPrice(price);
     setTitle(title);
-    checkStatus();
+    checkStatus();  //eslint-disable-next-line
   }, [price, title, now])
   useEffect(() => {
     if (now <= due) setTimeout(() => { setNow(parseInt(now) + 1000) }, 1000);
@@ -150,7 +150,20 @@ export const Product = () => {
   return (
     <div className="product-main">
       <Helmet><title>{title} | eBid - Online Bidding</title></Helmet>
-      <div className="breadcrums"><a href="/">eBid</a> ▸ <a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> ▸ {title}</div>
+      <div className="breadcrums">
+        <a href="/">eBid</a> ▸&nbsp;
+        {(id / 100 === 1) ? (<><a href="/category?id=1">การ์ตูน</a> ▸&nbsp;</>)
+          : (id / 100 === 2) ? (<><a href="/category?id=2">ของสะสม</a> ▸&nbsp;</>)
+            : (id / 100 === 3) ? (<><a href="/category?id=3">ของเล่น | เกมส์</a> ▸&nbsp;</>)
+              : (id / 100 === 4) ? (<><a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> ▸&nbsp;</>)
+                : (id / 100 === 5) ? (<><a href="/category?id=5">หนังสือ | สิ่งพิมพ์</a> ▸&nbsp;</>)
+                  : (id / 100 === 6) ? (<><a href="/category?id=6">แฟชั่น</a> ▸&nbsp;</>)
+                    : (id / 100 === 7) ? (<><a href="/category?id=7">ภาพยนตร์ | วิดีโอ | ดีวีดี</a> ▸&nbsp;</>)
+                      : (id / 100 === 8) ? (<><a href="/category?id=8">อิเล็กทรอนิกส์</a> ▸&nbsp;</>)
+                        : ""
+        }
+        {title}
+      </div>
       <div className="base-container">
         <div className="img-container">
           <div className="img-big">
