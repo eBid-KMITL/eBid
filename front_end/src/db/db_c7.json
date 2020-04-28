@@ -1,0 +1,20 @@
+[
+  {
+    "id": 700,
+    "name": "DVD1",
+    "nbid": 7,
+    "owner": "eShop",
+    "price": 680,
+    "time": "2020-04-30T17:00+0700",
+    "img": "../../assets/products-pics/macbook.png"
+  },
+  {
+    "id": 701,
+    "name": "DVD2",
+    "nbid": 9,
+    "owner": "eShop",
+    "price": 1150,
+    "time": "2020-05-02T17:00+0700",
+    "img": "../../assets/products-pics/ip11.png"
+  }
+]

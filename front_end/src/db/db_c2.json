@@ -1,0 +1,47 @@
+[
+  {
+    "id": 200,
+    "name": "ของสะสม1",
+    "nbid": 5,
+    "owner": "eShop",
+    "price": 25700,
+    "time": "2020-04-30T17:00+0700",
+    "img": "../../assets/products-pics/macbook.png"
+  },
+  {
+    "id": 201,
+    "name": "ของสะสม2",
+    "nbid": 22,
+    "owner": "eShop",
+    "price": 26600,
+    "time": "2020-05-02T17:00+0700",
+    "img": "../../assets/products-pics/ip11.png"
+  },
+  {
+    "id": 202,
+    "name": "ของสะสม3",
+    "nbid": 11,
+    "owner": "eShop",
+    "price": 5600,
+    "time": "2020-05-02T17:00+0700",
+    "img": "../../assets/products-pics/ip11.png"
+  },
+  {
+    "id": 203,
+    "name": "ของสะสม4",
+    "nbid": 7,
+    "owner": "eShop",
+    "price": 8900,
+    "time": "2020-05-02T17:00+0700",
+    "img": "../../assets/products-pics/ip11.png"
+  },
+  {
+    "id": 203,
+    "name": "ของสะสม5",
+    "nbid": 7,
+    "owner": "eShop",
+    "price": 12550,
+    "time": "2020-05-02T17:00+0700",
+    "img": "../../assets/products-pics/ip11.png"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 400,
+    "name": "Macbook Pro 16\"",
+    "nbid": 5,
+    "owner": "eShop",
+    "price": 25700,
+    "time": "2020-04-30T17:00+0700",
+    "img": "../../assets/products-pics/macbook.png"
+  },
+  {
+    "id": 401,
+    "name": "iPhone 11 64GB",
+    "nbid": 22,
+    "owner": "eShop",
+    "price": 26600,
+    "time": "2020-05-02T17:00+0700",
+    "img": "../../assets/products-pics/ip11.png"
+  },
+  {
+    "id": 402,
+    "name": "A",
+    "nbid": 22,
+    "owner": "eShop",
+    "price": 26600,
+    "time": "2020-05-02T17:00+0700",
+    "img": "../../assets/products-pics/ip11.png"
+  },
+  {
+    "id": 403,
+    "name": "B",
+    "nbid": 22,
+    "owner": "eShop",
+    "price": 26600,
+    "time": "2020-05-02T17:00+0700",
+    "img": "../../assets/products-pics/ip11.png"
+  }
+]
