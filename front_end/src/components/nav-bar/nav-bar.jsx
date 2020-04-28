@@ -11,10 +11,15 @@ export const NavBar = ({ userInfo }) => {
   var formatter = new Intl.NumberFormat('th-TH', {
     style: 'decimal',
   });
+  function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
   function onLogout() {
     firebase.auth().signOut();
     window.location.replace("/");
   }
+  const search = useQuery().get("search");
+  console.log(search)
 
   return (
     <>
@@ -52,7 +57,7 @@ export const NavBar = ({ userInfo }) => {
             <div className="form-group">
               <form action="/result">
                 <div className="search-box">
-                  <input type="search" name="search" id="search-input" placeholder="ค้นหา" />
+                  <input type="search" name="search" id="search-input" placeholder="ค้นหา" defaultValue={search ? search : ""} />
                   <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
                 </div>
               </form>
