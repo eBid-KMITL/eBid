@@ -1,9 +1,11 @@
 import React, { useState, useCallback } from "react";
 import { Helmet } from "react-helmet";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import firebase from "firebase";
 import { useDropzone } from "react-dropzone";
 import addSymbol from "../../assets/add.svg";
+import NavigationPrompt from "react-router-navigation-prompt";
+import Modal from "react-responsive-modal";
 
 var pic = 0;
 
@@ -17,6 +19,7 @@ export const AddProduct = () => {
   const [bigImg, setBigImg] = useState(null);
   const [countPic, setCountPic] = useState(pic);
   const [outcome, setOutcome] = useState(1);
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     maxSize: imageMaxSize,
@@ -27,23 +30,20 @@ export const AddProduct = () => {
         reader.onerror = () => console.log("file reading has failed");
         reader.onload = () => {
           // Do whatever you want with the file contents
+          console.log(pic);
           if (pic === 0) {
-            console.log(pic);
             setPic1(URL.createObjectURL(file));
             setOutcome(0);
             pic++;
           } else if (pic === 1) {
-            console.log(pic);
             setPic2(URL.createObjectURL(file));
             setOutcome(0);
             pic++;
           } else if (pic === 2) {
-            console.log(pic);
             setPic3(URL.createObjectURL(file));
             setOutcome(0);
             pic++;
           } else if (pic === 3) {
-            console.log(pic);
             setPic4(URL.createObjectURL(file));
             setOutcome(0);
             pic++;
@@ -68,9 +68,51 @@ export const AddProduct = () => {
 
   return (
     <>
-      {firebase.auth().currentUser ?
-        (<div className="addProduct-main">
-          <Helmet><title>eBid - Online Bidding | Software Development Processes KMITL</title></Helmet>
+      <NavigationPrompt
+        afterConfirm={() => resetPicture()}
+        renderIfNotActive={false}
+        disableNative={true}
+        when={(crntLocation, nextLocation) =>
+          !nextLocation ||
+          (!nextLocation.pathname.startsWith(crntLocation.pathname) &&
+            pic !== 0)
+        }
+      >
+        {({ isActive, onCancel, onConfirm }) => {
+          if (isActive) {
+            return (
+              <Modal
+                open={true}
+                center={true}
+                showCloseIcon={false}
+                closeOnEsc={false}
+                closeOnOverlayClick={false}
+              >
+                <div className="alert-container">
+                  <h2>การลงสินค้ายังไม่เสร็จสิ้น</h2>
+                  <p className="alertMessage">
+                    คุณแน่ใจหรือไม่ว่าต้องการออกจากหน้านี้
+                  </p>
+                </div>
+
+                <button onClick={onCancel} className="btn-no">
+                  ไม่ ฉันต้องการอยู่ในหน้านี้
+                </button>
+                <button onClick={onConfirm} className="btn-yes">
+                  ใช่ ฉันต้องการออกจากหน้านี้
+                </button>
+              </Modal>
+            );
+          }
+        }}
+      </NavigationPrompt>
+      {firebase.auth().currentUser ? (
+        <div className="addProduct-main">
+          <Helmet>
+            <title>
+              eBid - Online Bidding | Software Development Processes KMITL
+            </title>
+          </Helmet>
           <div className="addPicture-frame">
             {bigImg === null ? (
               <div {...getRootProps({ className: "dropzone" })}>
@@ -79,10 +121,10 @@ export const AddProduct = () => {
                 <p>เพิ่มรูปภาพ</p>
               </div>
             ) : (
-                <div className="big-preview">
-                  <img src={bigImg} className="big-img" alt="img-preview" />
-                </div>
-              )}
+              <div className="big-preview">
+                <img src={bigImg} className="big-img" alt="img-preview" />
+              </div>
+            )}
             {outcome === 0 ? (
               <div className="preview-box">
                 {countPic === 1 ? (
@@ -96,8 +138,8 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
                 {countPic === 2 ? (
                   <>
                     <div
@@ -116,8 +158,8 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
                 {countPic === 3 ? (
                   <>
                     <div
@@ -143,8 +185,8 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
                 {countPic === 4 ? (
                   <>
                     <div
@@ -177,22 +219,30 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
               </div>
             ) : (
-                ""
-              )}
-            <div className={countPic === 4 ? "page-contain-red" : "page-contain"}>จำนวนรูป {pic} / 4</div>
+              ""
+            )}
+            <div
+              className={countPic === 4 ? "page-contain-red" : "page-contain"}
+            >
+              จำนวนรูป {countPic} / 4
+            </div>
             {outcome === 0 ? (
               <div className="button-container">
-                <button type="reset" className="btn" onClick={() => resetPicture()}>
+                <button
+                  type="reset"
+                  className="btn"
+                  onClick={() => resetPicture()}
+                >
                   รีเซ็ทรูปภาพ
-            </button>
+                </button>
               </div>
             ) : (
-                ""
-              )}
+              ""
+            )}
           </div>
           <div className="addProduct-detail-box">
             <div className="addProduct-detail">
@@ -216,18 +266,22 @@ export const AddProduct = () => {
                   id="productStartPrice"
                   name="productStartPrice"
                 />
-            eCoins
-          </label>
+                eCoins
+              </label>
               <br />
               <label>
                 หมดเวลา :{" "}
                 <input type="date" id="productTimeOut" name="productTimeOut" />
-                <input type="time" id="productTimeOut2" name="productTimeOut2" />
+                <input
+                  type="time"
+                  id="productTimeOut2"
+                  name="productTimeOut2"
+                />
               </label>
               <br />
               <label>
                 รายละเอียดสินค้า :
-            <br />
+                <br />
                 <textarea
                   placeholder="กรอกรายละเอียดสินค้า"
                   id="productDetail"
@@ -238,11 +292,13 @@ export const AddProduct = () => {
               </label>
               <button type="submit" className="btn-submit">
                 ยืนยันการลงประมูลสินค้า
-          </button>
+              </button>
             </div>
           </div>
-        </div>) : history.push("/login?from=addproduct")
-      }
+        </div>
+      ) : (
+        history.push("/login?from=addproduct")
+      )}
     </>
-  )
+  );
 };
