@@ -152,14 +152,14 @@ export const Product = () => {
       <Helmet><title>{title} | eBid - Online Bidding</title></Helmet>
       <div className="breadcrums">
         <a href="/">eBid</a> ▸&nbsp;
-        {(id / 100 === 1) ? (<><a href="/category?id=1">การ์ตูน</a> ▸&nbsp;</>)
-          : (id / 100 === 2) ? (<><a href="/category?id=2">ของสะสม</a> ▸&nbsp;</>)
-            : (id / 100 === 3) ? (<><a href="/category?id=3">ของเล่น | เกมส์</a> ▸&nbsp;</>)
-              : (id / 100 === 4) ? (<><a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> ▸&nbsp;</>)
-                : (id / 100 === 5) ? (<><a href="/category?id=5">หนังสือ | สิ่งพิมพ์</a> ▸&nbsp;</>)
-                  : (id / 100 === 6) ? (<><a href="/category?id=6">แฟชั่น</a> ▸&nbsp;</>)
-                    : (id / 100 === 7) ? (<><a href="/category?id=7">ภาพยนตร์ | วิดีโอ | ดีวีดี</a> ▸&nbsp;</>)
-                      : (id / 100 === 8) ? (<><a href="/category?id=8">อิเล็กทรอนิกส์</a> ▸&nbsp;</>)
+        {(parseInt(id / 100) === 1) ? (<><a href="/category?id=1">การ์ตูน</a> ▸&nbsp;</>)
+          : (parseInt(id / 100) === 2) ? (<><a href="/category?id=2">ของสะสม</a> ▸&nbsp;</>)
+            : (parseInt(id / 100) === 3) ? (<><a href="/category?id=3">ของเล่น | เกมส์</a> ▸&nbsp;</>)
+              : (parseInt(id / 100) === 4) ? (<><a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> ▸&nbsp;</>)
+                : (parseInt(id / 100) === 5) ? (<><a href="/category?id=5">หนังสือ | สิ่งพิมพ์</a> ▸&nbsp;</>)
+                  : (parseInt(id / 100) === 6) ? (<><a href="/category?id=6">แฟชั่น</a> ▸&nbsp;</>)
+                    : (parseInt(id / 100) === 7) ? (<><a href="/category?id=7">ภาพยนตร์ | วิดีโอ | ดีวีดี</a> ▸&nbsp;</>)
+                      : (parseInt(id / 100) === 8) ? (<><a href="/category?id=8">อิเล็กทรอนิกส์</a> ▸&nbsp;</>)
                         : ""
         }
         {title}
