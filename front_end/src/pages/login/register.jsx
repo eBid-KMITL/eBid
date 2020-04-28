@@ -39,8 +39,8 @@ export const Register = () => {
       <Helmet><title>Register | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
-          <Link to="/">
-            ﹤ กลับหน้าหลัก
+          <Link to="#" onClick={() => history.goBack()}>
+            ﹤ ย้อนกลับ
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />

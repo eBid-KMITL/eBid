@@ -1,63 +1,73 @@
-$font: "Roboto", "Noto Sans Thai UI", sans-serif;
-$font-semibold: "Roboto Bold", "Noto Sans Thai UI Semibold", sans-serif;
+$font: "Roboto",
+"Noto Sans Thai UI",
+sans-serif;
+$font-semibold: "Roboto Bold",
+"Noto Sans Thai UI Semibold",
+sans-serif;
 $shadow: 0 3px 6px 0 #00000048;
 
 .mystatement-box {
-  width: 1000px;
+  width         : 1000px;
   padding-bottom: 30px;
   // margin-left: 100px;
-  padding-right: 20px;
-  border-radius: 10px;
-  box-shadow: $shadow;
-  display: block;
-  background: #f1f1f1;
+  padding-right : 20px;
+  border-radius : 10px;
+  box-shadow    : $shadow;
+  display       : block;
+  background    : #f1f1f1;
 
   h {
-    margin: auto;
-    padding-top: 30px;
-    padding-left: 30px;
-    display: flex;
-    font-size: 25px;
+    margin         : auto;
+    padding-top    : 30px;
+    padding-left   : 30px;
+    display        : flex;
+    font-size      : 25px;
     justify-content: left;
-    align-items: center;
-    object-fit: scale-down;
+    align-items    : center;
+    object-fit     : scale-down;
   }
 
   .mystatement-table {
-    width: 1000px;
+    width      : 1000px;
     padding-top: 15px;
 
     table {
       width: 1020px;
 
       tr {
-        // padding: 10%;
 
         td {
           background-color: white;
-          align-items: center;
-          text-align: center;
+          align-items     : center;
+          text-align      : center;
         }
       }
     }
   }
 
-  .page{
-    font-size: 20px;
+  .page {
+    font-size   : 20px;
     padding-left: 350px;
-    
+
     .btn {
-      font-size: 25px;
-      margin: 30px 30px 0px 30px;
-      padding: 0px 8px 0px 8px;
-      border: 0;
-      border-radius: 5px;
-      color: white;
+      font-size       : 25px;
+      margin          : 30px 30px 0px 30px;
+      padding         : 0px 8px 0px 8px;
+      border          : 0;
+      border-radius   : 5px;
+      color           : white;
       background-color: #ff9100;
-      cursor: pointer;
+      transition      : all 300ms ease-in-out;
+      box-shadow      : 0 0 7px 0 #ff9100da;
+      cursor          : pointer;
+
+      &:hover {
+        background-color: #ffa32b;
+        box-shadow      : 0 0 10px 3px #ff9100da;
+      }
 
       &:disabled {
-        opacity: 0.6;
+        opacity       : 0.6;
         pointer-events: none;
       }
     }

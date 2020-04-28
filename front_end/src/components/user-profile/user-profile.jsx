@@ -2,7 +2,8 @@ import React from "react";
 import profilePicture from "../../assets/Profile.png";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import firebase from "firebase"
+import firebase from "firebase";
+import moment from "moment";
 
 const details = {
   firstName: "ภูวดล",
@@ -15,6 +16,7 @@ const details = {
 };
 
 export const UserProfile = () => {
+  const now = moment().format("YYYY-MM-DD");
   const [state, setState] = useState(0);
   const location = useLocation();
   var formatter = new Intl.NumberFormat('th-TH', {
@@ -29,22 +31,24 @@ export const UserProfile = () => {
     <div className="profile-box">
       <h>ข้อมูลของฉัน</h>
       <div className="profile-img">
-        <img src={details.image} alt="profile-pic"/>
+        <img src={details.image} alt="profile-pic" />
       </div>
       {(() => {
         switch (state) {
           case 0:
             return (
               <div className="profile-detail">
-                Account : {firebase.auth().currentUser.displayName}
+                <nobr><b>ชื่อผู้ใช้ : </b>{firebase.auth().currentUser.displayName}</nobr>
                 <br />
-                ชื่อ : {details.firstName} นามสกุล : {details.surName}
+                <nobr><b>ชื่อ : </b>{details.firstName} <b>นามสกุล : </b>{details.surName}</nobr>
                 <br />
-                เพศ : {details.gender} วันเกิด : {details.birthDay}
+                <nobr><b>เพศ : </b>{details.gender}</nobr>
                 <br />
-                เบอร์โทร : {details.phone}
+                <nobr><b>วันเกิด : </b>{details.birthDay}</nobr>
                 <br />
-                E-mail : {firebase.auth().currentUser.email}
+                <nobr><b>เบอร์โทร : </b>{details.phone}</nobr>
+                <br />
+                <nobr><b>อีเมล : </b>{firebase.auth().currentUser.email}</nobr>
                 <br />
                 <div className="button">
                   <button
@@ -61,84 +65,81 @@ export const UserProfile = () => {
             return (
               <div className="profile-detail">
                 <label>
-                  Account :
-                  <input
-                    type="text"
-                    placeholder="กรอกชื่อ Account"
-                    className="inpAccountname"
-                    name="Accountname"
-                    required
-                    minLength="5"
-                  />
+                  <nobr><b>ชื่อผู้ใช้ : </b>{firebase.auth().currentUser.displayName}</nobr>
                 </label>
                 <br />
-                <label>
-                  ชื่อ
-                  <input
-                    type="text"
-                    placeholder="กรอกชื่อ"
-                    className="inpFirstname"
-                    name="Firstname"
-                    required
-                    minLength="5"
-                  />
-                  นามสกุล
-                  <input
-                    type="text"
-                    placeholder="กรอกนามสกุล"
-                    className="inpSurname"
-                    name="Surename"
-                    required
-                    minLength="5"
-                  />
-                </label>
-                <br />
-                <label>
-                  เพศ
-                  <label className="container">
-                    ชาย
+                <form>
+                  <label>
+                    <b>ชื่อ</b>
+                    <input
+                      type="text"
+                      placeholder="กรอกชื่อ"
+                      className="inpFirstname"
+                      name="Firstname"
+                      required
+                      minLength="5"
+                    />
+                    <b>นามสกุล</b>
+                    <input
+                      type="text"
+                      placeholder="กรอกนามสกุล"
+                      className="inpSurname"
+                      name="Surename"
+                      required
+                      minLength="5"
+                    />
+                  </label>
+                  <br />
+                  <label>
+                    <b>เพศ</b>
+                    <label className="container">
+                      ชาย
                     <input type="radio" name="gender" value="male" />
-                    <span className="checkmark"></span>{" "}
-                  </label>
-                  <label className="container">
-                    หญิง
+                      <span className="checkmark"></span>{" "}
+                    </label>
+                    <label className="container">
+                      หญิง
                     <input type="radio" name="gender" value="female" />
-                    <span className="checkmark"></span>{" "}
+                      <span className="checkmark"></span>{" "}
+                    </label>
                   </label>
-                  วันเกิด :{" "}
-                  <input type="date" className="inpBirthday" name="Birthday" />
-                </label>
-                <br />
-                <label>
-                  เบอร์โทร
-                  <input
-                    type="tel"
-                    className="inpPhone"
-                    placeholder="กรอกเบอร์โทร"
-                    name="Phone"
-                    required minLength="9"
-                  />
-                </label>
-                <br />
-                <label>
-                  e-mail
-                  <input
-                    type="email"
-                    className="inpEmail"
-                    placeholder="กรอก e-mail"
-                    name="eMail"
-                  />
-                </label>
-                <br />
-                <div className="button">
-                  <button
-                    type="submit"
-                    className="btn"
-                    onClick={() => setState(0)}
-                  >
-                    ยืนยันข้อมูล
+                  <br />
+                  <label>
+                    <b>วันเกิด</b>
+                    <input type="date" className="inpBirthday" name="Birthday" max={now} />
+                  </label>
+                  <br />
+                  <label>
+                    <b>เบอร์โทร</b>
+                    <input
+                      type="tel"
+                      className="inpPhone"
+                      placeholder="กรอกเบอร์โทร"
+                      name="Phone"
+                      required minLength="9"
+                    />
+                  </label>
+                  <br />
+                  <label>
+                    <b>อีเมล</b>
+                    <input
+                      type="email"
+                      className="inpEmail"
+                      placeholder="กรอกอีเมล"
+                      name="eMail"
+                    />
+                  </label>
+                  <br />
+                  <div className="button">
+                    <button
+                      type="submit"
+                      className="btn"
+                      onClick={() => setState(0)}
+                    >
+                      ยืนยันข้อมูล
                   </button>
-                </div>
+                  </div>
+                </form>
               </div>
             );
         }

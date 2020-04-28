@@ -6,10 +6,12 @@ import { useDropzone } from "react-dropzone";
 import addSymbol from "../../assets/add.svg";
 import NavigationPrompt from "react-router-navigation-prompt";
 import Modal from "react-responsive-modal";
+import moment from "moment";
 
 var pic = 0;
 
 export const AddProduct = () => {
+  const now = moment().add("1", "d").format("YYYY-MM-DD");
   const history = useHistory();
   const imageMaxSize = 3000000; // bytes
   const [pic1, setPic1] = useState(null);
@@ -246,53 +248,53 @@ export const AddProduct = () => {
           </div>
           <div className="addProduct-detail-box">
             <div className="addProduct-detail">
-              <label>
-                ชื่อสินค้า :{" "}
-                <input
-                  type="text"
-                  placeholder="กรอกชื่อสินค้า"
-                  id="productName"
-                  name="productName"
-                  required
-                  minLength="5"
-                />
-              </label>
-              <br />
-              <label>
-                ราคาเริ่มต้น :{" "}
-                <input
-                  type="number"
-                  placeholder="กรอกราคาเริ่มต้น"
-                  id="productStartPrice"
-                  name="productStartPrice"
-                />
-                eCoins
-              </label>
-              <br />
-              <label>
-                หมดเวลา :{" "}
-                <input type="date" id="productTimeOut" name="productTimeOut" />
-                <input
-                  type="time"
-                  id="productTimeOut2"
-                  name="productTimeOut2"
-                />
-              </label>
-              <br />
-              <label>
-                รายละเอียดสินค้า :
+              <form>
+                <label>
+                  ชื่อสินค้า :{" "}
+                  <input
+                    type="text"
+                    placeholder="กรอกชื่อสินค้า"
+                    id="productName"
+                    name="productName"
+                    required
+                    minLength="5"
+                  />
+                </label>
                 <br />
-                <textarea
-                  placeholder="กรอกรายละเอียดสินค้า"
-                  id="productDetail"
-                  name="productDetail"
-                  required
-                  minLength="5"
-                />
-              </label>
-              <button type="submit" className="btn-submit">
-                ยืนยันการลงประมูลสินค้า
-              </button>
+                <label>
+                  ราคาเริ่มต้น :{" "}
+                  <input
+                    type="number"
+                    placeholder="กรอกราคาเริ่มต้น"
+                    id="productStartPrice"
+                    name="productStartPrice"
+                    min="1"
+                    required
+                  />
+            eCoins
+          </label>
+                <br />
+                <label>
+                  หมดเวลา :{" "}
+                  <input type="date" id="productTimeOut" name="productTimeOut" min={now} required />
+                  <input type="time" id="productTimeOut2" name="productTimeOut2" required />
+                </label>
+                <br />
+                <label>
+                  รายละเอียดสินค้า :
+            <br />
+                  <textarea
+                    placeholder="กรอกรายละเอียดสินค้า"
+                    id="productDetail"
+                    name="productDetail"
+                    required
+                    minLength="20"
+                  />
+                </label>
+                <button type="submit" className="btn-submit">
+                  ยืนยันการลงประมูลสินค้า
+          </button>
+              </form>
             </div>
           </div>
         </div>
