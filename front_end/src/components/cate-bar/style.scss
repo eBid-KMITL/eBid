@@ -20,30 +20,31 @@ $shadow : 0 3px 6px 0 #00000048;
   }
 
   ul {
-    padding-left       : 0;
-    list-style         : none;
-    line-height        : 2em;
+    padding-left: 0;
+    list-style  : none;
+    line-height : 2em;
 
     li {
-      transition: 200ms all cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      transition: all 100ms ease-in-out;
       cursor    : pointer;
 
       &:hover {
-        color        : #0082FF;
-        font-size    : 20px;
-        border-radius: 5px;
+        color           : orange;
+        // font-size    : 20px;
+        border-radius   : 5px;
       }
     }
 
     li#selected {
-      transition         : all 200ms ease-in-out;
-      color              : #0082FF;
-      background-color   : rgb(188, 225, 255);
-      border-radius      : 5px;
-      cursor             : pointer;
+      transition      : all 200ms ease-in-out;
+      font-family     : $font-semibold;
+      color           : orange;
+      background-color: rgba(255, 166, 0, 0.11);
+      border-radius   : 5px;
+      cursor          : pointer;
 
       &:hover {
-        color        : #0082FF;
+        color        : orange;
         font-size    : 17px;
         border-radius: 5px;
       }
