@@ -32,7 +32,7 @@ export const Forgot = () => {
           </div>
           <h1>ลืมรหัสใช่ไหม?</h1>
           {sent ? (
-            <p id="sent-forgot"><FaExclamationCircle /> &nbsp;ส่งรหัสยืนยันเรียบร้อยแล้ว</p>
+            <p id="sent-forgot"><FaExclamationCircle /> &nbsp;ส่งอีเมลเรียบร้อยแล้ว</p>
           ) : error ? (
             <p id="input-error"><FaExclamationCircle /> &nbsp;อีเมลไม่ถูกต้องหรือไม่พบผู้ใช้</p>
           ) : (
@@ -55,7 +55,7 @@ export const Forgot = () => {
                 </Link>
                 <button type="submit" className="btn" formTarget="hiddenFrame"
                   onClick={onForgot}>
-                  ส่งรหัสยืนยัน
+                  รีเซ็ตรหัสผ่าน
                 </button>
               </div>
             </form>
