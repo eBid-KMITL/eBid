@@ -72,7 +72,6 @@ export const AddProduct = () => {
     <>
       <NavigationPrompt
         afterConfirm={() => resetPicture()}
-        renderIfNotActive={false}
         disableNative={true}
         when={(crntLocation, nextLocation) =>
           !nextLocation ||
@@ -271,18 +270,29 @@ export const AddProduct = () => {
                     min="1"
                     required
                   />
-            eCoins
-          </label>
+                  eCoins
+                </label>
                 <br />
                 <label>
                   หมดเวลา :{" "}
-                  <input type="date" id="productTimeOut" name="productTimeOut" min={now} required />
-                  <input type="time" id="productTimeOut2" name="productTimeOut2" required />
+                  <input
+                    type="date"
+                    id="productTimeOut"
+                    name="productTimeOut"
+                    min={now}
+                    required
+                  />
+                  <input
+                    type="time"
+                    id="productTimeOut2"
+                    name="productTimeOut2"
+                    required
+                  />
                 </label>
                 <br />
                 <label>
                   รายละเอียดสินค้า :
-            <br />
+                  <br />
                   <textarea
                     placeholder="กรอกรายละเอียดสินค้า"
                     id="productDetail"
@@ -293,7 +303,7 @@ export const AddProduct = () => {
                 </label>
                 <button type="submit" className="btn-submit">
                   ยืนยันการลงประมูลสินค้า
-          </button>
+                </button>
               </form>
             </div>
           </div>
