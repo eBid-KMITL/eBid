@@ -16,7 +16,7 @@ export const ProductFrame = ({ details }) => {
     <Link to={link}>
       <div className="product-box">
         <div className="b-product-img">
-          <img src={details.img} alt="product-img" />
+          <img src={details.img[0]} alt="product-img" />
         </div>
         <div className="b-details">
           <div className="b-product-title" title={details.name}>

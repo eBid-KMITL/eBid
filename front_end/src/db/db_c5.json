@@ -1,29 +1,44 @@
 [
   {
     "id": 500,
+    "category": 5,
     "name": "หนังสือ1",
     "nbid": 5,
     "owner": "eShop",
     "price": 560,
     "time": "2020-04-30T17:00+0700",
-    "img": "../../assets/products-pics/macbook.png"
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
   },
   {
     "id": 501,
+    "category": 5,
     "name": "หนังสือ2",
     "nbid": 12,
     "owner": "eShop",
     "price": 130,
     "time": "2020-05-02T17:00+0700",
-    "img": "../../assets/products-pics/ip11.png"
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
   },
   {
     "id": 502,
+    "category": 5,
     "name": "หนังสือ3",
     "nbid": 28,
     "owner": "eShop",
     "price": 540,
     "time": "2020-05-02T17:00+0700",
-    "img": "../../assets/products-pics/ip11.png"
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
   }
 ]

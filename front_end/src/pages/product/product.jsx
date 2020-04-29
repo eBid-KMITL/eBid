@@ -6,17 +6,15 @@ import './product.scss';
 import { FaSyncAlt, FaClock, FaUserCircle, FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoMdPricetags } from "react-icons/io";
 import { MdVerifiedUser } from "react-icons/md"
-import img1 from "../../assets/products-pics/pic-big/mac1.png";
-import img2 from "../../assets/products-pics/pic-big/mac2.png";
-import img3 from "../../assets/products-pics/pic-big/mac3.png";
-import img4 from "../../assets/products-pics/pic-big/mac4.png";
 import Moment from 'react-moment';
 import firebase from "firebase"
 import moment from "moment";
+import db from "../../db/product.json";
+// import img1 from "../../assets/products-pics/pic-big/mac1.png"
 
 export const Product = () => {
   // var product_id;
-  const prodEndTime = "2020-04-30T16:00+0700";
+  const prodEndTime = db.time;
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -26,15 +24,15 @@ export const Product = () => {
   const history = useHistory();
   const id = useQuery().get("id")
   const [modal, setModal] = useState(false);
-  const [price, setPrice] = useState(9999);
-  const [title, setTitle] = useState("ProductName");
+  const [price, setPrice] = useState(db.price);
+  const [title, setTitle] = useState(db.name);
   const [confirm, setConfirm] = useState(false);
   const [btn, setBTN] = useState(true);
   const [love, setLove] = useState(false);
   const [status, setStatus] = useState(0);
   const [disable, setDisable] = useState(true);
   const [pic, setPic] = useState(["hovered", "", "", ""]);
-  const [bigImg, setBigImg] = useState(img1);
+  const [bigImg, setBigImg] = useState(db.img[0]);
   const [now, setNow] = useState(moment().format("x")); //eslint-disable-next-line
   const [due, setDue] = useState(moment(prodEndTime, "YYYY-MM-DD HH:mm Z").format("x"));
   const [badgeStyle, setBadgeStyle] = useState({
@@ -47,7 +45,7 @@ export const Product = () => {
     fontFamily: "Noto Sans Thai UI",
   })
   useEffect(() => {
-    // const { title, price } = fetch(product_id);
+    // const { name, price } = fetch(db);
     setPrice(price);
     setTitle(title);
     checkStatus();  //eslint-disable-next-line
@@ -121,19 +119,19 @@ export const Product = () => {
   }
   function picSelect(sel) {
     if (sel === 1) {
-      setBigImg(img1);
+      setBigImg(db.img[0]);
       setPic(["hovered", "", "", ""]);
     }
     else if (sel === 2) {
-      setBigImg(img2);
+      setBigImg(db.img[1]);
       setPic(["", "hovered", "", ""]);
     }
     else if (sel === 3) {
-      setBigImg(img3);
+      setBigImg(db.img[2]);
       setPic(["", "", "hovered", ""]);
     }
     else if (sel === 4) {
-      setBigImg(img4);
+      setBigImg(db.img[3]);
       setPic(["", "", "", "hovered"]);
     }
   }
@@ -152,14 +150,14 @@ export const Product = () => {
       <Helmet><title>{title} | eBid - Online Bidding</title></Helmet>
       <div className="breadcrums">
         <a href="/">eBid</a> ▸&nbsp;
-        {(parseInt(id / 100) === 1) ? (<><a href="/category?id=1">การ์ตูน</a> ▸&nbsp;</>)
-          : (parseInt(id / 100) === 2) ? (<><a href="/category?id=2">ของสะสม</a> ▸&nbsp;</>)
-            : (parseInt(id / 100) === 3) ? (<><a href="/category?id=3">ของเล่น | เกมส์</a> ▸&nbsp;</>)
-              : (parseInt(id / 100) === 4) ? (<><a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> ▸&nbsp;</>)
-                : (parseInt(id / 100) === 5) ? (<><a href="/category?id=5">หนังสือ | สิ่งพิมพ์</a> ▸&nbsp;</>)
-                  : (parseInt(id / 100) === 6) ? (<><a href="/category?id=6">แฟชั่น</a> ▸&nbsp;</>)
-                    : (parseInt(id / 100) === 7) ? (<><a href="/category?id=7">ภาพยนตร์ | วิดีโอ | ดีวีดี</a> ▸&nbsp;</>)
-                      : (parseInt(id / 100) === 8) ? (<><a href="/category?id=8">อิเล็กทรอนิกส์</a> ▸&nbsp;</>)
+        {(db.category === 1) ? (<><a href="/category?id=1">การ์ตูน</a> ▸&nbsp;</>)
+          : (db.category === 2) ? (<><a href="/category?id=2">ของสะสม</a> ▸&nbsp;</>)
+            : (db.category === 3) ? (<><a href="/category?id=3">ของเล่น | เกมส์</a> ▸&nbsp;</>)
+              : (db.category === 4) ? (<><a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> ▸&nbsp;</>)
+                : (db.category === 5) ? (<><a href="/category?id=5">หนังสือ | สิ่งพิมพ์</a> ▸&nbsp;</>)
+                  : (db.category === 6) ? (<><a href="/category?id=6">แฟชั่น</a> ▸&nbsp;</>)
+                    : (db.category === 7) ? (<><a href="/category?id=7">ภาพยนตร์ | วิดีโอ | ดีวีดี</a> ▸&nbsp;</>)
+                      : (db.category === 8) ? (<><a href="/category?id=8">อิเล็กทรอนิกส์</a> ▸&nbsp;</>)
                         : ""
         }
         {title}
@@ -171,10 +169,10 @@ export const Product = () => {
           </div>
           <div className="img-small-cont">
             <div className="img-small">
-              <img src={img1} id={pic[0]} alt="product-pic1" onMouseOver={() => picSelect(1)} />
-              <img src={img2} id={pic[1]} alt="product-pic2" onMouseOver={() => picSelect(2)} />
-              <img src={img3} id={pic[2]} alt="product-pic3" onMouseOver={() => picSelect(3)} />
-              <img src={img4} id={pic[3]} alt="product-pic4" onMouseOver={() => picSelect(4)} />
+              {db.img[0] ? <img src={db.img[0]} id={pic[0]} alt="product-pic1" onMouseOver={() => picSelect(1)} /> : null}
+              {db.img[1] ? <img src={db.img[1]} id={pic[1]} alt="product-pic2" onMouseOver={() => picSelect(2)} /> : null}
+              {db.img[2] ? <img src={db.img[2]} id={pic[2]} alt="product-pic3" onMouseOver={() => picSelect(3)} /> : null}
+              {db.img[3] ? <img src={db.img[3]} id={pic[3]} alt="product-pic4" onMouseOver={() => picSelect(4)} /> : null}
             </div>
           </div>
         </div>
@@ -195,7 +193,7 @@ export const Product = () => {
               <div className="number">
                 <h3><IoMdPricetags />&nbsp;จำนวนการเคาะราคา</h3>
                 <div className="number-wrap">
-                  <h2>5 ครั้ง</h2>
+                  <h2>{db.nbid} ครั้ง</h2>
                 </div>
               </div>
             </div>
@@ -203,7 +201,7 @@ export const Product = () => {
               <div className="owner">
                 <h3><FaUserCircle />&nbsp;ผู้ลงประมูล</h3>
                 <div className="name-verify">
-                  <div className="tooltip-wrap"><div className="tooltip"><MdVerifiedUser /><span id="verify">ได้รับการยืนยัน</span></div>&nbsp;<a id="owner" href="/">e_shop</a></div>
+                  <div className="tooltip-wrap"><div className="tooltip"><MdVerifiedUser /><span id="verify">ได้รับการยืนยัน</span></div>&nbsp;<a id="owner" href="/">{db.owner}</a></div>
                 </div>
               </div>
               <div className="bidder">

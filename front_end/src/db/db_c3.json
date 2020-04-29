@@ -1,47 +1,72 @@
 [
   {
     "id": 300,
+    "category": 3,
     "name": "ของเล่น1",
     "nbid": 5,
     "owner": "eShop",
     "price": 888,
     "time": "2020-04-30T17:00+0700",
-    "img": "../../assets/products-pics/macbook.png"
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
   },
   {
     "id": 301,
+    "category": 3,
     "name": "ของเล่น2",
     "nbid": 22,
     "owner": "eShop",
     "price": 1275,
     "time": "2020-05-02T17:00+0700",
-    "img": "../../assets/products-pics/ip11.png"
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
   },
   {
     "id": 302,
+    "category": 3,
     "name": "เกมส์1",
     "nbid": 17,
     "owner": "eShop",
     "price": 325,
     "time": "2020-05-02T17:00+0700",
-    "img": "../../assets/products-pics/ip11.png"
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
   },
   {
     "id": 303,
+    "category": 3,
     "name": "เกมส์2",
     "nbid": 9,
     "owner": "eShop",
     "price": 750,
     "time": "2020-05-02T17:00+0700",
-    "img": "../../assets/products-pics/ip11.png"
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
   },
   {
     "id": 304,
+    "category": 3,
     "name": "ของเล่น3",
     "nbid": 5,
     "owner": "eShop",
     "price": 570,
     "time": "2020-05-02T17:00+0700",
-    "img": "../../assets/products-pics/ip11.png"
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
   }
 ]
