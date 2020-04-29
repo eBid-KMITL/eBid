@@ -19,7 +19,6 @@ export const NavBar = ({ userInfo }) => {
     window.location.replace("/");
   }
   const search = useQuery().get("search");
-  console.log(search)
 
   return (
     <>
