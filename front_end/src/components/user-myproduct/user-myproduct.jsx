@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MyProductDetail } from "../../components";
 import MacBook from "../../assets/products-pics/macbook.png";
 import iPhone from "../../assets/products-pics/ip11.png";
 import Watch from "../../assets/products-pics/watch.jpg";
 import Bag from "../../assets/products-pics/bag.jpg";
-import { useState } from "react";
 
 var maxPage = 3;
 
 export const UserMyProduct = () => {
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
 
   const details = [
     {

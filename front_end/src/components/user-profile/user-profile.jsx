@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import profilePicture from "../../assets/Profile.png";
-import { useState } from "react";
 import firebase from "firebase";
 import moment from "moment";
 import userinfo from "../../db/userinfo.json";
@@ -18,6 +17,9 @@ import userinfo from "../../db/userinfo.json";
 export const UserProfile = () => {
   const now = moment().format("YYYY-MM-DD");
   const [state, setState] = useState(0);
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
 
   return (
     <div className="profile-box">

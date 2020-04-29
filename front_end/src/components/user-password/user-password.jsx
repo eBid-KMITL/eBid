@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import psswPicture from "../../assets/password.png";
 
 export const UserPassword = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="password-box">
       <h>ตั้งค่ารหัสผ่าน</h>
       <div className="password-img">
-        <img src={psswPicture} alt="password-pic"/>
+        <img src={psswPicture} alt="password-pic" />
       </div>
       <div className="password-detail">
         <div className="form-group">

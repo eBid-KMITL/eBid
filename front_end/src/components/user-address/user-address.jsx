@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import addrPicture from "../../assets/address.png";
-import { useState } from "react";
 import userinfo from "../../db/userinfo.json";
 
 // const details = {
@@ -16,6 +15,9 @@ import userinfo from "../../db/userinfo.json";
 
 export const UserAddress = () => {
   const [state, setState] = useState(0);
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
 
   return (
     <div className="address-box">

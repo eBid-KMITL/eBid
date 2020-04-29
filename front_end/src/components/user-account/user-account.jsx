@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.scss";
 import moneyPicture from "../../assets/eGold.png";
 import firebase from "firebase";
@@ -13,6 +13,9 @@ import userinfo from "../../db/userinfo.json";
 //   }
 
 export const UserAccount = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const formatter = new Intl.NumberFormat('th-TH', {
     style: 'decimal',
   });
@@ -21,7 +24,7 @@ export const UserAccount = () => {
     <div className="account-box">
       <h>เงินในบัญชีของฉัน</h>
       <div className="account-img">
-        <img src={moneyPicture} alt="account-pic"/>
+        <img src={moneyPicture} alt="account-pic" />
       </div>
       <div className="account-detail">
         <nobr><b>ชื่อผู้ใช้ : </b>{firebase.auth().currentUser.displayName}</nobr>
