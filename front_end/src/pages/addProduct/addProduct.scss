@@ -128,11 +128,11 @@ $shadow: 0 3px 6px 0 #00000048;
         margin: 0;
       }
 
-      #productName {
+      input {
         margin-left: 10px;
         width: 240px;
         box-shadow: 0 3px 3px 0 #00000041;
-        height: 25px;
+        height: 30px;
         box-sizing: border-box;
         padding: 0 10px;
         font-size: 16px;
@@ -141,6 +141,11 @@ $shadow: 0 3px 6px 0 #00000048;
         border: 0px;
         border-radius: 5px;
         transition: all 250ms ease-in-out;
+
+        &:focus {
+          box-shadow: 0 7px 20px 2px #00000067;
+          outline   : none;
+        }
       }
 
       select {
@@ -168,7 +173,7 @@ $shadow: 0 3px 6px 0 #00000048;
         margin-right: 10px;
         width: 200px;
         box-shadow: 0 3px 3px 0 #00000041;
-        height: 25px;
+        height: 30px;
         box-sizing: border-box;
         padding: 0 10px;
         font-size: 16px;
@@ -177,13 +182,18 @@ $shadow: 0 3px 6px 0 #00000048;
         border: 0px;
         border-radius: 5px;
         transition: all 250ms ease-in-out;
+
+        &:focus {
+          box-shadow: 0 7px 20px 2px #00000067;
+          outline   : none;
+        }
       }
 
       #productTimeOut {
         margin-left: 10px;
         width: 200px;
         box-shadow: 0 3px 3px 0 #00000041;
-        height: 25px;
+        height: 30px;
         box-sizing: border-box;
         padding: 0 10px;
         font-size: 16px;
@@ -192,13 +202,18 @@ $shadow: 0 3px 6px 0 #00000048;
         border: 0px;
         border-radius: 5px;
         transition: all 250ms ease-in-out;
+
+        &:focus {
+          box-shadow: 0 7px 20px 2px #00000067;
+          outline   : none;
+        }
       }
 
       #productTimeOut2 {
         margin-left: 10px;
         width: 80px;
         box-shadow: 0 3px 3px 0 #00000041;
-        height: 25px;
+        height: 30px;
         box-sizing: border-box;
         padding: 0 10px;
         font-size: 16px;
@@ -207,6 +222,11 @@ $shadow: 0 3px 6px 0 #00000048;
         border: 0px;
         border-radius: 5px;
         transition: all 250ms ease-in-out;
+
+        &:focus {
+          box-shadow: 0 7px 20px 2px #00000067;
+          outline   : none;
+        }
       }
 
       #productDetail {
@@ -215,7 +235,7 @@ $shadow: 0 3px 6px 0 #00000048;
         box-shadow: 0 3px 3px 0 #00000041;
         height: 150px;
         box-sizing: border-box;
-        padding: 0 10px;
+        padding: 10px 10px;
         font-size: 16px;
         font-family: "Noto Sans Thai UI", sans-serif;
         background-color: white;
@@ -223,6 +243,11 @@ $shadow: 0 3px 6px 0 #00000048;
         border-radius: 5px;
         transition: all 250ms ease-in-out;
         resize: none;
+
+        &:focus {
+          box-shadow: 0 7px 20px 2px #00000067;
+          outline   : none;
+        }
       }
 
       .btn-submit {
@@ -298,12 +323,13 @@ $shadow: 0 3px 6px 0 #00000048;
 }
 
 .alert-container {
-  margin-left: 15px;
   h2 {
     color: red;
+    margin: 0;
   }
 
   .alertMessage {
+    margin-bottom: 2em;
     font-size: 18px;
   }
 }
@@ -345,7 +371,7 @@ $shadow: 0 3px 6px 0 #00000048;
 
   &:hover {
     color: #ff0000;
-    background-color: #c3c3c3;
+    background-color: #e7e7e7;
   }
 
   &:focus {
