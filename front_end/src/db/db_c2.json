@@ -5,6 +5,7 @@
     "name": "ของสะสม1",
     "nbid": 5,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 25700,
     "time": "2020-04-30T17:00+0700",
     "img": [
@@ -19,6 +20,7 @@
     "name": "ของสะสม2",
     "nbid": 22,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 26600,
     "time": "2020-05-02T17:00+0700",
     "img": [
@@ -33,6 +35,7 @@
     "name": "ของสะสม3",
     "nbid": 11,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 5600,
     "time": "2020-05-02T17:00+0700",
     "img": [
@@ -47,6 +50,7 @@
     "name": "ของสะสม4",
     "nbid": 7,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 8900,
     "time": "2020-05-02T17:00+0700",
     "img": [
@@ -61,6 +65,7 @@
     "name": "ของสะสม5",
     "nbid": 7,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 12550,
     "time": "2020-05-02T17:00+0700",
     "img": [

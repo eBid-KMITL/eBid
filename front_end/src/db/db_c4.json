@@ -5,6 +5,7 @@
     "name": "Macbook Pro 16\"",
     "nbid": 5,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 25700,
     "time": "2020-04-30T17:00+0700",
     "img": [
@@ -19,6 +20,7 @@
     "name": "iPhone 11 64GB",
     "nbid": 22,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 26600,
     "time": "2020-05-02T17:00+0700",
     "img": [
@@ -33,6 +35,7 @@
     "name": "A",
     "nbid": 22,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 26600,
     "time": "2020-05-02T17:00+0700",
     "img": [
@@ -45,10 +48,11 @@
     "id": 403,
     "category": 4,
     "name": "B",
-    "nbid": 22,
+    "nbid": 2,
     "owner": "eShop",
-    "price": 26600,
-    "time": "2020-05-02T17:00+0700",
+    "bidder": "admin",
+    "price": 1234,
+    "time": "2020-05-12T17:00+0700",
     "img": [
       "../../assets/products-pics/macbook.png",
       "../../assets/products-pics/macbook.png",
