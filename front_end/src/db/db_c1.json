@@ -1,0 +1,44 @@
+[
+  {
+    "id": 100,
+    "category": 1,
+    "name": "การ์ตูน1",
+    "nbid": 5,
+    "owner": "eShop",
+    "price": 155,
+    "time": "2020-04-30T17:00+0700",
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
+  },
+  {
+    "id": 101,
+    "category": 1,
+    "name": "การ์ตูน2",
+    "nbid": 22,
+    "owner": "eShop",
+    "price": 285,
+    "time": "2020-05-02T17:00+0700",
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
+  },
+  {
+    "id": 102,
+    "category": 1,
+    "name": "การ์ตูน3",
+    "nbid": 22,
+    "owner": "eShop",
+    "price": 1300,
+    "time": "2020-05-02T17:00+0700",
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
+  }
+]

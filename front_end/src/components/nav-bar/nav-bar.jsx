@@ -11,11 +11,14 @@ export const NavBar = ({ userInfo }) => {
   var formatter = new Intl.NumberFormat('th-TH', {
     style: 'decimal',
   });
+  function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
   function onLogout() {
     firebase.auth().signOut();
-    window.location.reload(false);
+    window.location.replace("/");
   }
-  
+  const search = useQuery().get("search");
 
   return (
     <>
@@ -30,7 +33,8 @@ export const NavBar = ({ userInfo }) => {
             <span className="nav-menu">
               {firebase.auth().currentUser ? (
                 <div>
-                  <Link to="#">การประมูลของฉัน</Link>
+                  <Link to="/addproduct">ลงประมูลสินค้า</Link>
+                  <Link to="/profile?m=4">การประมูลของฉัน</Link>
                   <Link to="/topup">เติมเงิน</Link>
                   <Link to="#" onClick={onLogout} >ออกจากระบบ</Link>
                   <Link to="/contact">ติดต่อเรา</Link>
@@ -52,7 +56,7 @@ export const NavBar = ({ userInfo }) => {
             <div className="form-group">
               <form action="/result">
                 <div className="search-box">
-                  <input type="search" name="search" id="search-input" placeholder="ค้นหา" />
+                  <input type="search" name="search" id="search-input" placeholder="ค้นหา" defaultValue={search ? search : ""} />
                   <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
                 </div>
               </form>

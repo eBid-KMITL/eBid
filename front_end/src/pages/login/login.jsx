@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import logoID from "../../assets/eID.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import firebase from "firebase";
 import { FaExclamationCircle } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 
-export const Login = ({ history }) => {
+export const Login = () => {
+  const history = useHistory();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loginFail, setFail] = useState(false)
@@ -13,13 +14,14 @@ export const Login = ({ history }) => {
     return new URLSearchParams(useLocation().search);
   }
   const to = useQuery().get("from")
-  function onLogin() {
+  function onLogin(e) {
+    e.preventDefault();
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
       if (to) {
-        history.replace('/' + to);
+        history.push('/' + to);
       }
       else {
-        history.replace('/');
+        history.push('/');
       }
     })
       .catch(err => {
@@ -32,7 +34,7 @@ export const Login = ({ history }) => {
       <Helmet><title>Login | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
-          <Link to={(to) ? ("/"+to) : ("/")}>
+          <Link to="#" onClick={() => history.goBack()}>
             ﹤ ย้อนกลับ
           </Link>
           <div className="image">
@@ -40,7 +42,7 @@ export const Login = ({ history }) => {
           </div>
           <h1>ลงชื่อเข้าใช้</h1>
           {loginFail ? (
-            <p id="login-error"><FaExclamationCircle /> &nbsp;อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
+            <p id="input-error"><FaExclamationCircle /> &nbsp;อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
           ) : (
               null
             )
@@ -48,7 +50,7 @@ export const Login = ({ history }) => {
         </div>
         <div className="content">
           <div className="form-container">
-            <form>
+            <form onSubmit={e => { onLogin(e) }}>
               <div className="form-group">
                 <label htmlFor="email">อีเมล</label>
                 <input type="email" name="Email" placeholder="กรอกอีเมล" required value={email} onChange={e => setEmail(e.target.value)} />
@@ -66,14 +68,11 @@ export const Login = ({ history }) => {
                     <u>ลืมรหัสผ่าน</u>
                   </button>
                 </Link>
-                <button type="submit" className="btn" formTarget="hiddenFrame"
-                  onClick={onLogin}
-                >
+                <button type="submit" className="btn">
                   ลงชื่อเข้าใช้
               </button>
               </div>
             </form>
-            <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{display: "none"}}></iframe>
           </div>
         </div>
       </div>

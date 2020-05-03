@@ -11,28 +11,43 @@ $shadow : 0 3px 6px 0 #00000048;
   height: fit-content;
 
   .head {
-    font-family  : $font-semibold;
+    font-family: $font-semibold;
   }
-}
 
-a {
-  text-decoration: none;
-  color          : black;
-}
+  a {
+    text-decoration: none;
+    color          : black;
+  }
 
-ul {
-  padding-left: 0;
-  list-style  : none;
-  line-height : 2em;
-}
+  ul {
+    padding-left: 0;
+    list-style  : none;
+    line-height : 2em;
 
-li {
-  transition: 200ms all cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  cursor    : pointer;
+    li {
+      transition: all 100ms ease-in-out;
+      cursor    : pointer;
 
-  &:hover {
-    color        : #0082FF;
-    font-size    : 20px;
-    border-radius: 5px;
+      &:hover {
+        color           : orange;
+        // font-size    : 20px;
+        border-radius   : 5px;
+      }
+    }
+
+    li#selected {
+      transition      : all 200ms ease-in-out;
+      font-family     : $font-semibold;
+      color           : orange;
+      background-color: rgba(255, 166, 0, 0.11);
+      border-radius   : 5px;
+      cursor          : pointer;
+
+      &:hover {
+        color        : orange;
+        font-size    : 17px;
+        border-radius: 5px;
+      }
+    }
   }
 }

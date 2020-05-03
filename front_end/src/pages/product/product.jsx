@@ -1,38 +1,64 @@
-import React, { useState } from "react";
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useLocation, useHistory } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import Modal from 'react-responsive-modal';
 import './product.scss';
 import { FaSyncAlt, FaClock, FaUserCircle, FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoMdPricetags } from "react-icons/io";
-import img1 from "../../assets/products-pics/pic-big/mac1.png";
-import img2 from "../../assets/products-pics/pic-big/mac2.png";
-import img3 from "../../assets/products-pics/pic-big/mac3.png";
-import img4 from "../../assets/products-pics/pic-big/mac4.png";
+import { MdVerifiedUser } from "react-icons/md"
 import Moment from 'react-moment';
 import firebase from "firebase"
+import moment from "moment";
+import db from "../../db/product.json";
+// import img1 from "../../assets/products-pics/pic-big/mac1.png"
 
 export const Product = () => {
-  var currentPrice = 47810;
-  var prodName = "MacBook Pro 16\"";
-  var prodEndTime = "2020-04-15T20:18+0700";
+  // var product_id;
+  const prodEndTime = db.time;
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
   const formatter = new Intl.NumberFormat('th-TH', {
     style: 'decimal',
   });
+  const history = useHistory();
   const id = useQuery().get("id")
   const [modal, setModal] = useState(false);
+  const [price, setPrice] = useState(db.price);
+  const [title, setTitle] = useState(db.name);
   const [confirm, setConfirm] = useState(false);
   const [btn, setBTN] = useState(true);
   const [love, setLove] = useState(false);
+  const [status, setStatus] = useState(0);
+  const [disable, setDisable] = useState(true);
+  const [pic, setPic] = useState(["hovered", "", "", ""]);
+  const [bigImg, setBigImg] = useState(db.img[0]);
+  const [now, setNow] = useState(moment().format("x")); //eslint-disable-next-line
+  const [due, setDue] = useState(moment(prodEndTime, "YYYY-MM-DD HH:mm Z").format("x"));
+  const [badgeStyle, setBadgeStyle] = useState({
+    width: "fit-content",
+    padding: "1px 5px",
+    margin: 0,
+    borderRadius: "5px",
+    backgroundColor: "rgb(100, 100, 100)",
+    color: "white",
+    fontFamily: "Noto Sans Thai UI",
+  })
+  useEffect(() => {
+    // const { name, price } = fetch(db);
+    setPrice(price);
+    setTitle(title);
+    checkStatus();  //eslint-disable-next-line
+  }, [price, title, now])
+  useEffect(() => {
+    if (now <= due) setTimeout(() => { setNow(parseInt(now) + 1000) }, 1000);
+  }, [now, due])
   function onOpenModal() {
     if (firebase.auth().currentUser) {
       setModal(true);
     }
     else {
-      window.location = "/login?from=product?id=" + id;
+      history.push("/login?from=product?id=" + id);
     }
   }
   function onCloseModal() {
@@ -40,7 +66,8 @@ export const Product = () => {
     setConfirm(false);
     setBTN(true);
   }
-  function onOpenConfirm() {
+  function onOpenConfirm(e) {
+    e.preventDefault();
     setConfirm(true);
   }
   function onCloseConfirm() {
@@ -56,17 +83,61 @@ export const Product = () => {
       }
     }
     else {
-      window.location = "/login?from=product?id=" + id;
+      history.push("/login?from=product?id=" + id);
     }
-
   }
-  function check() {
-    currentPrice = currentPrice + 1;
-    window.alert("modal= " + modal + " confirm= " + confirm + " price= " + currentPrice);
+  function checkStatus() {
+    if (now < due) {
+      setStatus(1);
+      setDisable(false);
+      setBadgeStyle({
+        width: "fit-content",
+        padding: "1px 5px",
+        margin: 0,
+        borderRadius: "5px",
+        backgroundColor: "rgb(6, 190, 0)",
+        color: "white",
+        fontFamily: "Noto Sans Thai UI",
+      })
+    }
+    else {
+      setStatus(2);
+      setDisable(true);
+      onCloseModal();
+      onCloseConfirm();
+      setBTN(true);
+      setBadgeStyle({
+        width: "fit-content",
+        padding: "1px 5px",
+        margin: 0,
+        borderRadius: "5px",
+        backgroundColor: "rgb(255, 0, 0)",
+        color: "white",
+        fontFamily: "Noto Sans Thai UI",
+      })
+    }
+  }
+  function picSelect(sel) {
+    if (sel === 1) {
+      setBigImg(db.img[0]);
+      setPic(["hovered", "", "", ""]);
+    }
+    else if (sel === 2) {
+      setBigImg(db.img[1]);
+      setPic(["", "hovered", "", ""]);
+    }
+    else if (sel === 3) {
+      setBigImg(db.img[2]);
+      setPic(["", "", "hovered", ""]);
+    }
+    else if (sel === 4) {
+      setBigImg(db.img[3]);
+      setPic(["", "", "", "hovered"]);
+    }
   }
   function validateForm() {
     var a = document.forms["bid-price"]["bid-input"].value;
-    if (a >= currentPrice) {
+    if (a > price) {
       setBTN(false);
     }
     else {
@@ -76,86 +147,124 @@ export const Product = () => {
 
   return (
     <div className="product-main">
-      <Helmet><title>{prodName} | eBid - Online Bidding</title></Helmet>
-      <div className="breadcrums"><a href="/">eBid</a> > <a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> > {prodName}</div>
+      <Helmet><title>{title} | eBid - Online Bidding</title></Helmet>
+      <div className="breadcrums">
+        <a href="/">eBid</a> ▸&nbsp;
+        {(db.category === 1) ? (<><a href="/category?id=1">การ์ตูน</a> ▸&nbsp;</>)
+          : (db.category === 2) ? (<><a href="/category?id=2">ของสะสม</a> ▸&nbsp;</>)
+            : (db.category === 3) ? (<><a href="/category?id=3">ของเล่น | เกมส์</a> ▸&nbsp;</>)
+              : (db.category === 4) ? (<><a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> ▸&nbsp;</>)
+                : (db.category === 5) ? (<><a href="/category?id=5">หนังสือ | สิ่งพิมพ์</a> ▸&nbsp;</>)
+                  : (db.category === 6) ? (<><a href="/category?id=6">แฟชั่น</a> ▸&nbsp;</>)
+                    : (db.category === 7) ? (<><a href="/category?id=7">ภาพยนตร์ | วิดีโอ | ดีวีดี</a> ▸&nbsp;</>)
+                      : (db.category === 8) ? (<><a href="/category?id=8">อิเล็กทรอนิกส์</a> ▸&nbsp;</>)
+                        : ""
+        }
+        {title}
+      </div>
       <div className="base-container">
         <div className="img-container">
           <div className="img-big">
-            <img src={img1} alt="product-pic1" />
+            <img src={bigImg} alt="product-pic1" />
           </div>
           <div className="img-small-cont">
             <div className="img-small">
-              <img src={img1} alt="product-pic1" />
-              <img src={img2} alt="product-pic2" />
-              <img src={img3} alt="product-pic3" />
-              <img src={img4} alt="product-pic4" />
+              {db.img[0] ? <img src={db.img[0]} id={pic[0]} alt="product-pic1" onMouseOver={() => picSelect(1)} /> : null}
+              {db.img[1] ? <img src={db.img[1]} id={pic[1]} alt="product-pic2" onMouseOver={() => picSelect(2)} /> : null}
+              {db.img[2] ? <img src={db.img[2]} id={pic[2]} alt="product-pic3" onMouseOver={() => picSelect(3)} /> : null}
+              {db.img[3] ? <img src={db.img[3]} id={pic[3]} alt="product-pic4" onMouseOver={() => picSelect(4)} /> : null}
             </div>
           </div>
         </div>
         <div className="prod-details">
           <div className="header">
-            <h1>{prodName}</h1>
-            <p id="status-badge">กำลังประมูล</p>
+            <h1>{title}</h1>
+            <p style={badgeStyle}>{(status === 0) ? "-" : (status === 1) ? "กำลังประมูล" : (status === 2) ? "จบการประมูล" : "N/A"}</p>
           </div>
           <div className="details">
             <div className="bid-info">
               <div className="time">
-                <h3><FaClock />&nbsp;หมดเวลา</h3>
+                <h3><FaClock />&nbsp;{(status === 1) ? "เวลาที่เหลือ" : "หมดเวลาเมื่อ"}</h3>
                 <div className="time-wrap">
                   <h2><Moment interval={1000} fromNow >{prodEndTime}</Moment></h2>
+                  <p><Moment format={"DD MMMM YYYY HH:mm [น.]"}>{prodEndTime}</Moment></p>
                 </div>
               </div>
               <div className="number">
                 <h3><IoMdPricetags />&nbsp;จำนวนการเคาะราคา</h3>
                 <div className="number-wrap">
-                  <h2>5 ครั้ง</h2>
+                  <h2>{db.nbid} ครั้ง</h2>
                 </div>
               </div>
             </div>
             <div className="user-info">
               <div className="owner">
                 <h3><FaUserCircle />&nbsp;ผู้ลงประมูล</h3>
-                <p>e_shop</p>
+                <div className="name-verify">
+                  <div className="tooltip-wrap"><div className="tooltip"><MdVerifiedUser /><span id="verify">ได้รับการยืนยัน</span></div>&nbsp;<a id="owner" href="/">{db.owner}</a></div>
+                </div>
               </div>
               <div className="bidder">
                 <h3><FaUserCircle />&nbsp;ผู้เสนอราคาสูงสุด</h3>
-                <p>Book</p>
+                <a id="bidder" href="/">Book</a>
               </div>
             </div>
             <div className="live-price">
               <h3>ราคาปัจจุบัน</h3>
-              <h1>{formatter.format(currentPrice)} eCoin</h1>
+              <h1>{formatter.format(price)} eCoin<button className="refresh" type="button" alt="Refresh" onClick={() => checkStatus()}><FaSyncAlt /></button></h1>
             </div>
           </div>
           <div className="btn-container">
             <button type="button" className="love" onClick={() => toggleLove()}>{(love) ? (<FaHeart />) : (<FaRegHeart />)}&nbsp;เพิ่มในอยากได้</button>
-            <button type="button" className="bid" onClick={() => onOpenModal()}>ประมูล</button>
+            <button type="button" className="bid" onClick={() => onOpenModal()} disabled={disable}>{(status === 1) ? "ประมูล" : "หมดเวลาแล้ว"}</button>
           </div>
         </div>
         <Modal open={modal} center={true} onClose={() => onCloseModal()}>
           <h1 id="bidmodal-head">เสนอราคาประมูล</h1>
-          <p id="prodName">{prodName}</p>
+          <p id="prodName">▸{title}</p>
           <div className="bid-form">
-            <form name="bid-price">
-              <input name="bid-input" id="bid-price" type="number" placeholder="กรอกราคาที่มากกว่าราคาปัจจุบัน" min={currentPrice + 1} onBlur={() => validateForm()} required />
+            <form name="bid-price" onSubmit={e => onOpenConfirm(e)}>
+              <input name="bid-input" id="bid-price" type="number" placeholder="กรอกราคาที่มากกว่าราคาปัจจุบัน" min={price + 1} onBlur={() => validateForm()} required />
               <p id="ecoin-alert">เมื่อเสนอราคา eCoin ของท่านจะถูกกันไว้จนกว่าจะมีผู้เสนอราคาที่สูงกว่า</p>
               <div className="form-foot">
-                <h3 id="curPrice">
-                  ราคาปัจจุบัน : {formatter.format(currentPrice)} eCoin
-                  <button className="refresh" type="button" alt="Refresh" onClick={() => check()}><FaSyncAlt /></button>
-                </h3>
-                <button id="bid" type="submit" className="btn" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onOpenConfirm()} disabled={btn} >เสนอราคา</button>
+                <div className="price-container">
+                  <p id="price-tag">ราคาปัจจุบัน</p>
+                  <h3 id="curPrice">
+                    {formatter.format(price)} eCoin
+                  <button className="refresh" type="button" alt="Refresh" onClick={() => checkStatus()}><FaSyncAlt /></button>
+                  </h3>
+                </div>
+                <button id="bid" type="submit" className="btn" alt="เสนอราคา" disabled={btn && !disable} >เสนอราคา</button>
               </div>
             </form>
             <Modal open={confirm} center={true} showCloseIcon={false} closeOnEsc={false} closeOnOverlayClick={false} onClose={() => onCloseConfirm()} little>
-              <h1>ยืนยันเสนอราคา ?</h1>
-              <button id="bid-confirm" type="submit" className="btn_c" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onCloseModal()}>ยืนยัน</button>
-              <button id="bid-cancel" type="button" className="btn_s" alt="เสนอราคา" formTarget="hiddenFrame" onClick={() => onCloseConfirm()}>ยกเลิก</button>
+              <h1>ยืนยันการเสนอราคา</h1>
+              <button id="bid-confirm" type="button" className="btn_c" alt="เสนอราคา" onClick={() => { onCloseModal(); }}>ยืนยัน</button>
+              <button id="bid-cancel" type="button" className="btn_s" alt="เสนอราคา" onClick={() => onCloseConfirm()}>ยกเลิก</button>
             </Modal>
           </div>
         </Modal>
       </div>
-      <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
+      <div className="description-container">
+        <h1>รายละเอียดสินค้า</h1>
+        <div className="content-desc">
+          <p>
+            1. แชเชือนสตูดิโอฟีเวอร์เนอะกุนซือ เนิร์สเซอรีเซ็กซ์ดีกรี เป็นไง แอลมอนด์ไวกิ้ง เอสเปรสโซเทวาไทม์ ซิตีแพ็คไฮเปอร์รัมไวกิ้ง ซีอีโอยากูซ่าสต็อกถูกต้องบ๊อกซ์ เธคเวิร์กวอล์กรามาธิบดี คูลเลอร์แดรี่พาสตาเอาต์ ซิงสวีทผลักดันจตุคามดีพาร์ทเมนท์ เยนคาสิโนพรีเมียมแตงโมซูเอี๋ย อพาร์ทเมนท์เอ็นเตอร์เทน เวอร์ซีเนียร์ รองรับหมั่นโถวดีพาร์ตเมนต์รันเวย์ไพลิน รามเทพทีวีแอดมิสชันออร์แกนิค ทับซ้อนฟลุต
+            </p>
+          <p>
+            2. แจ๊กพ็อต วอฟเฟิลอุปสงค์แดรี่อพาร์ตเมนท์อิมพีเรียล แซ็กโซโฟนคอนแทค ฮาลาลเกสต์เฮาส์แฮนด์ รามเทพสกรัมมาร์จิน กลาสไอติม ดีลเลอร์ ปิกอัพ อัลตราคำตอบยากูซ่า เปียโน สุริยยาตรมะกัน ไวกิ้งโมเดลสติ๊กเกอร์คอนเซปต์ภควัทคีตา รีโมทนู้ดออร์แกนิกออเดอร์ฮากกา ปฏิสัมพันธ์บาบูนไอเดีย สันทนาการอพาร์ตเมนต์เนิร์สเซอรี่ เวิลด์จูนมินต์เคลื่อนย้าย
+            </p>
+          <p>
+            3. เดี้ยงไคลแมกซ์คอนเซ็ปต์เอ็กซ์โป สเตอริโอไหร่เมจิควิน สุริยยาตร์ แอดมิชชั่น เลดี้ วอลนัทพรีเมียร์ เท็กซ์ บรรพชน รันเวย์คอรัปชั่นศิลปากร โบว์ลิ่ง ภควัมปติคำสาปบราคอนแท็ค เทป ออร์เดอร์ไมค์แฟ้บ แซ็กโซโฟนเพาเวอร์โดนัท เวอร์ สลัมออกแบบ
+            </p>
+          <p>
+            4. สะบึมส์ดีพาร์ตเมนต์ซูชิผิดพลาด ออโต้วอล์กอาร์พีจี โปรอัลบั้มราชบัณฑิตยสถานบึ้ม โบว์ลิ่งดีพาร์ทเมนท์มลภาวะ โบกี้แหม็บ สตาร์นอร์ทรามาธิบดีแคมปัส วืดฮิปฮอป แคร์แครกเกอร์โรลออน ภารตะเอ็นทรานซ์แคป แรงใจฮิปฮอปไอเดียแซนด์วิชซิตี้ อีแต๋นตังค์ แฟ้บเพนกวินไบโอ นิวส์เทควันโดวินปอดแหกไรเฟิล โพสต์ เฟรม ควีนเอ๊าะสแควร์
+            </p>
+          <p>
+            5. เรซินเวณิกาเอ๋อตะหงิดเย้ว ปาสกาลซิงอันตรกิริยา สเปก รีทัชรองรับว้อดก้าเวิร์คสารขัณฑ์ โค้กออร์แกนิคมอลล์เบิร์นเครป แฟล็ต โปรราเม็ง﻿กรรมาชน กิฟท์ไกด์ เอ็กซ์โปแฟล็ตแดนเซอร์เวิลด์ ครัวซองต์กระดี๊กระด๊าระโงกไฟลต์ มอคค่าทัวริสต์แคร็กเกอร์เคลียร์รีโมต ซิตี้เซ็นทรัลดยุคกระดี๊กระด๊าซีดาน การันตีปาสเตอร์มาม่าอริยสงฆ์ สตูดิโอโปรเจ็กต์โรลออนโบ้ย สติ๊กเกอร์เชอร์รี่สแตนดาร์ดแฟลชคอนแทค เกสต์เฮาส์แบนเนอร์พันธกิจ
+            </p>
+        </div>
+      </div>
     </div>
   )
 }

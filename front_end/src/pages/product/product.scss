@@ -14,6 +14,7 @@ $shadow : 0 3px 6px 0 #00000048;
 
   .breadcrums {
     width      : 900px;
+    font-family: $font;
     font-weight: bold;
 
     a {
@@ -44,6 +45,13 @@ $shadow : 0 3px 6px 0 #00000048;
       display       : flex;
       flex-direction: column;
 
+      .img-big {
+          width           : 375px;
+          height          : 375px;
+          background-color: white;
+          margin-bottom: 3.5px;
+      }
+
       .img-small-cont {
         display       : flex;
         flex-direction: row;
@@ -61,15 +69,21 @@ $shadow : 0 3px 6px 0 #00000048;
             width : 100%;
             margin: 0 1.875px;
           }
+
+          img#hovered {
+            width     : 100%;
+            margin    : 0 1.875px;
+            box-shadow: 0 0 0 2px orange;
+          }
         }
       }
     }
 
     .prod-details {
-      margin-top: auto;
+      margin-top   : auto;
       margin-bottom: auto;
-      margin-left: 40px;
-      margin-right: 0;
+      margin-left  : 40px;
+      margin-right : 0;
 
       .header {
         margin-bottom: 1em;
@@ -77,21 +91,12 @@ $shadow : 0 3px 6px 0 #00000048;
         h1 {
           margin: 0;
         }
-
-        p#status-badge {
-          width           : fit-content;
-          padding         : 1px 5px;
-          margin          : 0;
-          border-radius   : 5px;
-          background-color: rgb(45, 223, 0);
-          color           : white;
-          font-family     : $font-semibold;
-        }
       }
 
       .bid-info {
         display       : flex;
         flex-direction: row;
+        margin-top    : 1em;
         margin-bottom : 1em;
 
         .time {
@@ -100,6 +105,7 @@ $shadow : 0 3px 6px 0 #00000048;
           margin-right  : 2.7em;
 
           h3 {
+            font-size  : 18px;
             margin     : 0;
             display    : flex;
             align-items: center;
@@ -108,7 +114,7 @@ $shadow : 0 3px 6px 0 #00000048;
           .time-wrap {
             h2 {
               margin: 0;
-              width    : 180px;
+              width : 180px;
             }
 
             p {
@@ -123,6 +129,7 @@ $shadow : 0 3px 6px 0 #00000048;
           margin-right  : 2em;
 
           h3 {
+            font-size  : 18px;
             margin     : 0;
             display    : flex;
             align-items: center;
@@ -151,29 +158,90 @@ $shadow : 0 3px 6px 0 #00000048;
           margin-right  : 6.1em;
 
           h3 {
+            font-size  : 18px;
             margin     : 0;
             display    : flex;
             align-items: center;
           }
 
-          p {
-            width    : 120px;
-            margin   : 10px 0;
-            font-size: 18px;
+          .name-verify {
+            color : rgb(0, 168, 14);
+            margin: 0;
+
+            a#owner {
+              display    : flex;
+              align-items: center;
+              width      : 100px;
+              margin     : 10px 0;
+              font-size  : 20px;
+              color      : #0082FF;
+
+              &:hover {
+                text-decoration: underline;
+                color          : rgb(78, 169, 255);
+              }
+            }
+
+            .tooltip-wrap {
+              display       : flex;
+              flex-direction: row;
+              align-items   : center;
+              margin        : 0;
+
+              .tooltip {
+                position: relative;
+                display : inline-block;
+
+                &:hover span#verify {
+                  visibility: visible;
+                  opacity   : 1;
+                }
+              }
+
+              span#verify {
+                visibility      : hidden;
+                width           : fit-content;
+                background-color: rgba(0, 0, 0, 0.699);
+                color           : #fff;
+                text-align      : center;
+                padding         : 5px 0;
+                border-radius   : 6px;
+                width           : 150px;
+                top             : 100%;
+                left            : 50%;
+                margin-left     : -60px;
+                position        : absolute;
+                z-index         : 1;
+                opacity         : 0;
+                transition      : opacity 0.3s;
+              }
+            }
           }
         }
 
         .bidder {
+          display       : flex;
+          flex-direction: column;
+
           h3 {
+            font-size  : 18px;
             margin     : 0;
             display    : flex;
             align-items: center;
           }
 
-          p {
-            width    : 120px;
-            margin   : 10px 0;
-            font-size: 18px;
+          a#bidder {
+            display    : flex;
+            align-items: center;
+            width      : 120px;
+            margin     : 10px 0;
+            font-size  : 20px;
+            color      : #0082FF;
+
+            &:hover {
+              text-decoration: underline;
+              color          : rgb(78, 169, 255);
+            }
           }
         }
       }
@@ -182,7 +250,8 @@ $shadow : 0 3px 6px 0 #00000048;
         margin-bottom: 1em;
 
         h3 {
-          margin: 0;
+          font-size: 18px;
+          margin   : 0;
         }
 
         h1 {
@@ -198,9 +267,9 @@ $shadow : 0 3px 6px 0 #00000048;
         float         : right;
 
         .love {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          display         : flex;
+          align-items     : center;
+          justify-content : center;
           margin-right    : 1em;
           width           : 180px;
           height          : 50px;
@@ -242,12 +311,40 @@ $shadow : 0 3px 6px 0 #00000048;
             box-shadow      : 0 0 16px 3px #ff9100da;
           }
 
+          &:disabled {
+            cursor          : not-allowed;
+            background-color: #c2c2c2;
+            box-shadow      : 0 0 16px 3px #ffffff00;
+          }
+
           &:focus {
             outline: none;
           }
         }
       }
     }
+  }
+
+  .description-container {
+    width           : 860px;
+    border-radius   : 10px;
+    background-color: #f1f1f1;
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
+    margin-bottom   : 1em;
+    padding         : 20px;
+    box-shadow      : $shadow;
+
+    h1 {
+      width : 100%;
+      margin: 0;
+    }
+
+    .content-desc {
+      width: 100%;
+    }
+
   }
 }
 
@@ -289,13 +386,19 @@ input#bid-price {
   align-items    : center;
 }
 
+p#price-tag {
+  margin: 0;
+}
+
 p#ecoin-alert {
   color: red;
 }
 
 h3#curPrice {
-  font-size   : 27px;
-  margin-right: 3em;
+  font-size    : 27px;
+  margin-top   : 0;
+  margin-bottom: 0;
+  margin-right : 6em;
 }
 
 .refresh {

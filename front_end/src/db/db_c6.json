@@ -1,0 +1,58 @@
+[
+  {
+    "id": 600,
+    "category": 6,
+    "name": "แฟชั่น1",
+    "nbid": 34,
+    "owner": "eShop",
+    "price": 12750,
+    "time": "2020-04-30T17:00+0700",
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
+  },
+  {
+    "id": 601,
+    "category": 6,
+    "name": "แฟชั่น2",
+    "nbid": 10,
+    "owner": "eShop",
+    "price": 4700,
+    "time": "2020-05-02T17:00+0700",
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
+  },
+  {
+    "id": 602,
+    "category": 6,
+    "name": "แฟชั่น3",
+    "nbid": 9,
+    "owner": "eShop",
+    "price": 26600,
+    "time": "2020-05-02T17:00+0700",
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
+  },
+  {
+    "id": 603,
+    "category": 6,
+    "name": "แฟชั่น4",
+    "nbid": 18,
+    "owner": "eShop",
+    "price": 6300,
+    "time": "2020-05-02T17:00+0700",
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
+  }
+]

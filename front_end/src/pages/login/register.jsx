@@ -1,25 +1,30 @@
 import React, { useState } from "react";
 import logoID from "../../assets/eID.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import firebase from "firebase";
 import { Helmet } from "react-helmet";
 import Modal from 'react-responsive-modal';
+import { FaExclamationCircle } from "react-icons/fa";
 
-export const Register = ({ history }) => {
+export const Register = () => {
+  const history = useHistory();
+  const [error, setError] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
-  function onRegister() {
+  function onRegister(e) {
+    e.preventDefault();
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       firebase.auth().currentUser.updateProfile({
         displayName: name
       })
       alert('Register Completed')
-      history.replace('/login')
+      history.push('/login')
     })
       .catch(err => {
-        alert(err);
+        // alert(err);
+        setError(true);
       });
   }
   function onOpenTerms() {
@@ -34,17 +39,23 @@ export const Register = ({ history }) => {
       <Helmet><title>Register | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
-          <Link to="/">
-            ﹤ กลับหน้าหลัก
+          <Link to="#" onClick={() => history.goBack()}>
+            ﹤ ย้อนกลับ
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
           </div>
-          <div align="right"><h1>สมัครสมาชิก</h1></div>
+          <h1>สมัครสมาชิก</h1>
+          {error ? (
+            <p id="input-error"><FaExclamationCircle /> &nbsp;มีข้อผิดพลาด กุรณาตรวจสอบและลองอีกครั้ง</p>
+          ) : (
+              null
+            )
+          }
         </div>
         <div className="content">
           <div className="form-container">
-            <form action="">
+            <form onSubmit={e => { onRegister(e) }}>
               <div className="form-group">
                 <label htmlFor="username">ชื่อผู้ใช้</label>
                 <input type="text" name="Username" placeholder="กรอกชื่อผู้ใช้" required value={name} onChange={e => setName(e.target.value)} />
@@ -66,9 +77,7 @@ export const Register = ({ history }) => {
                     <u>ลงชื่อเข้าใช้</u>
                   </button>
                 </Link>
-                <button type="submit" className="btn" formTarget="hiddenFrame"
-                  onClick={onRegister}
-                >
+                <button type="submit" className="btn">
                   สมัครสมาชิก
           </button>
               </div>

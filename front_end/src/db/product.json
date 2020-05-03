@@ -1,0 +1,15 @@
+{
+  "id": 100,
+  "category": 1,
+  "name": "การ์ตูน1",
+  "nbid": 15,
+  "owner": "eShop",
+  "price": 155,
+  "time": "2020-04-30T17:00+0700",
+  "img": [
+    "../../assets/products-pics/macbook.png",
+    "../../assets/products-pics/macbook.png",
+    "../../assets/products-pics/macbook.png",
+    "../../assets/products-pics/macbook.png"
+  ]
+}
