@@ -1,10 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import psswPicture from "../../assets/password.png";
+import firebase from "firebase"
+import { FaExclamationCircle } from "react-icons/fa";
+import { Ellipsis } from 'react-spinners-css';
 
 export const UserPassword = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  function onForgot(e) {
+    const a = document.getElementById("email").value
+    e.preventDefault();
+    setLoading(true);
+    console.log(a + " " + firebase.auth().currentUser.email)
+    if (firebase.auth().currentUser.email === a) {
+      firebase.auth().sendPasswordResetEmail(email).then(() => {
+        setSent(true);
+        setLoading(false);
+      }).catch(err => {
+        setError(true);
+        setLoading(false);
+      })
+    }
+    else {
+      setError(true);
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="password-box">
@@ -13,41 +39,32 @@ export const UserPassword = () => {
         <img src={psswPicture} alt="password-pic" />
       </div>
       <div className="password-detail">
-        <div className="form-group">
-          รหัสผ่านเก่า
+        <p>หากคุณต้องการเปลี่ยนรหัสผ่านโปรดกรอกอีเมลผู้ใช้ของคุณเพื่อรีเซ็ตรหัสทางอีเมล</p>
+        {sent ? (
+          <p id="sent-forgot"><FaExclamationCircle /> &nbsp;ส่งเรียบร้อยแล้ว โปรดตรวจสอบอีเมล</p>
+        ) : error ? (
+          <p id="input-error"><FaExclamationCircle /> &nbsp;อีเมลไม่ถูกต้อง โปรดใส่อีเมลผู้ใช้ของคุณ</p>
+        ) : (
+              null
+            )
+        }
+        <form onSubmit={e => { onForgot(e, e.target.value) }}>
+          <div className="form-group">
+            อีเมล
           <input
-            type="password"
-            name="oldPassword"
-            placeholder="กรอกรหัสผ่านเก่า"
-            required
-            minLength="8"
-          />
-        </div>
-        <div className="form-group">
-          รหัสผ่านใหม่
-          <input
-            type="password"
-            name="newPassword"
-            placeholder="กรอกรหัสผ่านใหม่"
-            required
-            minLength="8"
-          />
-        </div>
-        <div className="form-group">
-          ยืนยันรหัสผ่านใหม่
-          <input
-            type="password"
-            name="submPassword"
-            placeholder="ยืนยันรหัสผ่านใหม่"
-            required
-            minLength="8"
-          />
-        </div>
-        <div className="button">
-          <button type="submit" className="btn">
-            เปลี่ยนรหัสผ่าน
-          </button>
-        </div>
+              type="email"
+              id="email"
+              placeholder="กรอกอีเมล"
+              required
+              value={email} onChange={e => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="button">
+            <button type="submit" className="btn" disabled={loading || sent}>
+              {sent ? ("ส่งแล้ว") : (loading ? <Ellipsis color="white" size={40} /> : "รีเซ็ตรหัสผ่าน")}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
