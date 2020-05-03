@@ -21,6 +21,7 @@ export const AddProduct = () => {
   const [bigImg, setBigImg] = useState(null);
   const [countPic, setCountPic] = useState(pic);
   const [outcome, setOutcome] = useState(1);
+  const [alerted,setAlerted] = useState(false);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -57,6 +58,23 @@ export const AddProduct = () => {
     }, []),
   });
 
+  function checkForActivatedAlert() {
+    if (
+      pic !== 0 ||
+      document.getElementById("productName").value !== "" ||
+      document.getElementById("category").value !== "" ||
+      document.getElementById("productStartPrice").value !== "" ||
+      document.getElementById("productTimeOut").value !== "" ||
+      document.getElementById("productTimeOut2").value !== "" ||
+      document.getElementById("productDetail").value !== ""
+    ) {
+      setAlerted(true);
+    }
+    else{
+      setAlerted(false);
+    }
+  }
+
   function resetPicture() {
     setOutcome(1);
     pic = 0;
@@ -75,8 +93,7 @@ export const AddProduct = () => {
         disableNative={true}
         when={(crntLocation, nextLocation) =>
           !nextLocation ||
-          (!nextLocation.pathname.startsWith(crntLocation.pathname) &&
-            pic !== 0)
+          (!nextLocation.pathname.startsWith(crntLocation.pathname) && alerted)
         }
       >
         {({ isActive, onCancel, onConfirm }) => {
@@ -117,7 +134,7 @@ export const AddProduct = () => {
           <div className="addPicture-frame">
             {bigImg === null ? (
               <div {...getRootProps({ className: "dropzone" })}>
-                <input {...getInputProps()} disabled={countPic === 4} />
+                <input {...getInputProps()} disabled={countPic === 4} onInput={() => checkForActivatedAlert()}/>
                 <img src={addSymbol} className="addlogo" alt="add-Logo" />
                 <p>เพิ่มรูปภาพ</p>
               </div>
@@ -257,11 +274,12 @@ export const AddProduct = () => {
                     name="productName"
                     required
                     minLength="5"
+                    onInput={() => checkForActivatedAlert()}
                   />
                 </label>
                 <br />
                 <label for="category">{"  "}หมวดหมู่ : </label>
-                <select id="category" required>
+                <select id="category" required onInput={() => checkForActivatedAlert()}>
                   <option disabled>เลือกหมวดหมู่...</option>
                   <option value="1">การ์ตูน</option>
                   <option value="2">ของสะสม</option>
@@ -282,6 +300,7 @@ export const AddProduct = () => {
                     name="productStartPrice"
                     min="1"
                     required
+                    onInput={() => checkForActivatedAlert()}
                   />
                   eCoins
                 </label>
@@ -294,12 +313,14 @@ export const AddProduct = () => {
                     name="productTimeOut"
                     min={now}
                     required
+                    onInput={() => checkForActivatedAlert()}
                   />
                   <input
                     type="time"
                     id="productTimeOut2"
                     name="productTimeOut2"
                     required
+                    onInput={() => checkForActivatedAlert()}
                   />
                 </label>
                 <br />
@@ -312,6 +333,7 @@ export const AddProduct = () => {
                     name="productDetail"
                     required
                     minLength="20"
+                    onInput={() => checkForActivatedAlert()}
                   />
                 </label>
                 <button type="submit" className="btn-submit">
