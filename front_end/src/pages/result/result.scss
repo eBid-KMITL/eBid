@@ -16,16 +16,50 @@ $shadow : 0 3px 6px 0 #00000048;
   align-items    : center;
 
   .search-content {
-    width           : 1100px;
-    padding         : 20px 20px;
-    border-radius   : 10px;
-    box-shadow      : $shadow;
-    display         : block;
-    background      : #f1f1f1;
+    width        : 1100px;
+    padding      : 20px 20px;
+    border-radius: 10px;
+    box-shadow   : $shadow;
+    display      : block;
+    background   : #f1f1f1;
 
     .content {
       float: left;
 
+      p#no-match {
+        width     : 1100px;
+        text-align: center;
+      }
+
+      .btn-wrap {
+        width          : 1100px;
+        display        : flex;
+        justify-content: center;
+
+        .btn {
+          margin-bottom   : 5em;
+          font-size       : 18px;
+          font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
+          padding         : 10px 50px;
+          border-radius   : 5px;
+          margin-right    : 1em;
+          border          : 0;
+          transition      : all 300ms ease-in-out;
+          color           : #0082FF;
+          background-color: #ffffff00;
+          box-shadow      : none;
+          text-decoration : underline;
+          cursor          : pointer;
+
+          &:hover {
+            background-color: #ffffff;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
     }
   }
 }
