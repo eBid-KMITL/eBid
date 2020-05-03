@@ -16,7 +16,7 @@
     box-shadow      : 0 3px 6px 0 #00000041;
     border-radius   : 10px;
     padding         : 3em 3em;
-    backdrop-filter: blur(10px) saturate(200%);
+    backdrop-filter : blur(10px) saturate(200%);
 
     .header {
       font-family   : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
@@ -27,7 +27,7 @@
       text-align    : end;
 
       h1 {
-        margin-top: 0;
+        margin-top   : 0;
         margin-bottom: 10px;
       }
 
@@ -65,14 +65,15 @@
         display         : flex;
         align-items     : center;
       }
+
       p#sent-forgot {
         padding         : 5px 0;
         font-size       : 18px;
         font-weight     : normal;
         font-family     : 'Roboto', 'Noto Sans Thai UI', sans-serif;
         color           : white;
-        background-color: rgb(73, 189, 73);
-        box-shadow      : 0 0 7px 0 rgb(73, 189, 73);
+        background-color: rgb(51, 194, 51);
+        box-shadow      : 0 0 7px 0 rgb(43, 194, 43);
         width           : 100%;
         border-radius   : 5px;
         justify-content : center;
@@ -131,13 +132,12 @@
         margin-bottom: 2em;
 
         a {
-          
           color     : #0082FF;
           transition: all 100ms ease-in-out;
 
           &:hover {
             text-decoration: underline;
-            color: #2294ff;
+            color          : #2294ff;
           }
         }
 
@@ -155,7 +155,8 @@
         .btn {
           font-size       : 18px;
           font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
-          padding         : 10px 50px;
+          width           : 180px;
+          height          : 44px;
           border-radius   : 5px;
           border          : 0;
           color           : white;
@@ -171,6 +172,15 @@
 
           &:focus {
             outline: none;
+          }
+
+          &:disabled {
+            width           : 180px;
+            height          : 44px;
+            padding         : 3px;
+            cursor          : not-allowed;
+            background-color: #df8e25;
+            box-shadow      : 0 0 16px 3px #ffffff00;
           }
         }
 
