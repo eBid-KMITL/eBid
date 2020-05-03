@@ -31,7 +31,7 @@ export const Slideshow = () => {
     res
       .json()
       .then(res => setCovid(res))
-      // .catch(err => setError(err));
+    // .catch(err => setError(err));
   }
 
   useEffect(() => {
@@ -41,6 +41,13 @@ export const Slideshow = () => {
   return (
     <div className="slide-container">
       <Slide {...properties}>
+        <div className="each-slide">
+          <Link to="/">
+            <div className="videoWrap" style={{ 'backgroundImage': `url(${slideImages[0]})` }}>
+              {/* <iframe width="1100" height="230" src="https://www.youtube.com/embed/0S6pHex-KCo?version=3&loop=1&playlist=0S6pHex-KCo" frameborder="0" allow="accelerometer; loop; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+            </div>
+          </Link>
+        </div>
         <div className="each-slide">
           <a href="https://covid19.th-stat.com/">
             {/* <div style={{ 'backgroundImage': `url(${slideImages[2]})` }}>
@@ -54,7 +61,6 @@ export const Slideshow = () => {
                   <p><FaUserPlus />&nbsp;เพิ่ม {formatter.format(covid.NewConfirmed)} คน</p>
                   <p><FaClock />&nbsp;อัพเดทล่าสุด {covid.UpdateDate} น.</p>
                 </div>
-
               </div>
               <div className="item2">
                 <div className="treat">
@@ -72,13 +78,6 @@ export const Slideshow = () => {
               </div>
             </div>
           </a>
-        </div>
-        <div className="each-slide">
-          <Link to="/">
-            <div className="videoWrap" style={{ 'backgroundImage': `url(${slideImages[0]})` }}>
-              {/* <iframe width="1100" height="230" src="https://www.youtube.com/embed/0S6pHex-KCo?version=3&loop=1&playlist=0S6pHex-KCo" frameborder="0" allow="accelerometer; loop; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
-            </div>
-          </Link>
         </div>
         <div className="each-slide">
           <Link to="/">
