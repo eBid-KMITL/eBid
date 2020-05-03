@@ -20,6 +20,7 @@ export const Topup = () => {
             <form>
               <div className="form-group">
                 <input type="text" name="Code" placeholder="กรอกรหัสเติมเงิน" required />
+                <p style={{margin: 0}}>1 บาท มีค่าเท่ากับ 1 eCoin</p>
               </div>
               <div className="button-wrapper">
                 <button type="submit" className="btn">

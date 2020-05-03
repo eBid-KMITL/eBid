@@ -100,6 +100,29 @@ $shadow: 0 3px 6px 0 #00000048;
         outline: none;
       }
     }
+
+    .btn_s {
+      margin-left: 1em;
+      font-size       : 18px;
+      font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
+      padding         : 10px 50px;
+      border-radius   : 5px;
+      margin-right    : 1em;
+      border          : 0;
+      transition      : all 300ms ease-in-out;
+      color           : #0082FF;
+      background-color: #ffffff00;
+      box-shadow      : none;
+      cursor          : pointer;
+
+      &:hover {
+        background-color: #ffffff;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
   }
 
   img {

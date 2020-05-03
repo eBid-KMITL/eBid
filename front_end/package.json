@@ -1,5 +1,5 @@
 {
-  "name": "login",
+  "name": "eBid",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,8 +24,10 @@
     "react-moment": "^0.9.7",
     "react-responsive-modal": "^4.0.1",
     "react-router-dom": "^5.1.2",
+    "react-router-navigation-prompt": "^1.8.11",
     "react-scripts": "3.4.0",
-    "react-slideshow-image": "^1.3.4"
+    "react-slideshow-image": "^1.3.4",
+    "react-spinners-css": "^1.1.7"
   },
   "scripts": {
     "start": "react-scripts start",

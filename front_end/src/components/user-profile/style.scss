@@ -110,7 +110,7 @@ $shadow: 0 3px 6px 0 #00000048;
     input {
       margin-left     : 10px;
       margin-right    : 10px;
-      width           : 170px;
+      width           : 250px;
       box-shadow      : 0 3px 3px 0 #00000041;
       height          : 30px;
       box-sizing      : border-box;
@@ -146,6 +146,29 @@ $shadow: 0 3px 6px 0 #00000048;
       &:hover {
         background-color: #ffa32b;
         box-shadow      : 0 0 10px 3px #ff9100da;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .btn_s {
+      margin-left: 1em;
+      font-size       : 18px;
+      font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
+      padding         : 10px 50px;
+      border-radius   : 5px;
+      margin-right    : 1em;
+      border          : 0;
+      transition      : all 300ms ease-in-out;
+      color           : #0082FF;
+      background-color: #ffffff00;
+      box-shadow      : none;
+      cursor          : pointer;
+
+      &:hover {
+        background-color: #ffffff;
       }
 
       &:focus {

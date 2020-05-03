@@ -1,53 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import addrPicture from "../../assets/address.png";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import firebase from "firebase"
+import userinfo from "../../db/userinfo.json";
 
-const details = {
-  name: "นายภูวดล   ลิ่มวณิชสินธุ์",
-  phone: "0878941296",
-  otherAddress: "บ้าน admin_alps 42/2 หมู่ 2",
-  subDistrict: "บางเป้า",
-  district: "กันตัง",
-  province: "ตรัง",
-  postalCode: "92110",
-  image: addrPicture,
-};
+// const details = {
+//   name: "นายภูวดล   ลิ่มวณิชสินธุ์",
+//   phone: "0878941296",
+//   otherAddress: "บ้าน admin_alps 42/2 หมู่ 2",
+//   subDistrict: "บางเป้า",
+//   district: "กันตัง",
+//   province: "ตรัง",
+//   postalCode: "92110",
+//   image: addrPicture,
+// };
 
 export const UserAddress = () => {
   const [state, setState] = useState(0);
-  const location = useLocation();
-  var formatter = new Intl.NumberFormat('th-TH', {
-    style: 'decimal',
-  });
-  function onLogout() {
-    firebase.auth().signOut();
-    window.location.reload(false);
-  }
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
 
   return (
     <div className="address-box">
       <h>ที่อยู่ของฉัน</h>
       <div className="address-img">
-        <img src={details.image} alt="address-pic" />
+        <img src={addrPicture} alt="address-pic" />
       </div>
       {(() => {
         switch (state) {
-          case 0:
+          default:
             return (
               <div className="address-detail">
-                <nobr><b>ชื่อผู้รับ : </b>{details.name}</nobr>
+                <nobr><b>ชื่อผู้รับ : </b>{userinfo.recipient}</nobr>
                 <br />
-                <nobr><b>เบอร์โทรศัพท์ : </b>{details.phone}</nobr>
+                <nobr><b>เบอร์โทรศัพท์ : </b>{userinfo.tell}</nobr>
                 <br />
-                <nobr><b>ที่อยู่ : </b>{details.otherAddress}</nobr>
+                <nobr><b>ที่อยู่ : </b>{userinfo.address}</nobr>
                 <br />
-                <nobr><b>ตำบล/แขวง : </b>{details.subDistrict} <b>อำเภอ/เขต : </b>{details.district}</nobr>
+                <nobr><b>ตำบล/แขวง : </b>{userinfo.subDistrict} <b>อำเภอ/เขต : </b>{userinfo.district}</nobr>
                 <br />
-                <nobr><b>จังหวัด : </b>{details.province}</nobr>
+                <nobr><b>จังหวัด : </b>{userinfo.province}</nobr>
                 <br />
-                <nobr><b>รหัสไปรษณีย์ : </b>{details.postalCode}</nobr>
+                <nobr><b>รหัสไปรษณีย์ : </b>{userinfo.postalCode}</nobr>
                 <div className="button">
                   <button
                     type="submit"
@@ -73,6 +66,7 @@ export const UserAddress = () => {
                     name="Name"
                     required
                     minLength="20"
+                    defaultValue={userinfo.recipient}
                   />
                 </label>
                 <br />
@@ -85,6 +79,7 @@ export const UserAddress = () => {
                     name="OtherAddress"
                     required
                     minLength="5"
+                    defaultValue={userinfo.address}
                   />
                 </label>
                 <br />
@@ -97,6 +92,7 @@ export const UserAddress = () => {
                     name="Subdistrict"
                     required
                     minLength="5"
+                    defaultValue={userinfo.subDistrict}
                   />
                 </label>
                 <br />
@@ -109,6 +105,7 @@ export const UserAddress = () => {
                     name="District"
                     required
                     minLength="5"
+                    defaultValue={userinfo.district}
                   />
                 </label>
                 <br />
@@ -121,6 +118,7 @@ export const UserAddress = () => {
                     name="Province"
                     required
                     minLength="5"
+                    defaultValue={userinfo.province}
                   />
                 </label>
                 <br />
@@ -133,6 +131,7 @@ export const UserAddress = () => {
                     name="PostalCode"
                     required
                     minLength="5"
+                    defaultValue={userinfo.postalCode}
                   />
                 </label>
                 <br />
@@ -145,6 +144,7 @@ export const UserAddress = () => {
                     name="Phone"
                     required
                     minLength="9"
+                    defaultValue={userinfo.tell}
                   />
                 </label>
                 <br />
@@ -155,6 +155,13 @@ export const UserAddress = () => {
                     onClick={() => setState(0)}
                   >
                     ยืนยันข้อมูล
+                  </button>
+                  <button
+                    type="button"
+                    className="btn_s"
+                    onClick={() => setState(0)}
+                  >
+                    ยกเลิก
                   </button>
                 </div>
               </div>

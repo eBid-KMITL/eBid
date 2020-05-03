@@ -1,0 +1,18 @@
+{
+  "id": 400,
+  "category": 4,
+  "name": "MacBook Pro 16\"",
+  "nbid": 15,
+  "status": 1,
+  "owner": [1, "eShop"],
+  "bidder": [2, "admin"],
+  "price": 31590,
+  "time": "2020-05-05T17:00+0700",
+  "img": [
+    "https://github.com/eBid-KMITL/eBid/blob/book/front_end/src/assets/products-pics/pic-big/mac1.png?raw=true",
+    "https://github.com/eBid-KMITL/eBid/blob/book/front_end/src/assets/products-pics/pic-big/mac2.png?raw=true",
+    "https://github.com/eBid-KMITL/eBid/blob/book/front_end/src/assets/products-pics/pic-big/mac3.png?raw=true",
+    "https://github.com/eBid-KMITL/eBid/blob/book/front_end/src/assets/products-pics/pic-big/mac4.png?raw=true"
+  ],
+  "description": "A Product Description"
+}

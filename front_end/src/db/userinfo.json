@@ -1,0 +1,21 @@
+{
+  "UID": 1,
+  "firstName": "บิด",
+  "lastName": "รักประมูล",
+  "gender": "ชาย",
+  "birthDay": "2000-01-01",
+  "phone": "0812345678",
+  "email": "bid.rakpramool@ebid.com",
+  "balance": 999999,
+  "used": 500,
+  "recieve": 10000,
+  "recipient": "นายบิด รักประมูล",
+  "tell": "0812345678",
+  "address": "หมู่บ้านแสนสุข 9/99",
+  "subDistrict": "แสนสุข",
+  "district": "เมือง",
+  "province": "กรุงเทพมหานคร",
+  "postalCode": "12345",
+  "biddingPID": [1,2],
+  "sellingPID": [3]
+}

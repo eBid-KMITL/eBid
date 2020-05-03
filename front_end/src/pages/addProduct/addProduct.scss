@@ -20,6 +20,7 @@ $shadow: 0 3px 6px 0 #00000048;
   width          : 100%;
   display        : flex;
   justify-content: center;
+  margin-bottom  : 1em;
 
   .addPicture-frame {
     width           : 400px;
@@ -35,16 +36,16 @@ $shadow: 0 3px 6px 0 #00000048;
       width : 200px;
 
       .btn {
-        font-size       : 15px;
-        font-family     : "Noto Sans Thai UI Semibold", sans-serif;
-        margin-left     : 70px;
-        padding         : 10px 25px;
+        padding: 10px 20px;
+        margin-left: 70px;
+        font-size       : 18px;
+        font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
+        border-radius   : 5px;
         border          : 0;
-        border-radius   : 30px;
         color           : white;
         background-color: #ff9100;
-        box-shadow      : 0 0 7px 0 #ff9100da;
         transition      : all 300ms ease-in-out;
+        box-shadow      : 0 0 7px 0 #ff9100da;
         cursor          : pointer;
 
         &:hover {
@@ -84,19 +85,17 @@ $shadow: 0 3px 6px 0 #00000048;
       }
 
       p {
-        font-size  : 18px;
-        margin-left: 39%;
+        font-size : 18px;
+        text-align: center;
       }
     }
 
     .big-preview {
-      margin      : 35px 10px 15px 10px;
-      height      : 375px;
-      width       : 375px;
-      width       : fit-content;
-      border-style: solid;
-      border-color: black;
-      border-width: 2px;
+      margin: 35px 10px 15px 10px;
+      height: 375px;
+      width : 375px;
+      width : fit-content;
+      border: solid rgb(110, 110, 110) 2px;
 
       .big-img {
         height          : 375px;
@@ -132,7 +131,27 @@ $shadow: 0 3px 6px 0 #00000048;
         margin            : 0;
       }
 
-      #productName {
+      input {
+        margin-left     : 10px;
+        width           : 240px;
+        box-shadow      : 0 3px 3px 0 #00000041;
+        height          : 30px;
+        box-sizing      : border-box;
+        padding         : 0 10px;
+        font-size       : 16px;
+        font-family     : "Noto Sans Thai UI", sans-serif;
+        background-color: white;
+        border          : 0px;
+        border-radius   : 5px;
+        transition      : all 250ms ease-in-out;
+
+        &:focus {
+          box-shadow: 0 7px 20px 2px #00000067;
+          outline   : none;
+        }
+      }
+
+      select {
         margin-left     : 10px;
         width           : 240px;
         box-shadow      : 0 3px 3px 0 #00000041;
@@ -159,7 +178,7 @@ $shadow: 0 3px 6px 0 #00000048;
         box-shadow      : 0 3px 3px 0 #00000041;
         height          : 30px;
         box-sizing      : border-box;
-        padding         : 5px 10px;
+        padding         : 0 10px;
         font-size       : 16px;
         font-family     : "Noto Sans Thai UI", sans-serif;
         background-color: white;
@@ -179,7 +198,7 @@ $shadow: 0 3px 6px 0 #00000048;
         box-shadow      : 0 3px 3px 0 #00000041;
         height          : 30px;
         box-sizing      : border-box;
-        padding         : 5px 10px;
+        padding         : 0 10px;
         font-size       : 16px;
         font-family     : "Noto Sans Thai UI", sans-serif;
         background-color: white;
@@ -199,7 +218,7 @@ $shadow: 0 3px 6px 0 #00000048;
         box-shadow      : 0 3px 3px 0 #00000041;
         height          : 30px;
         box-sizing      : border-box;
-        padding         : 5px 10px;
+        padding         : 0 10px;
         font-size       : 16px;
         font-family     : "Noto Sans Thai UI", sans-serif;
         background-color: white;
@@ -235,17 +254,17 @@ $shadow: 0 3px 6px 0 #00000048;
       }
 
       .btn-submit {
-        margin          : 25px 0px 25px 160px;
+        margin          : 25px 0px 25px 140px;
+        align-items: center;
+        padding         : 10px 50px;
         font-size       : 18px;
-        width           : 250px;
-        font-family     : "Noto Sans Thai UI Semibold", sans-serif;
-        padding         : 10px 30px;
-        border          : 0;
+        font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
         border-radius   : 5px;
+        border          : 0;
         color           : white;
         background-color: #ff9100;
-        box-shadow      : 0 0 7px 0 #ff9100da;
         transition      : all 300ms ease-in-out;
+        box-shadow      : 0 0 7px 0 #ff9100da;
         cursor          : pointer;
 
         &:hover {
@@ -276,18 +295,15 @@ $shadow: 0 3px 6px 0 #00000048;
 }
 
 .img-box {
-  display     : flex;
-  width       : fit-content;
-  height      : fit-content;
-  margin      : 1px;
-  border-style: solid;
-  border-color: black;
-  border-width: 2px;
+  display: flex;
+  width  : fit-content;
+  height : fit-content;
+  margin : 1px;
+  border : solid rgb(107, 107, 107) 1px;
 
   &:hover {
-    border-style: solid;
-    border-color: orange;
-    border-width: 2px;
+    border    : solid orange 1px;
+    box-shadow: 0 0 0 2px orange;
   }
 
   .small-img {
@@ -308,4 +324,61 @@ $shadow: 0 3px 6px 0 #00000048;
   color      : red;
   font-weight: bold;
   margin     : 20px 0px 0px 140px;
+}
+
+.alert-container {
+  h2 {
+    color : red;
+    margin: 0;
+  }
+
+  .alertMessage {
+    margin-bottom: 2em;
+    font-size    : 18px;
+  }
+}
+
+.btn-no {
+  width           : 200px;
+  height          : 50px;
+  font-size       : 16px;
+  font-family     : "Noto Sans Thai UI Semibold", sans-serif;
+  border-radius   : 5px;
+  border          : 0;
+  color           : white;
+  background-color: #ff9100;
+  transition      : all 300ms ease-in-out;
+  cursor          : pointer;
+
+  &:hover {
+    background-color: #ffa32b;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-yes {
+  width           : 200px;
+  height          : 50px;
+  margin-left     : 10px;
+  font-size       : 16px;
+  font-family     : "Noto Sans Thai UI Semibold", sans-serif;
+  border-radius   : 5px;
+  border          : 0;
+  transition      : all 300ms ease-in-out;
+  color           : #0082ff;
+  background-color: #ffffff;
+  box-shadow      : none;
+  cursor          : pointer;
+
+  &:hover {
+    color           : #ff0000;
+    background-color: #e7e7e7;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }

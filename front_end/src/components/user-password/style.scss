@@ -7,11 +7,11 @@ sans-serif;
 $shadow: 0 3px 6px 0 #00000048;
 
 .password-box {
-  width           : 1000px;
-  border-radius   : 10px;
-  box-shadow      : $shadow;
-  display         : block;
-  background      : #f1f1f1;
+  width        : 1000px;
+  border-radius: 10px;
+  box-shadow   : $shadow;
+  display      : block;
+  background   : #f1f1f1;
 
   h {
     margin         : auto;
@@ -70,13 +70,44 @@ $shadow: 0 3px 6px 0 #00000048;
     display       : flex;
     flex-direction: column;
 
+    p#input-error {
+      padding         : 5px 0;
+      font-size       : 18px;
+      font-weight     : normal;
+      font-family     : 'Roboto', 'Noto Sans Thai UI', sans-serif;
+      color           : white;
+      background-color: rgb(255, 38, 38);
+      box-shadow      : 0 0 7px 0 rgb(255, 38, 38);
+      width           : 900px;
+      border-radius   : 5px;
+      justify-content : center;
+      display         : flex;
+      align-items     : center;
+    }
+
+    p#sent-forgot {
+      padding         : 5px 0;
+      font-size       : 18px;
+      font-weight     : normal;
+      font-family     : 'Roboto', 'Noto Sans Thai UI', sans-serif;
+      color           : white;
+      background-color: rgb(51, 194, 51);
+      box-shadow      : 0 0 7px 0 rgb(43, 194, 43);
+      width           : 900px;
+      border-radius   : 5px;
+      justify-content : center;
+      display         : flex;
+      align-items     : center;
+    }
+
     .button {
       margin-top: 30px;
 
       .btn {
+        width           : 200px;
+        height          : 45px;
         font-size       : 18px;
         font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
-        padding         : 10px 50px;
         border-radius   : 5px;
         border          : 0;
         color           : white;
@@ -92,6 +123,15 @@ $shadow: 0 3px 6px 0 #00000048;
 
         &:focus {
           outline: none;
+        }
+
+        &:disabled {
+          width           : 200px;
+          height          : 45px;
+          padding         : 3px;
+          cursor          : not-allowed;
+          background-color: #df8e25;
+          box-shadow      : 0 0 16px 3px #ffffff00;
         }
       }
     }

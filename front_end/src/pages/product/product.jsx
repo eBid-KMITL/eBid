@@ -6,17 +6,15 @@ import './product.scss';
 import { FaSyncAlt, FaClock, FaUserCircle, FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoMdPricetags } from "react-icons/io";
 import { MdVerifiedUser } from "react-icons/md"
-import img1 from "../../assets/products-pics/pic-big/mac1.png";
-import img2 from "../../assets/products-pics/pic-big/mac2.png";
-import img3 from "../../assets/products-pics/pic-big/mac3.png";
-import img4 from "../../assets/products-pics/pic-big/mac4.png";
 import Moment from 'react-moment';
 import firebase from "firebase"
 import moment from "moment";
+import db from "../../db/product.json";
+// import img[1] from "../../assets/products-pics/pic-big/mac1.png"
 
 export const Product = () => {
   // var product_id;
-  const prodEndTime = "2020-04-30T16:00+0700";
+  const prodEndTime = db.time;
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -26,16 +24,16 @@ export const Product = () => {
   const history = useHistory();
   const id = useQuery().get("id")
   const [modal, setModal] = useState(false);
-  const [price, setPrice] = useState(9999);
-  const [title, setTitle] = useState("ProductName");
+  const [price, setPrice] = useState(db.price);
+  const [title, setTitle] = useState(db.name);
   const [confirm, setConfirm] = useState(false);
   const [btn, setBTN] = useState(true);
   const [love, setLove] = useState(false);
-  const [status, setStatus] = useState(0);
+  const [status, setStatus] = useState(db.status);
   const [disable, setDisable] = useState(true);
   const [pic, setPic] = useState(["hovered", "", "", ""]);
-  const [bigImg, setBigImg] = useState(img1);
-  const [now, setNow] = useState(moment().format("x"));
+  const [bigImg, setBigImg] = useState(db.img[0]);
+  const [now, setNow] = useState(moment().format("x")); //eslint-disable-next-line
   const [due, setDue] = useState(moment(prodEndTime, "YYYY-MM-DD HH:mm Z").format("x"));
   const [badgeStyle, setBadgeStyle] = useState({
     width: "fit-content",
@@ -47,10 +45,13 @@ export const Product = () => {
     fontFamily: "Noto Sans Thai UI",
   })
   useEffect(() => {
-    // const { title, price } = fetch(product_id);
+    window.scrollTo(0, 0)
+  }, [])
+  useEffect(() => {
+    // const { name, price } = fetch(db);
     setPrice(price);
     setTitle(title);
-    checkStatus();
+    checkStatus();  //eslint-disable-next-line
   }, [price, title, now])
   useEffect(() => {
     if (now <= due) setTimeout(() => { setNow(parseInt(now) + 1000) }, 1000);
@@ -121,19 +122,19 @@ export const Product = () => {
   }
   function picSelect(sel) {
     if (sel === 1) {
-      setBigImg(img1);
+      setBigImg(db.img[0]);
       setPic(["hovered", "", "", ""]);
     }
     else if (sel === 2) {
-      setBigImg(img2);
+      setBigImg(db.img[1]);
       setPic(["", "hovered", "", ""]);
     }
     else if (sel === 3) {
-      setBigImg(img3);
+      setBigImg(db.img[2]);
       setPic(["", "", "hovered", ""]);
     }
     else if (sel === 4) {
-      setBigImg(img4);
+      setBigImg(db.img[3]);
       setPic(["", "", "", "hovered"]);
     }
   }
@@ -150,18 +151,31 @@ export const Product = () => {
   return (
     <div className="product-main">
       <Helmet><title>{title} | eBid - Online Bidding</title></Helmet>
-      <div className="breadcrums"><a href="/">eBid</a> ▸ <a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> ▸ {title}</div>
+      <div className="breadcrums">
+        <a href="/">eBid</a> ▸&nbsp;
+        {(db.category === 1) ? (<><a href="/category?id=1">การ์ตูน</a> ▸&nbsp;</>)
+          : (db.category === 2) ? (<><a href="/category?id=2">ของสะสม</a> ▸&nbsp;</>)
+            : (db.category === 3) ? (<><a href="/category?id=3">ของเล่น | เกมส์</a> ▸&nbsp;</>)
+              : (db.category === 4) ? (<><a href="/category?id=4">คอมพิวเตอร์ | โทรศัพท์มือถือ</a> ▸&nbsp;</>)
+                : (db.category === 5) ? (<><a href="/category?id=5">หนังสือ | สิ่งพิมพ์</a> ▸&nbsp;</>)
+                  : (db.category === 6) ? (<><a href="/category?id=6">แฟชั่น</a> ▸&nbsp;</>)
+                    : (db.category === 7) ? (<><a href="/category?id=7">ภาพยนตร์ | วิดีโอ | ดีวีดี</a> ▸&nbsp;</>)
+                      : (db.category === 8) ? (<><a href="/category?id=8">อิเล็กทรอนิกส์</a> ▸&nbsp;</>)
+                        : ""
+        }
+        {title}
+      </div>
       <div className="base-container">
         <div className="img-container">
           <div className="img-big">
-            <img src={bigImg} alt="product-pic1" />
+            <img src={bigImg} alt="product-pic" />
           </div>
           <div className="img-small-cont">
             <div className="img-small">
-              <img src={img1} id={pic[0]} alt="product-pic1" onMouseOver={() => picSelect(1)} />
-              <img src={img2} id={pic[1]} alt="product-pic2" onMouseOver={() => picSelect(2)} />
-              <img src={img3} id={pic[2]} alt="product-pic3" onMouseOver={() => picSelect(3)} />
-              <img src={img4} id={pic[3]} alt="product-pic4" onMouseOver={() => picSelect(4)} />
+              {db.img[0] ? <img src={db.img[0]} id={pic[0]} alt="product-pic1" onMouseOver={() => picSelect(1)} /> : null}
+              {db.img[1] ? <img src={db.img[1]} id={pic[1]} alt="product-pic2" onMouseOver={() => picSelect(2)} /> : null}
+              {db.img[2] ? <img src={db.img[2]} id={pic[2]} alt="product-pic3" onMouseOver={() => picSelect(3)} /> : null}
+              {db.img[3] ? <img src={db.img[3]} id={pic[3]} alt="product-pic4" onMouseOver={() => picSelect(4)} /> : null}
             </div>
           </div>
         </div>
@@ -182,7 +196,7 @@ export const Product = () => {
               <div className="number">
                 <h3><IoMdPricetags />&nbsp;จำนวนการเคาะราคา</h3>
                 <div className="number-wrap">
-                  <h2>5 ครั้ง</h2>
+                  <h2>{db.nbid} ครั้ง</h2>
                 </div>
               </div>
             </div>
@@ -190,12 +204,12 @@ export const Product = () => {
               <div className="owner">
                 <h3><FaUserCircle />&nbsp;ผู้ลงประมูล</h3>
                 <div className="name-verify">
-                  <div className="tooltip-wrap"><div className="tooltip"><MdVerifiedUser /><span id="verify">ได้รับการยืนยัน</span></div>&nbsp;<a id="owner" href="/">e_shop</a></div>
+                  <div className="tooltip-wrap"><div className="tooltip"><MdVerifiedUser /><span id="verify">ได้รับการยืนยัน</span></div>&nbsp;<a id="owner" href={"/profile?id=" + db.owner[0]}>{db.owner[1]}</a></div>
                 </div>
               </div>
               <div className="bidder">
                 <h3><FaUserCircle />&nbsp;ผู้เสนอราคาสูงสุด</h3>
-                <a id="bidder" href="/">Book</a>
+                <a id="bidder" href={"/profile?id=" + db.bidder[0]}>{db.bidder[1]}</a>
               </div>
             </div>
             <div className="live-price">
@@ -237,21 +251,7 @@ export const Product = () => {
       <div className="description-container">
         <h1>รายละเอียดสินค้า</h1>
         <div className="content-desc">
-          <p>
-            1. แชเชือนสตูดิโอฟีเวอร์เนอะกุนซือ เนิร์สเซอรีเซ็กซ์ดีกรี เป็นไง แอลมอนด์ไวกิ้ง เอสเปรสโซเทวาไทม์ ซิตีแพ็คไฮเปอร์รัมไวกิ้ง ซีอีโอยากูซ่าสต็อกถูกต้องบ๊อกซ์ เธคเวิร์กวอล์กรามาธิบดี คูลเลอร์แดรี่พาสตาเอาต์ ซิงสวีทผลักดันจตุคามดีพาร์ทเมนท์ เยนคาสิโนพรีเมียมแตงโมซูเอี๋ย อพาร์ทเมนท์เอ็นเตอร์เทน เวอร์ซีเนียร์ รองรับหมั่นโถวดีพาร์ตเมนต์รันเวย์ไพลิน รามเทพทีวีแอดมิสชันออร์แกนิค ทับซ้อนฟลุต
-            </p>
-          <p>
-            2. แจ๊กพ็อต วอฟเฟิลอุปสงค์แดรี่อพาร์ตเมนท์อิมพีเรียล แซ็กโซโฟนคอนแทค ฮาลาลเกสต์เฮาส์แฮนด์ รามเทพสกรัมมาร์จิน กลาสไอติม ดีลเลอร์ ปิกอัพ อัลตราคำตอบยากูซ่า เปียโน สุริยยาตรมะกัน ไวกิ้งโมเดลสติ๊กเกอร์คอนเซปต์ภควัทคีตา รีโมทนู้ดออร์แกนิกออเดอร์ฮากกา ปฏิสัมพันธ์บาบูนไอเดีย สันทนาการอพาร์ตเมนต์เนิร์สเซอรี่ เวิลด์จูนมินต์เคลื่อนย้าย
-            </p>
-          <p>
-            3. เดี้ยงไคลแมกซ์คอนเซ็ปต์เอ็กซ์โป สเตอริโอไหร่เมจิควิน สุริยยาตร์ แอดมิชชั่น เลดี้ วอลนัทพรีเมียร์ เท็กซ์ บรรพชน รันเวย์คอรัปชั่นศิลปากร โบว์ลิ่ง ภควัมปติคำสาปบราคอนแท็ค เทป ออร์เดอร์ไมค์แฟ้บ แซ็กโซโฟนเพาเวอร์โดนัท เวอร์ สลัมออกแบบ
-            </p>
-          <p>
-            4. สะบึมส์ดีพาร์ตเมนต์ซูชิผิดพลาด ออโต้วอล์กอาร์พีจี โปรอัลบั้มราชบัณฑิตยสถานบึ้ม โบว์ลิ่งดีพาร์ทเมนท์มลภาวะ โบกี้แหม็บ สตาร์นอร์ทรามาธิบดีแคมปัส วืดฮิปฮอป แคร์แครกเกอร์โรลออน ภารตะเอ็นทรานซ์แคป แรงใจฮิปฮอปไอเดียแซนด์วิชซิตี้ อีแต๋นตังค์ แฟ้บเพนกวินไบโอ นิวส์เทควันโดวินปอดแหกไรเฟิล โพสต์ เฟรม ควีนเอ๊าะสแควร์
-            </p>
-          <p>
-            5. เรซินเวณิกาเอ๋อตะหงิดเย้ว ปาสกาลซิงอันตรกิริยา สเปก รีทัชรองรับว้อดก้าเวิร์คสารขัณฑ์ โค้กออร์แกนิคมอลล์เบิร์นเครป แฟล็ต โปรราเม็ง﻿กรรมาชน กิฟท์ไกด์ เอ็กซ์โปแฟล็ตแดนเซอร์เวิลด์ ครัวซองต์กระดี๊กระด๊าระโงกไฟลต์ มอคค่าทัวริสต์แคร็กเกอร์เคลียร์รีโมต ซิตี้เซ็นทรัลดยุคกระดี๊กระด๊าซีดาน การันตีปาสเตอร์มาม่าอริยสงฆ์ สตูดิโอโปรเจ็กต์โรลออนโบ้ย สติ๊กเกอร์เชอร์รี่สแตนดาร์ดแฟลชคอนแทค เกสต์เฮาส์แบนเนอร์พันธกิจ
-            </p>
+          <p>{db.description}</p>
         </div>
       </div>
     </div>
