@@ -2,20 +2,20 @@ import React from "react";
 import Moment from 'react-moment';
 import 'moment/locale/th'
 import logo from "../../assets/eBid.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import { FaUserCircle, FaCoins } from "react-icons/fa"
 import firebase from "firebase"
 
 export const NavBar = ({ userInfo }) => {
   const location = useLocation();
+  const history = useHistory();
   var formatter = new Intl.NumberFormat('th-TH', {
     style: 'decimal',
   });
   function onLogout() {
     firebase.auth().signOut();
-    window.location.reload(false);
+    window.location.replace("/");
   }
-  
 
   return (
     <>
@@ -30,7 +30,8 @@ export const NavBar = ({ userInfo }) => {
             <span className="nav-menu">
               {firebase.auth().currentUser ? (
                 <div>
-                  <Link to="#">การประมูลของฉัน</Link>
+                  <Link to="/addproduct">ลงประมูลสินค้า</Link>
+                  <Link to="/profile?m=4">การประมูลของฉัน</Link>
                   <Link to="/topup">เติมเงิน</Link>
                   <Link to="#" onClick={onLogout} >ออกจากระบบ</Link>
                   <Link to="/contact">ติดต่อเรา</Link>

@@ -51,7 +51,7 @@
         }
       }
 
-      p#login-error {
+      p#input-error {
         padding         : 5px 0;
         font-size       : 18px;
         font-weight     : normal;
@@ -59,6 +59,20 @@
         color           : white;
         background-color: rgb(255, 38, 38);
         box-shadow      : 0 0 7px 0 rgb(255, 38, 38);
+        width           : 100%;
+        border-radius   : 5px;
+        justify-content : center;
+        display         : flex;
+        align-items     : center;
+      }
+      p#sent-forgot {
+        padding         : 5px 0;
+        font-size       : 18px;
+        font-weight     : normal;
+        font-family     : 'Roboto', 'Noto Sans Thai UI', sans-serif;
+        color           : white;
+        background-color: #0082FF;
+        box-shadow      : 0 0 7px 0 rgb(19, 141, 255);
         width           : 100%;
         border-radius   : 5px;
         justify-content : center;

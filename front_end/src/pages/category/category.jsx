@@ -1,6 +1,6 @@
 import React from "react";
 import { ProductFrame, CateBar } from "../../components";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import p1 from "../../assets/products-pics/ip11.png"
 import p2 from "../../assets/products-pics/macbook.png"
@@ -9,6 +9,7 @@ export const Category = () => {
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
+  const history = useHistory();
   const id = useQuery().get("id");
   const details = [
     { name: "iPhone 11 64GB", price: 35800, owner: "e_shop", time: "2020-04-12T18:59+0700", nbid: 22, image: p1, id: 1 },
@@ -21,7 +22,7 @@ export const Category = () => {
       <Helmet><title>eBid - Online Bidding | Software Development Processes KMITL</title></Helmet>
       <div className="category-container">
         <div className="category-left-bar">
-          <CateBar />
+          <CateBar sel={id}/>
         </div>
         <div className="category-content">
           <div className="content-hot">
@@ -53,7 +54,7 @@ export const Category = () => {
                               : (id === "9") ? (
                                 <h2>&nbsp;สินค้าทั้งหมด</h2>
                               )
-                                : window.location = "/error"
+                                : history.push("/error")
             }
             {details.map(detail => <ProductFrame details={detail} />)}
           </div>

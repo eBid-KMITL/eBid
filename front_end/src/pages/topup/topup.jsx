@@ -1,9 +1,12 @@
-import React from "react"
+import React from "react";
 import topup from "../../assets/topup.png";
 import { Helmet } from "react-helmet";
-import firebase from "firebase"
+import firebase from "firebase";
+import { useHistory } from "react-router-dom";
 
 export const Topup = () => {
+  const history = useHistory();
+
   return (
     <>
       {firebase.auth().currentUser ? (<div className="topup-main">
@@ -26,7 +29,7 @@ export const Topup = () => {
             </form>
           </div>
         </div>
-      </div>) : (window.location = "/")
+      </div>) : history.push("/login")
       }
     </>
   )

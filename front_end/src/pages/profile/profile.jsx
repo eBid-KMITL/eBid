@@ -1,13 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import firebase from "firebase";
 import { Helmet } from "react-helmet";
 
-export const Profile = ({ history }) => {
-
+export const Profile = () => {
+  const history = useHistory();
   function onLogout() {
-    firebase.auth().signOut()
-    history.replace('/')
+    firebase.auth().signOut();
+    history.push('/');
     window.location.reload(false);
   }
 
@@ -30,7 +30,7 @@ export const Profile = ({ history }) => {
             >
               ออกจากระบบ</button>
           </div>
-        </div>) : (window.location = "/login")
+        </div>) : history.push("/login")
       }
     </>
   )
