@@ -5,6 +5,8 @@ import firebase from "firebase";
 import { Helmet } from "react-helmet";
 import Modal from 'react-responsive-modal';
 import { FaExclamationCircle } from "react-icons/fa";
+import { IoIosArrowBack } from "react-icons/io";
+import { Ellipsis } from 'react-spinners-css';
 
 export const Register = () => {
   const history = useHistory();
@@ -13,18 +15,19 @@ export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
+  const [loading, setLoading] = useState(false);
   function onRegister(e) {
     e.preventDefault();
+    setLoading(true);
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       firebase.auth().currentUser.updateProfile({
         displayName: name
       })
-      alert('Register Completed')
-      history.push('/login')
+      history.push('/login');
     })
       .catch(err => {
-        // alert(err);
         setError(true);
+        setLoading(false);
       });
   }
   function onOpenTerms() {
@@ -39,8 +42,8 @@ export const Register = () => {
       <Helmet><title>Register | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
-          <Link to="#" onClick={() => history.goBack()}>
-            ﹤ ย้อนกลับ
+          <Link to="#" onClick={() => history.goBack()} style={{ display: "flex", alignItems: "center" }}>
+            <IoIosArrowBack /> ย้อนกลับ
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
@@ -77,9 +80,9 @@ export const Register = () => {
                     <u>ลงชื่อเข้าใช้</u>
                   </button>
                 </Link>
-                <button type="submit" className="btn">
-                  สมัครสมาชิก
-          </button>
+                <button type="submit" className="btn" disabled={loading}>
+                  {loading ? <Ellipsis color="white" size={40} /> : "สมัครสมาชิก"}
+                </button>
               </div>
             </form>
           </div>
@@ -102,7 +105,6 @@ export const Register = () => {
             </p>
             <button className="btn" id="close-terms" type="button" onClick={() => onCloseTerms()}>ปิด</button>
           </Modal>
-          <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
         </div>
       </div>
     </div>

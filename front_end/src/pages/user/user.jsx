@@ -123,7 +123,7 @@ export const Profile = () => {
                 onClick={() => setMode(4)}
                 className={mode === 4 ? "selected" : ""}
               >
-                &nbsp;การซื้อของฉัน
+                &nbsp;การประมูลของฉัน
           </li>
               <li
                 onClick={() => setMode(5)}

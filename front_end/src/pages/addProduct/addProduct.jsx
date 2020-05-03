@@ -136,7 +136,7 @@ export const AddProduct = () => {
               <div {...getRootProps({ className: "dropzone" })}>
                 <input {...getInputProps()} disabled={countPic === 4} onInput={() => checkForActivatedAlert()}/>
                 <img src={addSymbol} className="addlogo" alt="add-Logo" />
-                <p>เพิ่มรูปภาพ</p>
+                <p>ลากและวางไฟล์รูปเพื่อเพิ่มรูปภาพ</p>
               </div>
             ) : (
               <div className="big-preview">

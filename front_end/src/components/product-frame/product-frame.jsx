@@ -15,7 +15,7 @@ export const ProductFrame = ({ details }) => {
   return (
     <Link to={link}>
       <div className="product-box">
-        <div className="b-product-img">
+        <div className="b-product-img" title={details.name}>
           <img src={details.img[0]} alt="product-img" />
         </div>
         <div className="b-details">
@@ -23,11 +23,11 @@ export const ProductFrame = ({ details }) => {
             {details.name}
           </div>
           <div className="b-product-description">
-            <p id="time" title={moment(details.time, "YYYY-MM-DD HH:mm Z").format("DD MMMM YYYY HH:mm [น.]")}>
-              <FaClock style={{ fontSize: 14 }} />&nbsp;<Moment fromNow interval={1000} >{details.time}</Moment>
+            <p id="time" title={moment(details.time, "YYYY-MM-DD HH:mm Z").format("D MMMM YYYY HH:mm [น.]")}>
+              <FaClock title="เวลาที่เหลือ" style={{ fontSize: 14 }} />&nbsp;<Moment fromNow interval={1000} >{details.time}</Moment>
             </p>
-            <p id="num"><IoMdPricetags style={{ fontSize: 16 }} />&nbsp;ประมูลแล้ว {details.nbid} ครั้ง</p>
-            <p id="user"><FaUserCircle style={{ fontSize: 14 }} />&nbsp;{details.owner}</p>
+            <p id="num"><IoMdPricetags title="จำนวนการเคาะ" style={{ fontSize: 16 }} />&nbsp;ประมูลแล้ว {details.nbid} ครั้ง</p>
+            <p id="user"><FaUserCircle title="ผู้ลงประมูล" style={{ fontSize: 14 }} />&nbsp;{details.owner}</p>
           </div>
           <div className="b-product-price">
             ฿{formatter.format(details.price)}

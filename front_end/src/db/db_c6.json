@@ -5,6 +5,7 @@
     "name": "แฟชั่น1",
     "nbid": 34,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 12750,
     "time": "2020-04-30T17:00+0700",
     "img": [
@@ -19,6 +20,7 @@
     "name": "แฟชั่น2",
     "nbid": 10,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 4700,
     "time": "2020-05-02T17:00+0700",
     "img": [
@@ -33,6 +35,7 @@
     "name": "แฟชั่น3",
     "nbid": 9,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 26600,
     "time": "2020-05-02T17:00+0700",
     "img": [
@@ -47,6 +50,7 @@
     "name": "แฟชั่น4",
     "nbid": 18,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 6300,
     "time": "2020-05-02T17:00+0700",
     "img": [

@@ -57,7 +57,7 @@ export const UserMyStatement = () => {
 
   return (
     <div className="mystatement-box">
-      <h>การซื้อของฉัน</h>
+      <h>การประมูลของฉัน</h>
       <div className="mystatement-table">
         <table>
           <tr>

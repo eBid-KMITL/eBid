@@ -4,14 +4,6 @@ import moneyPicture from "../../assets/eGold.png";
 import firebase from "firebase";
 import userinfo from "../../db/userinfo.json";
 
-// const details = 
-//   {
-//     money: "9,999,999,999,999,999,999,999",
-//     moneyUse: "1,000,0000,000,000,000,000",
-//     moneyGain: "1,000,0000,000,000,000,000,000",
-//     image: moneyPicture
-//   }
-
 export const UserAccount = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -37,7 +29,7 @@ export const UserAccount = () => {
         <br />
         <div className="button">
           <button type="button" className="btn">
-            ถอนเงิน
+            ขอถอนเงิน
           </button>
         </div>
       </div>
