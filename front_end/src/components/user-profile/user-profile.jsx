@@ -175,6 +175,18 @@ export const UserProfile = () => {
                         />
                         <span className="checkmark"></span>{" "}
                       </label>
+                      <label className="container">
+                        ไม่ระบุ
+                        <input
+                          type="radio"
+                          name="gender"
+                          value="other"
+                          defaultChecked={
+                            userinfo.gender === "ไม่ระบุ" ? true : false
+                          }
+                        />
+                        <span className="checkmark"></span>{" "}
+                      </label>
                     </label>
                     <br />
                     <label>
