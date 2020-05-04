@@ -8,7 +8,7 @@ import { FaExclamationCircle } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { Ellipsis } from 'react-spinners-css';
 
-export const Register = () => {
+export const Register = ({api}) => {
   const history = useHistory();
   const [error, setError] = useState(false);
   const [name, setName] = useState('');
@@ -16,19 +16,52 @@ export const Register = () => {
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
   const [loading, setLoading] = useState(false);
+  var db = firebase.firestore()
+
   function onRegister(e) {
     e.preventDefault();
     setLoading(true);
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-      firebase.auth().currentUser.updateProfile({
-        displayName: name
-      })
-      history.push('/login');
-    })
-      .catch(err => {
-        setError(true);
-        setLoading(false);
-      });
+    api({
+      method : "get",
+      url : "/Createuser",
+      headers : {
+        email : email,
+        password : password,
+        name : name
+      }
+    }).then(res => {
+          console.log(res)
+          history.push('/login');
+        }
+        ).catch(err => {
+          console.log(err)
+          setError(true);
+          setLoading(false);
+        });
+    // firebase.auth().createUserWithEmailAndPassword(email, password).then((userrecord) => {
+    //   api({
+    //     method : "post",
+    //     url : "/Createuser",
+    //     headers : {
+    //         uid : userrecord.uid,
+    //         username : name
+    //     }
+    //   }).then(res => {
+    //     console.log(res)
+    //     firebase.auth().currentUser.updateProfile({
+    //       displayName: name
+    //     })
+    //     history.push('/login');
+    //   }
+    //   ).catch(err => {
+    //     console.log(err)
+    //   })
+      
+    // })
+    //   .catch(err => {
+    //     setError(true);
+    //     setLoading(false);
+    //   });
   }
   function onOpenTerms() {
     setTerms(true);

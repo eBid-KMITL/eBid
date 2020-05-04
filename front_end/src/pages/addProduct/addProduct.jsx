@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
-import firebase from "firebase";
+import firebase, { firestore } from "firebase";
 import { useDropzone } from "react-dropzone";
 import addSymbol from "../../assets/add.svg";
 import NavigationPrompt from "react-router-navigation-prompt";
@@ -21,7 +21,10 @@ export const AddProduct = () => {
   const [bigImg, setBigImg] = useState(null);
   const [countPic, setCountPic] = useState(pic);
   const [outcome, setOutcome] = useState(1);
-  const [alerted,setAlerted] = useState(false);
+  const [alerted, setAlerted] = useState(false);
+
+  const db = firebase.firestore()
+  
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -68,7 +71,7 @@ export const AddProduct = () => {
     ) {
       setAlerted(true);
     }
-    else{
+    else {
       setAlerted(false);
     }
   }
@@ -89,8 +92,34 @@ export const AddProduct = () => {
       alert("ไม่พบรูปภาพ กรุณาลงรูปสินค้าอย่างน้อย 2 รูป")
     }
     else {
-      // sendProduct to DB
+      db.collection("Product").add({
+          name : document.getElementById('productName').value
+      }).then(record =>{
+        if (pic1) {
+          storageRef = firebase.storage().ref("imageProduct/"+record.id).child("pic1").put(pic1);
+          storageRef.on(state_changed,snapshot=>{
+              //หมุน ๆ
+            },
+            error=>{
+                console.log(error.message)
+              },
+            ()=>{
+                //หยุดหมุน
+                storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+
+                });
+            }
+          );
+        }
+      }).catch(err =>{
+        console.log(err)
+      })
+
+      
+
     }
+
+
   }
 
   return (
@@ -141,15 +170,15 @@ export const AddProduct = () => {
           <div className="addPicture-frame">
             {bigImg === null ? (
               <div {...getRootProps({ className: "dropzone" })}>
-                <input {...getInputProps()} disabled={countPic === 4} onInput={() => checkForActivatedAlert()}/>
+                <input {...getInputProps()} disabled={countPic === 4} onInput={() => checkForActivatedAlert()} />
                 <img src={addSymbol} className="addlogo" alt="add-Logo" />
                 <p>ลากและวางไฟล์รูปเพื่อเพิ่มรูปภาพ</p>
               </div>
             ) : (
-              <div className="big-preview">
-                <img src={bigImg} className="big-img" alt="img-preview" />
-              </div>
-            )}
+                <div className="big-preview">
+                  <img src={bigImg} className="big-img" alt="img-preview" />
+                </div>
+              )}
             {outcome === 0 ? (
               <div className="preview-box">
                 {countPic === 1 ? (
@@ -163,8 +192,8 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
                 {countPic === 2 ? (
                   <>
                     <div
@@ -183,8 +212,8 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
                 {countPic === 3 ? (
                   <>
                     <div
@@ -210,8 +239,8 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
                 {countPic === 4 ? (
                   <>
                     <div
@@ -244,12 +273,12 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </div>
             ) : (
-              ""
-            )}
+                ""
+              )}
             <div
               className={countPic === 4 ? "page-contain-red" : "page-contain"}
             >
@@ -266,8 +295,8 @@ export const AddProduct = () => {
                 </button>
               </div>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
           <div className="addProduct-detail-box">
             <div className="addProduct-detail">
@@ -282,6 +311,7 @@ export const AddProduct = () => {
                     required
                     minLength="5"
                     onInput={() => checkForActivatedAlert()}
+
                   />
                 </label>
                 <br />
@@ -351,8 +381,8 @@ export const AddProduct = () => {
           </div>
         </div>
       ) : (
-        history.push("/login")
-      )}
+          history.push("/login")
+        )}
     </>
   );
 };
