@@ -24,7 +24,7 @@ export const AddProduct = () => {
   const [alerted, setAlerted] = useState(false);
 
   const db = firebase.firestore()
-  
+  let keepurl = []
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -93,30 +93,82 @@ export const AddProduct = () => {
     }
     else {
       db.collection("Product").add({
-          name : document.getElementById('productName').value
-      }).then(record =>{
+        name: document.getElementById('productName').value
+      }).then(record => {
+        keepurl = []
+         //หมุน ๆ
         if (pic1) {
-          storageRef = firebase.storage().ref("imageProduct/"+record.id).child("pic1").put(pic1);
-          storageRef.on(state_changed,snapshot=>{
-              //หมุน ๆ
+          const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(pic1);
+          storageRef.on(state_changed, snapshot => {
+          },
+            error => {
+              console.log(error.message)
             },
-            error=>{
-                console.log(error.message)
-              },
-            ()=>{
-                //หยุดหมุน
-                storageRef.snapshot.ref.getDownloadURL().then((url)=>{
-
-                });
+            () => {
+              storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                keepurl.push({
+                  url : url,
+                  order : 1
+                })
+              });
             }
           );
         }
-      }).catch(err =>{
+        if (pic2) {
+          const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(pic2);
+          storageRef.on(state_changed, snapshot => {
+          },
+            error => {
+              console.log(error.message)
+            },
+            () => {
+              storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                keepurl.push({
+                  url : url,
+                  order : 2
+                })
+              });
+            }
+          );
+        }
+        if (pic3) {
+          const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(pic3);
+          storageRef.on(state_changed, snapshot => {
+          },
+            error => {
+              console.log(error.message)
+            },
+            () => {
+              storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                keepurl.push({
+                  url : url,
+                  order : 3
+                })
+              });
+            }
+          );
+        }
+        if (pic4) {
+          const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(pic4);
+          storageRef.on(state_changed, snapshot => {
+          },
+            error => {
+              console.log(error.message)
+            },
+            () => {
+              storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                keepurl.push({
+                  url : url,
+                  order : 4
+                })
+              });
+            }
+          );
+        }
+         //หยุดหมุน
+      }).catch(err => {
         console.log(err)
       })
-
-      
-
     }
 
 
