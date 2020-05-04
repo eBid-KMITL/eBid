@@ -55,7 +55,6 @@ export const UserAddress = () => {
           case 1:
             return (
               <div className="address-detail">
-                แก้ไขข้อมูล
                 <br />
                 <label>
                   <b>ชื่อผู้รับ</b>
