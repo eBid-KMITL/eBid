@@ -97,17 +97,18 @@ export const AddProduct = () => {
       }).then(record => {
         keepurl = []
         //หมุน ๆ
-        uploadPicture()
+        uploadPicture(record)
         //หยุดหมุน
+        console.log(keepurl)
       }).catch(err => {
         console.log(err)
       })
     }
   }
 
-  function uploadPicture() {
+  function uploadPicture(record) {
     const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(pic1);
-    storageRef.on(state_changed, snapshot => {
+    storageRef.on("state_changed", snapshot => {
     },
       error => {
         console.log(error.message)
@@ -120,7 +121,7 @@ export const AddProduct = () => {
           })
         }).then(() => {
           const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(pic2);
-          storageRef.on(state_changed, snapshot => {
+          storageRef.on("state_changed", snapshot => {
           },
             error => {
               console.log(error.message)
@@ -133,7 +134,7 @@ export const AddProduct = () => {
                 })
               }).then(() => {
                 const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(pic3);
-                storageRef.on(state_changed, snapshot => {
+                storageRef.on("state_changed", snapshot => {
                 },
                   error => {
                     console.log(error.message)
@@ -146,7 +147,7 @@ export const AddProduct = () => {
                       })
                     }).then(() => {
                       const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(pic4);
-                      storageRef.on(state_changed, snapshot => {
+                      storageRef.on("state_changed", snapshot => {
                       },
                         error => {
                           console.log(error.message)
