@@ -98,9 +98,10 @@ export const AddProduct = () => {
         name: document.getElementById('productName').value
       }).then(record => {
         keepurl = []
-        //หมุน ๆ
+        setLoading(true);
         uploadPicture()
-        //หยุดหมุน
+        setSent(true);
+        setLoading(false);
       }).catch(err => {
         console.log(err)
       })
@@ -109,7 +110,7 @@ export const AddProduct = () => {
 
   function uploadPicture() {
     const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(pic1);
-    storageRef.on(state_changed, snapshot => {
+    storageRef.on("state_changed", snapshot => {
     },
       error => {
         console.log(error.message)
@@ -122,7 +123,7 @@ export const AddProduct = () => {
           })
         }).then(() => {
           const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(pic2);
-          storageRef.on(state_changed, snapshot => {
+          storageRef.on("state_changed", snapshot => {
           },
             error => {
               console.log(error.message)
@@ -135,7 +136,7 @@ export const AddProduct = () => {
                 })
               }).then(() => {
                 const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(pic3);
-                storageRef.on(state_changed, snapshot => {
+                storageRef.on("state_changed", snapshot => {
                 },
                   error => {
                     console.log(error.message)
@@ -148,7 +149,7 @@ export const AddProduct = () => {
                       })
                     }).then(() => {
                       const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(pic4);
-                      storageRef.on(state_changed, snapshot => {
+                      storageRef.on("state_changed", snapshot => {
                       },
                         error => {
                           console.log(error.message)
