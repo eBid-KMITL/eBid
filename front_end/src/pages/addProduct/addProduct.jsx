@@ -85,7 +85,7 @@ export const AddProduct = () => {
 
   function sendProduct(e) {
     e.preventDefault();
-    if (pic1 == null && pic2 == null) {
+    if (pic1 == null || pic2 == null) {
       alert("ไม่พบรูปภาพ กรุณาลงรูปสินค้าอย่างน้อย 2 รูป")
     }
     else {
