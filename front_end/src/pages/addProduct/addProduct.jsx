@@ -26,7 +26,7 @@ export const AddProduct = () => {
   const [loading, setLoading] = useState([false, false, false, false]);
   const [sent, setSent] = useState(false);
   const db = firebase.firestore()
-
+  let keepurl = []
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -97,8 +97,10 @@ export const AddProduct = () => {
       db.collection("Product").add({
         name: document.getElementById('productName').value
       }).then(record => {
+        keepurl = []
+         //หมุน ๆ
         if (pic1) {
-          storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(pic1);
+          const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(pic1);
           storageRef.on(state_changed, snapshot => {
           },
             error => {
@@ -106,15 +108,70 @@ export const AddProduct = () => {
             },
             () => {
               storageRef.snapshot.ref.getDownloadURL().then((url) => {
-
+                keepurl.push({
+                  url : url,
+                  order : 1
+                })
               });
             }
           );
         }
+        if (pic2) {
+          const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(pic2);
+          storageRef.on(state_changed, snapshot => {
+          },
+            error => {
+              console.log(error.message)
+            },
+            () => {
+              storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                keepurl.push({
+                  url : url,
+                  order : 2
+                })
+              });
+            }
+          );
+        }
+        if (pic3) {
+          const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(pic3);
+          storageRef.on(state_changed, snapshot => {
+          },
+            error => {
+              console.log(error.message)
+            },
+            () => {
+              storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                keepurl.push({
+                  url : url,
+                  order : 3
+                })
+              });
+            }
+          );
+        }
+        if (pic4) {
+          const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(pic4);
+          storageRef.on(state_changed, snapshot => {
+          },
+            error => {
+              console.log(error.message)
+            },
+            () => {
+              storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                keepurl.push({
+                  url : url,
+                  order : 4
+                })
+              });
+            }
+          );
+        }
+         //หยุดหมุน
       }).catch(err => {
         console.log(err)
       })
-
+    }
 
 
     }
