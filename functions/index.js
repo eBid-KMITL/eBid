@@ -61,7 +61,7 @@ app.post('/createProduct', async function (req, res) {
 app.delete('/deleteProduct', async function (req, res) {
     var data = req.body;
     try {
-        await admin.firestore().collection('Product').doc(data.id).delete();
+        await admin.firestore().collection('Product').doc(data.id).delete('productID');
         res.status(200);
         res.send('Success');
     } catch (e) {
@@ -70,32 +70,24 @@ app.delete('/deleteProduct', async function (req, res) {
     }
 });
 
-//import to database
-app.put('/savePicture', async function (req, res) {
-    var data = req.body;
+//get placeBid with img
+app.get('/getProduct/pictureUrl', async function (req, res) {
     try {
-        await admin.firestore().collection('Product').doc(data.id).set(data.url);
-        res.status(200);
-        res.send('Success');
-    } catch (e) {
-        res.status(400);
-        res.send("error: " + e);
-    }
+        const results = await admin.firestore().collection("Product").doc(req.query.productId).get();
+        console.log(results.data());
+        let payload = {
+            img: results.data().img
+        };
 
-})
-
-// delete picture on database'Product'
-app.delete('/deletePictureProduct', async function (req, res) {
-    var data = req.body;
-    try {
-        await admin.firestore().collection('Product').doc(data.id).delete();
         res.status(200);
-        res.send('Success');
+        res.json(payload);
     } catch (e) {
         res.status(400);
         res.send("error: " + e);
     }
 });
+
+
 
 
 //get AllProduct
@@ -119,7 +111,7 @@ app.get('/getAllProduct', async function (req, res) {
 });
 
 
-//get placeBid with productid
+//get Picture with productid
 app.get('/getProduct/placeBid', async function (req, res) {
     try {
         const results = await admin.firestore().collection("Product").doc(req.query.productId).get();
@@ -135,7 +127,6 @@ app.get('/getProduct/placeBid', async function (req, res) {
         res.send("error: " + e);
     }
 });
-
 
 // Expose Express API as a single Cloud Function:
 exports.api = functions.https.onRequest(app);
