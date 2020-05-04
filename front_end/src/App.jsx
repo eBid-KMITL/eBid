@@ -3,12 +3,12 @@ import './App.scss';
 import { Login, Register, Forgot, Home, Error, Result, Profile, Product, Contact, Topup, Category, AddProduct } from "./pages"
 import { NavBar } from "./components"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import firebase from "firebase"
-import { firebaseConfig } from './firebase_config'
+import firebase from "firebase";
+import { firebaseConfig } from './firebase_config';
 
 const App = () => {
-  const userInfo = { amount: 999999 }
-  firebase.initializeApp(firebaseConfig)
+  const userInfo = { amount: 999999 };
+  firebase.initializeApp(firebaseConfig);
   
   return (
     <div className="page-container">
