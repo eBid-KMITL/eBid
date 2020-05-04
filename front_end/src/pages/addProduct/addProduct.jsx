@@ -23,8 +23,8 @@ export const AddProduct = () => {
   const [countPic, setCountPic] = useState(pic);
   const [outcome, setOutcome] = useState(1);
   const [alerted, setAlerted] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [sent, setSent] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
   const db = firebase.firestore()
   let keepurl = []
 
@@ -99,7 +99,7 @@ export const AddProduct = () => {
       }).then(record => {
         keepurl = []
         setLoading(true);
-        uploadPicture();
+        // uploadPicture();
         setSent(true);
         setLoading(false);
       }).catch(err => {
@@ -108,71 +108,71 @@ export const AddProduct = () => {
     }
   }
 
-  function uploadPicture() {
-    const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(pic1);
-    storageRef.on("state_changed", snapshot => {
-    },
-      error => {
-        console.log(error.message)
-      },
-      () => {
-        storageRef.snapshot.ref.getDownloadURL().then((url) => {
-          keepurl.push({
-            url: url,
-            order: 1
-          })
-        }).then(() => {
-          const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(pic2);
-          storageRef.on("state_changed", snapshot => {
-          },
-            error => {
-              console.log(error.message)
-            },
-            () => {
-              storageRef.snapshot.ref.getDownloadURL().then((url) => {
-                keepurl.push({
-                  url: url,
-                  order: 2
-                })
-              }).then(() => {
-                const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(pic3);
-                storageRef.on("state_changed", snapshot => {
-                },
-                  error => {
-                    console.log(error.message)
-                  },
-                  () => {
-                    storageRef.snapshot.ref.getDownloadURL().then((url) => {
-                      keepurl.push({
-                        url: url,
-                        order: 3
-                      })
-                    }).then(() => {
-                      const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(pic4);
-                      storageRef.on("state_changed", snapshot => {
-                      },
-                        error => {
-                          console.log(error.message)
-                        },
-                        () => {
-                          storageRef.snapshot.ref.getDownloadURL().then((url) => {
-                            keepurl.push({
-                              url: url,
-                              order: 4
-                            })
-                          })
-                        }
-                      );
-                    })
-                  }
-                );
-              })
-            }
-          );
-        })
-      }
-    );
-  }
+  // function uploadPicture() {
+  //   const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(pic1);
+  //   storageRef.on("state_changed", snapshot => {
+  //   },
+  //     error => {
+  //       console.log(error.message)
+  //     },
+  //     () => {
+  //       storageRef.snapshot.ref.getDownloadURL().then((url) => {
+  //         keepurl.push({
+  //           url: url,
+  //           order: 1
+  //         })
+  //       }).then(() => {
+  //         const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(pic2);
+  //         storageRef.on("state_changed", snapshot => {
+  //         },
+  //           error => {
+  //             console.log(error.message)
+  //           },
+  //           () => {
+  //             storageRef.snapshot.ref.getDownloadURL().then((url) => {
+  //               keepurl.push({
+  //                 url: url,
+  //                 order: 2
+  //               })
+  //             }).then(() => {
+  //               const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(pic3);
+  //               storageRef.on("state_changed", snapshot => {
+  //               },
+  //                 error => {
+  //                   console.log(error.message)
+  //                 },
+  //                 () => {
+  //                   storageRef.snapshot.ref.getDownloadURL().then((url) => {
+  //                     keepurl.push({
+  //                       url: url,
+  //                       order: 3
+  //                     })
+  //                   }).then(() => {
+  //                     const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(pic4);
+  //                     storageRef.on("state_changed", snapshot => {
+  //                     },
+  //                       error => {
+  //                         console.log(error.message)
+  //                       },
+  //                       () => {
+  //                         storageRef.snapshot.ref.getDownloadURL().then((url) => {
+  //                           keepurl.push({
+  //                             url: url,
+  //                             order: 4
+  //                           })
+  //                         })
+  //                       }
+  //                     );
+  //                   })
+  //                 }
+  //               );
+  //             })
+  //           }
+  //         );
+  //       })
+  //     }
+  //   );
+  // }
 
   return (
     <>
