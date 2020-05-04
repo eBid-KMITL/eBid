@@ -25,8 +25,22 @@
     },
     "hosting": {
       "port": 5000
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "pubsub": {
+      "port": 8085
     }
   },
   "functions": {
+    "source": "functions"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }
