@@ -242,7 +242,7 @@ export const Product = () => {
             </form>
             <Modal open={confirm} center={true} showCloseIcon={false} closeOnEsc={false} closeOnOverlayClick={false} onClose={() => onCloseConfirm()} little>
               <h1 style={{ margin: 0 }}>ยืนยันการเสนอราคา</h1>
-              <p id="price-confirm" >{(document.getElementById("bid-price")) ? "▸ " + document.getElementById("bid-price").value : null} eCoin</p>
+              <p id="price-confirm" >{(document.getElementById("bid-price")) ? "▸ " + formatter.format(document.getElementById("bid-price").value) : null} eCoin</p>
               <button id="bid-confirm" type="button" className="btn_c" alt="เสนอราคา" onClick={() => { onCloseModal(); }}>ยืนยัน</button>
               <button id="bid-cancel" type="button" className="btn_s" alt="เสนอราคา" onClick={() => onCloseConfirm()}>ยกเลิก</button>
             </Modal>
