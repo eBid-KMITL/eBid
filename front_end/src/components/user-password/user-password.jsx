@@ -8,7 +8,7 @@ export const UserPassword = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState(true);
   const [error, setError] = useState(false);
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ export const UserPassword = () => {
       <div className="password-detail">
         <p>หากคุณต้องการเปลี่ยนรหัสผ่านโปรดกรอกอีเมลผู้ใช้ของคุณเพื่อรีเซ็ตรหัสทางอีเมล</p>
         {sent ? (
-          <p id="sent-forgot"><FaExclamationCircle /> &nbsp;ส่งเรียบร้อยแล้ว โปรดตรวจสอบอีเมล</p>
+          <p id="sent-forgot"><FaExclamationCircle /> &nbsp;ส่งเรียบร้อยแล้ว โปรดตรวจสอบอีเมลของท่าน</p>
         ) : error ? (
           <p id="input-error"><FaExclamationCircle /> &nbsp;อีเมลไม่ถูกต้อง โปรดใส่อีเมลผู้ใช้ของคุณ</p>
         ) : (
