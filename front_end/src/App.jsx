@@ -9,24 +9,24 @@ import { firebaseConfig } from './firebase_config';
 const App = () => {
   const userInfo = { amount: 999999 };
   firebase.initializeApp(firebaseConfig);
-  
+
   return (
     <div className="page-container">
       <Router>
         <NavBar userInfo={userInfo} />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/forgot" component={Forgot} />
-          <Route path="/result" component={Result} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/product"><Product userInfo={userInfo}/></Route>
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/topup" component={Topup} />
-          <Route path="/category" component={Category} />
-          <Route path="/addproduct" component={AddProduct} />
-          <Route path="/" component={Error} />
+          <Route exact path="/"><Home /></Route>
+          <Route exact path="/login"><Login /></Route>
+          <Route exact path="/register"><Register /></Route>
+          <Route exact path="/forgot"><Forgot /></Route>
+          <Route path="/result"><Result /></Route>
+          <Route path="/profile"><Profile /></Route>
+          <Route path="/product"><Product userInfo={userInfo} /></Route>
+          <Route exact path="/contact"><Contact /></Route>
+          <Route exact path="/topup"><Topup /></Route>
+          <Route path="/category"><Category /></Route>
+          <Route path="/addproduct"><AddProduct /></Route>
+          <Route path="/"><Error /></Route>
         </Switch>
       </Router>
     </div>
