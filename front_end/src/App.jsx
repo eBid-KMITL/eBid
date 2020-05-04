@@ -5,9 +5,13 @@ import { NavBar } from "./components"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase"
 import { firebaseConfig } from './firebase_config.js'
+import axios from 'axios'
 
 const App = () => {
   const userInfo = { amount: 999999 }
+  
+  const api = axios.create({baseURL : "http://localhost:5001/testebid/us-central1/api"})
+
   firebase.initializeApp(firebaseConfig)
   
   return (

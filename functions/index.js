@@ -18,11 +18,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin: true }));
 // build multiple CRUD interfaces:
 
+// Create user
+app.post('/Createuser', async function (req, res) {
+    var data = req.body;
+    try {
+        await admin.firestore().collection('User').doc().set(data);
+        res.status(200);
+        res.send('Success');
+    } catch (e) {
+        res.status(400);
+        res.send("error: " + e);
+    }
+});
+
 // Customer user
 app.post('/Customeruser', async function (req, res) {
     var data = req.body;
     try {
-        await admin.firestore().collection('User').doc().set(data);
+        await admin.firestore().collection('User').doc(data.id).set(data);
         res.status(200);
         res.send('Success');
     } catch (e) {
@@ -49,7 +62,7 @@ app.delete('/Deleteuser', async function (req, res) {
 app.post('/createProduct', async function (req, res) {
     var data = req.body;
     try {
-        await admin.firestore().collection('Product').doc().set();
+        await admin.firestore().collection('Product').doc().set(data);
         res.status(200);
         res.send('Success');
     } catch (e) {

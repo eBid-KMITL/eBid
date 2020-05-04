@@ -16,10 +16,13 @@ export const Register = () => {
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
   const [loading, setLoading] = useState(false);
+  var db = firebase.firestore()
+  
   function onRegister(e) {
     e.preventDefault();
     setLoading(true);
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+
       firebase.auth().currentUser.updateProfile({
         displayName: name
       })
