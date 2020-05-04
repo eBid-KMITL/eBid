@@ -5,6 +5,7 @@
     "name": "DVD1",
     "nbid": 7,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 680,
     "time": "2020-04-30T17:00+0700",
     "img": [
@@ -19,6 +20,7 @@
     "name": "DVD2",
     "nbid": 9,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 1150,
     "time": "2020-05-02T17:00+0700",
     "img": [

@@ -5,6 +5,7 @@
     "name": "หนังสือ1",
     "nbid": 5,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 560,
     "time": "2020-04-30T17:00+0700",
     "img": [
@@ -19,6 +20,7 @@
     "name": "หนังสือ2",
     "nbid": 12,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 130,
     "time": "2020-05-02T17:00+0700",
     "img": [
@@ -33,6 +35,7 @@
     "name": "หนังสือ3",
     "nbid": 28,
     "owner": "eShop",
+    "bidder": "admin",
     "price": 540,
     "time": "2020-05-02T17:00+0700",
     "img": [

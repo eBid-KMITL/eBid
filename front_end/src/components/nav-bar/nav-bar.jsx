@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Moment from 'react-moment';
-import 'moment/locale/th'
+import 'moment/locale/th';
 import logo from "../../assets/eBid.png";
 import { Link, useLocation } from "react-router-dom";
-import { FaUserCircle, FaCoins } from "react-icons/fa"
-import firebase from "firebase"
+import { FaUserCircle, FaCoins } from "react-icons/fa";
+import firebase from "firebase";
 
 export const NavBar = ({ userInfo }) => {
   const location = useLocation();
+  const [name, setName] = useState("");
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      setName(firebase.auth().currentUser.displayName)
+    }
+  });
   var formatter = new Intl.NumberFormat('th-TH', {
     style: 'decimal',
   });
@@ -50,22 +56,22 @@ export const NavBar = ({ userInfo }) => {
           <div className="nav-search-line">
             <div className="nav-logo">
               <Link to="/">
-                <img src={logo} alt="eBid Logo" />
+                <img src={logo} title="หน้าหลัก" alt="eBid Logo" />
               </Link>
             </div>
             <div className="form-group">
               <form action="/result">
                 <div className="search-box">
                   <input type="search" name="search" id="search-input" placeholder="ค้นหา" defaultValue={search ? search : ""} />
-                  <button type="submit" className="search-btn"><i className="material-icons">search</i></button>
+                  <button type="submit" className="search-btn" title="ค้นหา"><i className="material-icons">search</i></button>
                 </div>
               </form>
             </div>
             <div className="nav-btn">
               {firebase.auth().currentUser ? (
                 <div className="user-status">
-                  <FaUserCircle /> <Link to="/profile">{firebase.auth().currentUser.displayName}</Link><br />
-                  <FaCoins /> {formatter.format(userInfo.amount)} eCoins
+                  <FaUserCircle /> <Link to="/profile" title="ไปที่หน้าโปรไฟล์">{name}</Link><br />
+                  <p title={formatter.format(userInfo.amount) + " eCoin"} style={{ margin: 0, cursor: "default" }}><FaCoins /> {formatter.format(userInfo.amount)} eCoins</p>
                 </div>
               ) : (
                   <Link to="/login">

@@ -5,6 +5,8 @@ import firebase from "firebase";
 import { Helmet } from "react-helmet";
 import Modal from 'react-responsive-modal';
 import { FaExclamationCircle } from "react-icons/fa";
+import { IoIosArrowBack } from "react-icons/io";
+import { Ellipsis } from 'react-spinners-css';
 
 export const Register = () => {
   const history = useHistory();
@@ -13,18 +15,19 @@ export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
+  const [loading, setLoading] = useState(false);
   function onRegister(e) {
     e.preventDefault();
+    setLoading(true);
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       firebase.auth().currentUser.updateProfile({
         displayName: name
       })
-      alert('Register Completed')
-      history.push('/login')
+      history.push('/login');
     })
       .catch(err => {
-        // alert(err);
         setError(true);
+        setLoading(false);
       });
   }
   function onOpenTerms() {
@@ -39,8 +42,8 @@ export const Register = () => {
       <Helmet><title>Register | eBid</title></Helmet>
       <div className="base-container">
         <div className="header">
-          <Link to="#" onClick={() => history.goBack()}>
-            ﹤ ย้อนกลับ
+          <Link to="#" onClick={() => history.goBack()} style={{ display: "flex", alignItems: "center" }}>
+            <IoIosArrowBack /> ย้อนกลับ
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
@@ -66,7 +69,8 @@ export const Register = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="password">รหัสผ่าน</label>
-                <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required minLength="8" value={password} onChange={e => setPassword(e.target.value)} />
+                <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required title="รหัสผ่านต้องประกอบไปด้วยตัวอักษรภาษาอังกฤษและตัวเลขรวมกัน 8 ตัวขึ้นไป โดยมีตัวพิมพ์ใหญ่และตัวเลขอย่างน้อยอย่างละ 1 ตัว"
+                  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" value={password} onChange={e => setPassword(e.target.value)} />
               </div>
               <div className="extra">
                 <p><input type="checkbox" required />ฉันยอมรับ <a href="/register#" onClick={() => onOpenTerms()}>ข้อตกลงและเงื่อนไข</a></p>
@@ -77,32 +81,31 @@ export const Register = () => {
                     <u>ลงชื่อเข้าใช้</u>
                   </button>
                 </Link>
-                <button type="submit" className="btn">
-                  สมัครสมาชิก
-          </button>
+                <button type="submit" className="btn" disabled={loading}>
+                  {loading ? <Ellipsis color="white" size={40} /> : "สมัครสมาชิก"}
+                </button>
               </div>
             </form>
           </div>
           <Modal open={terms} center={true} onClose={() => onCloseTerms()} little>
             <h1>ข้อตกลงและเงื่อนไข</h1>
             <p>
-              1. แชเชือนสตูดิโอฟีเวอร์เนอะกุนซือ เนิร์สเซอรีเซ็กซ์ดีกรี เป็นไง แอลมอนด์ไวกิ้ง เอสเปรสโซเทวาไทม์ ซิตีแพ็คไฮเปอร์รัมไวกิ้ง ซีอีโอยากูซ่าสต็อกถูกต้องบ๊อกซ์ เธคเวิร์กวอล์กรามาธิบดี คูลเลอร์แดรี่พาสตาเอาต์ ซิงสวีทผลักดันจตุคามดีพาร์ทเมนท์ เยนคาสิโนพรีเมียมแตงโมซูเอี๋ย อพาร์ทเมนท์เอ็นเตอร์เทน เวอร์ซีเนียร์ รองรับหมั่นโถวดีพาร์ตเมนต์รันเวย์ไพลิน รามเทพทีวีแอดมิสชันออร์แกนิค ทับซ้อนฟลุต
+              1. เว็บไซต์นี้จัดทำขึ้นเพื่อการศึกษาเท่านั้น ไม่ได้มีการนำไปใช้จริงในเชิงพาณิชย์
             </p>
             <p>
-              2. แจ๊กพ็อต วอฟเฟิลอุปสงค์แดรี่อพาร์ตเมนท์อิมพีเรียล แซ็กโซโฟนคอนแทค ฮาลาลเกสต์เฮาส์แฮนด์ รามเทพสกรัมมาร์จิน กลาสไอติม ดีลเลอร์ ปิกอัพ อัลตราคำตอบยากูซ่า เปียโน สุริยยาตรมะกัน ไวกิ้งโมเดลสติ๊กเกอร์คอนเซปต์ภควัทคีตา รีโมทนู้ดออร์แกนิกออเดอร์ฮากกา ปฏิสัมพันธ์บาบูนไอเดีย สันทนาการอพาร์ตเมนต์เนิร์สเซอรี่ เวิลด์จูนมินต์เคลื่อนย้าย
+              2. เว็บไซต์นี้จะเก็บข้อมูลในการลงทะเบียนของคุณไว้ในระบบลงทะเบียนเพื่อยืนยันตัวตนเข้าใช้งานเท่านั้น
             </p>
             <p>
-              3. เดี้ยงไคลแมกซ์คอนเซ็ปต์เอ็กซ์โป สเตอริโอไหร่เมจิควิน สุริยยาตร์ แอดมิชชั่น เลดี้ วอลนัทพรีเมียร์ เท็กซ์ บรรพชน รันเวย์คอรัปชั่นศิลปากร โบว์ลิ่ง ภควัมปติคำสาปบราคอนแท็ค เทป ออร์เดอร์ไมค์แฟ้บ แซ็กโซโฟนเพาเวอร์โดนัท เวอร์ สลัมออกแบบ
+              3. การประมูลในเว็บไซต์นี้เป็นการจำลองการทำงานของระบบเท่านั้น ไม่สามารถประมูลซื้อขายได้จริง
             </p>
             <p>
-              4. สะบึมส์ดีพาร์ตเมนต์ซูชิผิดพลาด ออโต้วอล์กอาร์พีจี โปรอัลบั้มราชบัณฑิตยสถานบึ้ม โบว์ลิ่งดีพาร์ทเมนท์มลภาวะ โบกี้แหม็บ สตาร์นอร์ทรามาธิบดีแคมปัส วืดฮิปฮอป แคร์แครกเกอร์โรลออน ภารตะเอ็นทรานซ์แคป แรงใจฮิปฮอปไอเดียแซนด์วิชซิตี้ อีแต๋นตังค์ แฟ้บเพนกวินไบโอ นิวส์เทควันโดวินปอดแหกไรเฟิล โพสต์ เฟรม ควีนเอ๊าะสแควร์
+              4. ไม่สามารถนำเงินจริงเข้าระบบได้ เงินในระบบเป็นเงินใช้เพื่อการจำลองการทำงานเท่านั้น
             </p>
             <p>
-              5. เรซินเวณิกาเอ๋อตะหงิดเย้ว ปาสกาลซิงอันตรกิริยา สเปก รีทัชรองรับว้อดก้าเวิร์คสารขัณฑ์ โค้กออร์แกนิคมอลล์เบิร์นเครป แฟล็ต โปรราเม็ง﻿กรรมาชน กิฟท์ไกด์ เอ็กซ์โปแฟล็ตแดนเซอร์เวิลด์ ครัวซองต์กระดี๊กระด๊าระโงกไฟลต์ มอคค่าทัวริสต์แคร็กเกอร์เคลียร์รีโมต ซิตี้เซ็นทรัลดยุคกระดี๊กระด๊าซีดาน การันตีปาสเตอร์มาม่าอริยสงฆ์ สตูดิโอโปรเจ็กต์โรลออนโบ้ย สติ๊กเกอร์เชอร์รี่สแตนดาร์ดแฟลชคอนแทค เกสต์เฮาส์แบนเนอร์พันธกิจ
+              5. ผู้จัดทำจะไม่รับผิดชอบความเสียหายใดๆ กรณีเกิดข้อผิดพลาดจากระบบจำลองนี้
             </p>
             <button className="btn" id="close-terms" type="button" onClick={() => onCloseTerms()}>ปิด</button>
           </Modal>
-          <iframe title="hiddenFrame" name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
         </div>
       </div>
     </div>
