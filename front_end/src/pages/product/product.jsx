@@ -12,7 +12,7 @@ import moment from "moment";
 import db from "../../db/product.json";
 // import img[1] from "../../assets/products-pics/pic-big/mac1.png"
 
-export const Product = () => {
+export const Product = ({ userInfo }) => {
   // var product_id;
   const prodEndTime = db.time;
   function useQuery() {
@@ -26,6 +26,7 @@ export const Product = () => {
   const [modal, setModal] = useState(false);
   const [price, setPrice] = useState(db.price);
   const [title, setTitle] = useState(db.name);
+  const [alert, setAlert] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [btn, setBTN] = useState(true);
   const [love, setLove] = useState(false);
@@ -139,9 +140,14 @@ export const Product = () => {
     }
   }
   function validateForm() {
-    var a = document.forms["bid-price"]["bid-input"].value;
-    if (a > price) {
+    var input = document.forms["bid-price"]["bid-input"].value;
+    if (input > price && input < userInfo.amount) {
       setBTN(false);
+      setAlert(false);
+    }
+    else if (input > price && input > userInfo.amount) {
+      setBTN(true);
+      setAlert(true);
     }
     else {
       setBTN(true);
@@ -228,7 +234,7 @@ export const Product = () => {
           <div className="bid-form">
             <form name="bid-price" onSubmit={e => onOpenConfirm(e)}>
               <input name="bid-input" id="bid-price" type="number" placeholder="กรอกราคาที่มากกว่าราคาปัจจุบัน" min={price + 1} onInput={() => validateForm()} required />
-              <p id="ecoin-alert">เมื่อเสนอราคา eCoin ของท่านจะถูกกันไว้จนกว่าจะมีผู้เสนอราคาที่สูงกว่า</p>
+              <p id="ecoin-alert">{ (alert) ? "ยอดคงเหลือของท่านไม่พอ กรุณาเติมเงินก่อนเสนอราคา" : "เมื่อเสนอราคา eCoin ของท่านจะถูกกันไว้จนกว่าจะมีผู้เสนอราคาที่สูงกว่า"}</p>
               <div className="form-foot">
                 <div className="price-container">
                   <p id="price-tag">ราคาปัจจุบัน</p>
