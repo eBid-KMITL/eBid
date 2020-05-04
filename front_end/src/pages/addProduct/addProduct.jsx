@@ -24,7 +24,7 @@ export const AddProduct = () => {
   const [outcome, setOutcome] = useState(1);
   const [alerted, setAlerted] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState(true);
   const db = firebase.firestore()
   let keepurl = []
 
@@ -99,7 +99,7 @@ export const AddProduct = () => {
       }).then(record => {
         keepurl = []
         setLoading(true);
-        uploadPicture()
+        uploadPicture();
         setSent(true);
         setLoading(false);
       }).catch(err => {
@@ -426,7 +426,7 @@ export const AddProduct = () => {
                   />
                 </label>
                 <button type="submit" className="btn-submit" disabled={loading||sent}>
-                  {sent ? ("ส่งแล้ว") : (loading ? <Ellipsis color="white" size={40} /> : "รีเซ็ตรหัสผ่าน")}
+                  {sent ? ("ลงข้อมูลสินค้าแล้ว") : (loading ? <Ellipsis color="white" size={40} /> : "ยืนยันการลงประมูลสินค้า")}
                 </button>
               </form>
             </div>
