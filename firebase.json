@@ -26,5 +26,7 @@
     "hosting": {
       "port": 5000
     }
+  },
+  "functions": {
   }
 }

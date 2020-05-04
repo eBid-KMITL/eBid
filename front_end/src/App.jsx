@@ -4,7 +4,7 @@ import { Login, Register, Forgot, Home, Error, Result, Profile, Product, Contact
 import { NavBar } from "./components"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase"
-import { firebaseConfig } from './firebase_config'
+import { firebaseConfig } from './firebase_config.js'
 
 const App = () => {
   const userInfo = { amount: 999999 }
