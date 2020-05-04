@@ -105,95 +105,117 @@ export const AddProduct = () => {
     else {
       db.collection("Product").add({
         name: document.getElementById('productName').value
+
+
+
+        
       }).then(record => {
         keepurl = []
         setLoading(true);
         const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(prepic1);
-    storageRef.on("state_changed", snapshot => {
-    },
-      error => {
-        console.log(error.message)
-      },
-      () => {
-        storageRef.snapshot.ref.getDownloadURL().then((url) => {
-          keepurl.push({
-            url: url,
-            order: 1
-          })
-        }).then(() => {
-          if (prepic2) {
-            const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(prepic2);
-            storageRef.on("state_changed", snapshot => {
-            },
-              error => {
-                console.log(error.message)
-              },
-              () => {
-                storageRef.snapshot.ref.getDownloadURL().then((url) => {
-                  keepurl.push({
-                    url: url,
-                    order: 2
-                  })
-                }).then(() => {
-                  if (prepic3) {
-                    const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(prepic3);
-                    storageRef.on("state_changed", snapshot => {
-                    },
-                      error => {
-                        console.log(error.message)
-                      },
-                      () => {
-                        storageRef.snapshot.ref.getDownloadURL().then((url) => {
-                          keepurl.push({
-                            url: url,
-                            order: 3
-                          })
-                        }).then(() => {
-                          if (prepic4) {
-                            const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(prepic4);
-                            storageRef.on("state_changed", snapshot => {
-                            },
-                              error => {
-                                console.log(error.message)
-                              },
-                              () => {
-                                storageRef.snapshot.ref.getDownloadURL().then((url) => {
-                                  keepurl.push({
-                                    url: url,
-                                    order: 4
-                                  })
+        storageRef.on("state_changed", snapshot => {
+        },
+          error => {
+            console.log(error.message)
+          },
+          () => {
+            storageRef.snapshot.ref.getDownloadURL().then((url) => {
+              keepurl.push(url)
+            }).then(() => {
+              if (prepic2) {
+                const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(prepic2);
+                storageRef.on("state_changed", snapshot => {
+                },
+                  error => {
+                    console.log(error.message)
+                  },
+                  () => {
+                    storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                      keepurl.push(url)
+                    }).then(() => {
+                      if (prepic3) {
+                        const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(prepic3);
+                        storageRef.on("state_changed", snapshot => {
+                        },
+                          error => {
+                            console.log(error.message)
+                          },
+                          () => {
+                            storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                              keepurl.push(url)
+                            }).then(() => {
+                              if (prepic4) {
+                                const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(prepic4);
+                                storageRef.on("state_changed", snapshot => {
+                                },
+                                  error => {
+                                    console.log(error.message)
+                                  },
+                                  () => {
+                                    storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                                      keepurl.push(url)
+                                    }).then(() => {
+                                      db.collection("Product").doc(record.id).update({
+                                        img: keepurl
+                                      }).then(() => {
+                                        setSent(true);
+                                        setLoading(false);
+                                        setAlerted(false)
+                                        history.push('/profile?m=5')
+                                      }).catch(err => {
+                                        db.collection("Product").doc(record.id).delete()
+                                        firebase.storage().ref("imageProduct/").child(record.id).delete()
+                                        console.log(err)
+                                      })
+                                      console.log(keepurl)
+                                    })
+                                  }
+                                );
+                              }
+                              else {
+                                db.collection("Product").doc(record.id).update({
+                                  img: keepurl
                                 }).then(() => {
                                   setSent(true);
                                   setLoading(false);
-                                  console.log(keepurl)
+                                  setAlerted(false)
+                                  history.push('/profile?m=5')
+                                }).catch(err => {
+                                  db.collection("Product").doc(record.id).delete()
+                                  firebase.storage().ref("imageProduct/").child(record.id).delete()
+                                  console.log(err)
                                 })
+                                console.log(keepurl)
                               }
-                            );
+                            })
                           }
-                          else{
-                            setSent(true);
-                            setLoading(false);
-                            console.log(keepurl)
-                          }
-                        })
+                        );
                       }
-                    );
+                      else {
+                        db.collection("Product").doc(record.id).update({
+                          img: keepurl
+                        }).then(() => {
+                          setSent(true);
+                          setLoading(false)
+                          setAlerted(false)
+                          history.push('/profile?m=5')
+                        }).catch(err => {
+                          db.collection("Product").doc(record.id).delete()
+                          firebase.storage().ref("imageProduct/").child(record.id).delete()
+                          console.log(err)
+                        })
+                        console.log(keepurl)
+                      }
+                    })
                   }
-                  else{
-                    setSent(true);
-                    setLoading(false);
-                    console.log(keepurl)
-                  }
-                })
+                );
               }
-            );
+            })
           }
-        })
-      }
-    );
+        );
       }).catch(err => {
-          console.log(err)
-        })
+        console.log(err)
+      })
     }
   }
 
@@ -450,8 +472,8 @@ export const AddProduct = () => {
                     onInput={() => checkForActivatedAlert()}
                   />
                 </label>
-                <button type="submit" className="btn-submit" disabled={loading||sent}>
-                {sent ? ("ลงข้อมูลสินค้าแล้ว") : (loading ? <Ellipsis color="white" size={40} /> : "ยืนยันการลงประมูลสินค้า")}
+                <button type="submit" className="btn-submit" disabled={loading || sent}>
+                  {sent ? ("ลงข้อมูลสินค้าแล้ว") : (loading ? <Ellipsis color="white" size={40} /> : "ยืนยันการลงประมูลสินค้า")}
                 </button>
               </form>
             </div>

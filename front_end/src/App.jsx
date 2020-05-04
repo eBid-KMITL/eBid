@@ -20,17 +20,17 @@ const App = () => {
         <NavBar userInfo={userInfo} />
         <Switch>
           <Route exact path="/" ><Home api={api}/></Route>
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/login" ><Login api={api}/></Route>
           <Route exact path="/register" ><Register api={api}/></Route>
-          <Route exact path="/forgot" component={Forgot} />
-          <Route path="/result" component={Result} />
-          <Route path="/profile" component={Profile} />
+          <Route exact path="/forgot" ><Forgot api={api}/></Route>
+          <Route path="/result" ><Result api={api}/></Route>
+          <Route path="/profile"  ><Profile api={api}/></Route>
           <Route path="/product"><Product api={api}/></Route>
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/topup" component={Topup} />
-          <Route path="/category" component={Category} />
-          <Route path="/addproduct" component={AddProduct} />
-          <Route path="/" component={Error} />
+          <Route exact path="/contact" ><Contact api={api}/></Route>
+          <Route exact path="/topup" ><Topup api={api}/></Route>
+          <Route path="/category" ><Category api={api}/></Route>
+          <Route path="/addproduct" ><AddProduct api={api}/></Route>
+          <Route path="/" ><Error api={api}/></Route>
         </Switch>
       </Router>
     </div>

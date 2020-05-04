@@ -63,8 +63,8 @@ app.get('/Createuser', function (req, res) {
 });
 
 // Customer user
-app.post('/Customeruser', function (req, res) {
-    var data = req.body;
+app.get('/Customeruser', function (req, res) {
+    var data = req.headers;
     admin.database().ref("/User/" + data.uid).update(
         data.payload
     ).then(() => {
@@ -76,58 +76,58 @@ app.post('/Customeruser', function (req, res) {
     })
 });
 
-// Create Product
-app.post('/CreateProduct', function (req, res) {
-    var data = req.body;
-    admin.database().ref("/Product/" + data.uid).update(
-        data.payload
-    ).then(() => {
-        console.log('Success')
-        res.send(userrecord)
-    }).catch(err => {
-        console.log(err)
-        res.status(400).send(err)
-    })
-});
-// create delete
-app.delete('/deleteProduct', function (req, res) {
-    var data = req.body;
-    try {
-        admin.firestore().collection('Product').doc(data.id).delete();
-        res.status(200);
-        res.send('Success');
-    } catch (e) {
-        res.status(400);
-        res.send("error: " + e);
-    }
-});
+// // Create Product
+// app.post('/CreateProduct', function (req, res) {
+//     var data = req.body;
+//     admin.database().ref("/Product/" + data.uid).update(
+//         data.payload
+//     ).then(() => {
+//         console.log('Success')
+//         res.send(userrecord)
+//     }).catch(err => {
+//         console.log(err)
+//         res.status(400).send(err)
+//     })
+// });
+// // create delete
+// app.delete('/deleteProduct', function (req, res) {
+//     var data = req.body;
+//     try {
+//         admin.firestore().collection('Product').doc(data.id).delete();
+//         res.status(200);
+//         res.send('Success');
+//     } catch (e) {
+//         res.status(400);
+//         res.send("error: " + e);
+//     }
+// });
 
-//import to database
-app.put('/savePicture', function (req, res) {
-    var data = req.body;
-    try {
-        admin.firestore().collection('Product').doc(data.id).set(data.url);
-        res.status(200);
-        res.send('Success');
-    } catch (e) {
-        res.status(400);
-        res.send("error: " + e);
-    }
+// //import to database
+// app.put('/savePicture', function (req, res) {
+//     var data = req.body;
+//     try {
+//         admin.firestore().collection('Product').doc(data.id).set(data.url);
+//         res.status(200);
+//         res.send('Success');
+//     } catch (e) {
+//         res.status(400);
+//         res.send("error: " + e);
+//     }
 
-})
+// })
 
-// delete picture on database'Product'
-app.delete('/deletePictureProduct', function (req, res) {
-    var data = req.body;
-    try {
-        admin.firestore().collection('Product').doc(data.id).delete();
-        res.status(200);
-        res.send('Success');
-    } catch (e) {
-        res.status(400);
-        res.send("error: " + e);
-    }
-});
+// // delete picture on database'Product'
+// app.delete('/deletePictureProduct', function (req, res) {
+//     var data = req.body;
+//     try {
+//         admin.firestore().collection('Product').doc(data.id).delete();
+//         res.status(200);
+//         res.send('Success');
+//     } catch (e) {
+//         res.status(400);
+//         res.send("error: " + e);
+//     }
+// });
 
 
 //get AllProduct
