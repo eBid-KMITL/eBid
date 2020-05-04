@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Moment from 'react-moment';
 import 'moment/locale/th';
 import logo from "../../assets/eBid.png";
@@ -9,9 +9,34 @@ import firebase from "firebase";
 export const NavBar = ({ userInfo }) => {
   const location = useLocation();
   const [name, setName] = useState("");
+  const [Users, setUser] = useState("")
+  let users = []
+  let userName = ''
+  firebase.firestore().collection('user').onSnapshot(snapshot=>{
+    console.log('snap')
+    users = []
+    snapshot.forEach(doc=>{
+      const data = doc.data()
+      data.uid=doc.id
+      users.push(data)
+      if (firebase.auth().currentUser && data.uid === firebase.auth().currentUser.uid){
+        userName = data.displayName
+        setUserName()
+      }
+    })
+    // setUsers()
+    // setUser(users)
+  })
+  firebase.firestore().collection('Product').onSnapshot(snapshot => {
+    console.log('snap of Product')
+  })
+  function setUserName(){
+    // console.log(userName)
+    setName(userName)
+  }
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      setName(firebase.auth().currentUser.displayName)
+      
     }
   });
   var formatter = new Intl.NumberFormat('th-TH', {

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import { Login, Register, Forgot, Home, Error, Result, Profile, Product, Contact, Topup, Category, AddProduct } from "./pages"
 import { NavBar } from "./components"
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase"
 import { firebaseConfig } from './firebase_config.js'
 import axios from 'axios'

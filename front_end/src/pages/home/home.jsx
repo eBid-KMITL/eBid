@@ -1,10 +1,10 @@
 import React from "react";
 import { Slideshow, ProductFrame, CateBar } from "../../components";
 import { Helmet } from "react-helmet";
-import p1 from "../../assets/products-pics/ip11.png"
-import p2 from "../../assets/products-pics/macbook.png"
-import p3 from "../../assets/products-pics/watch.jpg"
-import p4 from "../../assets/products-pics/bag.jpg"
+import p1 from "../../assets/products-pics/ip11.png";
+import p2 from "../../assets/products-pics/macbook.png";
+import p3 from "../../assets/products-pics/watch.jpg";
+import p4 from "../../assets/products-pics/bag.jpg";
 
 export const Home = () => {
   const details = [
@@ -28,11 +28,11 @@ export const Home = () => {
         <div className="home-content">
           <div className="content-hot">
             <h2 id="hot"><span role="img" aria-label="fire">&nbsp;🔥</span> กำลังมาแรง!</h2>
-            {details.map(detail => <ProductFrame details={detail} />)}
+            {details.map((detail, index) => <ProductFrame details={detail} key={index} />)}
           </div>
           <div className="content-timeout">
             <h2 id="timeout"><span role="img" aria-label="clock">&nbsp;⏰</span> ใกล้หมดเวลาแล้ว!</h2>
-            {details.map(detail => <ProductFrame details={detail} />)}
+            {details.map((detail, index) => <ProductFrame details={detail} key={index} />)}
           </div>
         </div>
       </div>

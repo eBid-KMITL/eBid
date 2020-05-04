@@ -5,18 +5,9 @@ import NavigationPrompt from "react-router-navigation-prompt";
 import Modal from "react-responsive-modal";
 import moment from "moment";
 import userinfo from "../../db/userinfo.json";
-// const details = {
-//   firstName: "ภูวดล",
-//   surName: "ลิ่มวณิชสินธุ์",
-//   gender: "ชาย",
-//   birthDay: "23/11/2542",
-//   email: "alpe_panda@hotmail.co.th",
-//   phone: "0878941296",
-//   image: profilePicture,
-// };
-
 
 export const UserProfile = ({ api }) => {
+  
   const now = moment().format("YYYY-MM-DD");
   const [state, setState] = useState(0);
   var genDer = ''
@@ -29,28 +20,38 @@ export const UserProfile = ({ api }) => {
     genDer = check
   }
 
-
   function updateProfile(e) {
     e.preventDefault();
-    api({
-      method: "get",
-      url: "/Customeruser",
-      headers: {
-        uid: id,
-        payload: {
+    const data ={
           firstName: document.getElementById("Name").value,
           lastName: document.getElementById("SurName").value,
           gender: genDer,
-          birthDay: document.getElementsByName("Birthday").value,
-          phone: document.getElementsByName("Phone").value
-        }
+          birthDay: document.getElementById("birthday").value,
+          phone: document.getElementById("phone").value
       }
-    }).then(res => {
-      console.log(res)
-      setState(0)
-    }).catch(err => {
-      console.log(err)
-    });
+      console.log('sending')
+      console.log(data)
+      firebase.firestore().collection('user').doc(id).update(data).then(()=>{
+        setState(0)
+      }).catch(err =>{
+        console.log(err)
+      })
+    // api({
+    //   method: "get",
+    //   url: "/Customeruser",
+    //   headers: {
+    //     uid: id,
+    //     firstName: 'name'
+    //   },
+    //   body: {
+    //     firstName: 'name'
+    //   }
+    // }).then(res => {
+    //   console.log(res.data)
+    //   setState(0)
+    // }).catch(err => {
+    //   console.log(err)
+    // });
   }
 
 
@@ -156,7 +157,7 @@ export const UserProfile = ({ api }) => {
                     </nobr>
                   </label>
                   <br />
-                  <form onSubmit = {e =>{updateProfile(e)}}>
+                  <form onSubmit={e => { updateProfile(e) }}>
                     <label>
                       <b>ชื่อ</b>
                       <input
@@ -231,6 +232,7 @@ export const UserProfile = ({ api }) => {
                         type="date"
                         className="inpBirthday"
                         name="Birthday"
+                        id="birthday"
                         max={now}
                         defaultValue={userinfo.birthDay}
                       />
@@ -243,6 +245,7 @@ export const UserProfile = ({ api }) => {
                         className="inpPhone"
                         placeholder="กรอกเบอร์โทร"
                         name="Phone"
+                        id="phone"
                         required
                         minLength="9"
                         defaultValue={userinfo.phone}

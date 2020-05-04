@@ -3,7 +3,7 @@ import addrPicture from "../../assets/address.png";
 import NavigationPrompt from "react-router-navigation-prompt";
 import Modal from "react-responsive-modal";
 import userinfo from "../../db/userinfo.json";
-
+import firebase from "firebase";
 // const details = {
 //   name: "นายภูวดล   ลิ่มวณิชสินธุ์",
 //   phone: "0878941296",
@@ -20,6 +20,21 @@ export const UserAddress = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const id = firebase.auth().currentUser.uid
+  function updateAdress(e) {
+    e.preventDefault();
+    const data ={
+          
+      }
+      console.log('sending')
+      console.log(data)
+      firebase.firestore().collection('user').doc(id).update(data).then(()=>{
+        setState(0)
+      }).catch(err =>{
+        console.log(err)
+      })
+    }
+
 
   return (
     <>

@@ -29,8 +29,7 @@ export const AddProduct = () => {
   const [alerted, setAlerted] = useState(false);
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const db = firebase.firestore()
+  const db = firebase.firestore();
   let keepurl = []
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -104,11 +103,12 @@ export const AddProduct = () => {
     }
     else {
       db.collection("Product").add({
-        name: document.getElementById('productName').value
-
-
-
-        
+        name: document.getElementById('productName').value,
+        category: document.getElementById("category").value,
+        startprice : document.getElementById("productStartPrice").value,
+        timeoutdate:document.getElementById("productTimeOut").value,
+        timeoutclock:document.getElementById("productTimeOut2").value,
+        description:document.getElementById("productDetail").value
       }).then(record => {
         keepurl = []
         setLoading(true);
@@ -218,8 +218,6 @@ export const AddProduct = () => {
       })
     }
   }
-
-
 
   return (
     <>

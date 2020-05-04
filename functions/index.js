@@ -65,13 +65,17 @@ app.get('/Createuser', function (req, res) {
 // Customer user
 app.get('/Customeruser', function (req, res) {
     var data = req.headers;
-    admin.database().ref("/User/" + data.uid).update(
-        data.payload
+    console.log(data.uid)
+    console.log(req.body.firstName)
+    console.log(data.firstName)
+    admin.database().ref("User/" + data.uid).update(
+        // data.payload
+        {nothing: "none"}
     ).then(() => {
-        console.log('Success')
-        res.send(userrecord)
+        console.log('Success2')
+        res.send(data.payload)
     }).catch(err => {
-        console.log(err)
+        // console.log(err)
         res.status(400).send(err)
     })
 });
