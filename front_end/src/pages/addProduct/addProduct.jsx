@@ -7,6 +7,7 @@ import addSymbol from "../../assets/add.svg";
 import NavigationPrompt from "react-router-navigation-prompt";
 import Modal from "react-responsive-modal";
 import moment from "moment";
+import { Ellipsis } from 'react-spinners-css';
 
 var pic = 0;
 
@@ -22,9 +23,10 @@ export const AddProduct = () => {
   const [countPic, setCountPic] = useState(pic);
   const [outcome, setOutcome] = useState(1);
   const [alerted, setAlerted] = useState(false);
-
+  const [loading, setLoading] = useState([false, false, false, false]);
+  const [sent, setSent] = useState(false);
   const db = firebase.firestore()
-  
+
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -93,33 +95,29 @@ export const AddProduct = () => {
     }
     else {
       db.collection("Product").add({
-          name : document.getElementById('productName').value
-      }).then(record =>{
+        name: document.getElementById('productName').value
+      }).then(record => {
         if (pic1) {
-          storageRef = firebase.storage().ref("imageProduct/"+record.id).child("pic1").put(pic1);
-          storageRef.on(state_changed,snapshot=>{
-              //หมุน ๆ
+          storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(pic1);
+          storageRef.on(state_changed, snapshot => {
+          },
+            error => {
+              console.log(error.message)
             },
-            error=>{
-                console.log(error.message)
-              },
-            ()=>{
-                //หยุดหมุน
-                storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+            () => {
+              storageRef.snapshot.ref.getDownloadURL().then((url) => {
 
-                });
+              });
             }
           );
         }
-      }).catch(err =>{
+      }).catch(err => {
         console.log(err)
       })
 
-      
+
 
     }
-
-
   }
 
   return (
@@ -374,7 +372,7 @@ export const AddProduct = () => {
                   />
                 </label>
                 <button type="submit" className="btn-submit">
-                  ยืนยันการลงประมูลสินค้า
+                  {sent ? ("ส่งแล้ว") : (loading ? <Ellipsis color="white" size={40} /> : "รีเซ็ตรหัสผ่าน")}
                 </button>
               </form>
             </div>
