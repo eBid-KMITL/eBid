@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Moment from 'react-moment';
 import 'moment/locale/th';
 import logo from "../../assets/eBid.png";
