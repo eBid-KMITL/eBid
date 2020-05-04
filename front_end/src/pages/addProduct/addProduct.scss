@@ -255,7 +255,9 @@ $shadow: 0 3px 6px 0 #00000048;
 
       .btn-submit {
         margin          : 25px 0px 25px 140px;
-        align-items: center;
+        width           : 283px;
+        height          : 45;
+        align-items     : center;
         padding         : 10px 50px;
         font-size       : 18px;
         font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
@@ -274,6 +276,16 @@ $shadow: 0 3px 6px 0 #00000048;
 
         &:focus {
           outline: none;
+        }
+
+        &:disabled {
+          margin          : 25px 0px 25px 200px;
+          width           : 180px;
+          height          : 44px;
+          padding         : 3px;
+          cursor          : not-allowed;
+          background-color: #df8e25;
+          box-shadow      : 0 0 16px 3px #ffffff00;
         }
       }
     }

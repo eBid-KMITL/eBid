@@ -7,6 +7,7 @@ import addSymbol from "../../assets/add.svg";
 import NavigationPrompt from "react-router-navigation-prompt";
 import Modal from "react-responsive-modal";
 import moment from "moment";
+import { Ellipsis } from 'react-spinners-css';
 
 var pic = 0;
 
@@ -26,6 +27,8 @@ export const AddProduct = () => {
   const [countPic, setCountPic] = useState(pic);
   const [outcome, setOutcome] = useState(1);
   const [alerted, setAlerted] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const db = firebase.firestore()
   let keepurl = []
@@ -104,7 +107,7 @@ export const AddProduct = () => {
         name: document.getElementById('productName').value
       }).then(record => {
         keepurl = []
-        //หมุน ๆ
+        setLoading(true);
         const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(prepic1);
     storageRef.on("state_changed", snapshot => {
     },
@@ -160,14 +163,16 @@ export const AddProduct = () => {
                                     order: 4
                                   })
                                 }).then(() => {
-                                  //หยุดหมุน
+                                  setSent(true);
+                                  setLoading(false);
                                   console.log(keepurl)
                                 })
                               }
                             );
                           }
                           else{
-                            //หยุดหมุน
+                            setSent(true);
+                            setLoading(false);
                             console.log(keepurl)
                           }
                         })
@@ -175,7 +180,8 @@ export const AddProduct = () => {
                     );
                   }
                   else{
-                    //หยุดหมุน
+                    setSent(true);
+                    setLoading(false);
                     console.log(keepurl)
                   }
                 })
@@ -444,8 +450,8 @@ export const AddProduct = () => {
                     onInput={() => checkForActivatedAlert()}
                   />
                 </label>
-                <button type="submit" className="btn-submit">
-                  ยืนยันการลงประมูลสินค้า
+                <button type="submit" className="btn-submit" disabled={loading||sent}>
+                {sent ? ("ลงข้อมูลสินค้าแล้ว") : (loading ? <Ellipsis color="white" size={40} /> : "ยืนยันการลงประมูลสินค้า")}
                 </button>
               </form>
             </div>
