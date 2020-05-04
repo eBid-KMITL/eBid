@@ -14,6 +14,10 @@ export const AddProduct = () => {
   const now = moment().add("1", "d").format("YYYY-MM-DD");
   const history = useHistory();
   const imageMaxSize = 3000000; // bytes
+  const [prepic1, setprepic1] = useState(null);
+  const [prepic2, setprepic2] = useState(null);
+  const [prepic3, setprepic3] = useState(null);
+  const [prepic4, setprepic4] = useState(null);
   const [pic1, setPic1] = useState(null);
   const [pic2, setPic2] = useState(null);
   const [pic3, setPic3] = useState(null);
@@ -37,18 +41,22 @@ export const AddProduct = () => {
         reader.onload = () => {
           if (pic === 0) {
             setPic1(URL.createObjectURL(file));
+            setprepic1(file)
             setOutcome(0);
             pic++;
           } else if (pic === 1) {
             setPic2(URL.createObjectURL(file));
+            setprepic2(file)
             setOutcome(0);
             pic++;
           } else if (pic === 2) {
             setPic3(URL.createObjectURL(file));
+            setprepic3(file)
             setOutcome(0);
             pic++;
           } else if (pic === 3) {
             setPic4(URL.createObjectURL(file));
+            setprepic4(file)
             setOutcome(0);
             pic++;
           }
@@ -97,17 +105,7 @@ export const AddProduct = () => {
       }).then(record => {
         keepurl = []
         //หมุน ๆ
-        uploadPicture(record)
-        //หยุดหมุน
-        console.log(keepurl)
-      }).catch(err => {
-        console.log(err)
-      })
-    }
-  }
-
-  function uploadPicture(record) {
-    const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(pic1);
+        const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(prepic1);
     storageRef.on("state_changed", snapshot => {
     },
       error => {
@@ -120,57 +118,80 @@ export const AddProduct = () => {
             order: 1
           })
         }).then(() => {
-          const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(pic2);
-          storageRef.on("state_changed", snapshot => {
-          },
-            error => {
-              console.log(error.message)
+          if (prepic2) {
+            const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(prepic2);
+            storageRef.on("state_changed", snapshot => {
             },
-            () => {
-              storageRef.snapshot.ref.getDownloadURL().then((url) => {
-                keepurl.push({
-                  url: url,
-                  order: 2
-                })
-              }).then(() => {
-                const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(pic3);
-                storageRef.on("state_changed", snapshot => {
-                },
-                  error => {
-                    console.log(error.message)
-                  },
-                  () => {
-                    storageRef.snapshot.ref.getDownloadURL().then((url) => {
-                      keepurl.push({
-                        url: url,
-                        order: 3
-                      })
-                    }).then(() => {
-                      const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(pic4);
-                      storageRef.on("state_changed", snapshot => {
+              error => {
+                console.log(error.message)
+              },
+              () => {
+                storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                  keepurl.push({
+                    url: url,
+                    order: 2
+                  })
+                }).then(() => {
+                  if (prepic3) {
+                    const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(prepic3);
+                    storageRef.on("state_changed", snapshot => {
+                    },
+                      error => {
+                        console.log(error.message)
                       },
-                        error => {
-                          console.log(error.message)
-                        },
-                        () => {
-                          storageRef.snapshot.ref.getDownloadURL().then((url) => {
-                            keepurl.push({
-                              url: url,
-                              order: 4
-                            })
+                      () => {
+                        storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                          keepurl.push({
+                            url: url,
+                            order: 3
                           })
-                        }
-                      );
-                    })
+                        }).then(() => {
+                          if (prepic4) {
+                            const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(prepic4);
+                            storageRef.on("state_changed", snapshot => {
+                            },
+                              error => {
+                                console.log(error.message)
+                              },
+                              () => {
+                                storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                                  keepurl.push({
+                                    url: url,
+                                    order: 4
+                                  })
+                                }).then(() => {
+                                  //หยุดหมุน
+                                  console.log(keepurl)
+                                })
+                              }
+                            );
+                          }
+                          else{
+                            //หยุดหมุน
+                            console.log(keepurl)
+                          }
+                        })
+                      }
+                    );
                   }
-                );
-              })
-            }
-          );
+                  else{
+                    //หยุดหมุน
+                    console.log(keepurl)
+                  }
+                })
+              }
+            );
+          }
         })
       }
     );
+      }).catch(err => {
+          console.log(err)
+        })
+    }
   }
+
+
 
   return (
     <>
