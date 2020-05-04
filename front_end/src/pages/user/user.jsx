@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  UserProfile,
-  UserAccount,
-  UserAddress,
-  UserPassword,
-  UserMyStatement,
-  UserMyProduct,
-} from "../../components";
+import { UserProfile, UserAccount, UserAddress, UserPassword, UserMyStatement, UserMyProduct } from "../../components";
 import firebase from "firebase";
 import profilePicture from "../../assets/Profile.png";
 import moneyPicture from "../../assets/eGold.png";

@@ -4,17 +4,6 @@ import NavigationPrompt from "react-router-navigation-prompt";
 import Modal from "react-responsive-modal";
 import userinfo from "../../db/userinfo.json";
 
-// const details = {
-//   name: "นายภูวดล   ลิ่มวณิชสินธุ์",
-//   phone: "0878941296",
-//   otherAddress: "บ้าน admin_alps 42/2 หมู่ 2",
-//   subDistrict: "บางเป้า",
-//   district: "กันตัง",
-//   province: "ตรัง",
-//   postalCode: "92110",
-//   image: addrPicture,
-// };
-
 export const UserAddress = () => {
   const [state, setState] = useState(0);
   useEffect(() => {

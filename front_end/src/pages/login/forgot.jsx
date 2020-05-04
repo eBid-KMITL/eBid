@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logoID from "../../assets/eID.png";
 import { Link, useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import firebase from "firebase"
+import firebase from "firebase";
 import { FaExclamationCircle } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { Ellipsis } from 'react-spinners-css';

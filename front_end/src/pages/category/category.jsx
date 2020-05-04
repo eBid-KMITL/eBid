@@ -2,8 +2,6 @@ import React from "react";
 import { ProductFrame, CateBar } from "../../components";
 import { useLocation, useHistory } from 'react-router-dom';
 import { Helmet } from "react-helmet";
-// import p1 from "../../assets/products-pics/ip11.png"
-// import p2 from "../../assets/products-pics/macbook.png"
 import c1 from "../../db/db_c1.json";
 import c2 from "../../db/db_c2.json";
 import c3 from "../../db/db_c3.json";
@@ -19,12 +17,6 @@ export const Category = () => {
   }
   const history = useHistory();
   const id = useQuery().get("id");
-  // const details = [
-  //   { name: "iPhone 11 64GB", price: 35800, owner: "e_shop", time: "2020-04-12T18:59+0700", nbid: 22, img: p1, id: 1 },
-  //   { name: "MacBook Pro 16\"", price: 47100, owner: "e_shop", time: "2020-04-15T09:59+0700", nbid: 15, img: p2, id: 2 },
-  //   { name: "MacBook Pro 15\"", price: 47100, owner: "e_shop", time: "2020-04-22T22:59+0700", nbid: 21, img: p2, id: 5 },
-  // ]
-  // const category = db.filter(d => d.category == id);
 
   return (
     <div className="category-main">

@@ -5,12 +5,11 @@ import Modal from 'react-responsive-modal';
 import './product.scss';
 import { FaSyncAlt, FaClock, FaUserCircle, FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoMdPricetags } from "react-icons/io";
-import { MdVerifiedUser } from "react-icons/md"
+import { MdVerifiedUser } from "react-icons/md";
 import Moment from 'react-moment';
-import firebase from "firebase"
+import firebase from "firebase";
 import moment from "moment";
 import db from "../../db/product.json";
-// import img[1] from "../../assets/products-pics/pic-big/mac1.png"
 
 export const Product = ({ userInfo }) => {
   // var product_id;
