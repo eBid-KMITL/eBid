@@ -8,7 +8,7 @@ export const UserPassword = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  const [sent, setSent] = useState(true);
+  const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
