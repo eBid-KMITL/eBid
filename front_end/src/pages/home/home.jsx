@@ -28,11 +28,11 @@ export const Home = () => {
         <div className="home-content">
           <div className="content-hot">
             <h2 id="hot"><span role="img" aria-label="fire">&nbsp;🔥</span> กำลังมาแรง!</h2>
-            {details.map(detail => <ProductFrame details={detail} />)}
+            {details.map((detail, index) => <ProductFrame details={detail} key={index} />)}
           </div>
           <div className="content-timeout">
             <h2 id="timeout"><span role="img" aria-label="clock">&nbsp;⏰</span> ใกล้หมดเวลาแล้ว!</h2>
-            {details.map(detail => <ProductFrame details={detail} />)}
+            {details.map((detail, index) => <ProductFrame details={detail} key={index} />)}
           </div>
         </div>
       </div>
