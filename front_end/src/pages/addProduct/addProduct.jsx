@@ -21,7 +21,6 @@ export const AddProduct = () => {
   const [bigImg, setBigImg] = useState(null);
   const [countPic, setCountPic] = useState(pic);
   const [outcome, setOutcome] = useState(1);
-
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     maxSize: imageMaxSize,
@@ -31,8 +30,6 @@ export const AddProduct = () => {
         reader.onabort = () => console.log("file reading was aborted");
         reader.onerror = () => console.log("file reading has failed");
         reader.onload = () => {
-          // Do whatever you want with the file contents
-          console.log(pic);
           if (pic === 0) {
             setPic1(URL.createObjectURL(file));
             setOutcome(0);
@@ -61,11 +58,20 @@ export const AddProduct = () => {
     setOutcome(1);
     pic = 0;
     setCountPic(pic);
-    console.log(pic);
     setPic1(null);
     setPic2(null);
     setPic3(null);
     setPic4(null);
+  }
+
+  function sendProduct(e) {
+    e.preventDefault();
+    if (pic1 == null && pic2 == null) {
+      alert("ไม่พบรูปภาพ กรุณาลงรูปสินค้าอย่างน้อย 2 รูป")
+    }
+    else {
+      // sendProduct to DB
+    }
   }
 
   return (
@@ -247,7 +253,7 @@ export const AddProduct = () => {
           </div>
           <div className="addProduct-detail-box">
             <div className="addProduct-detail">
-              <form>
+              <form onSubmit={e => sendProduct(e)}>
                 <label>
                   ชื่อสินค้า :{" "}
                   <input
@@ -322,7 +328,7 @@ export const AddProduct = () => {
           </div>
         </div>
       ) : (
-        history.push("/login?from=addproduct")
+        history.push("/login")
       )}
     </>
   );
