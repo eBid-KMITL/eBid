@@ -23,7 +23,7 @@ export const AddProduct = () => {
   const [countPic, setCountPic] = useState(pic);
   const [outcome, setOutcome] = useState(1);
   const [alerted, setAlerted] = useState(false);
-  const [loading, setLoading] = useState([false, false, false, false]);
+  const [loading, setLoading] = useState(true);
   const [sent, setSent] = useState(false);
   const db = firebase.firestore()
   let keepurl = []
@@ -98,7 +98,7 @@ export const AddProduct = () => {
         name: document.getElementById('productName').value
       }).then(record => {
         keepurl = []
-         //หมุน ๆ
+        setLoading(true);
         if (pic1) {
           const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(pic1);
           storageRef.on(state_changed, snapshot => {
@@ -167,13 +167,11 @@ export const AddProduct = () => {
             }
           );
         }
-         //หยุดหมุน
+        setSent(true);
+        setLoading(false);
       }).catch(err => {
         console.log(err)
       })
-    }
-
-
     }
   }
 
@@ -428,7 +426,7 @@ export const AddProduct = () => {
                     onInput={() => checkForActivatedAlert()}
                   />
                 </label>
-                <button type="submit" className="btn-submit">
+                <button type="submit" className="btn-submit" disabled={loading||sent}>
                   {sent ? ("ส่งแล้ว") : (loading ? <Ellipsis color="white" size={40} /> : "รีเซ็ตรหัสผ่าน")}
                 </button>
               </form>
