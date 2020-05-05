@@ -25,7 +25,11 @@ export const Register = ({api}) => {
       firebase.firestore().collection('user').doc(userRecord.user.uid).set({
         displayName: name,
         email: email,
-        balance: 0
+        balance: 0,
+        used:0,
+        recieve:0,
+        biddingPID:[],
+        sellingPID:[]
       })
     }).then(() => {
       history.push('/login');

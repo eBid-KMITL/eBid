@@ -30,6 +30,8 @@ export const AddProduct = () => {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const db = firebase.firestore();
+  // const id = firebase.auth().currentUser.uid
+  const id ='VbcxIsGXNveiOjuaHuSDJ650dnI2'
   let keepurl = []
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -105,10 +107,15 @@ export const AddProduct = () => {
       db.collection("Product").add({
         name: document.getElementById('productName').value,
         category: document.getElementById("category").value,
-        startprice : document.getElementById("productStartPrice").value,
+        price : document.getElementById("productStartPrice").value,
         timeoutdate:document.getElementById("productTimeOut").value,
         timeoutclock:document.getElementById("productTimeOut2").value,
-        description:document.getElementById("productDetail").value
+        description:document.getElementById("productDetail").value,
+        nbid:0,
+        owner:"",
+        ownerid:id,
+        bidder:"",
+        bidderid:""
       }).then(record => {
         keepurl = []
         setLoading(true);

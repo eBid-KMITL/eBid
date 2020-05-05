@@ -10,8 +10,10 @@ export const NavBar = ({ userInfo }) => {
   const location = useLocation();
   const [name, setName] = useState("");
   const [Users, setUser] = useState("")
+  const [coin,setCoin] = useState("")
   let users = []
   let userName = ''
+  let eCoin = ''
   firebase.firestore().collection('user').onSnapshot(snapshot=>{
     console.log('snap')
     users = []
@@ -21,6 +23,7 @@ export const NavBar = ({ userInfo }) => {
       users.push(data)
       if (firebase.auth().currentUser && data.uid === firebase.auth().currentUser.uid){
         userName = data.displayName
+        eCoin = data.balance
         setUserName()
       }
     })
@@ -31,9 +34,10 @@ export const NavBar = ({ userInfo }) => {
     console.log('snap of Product')
   })
   function setUserName(){
-    // console.log(userName)
     setName(userName)
+    setCoin(eCoin)
   }
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       
@@ -96,7 +100,7 @@ export const NavBar = ({ userInfo }) => {
               {firebase.auth().currentUser ? (
                 <div className="user-status">
                   <FaUserCircle /> <Link to="/profile" title="ไปที่หน้าโปรไฟล์">{name}</Link><br />
-                  <p title={formatter.format(userInfo.amount) + " eCoin"} style={{ margin: 0, cursor: "default" }}><FaCoins /> {formatter.format(userInfo.amount)} eCoins</p>
+                  <p title={coin + " eCoin"} style={{ margin: 0, cursor: "default" }}><FaCoins /> {coin} eCoins</p>
                 </div>
               ) : (
                   <Link to="/login">

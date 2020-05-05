@@ -20,20 +20,28 @@ export const UserAddress = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const id = firebase.auth().currentUser.uid
+  // const id = firebase.auth().currentUser.uid
+  const id ='VbcxIsGXNveiOjuaHuSDJ650dnI2'
+
   function updateAdress(e) {
     e.preventDefault();
-    const data ={
-          
-      }
-      console.log('sending')
-      console.log(data)
-      firebase.firestore().collection('user').doc(id).update(data).then(()=>{
-        setState(0)
-      }).catch(err =>{
-        console.log(err)
-      })
+    const data = {
+      recipient: document.getElementById("recipient"),
+      tell: document.getElementById("tell"),
+      address: document.getElementById("address"),
+      subDistrict: document.getElementById("subDistrict"),
+      district: document.getElementById("district"),
+      province: document.getElementById("province"),
+      postalCode: document.getElementById("postalCode")
     }
+    console.log('sending')
+    console.log(data)
+    firebase.firestore().collection('user').doc(id).update(data).then(() => {
+      setState(0)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
 
 
   return (
@@ -135,6 +143,7 @@ export const UserAddress = () => {
                       type="text"
                       placeholder="กรอกชื่อ-สกุล"
                       className="inpName"
+                      id="recipient"
                       name="Name"
                       required
                       minLength="20"
@@ -148,6 +157,7 @@ export const UserAddress = () => {
                       type="text"
                       className="inpAddressOther"
                       placeholder="กรอกที่อยู่"
+                      id="address"
                       name="OtherAddress"
                       required
                       minLength="5"
@@ -161,6 +171,7 @@ export const UserAddress = () => {
                       type="text"
                       className="inpAddressSubDis"
                       placeholder="กรอกตำบล/แขวง"
+                      id="subDistrict"
                       name="Subdistrict"
                       required
                       minLength="5"
@@ -174,6 +185,7 @@ export const UserAddress = () => {
                       type="text"
                       className="inpAddressDis"
                       placeholder="กรอกอำเภอ/เขต"
+                      id="district"
                       name="District"
                       required
                       minLength="5"
@@ -187,6 +199,7 @@ export const UserAddress = () => {
                       type="text"
                       className="inpAddressProv"
                       placeholder="กรอกจังหวัด"
+                      id="province"
                       name="Province"
                       required
                       minLength="5"
@@ -200,6 +213,7 @@ export const UserAddress = () => {
                       type="number"
                       className="inpPostalCode"
                       placeholder="กรอกรหัสไปรษณีย์"
+                      id="postalCode"
                       name="PostalCode"
                       required
                       minLength="5"
@@ -213,6 +227,7 @@ export const UserAddress = () => {
                       type="tel"
                       className="inpPhone"
                       placeholder="กรอกเบอร์โทร"
+                      id="tell"
                       name="Phone"
                       required
                       minLength="9"
