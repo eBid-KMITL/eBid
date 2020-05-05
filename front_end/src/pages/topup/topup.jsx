@@ -6,6 +6,29 @@ import { useHistory } from "react-router-dom";
 
 export const Topup = () => {
   const history = useHistory();
+  // const id = firebase.auth().currentUser.uid
+  const id = 'VbcxIsGXNveiOjuaHuSDJ650dnI2'
+  let getCode = ''
+  let coin = 0
+  let balance = 0
+  function getCoin(e) {
+    e.preventDefault();
+    getCode = document.getElementById("code").value
+    if (getCode === "123456") {
+      coin = 100
+    }
+    else if (getCode === "123456789"){
+      coin = 1000
+    }
+    firebase.firestore().collection('user').doc(id).update({
+      balance : balance + coin
+    }).then(()=>{
+      console.log("succes")
+    }).catch(err =>{
+      console.log(err)
+    })
+  }
+
 
   return (
     <>
@@ -17,10 +40,10 @@ export const Topup = () => {
           </div>
           <div className="topup-container">
             <h1>เติมเงิน</h1>
-            <form>
+            <form onSubmit={e => { getCoin(e) }}>
               <div className="form-group">
-                <input type="text" name="Code" placeholder="กรอกรหัสเติมเงิน" required />
-                <p style={{margin: 0}}>1 บาท มีค่าเท่ากับ 1 eCoin</p>
+                <input type="text" id="code" name="Code" placeholder="กรอกรหัสเติมเงิน" required />
+                <p style={{ margin: 0 }}>1 บาท มีค่าเท่ากับ 1 eCoin</p>
               </div>
               <div className="button-wrapper">
                 <button type="submit" className="btn">

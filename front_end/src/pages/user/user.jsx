@@ -11,7 +11,7 @@ import { useState } from "react";
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 
-export const Profile = () => {
+export const Profile = ({ api }) => {
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -136,19 +136,19 @@ export const Profile = () => {
               {(() => {
                 switch (mode) {
                   case 0:
-                    return <UserProfile />;
+                    return <UserProfile api={api}/>;
                   case 1:
-                    return <UserAccount />;
+                    return <UserAccount api={api}/>;
                   case 2:
-                    return <UserAddress />;
+                    return <UserAddress api={api}/>;
                   case 3:
-                    return <UserPassword />;
+                    return <UserPassword api={api}/>;
                   case 4:
-                    return <UserMyStatement />;
+                    return <UserMyStatement api={api}/>;
                   case 5:
-                    return <UserMyProduct />;
+                    return <UserMyProduct api={api}/>;
                   default:
-                    return <UserProfile />;
+                    return <UserProfile api={api}/>;
                 }
               })()}
             </div>

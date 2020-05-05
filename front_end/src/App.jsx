@@ -18,18 +18,18 @@ const App = () => {
       <Router>
         <NavBar userInfo={userInfo} />
         <Switch>
-          <Route exact path="/"><Home api={api}/></Route>
-          <Route exact path="/login"><Login /></Route>
-          <Route exact path="/register"><Register /></Route>
-          <Route exact path="/forgot"><Forgot /></Route>
-          <Route path="/result"><Result /></Route>
-          <Route path="/profile"><Profile api={api}/></Route>
-          <Route path="/product"><Product userInfo={userInfo} api={api}/></Route>
-          <Route exact path="/contact"><Contact /></Route>
-          <Route exact path="/topup"><Topup /></Route>
-          <Route path="/category"><Category /></Route>
-          <Route path="/addproduct"><AddProduct /></Route>
-          <Route path="/"><Error /></Route>
+          <Route exact path="/" ><Home api={api}/></Route>
+          <Route exact path="/login" ><Login api={api}/></Route>
+          <Route exact path="/register" ><Register api={api}/></Route>
+          <Route exact path="/forgot" ><Forgot api={api}/></Route>
+          <Route path="/result" ><Result api={api}/></Route>
+          <Route path="/profile"  ><Profile api={api}/></Route>
+          <Route path="/product"><Product api={api}/></Route>
+          <Route exact path="/contact" ><Contact api={api}/></Route>
+          <Route exact path="/topup" ><Topup api={api}/></Route>
+          <Route path="/category" ><Category api={api}/></Route>
+          <Route path="/addproduct" ><AddProduct api={api}/></Route>
+          <Route path="/" ><Error api={api}/></Route>
         </Switch>
       </Router>
     </div>

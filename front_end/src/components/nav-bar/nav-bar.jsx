@@ -9,9 +9,38 @@ import firebase from "firebase";
 export const NavBar = ({ userInfo }) => {
   const location = useLocation();
   const [name, setName] = useState("");
+  const [Users, setUser] = useState("")
+  const [coin,setCoin] = useState("")
+  let users = []
+  let userName = ''
+  let eCoin = ''
+  firebase.firestore().collection('user').onSnapshot(snapshot=>{
+    console.log('snap')
+    users = []
+    snapshot.forEach(doc=>{
+      const data = doc.data()
+      data.uid=doc.id
+      users.push(data)
+      if (firebase.auth().currentUser && data.uid === firebase.auth().currentUser.uid){
+        userName = data.displayName
+        eCoin = data.balance
+        setUserName()
+      }
+    })
+    // setUsers()
+    // setUser(users)
+  })
+  firebase.firestore().collection('Product').onSnapshot(snapshot => {
+    console.log('snap of Product')
+  })
+  function setUserName(){
+    setName(userName)
+    setCoin(eCoin)
+  }
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      setName(firebase.auth().currentUser.displayName)
+      
     }
   });
   var formatter = new Intl.NumberFormat('th-TH', {
@@ -71,7 +100,7 @@ export const NavBar = ({ userInfo }) => {
               {firebase.auth().currentUser ? (
                 <div className="user-status">
                   <FaUserCircle /> <Link to="/profile" title="ไปที่หน้าโปรไฟล์">{name}</Link><br />
-                  <p title={formatter.format(userInfo.amount) + " eCoin"} style={{ margin: 0, cursor: "default" }}><FaCoins /> {formatter.format(userInfo.amount)} eCoins</p>
+                  <p title={coin + " eCoin"} style={{ margin: 0, cursor: "default" }}><FaCoins /> {coin} eCoins</p>
                 </div>
               ) : (
                   <Link to="/login">

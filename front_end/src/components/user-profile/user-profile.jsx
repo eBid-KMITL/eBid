@@ -6,22 +6,54 @@ import Modal from "react-responsive-modal";
 import moment from "moment";
 import userinfo from "../../db/userinfo.json";
 
-// const details = {
-//   firstName: "ภูวดล",
-//   surName: "ลิ่มวณิชสินธุ์",
-//   gender: "ชาย",
-//   birthDay: "23/11/2542",
-//   email: "alpe_panda@hotmail.co.th",
-//   phone: "0878941296",
-//   image: profilePicture,
-// };
-
-export const UserProfile = () => {
+export const UserProfile = ({ api }) => {
+  
   const now = moment().format("YYYY-MM-DD");
   const [state, setState] = useState(0);
+  var genDer = ''
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const id = firebase.auth().currentUser.uid
+
+  function checkGender(check) {
+    genDer = check
+  }
+
+  function updateProfile(e) {
+    e.preventDefault();
+    const data ={
+          firstName: document.getElementById("Name").value,
+          lastName: document.getElementById("SurName").value,
+          gender: genDer,
+          birthDay: document.getElementById("birthday").value,
+          phone: document.getElementById("phone").value
+      }
+      console.log('sending')
+      console.log(data)
+      firebase.firestore().collection('user').doc(id).update(data).then(()=>{
+        setState(0)
+      }).catch(err =>{
+        console.log(err)
+      })
+    // api({
+    //   method: "get",
+    //   url: "/Customeruser",
+    //   headers: {
+    //     uid: id,
+    //     firstName: 'name'
+    //   },
+    //   body: {
+    //     firstName: 'name'
+    //   }
+    // }).then(res => {
+    //   console.log(res.data)
+    //   setState(0)
+    // }).catch(err => {
+    //   console.log(err)
+    // });
+  }
+
 
   return (
     <>
@@ -125,11 +157,12 @@ export const UserProfile = () => {
                     </nobr>
                   </label>
                   <br />
-                  <form>
+                  <form onSubmit={e => { updateProfile(e) }}>
                     <label>
                       <b>ชื่อ</b>
                       <input
                         type="text"
+                        id="Name"
                         placeholder="กรอกชื่อ"
                         className="inpFirstname"
                         name="Firstname"
@@ -140,6 +173,7 @@ export const UserProfile = () => {
                       <b>นามสกุล</b>
                       <input
                         type="text"
+                        id="SurName"
                         placeholder="กรอกนามสกุล"
                         className="inpSurname"
                         name="Surename"
@@ -155,10 +189,11 @@ export const UserProfile = () => {
                         ชาย
                         <input
                           type="radio"
+                          onClick={e => checkGender(e.target.value)}
                           name="gender"
                           value="male"
                           defaultChecked={
-                            userinfo.gender === "ชาย" ? true : false
+                            userinfo.gender === "male" ? true : false
                           }
                         />
                         <span className="checkmark"></span>{" "}
@@ -167,10 +202,24 @@ export const UserProfile = () => {
                         หญิง
                         <input
                           type="radio"
+                          onClick={e => checkGender(e.target.value)}
                           name="gender"
                           value="female"
                           defaultChecked={
-                            userinfo.gender === "หญิง" ? true : false
+                            userinfo.gender === "female" ? true : false
+                          }
+                        />
+                        <span className="checkmark"></span>{" "}
+                      </label>
+                      <label className="container">
+                        ไม่ระบุ
+                        <input
+                          type="radio"
+                          onClick={e => checkGender(e.target.value)}
+                          name="gender"
+                          value="other"
+                          defaultChecked={
+                            userinfo.gender === "other" ? true : false
                           }
                         />
                         <span className="checkmark"></span>{" "}
@@ -195,6 +244,7 @@ export const UserProfile = () => {
                         type="date"
                         className="inpBirthday"
                         name="Birthday"
+                        id="birthday"
                         max={now}
                         defaultValue={userinfo.birthDay}
                       />
@@ -207,6 +257,7 @@ export const UserProfile = () => {
                         className="inpPhone"
                         placeholder="กรอกเบอร์โทร"
                         name="Phone"
+                        id="phone"
                         required
                         minLength="9"
                         defaultValue={userinfo.phone}
@@ -214,21 +265,16 @@ export const UserProfile = () => {
                     </label>
                     <br />
                     <label>
-                      <b>อีเมล</b>
-                      <input
-                        type="email"
-                        className="inpEmail"
-                        placeholder="กรอกอีเมล"
-                        name="eMail"
-                        defaultValue={firebase.auth().currentUser.email}
-                      />
+                      <nobr>
+                        <b>อีเมล : </b>
+                        {firebase.auth().currentUser.email}
+                      </nobr>
                     </label>
                     <br />
                     <div className="button">
                       <button
                         type="submit"
                         className="btn"
-                        onClick={() => setState(0)}
                       >
                         ยืนยันข้อมูล
                       </button>

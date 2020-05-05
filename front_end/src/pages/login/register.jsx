@@ -16,28 +16,43 @@ export const Register = ({api}) => {
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
   const [loading, setLoading] = useState(false);
-  var db = firebase.firestore()
 
   function onRegister(e) {
     e.preventDefault();
     setLoading(true);
-    api({
-      method : "get",
-      url : "/Createuser",
-      headers : {
-        email : email,
-        password : password,
-        name : name
-      }
-    }).then(res => {
-          console.log(res)
-          history.push('/login');
-        }
-        ).catch(err => {
-          console.log(err)
-          setError(true);
-          setLoading(false);
-        });
+    firebase.auth().createUserWithEmailAndPassword(email, password).then((userRecord) => {
+      console.log(userRecord.user.uid)
+      firebase.firestore().collection('user').doc(userRecord.user.uid).set({
+        displayName: name,
+        email: email,
+        balance: 0,
+        used:0,
+        recieve:0,
+        biddingPID:[],
+        sellingPID:[]
+      })
+    }).then(() => {
+      history.push('/login');
+    }).catch(err => {
+      console.log(err)
+    })
+    // api({
+    //   method : "get",
+    //   url : "/Createuser",
+    //   headers : {
+    //     email : email,
+    //     password : password,
+    //     name : name
+    //   }
+    // }).then(res => {
+    //       console.log(res)
+    //       history.push('/login');
+    //     }
+    //     ).catch(err => {
+    //       console.log(err)
+    //       setError(true);
+    //       setLoading(false);
+    //     });
     // firebase.auth().createUserWithEmailAndPassword(email, password).then((userrecord) => {
     //   api({
     //     method : "post",
