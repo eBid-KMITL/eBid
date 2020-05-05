@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ProductFrame, CateBar } from "../../components";
 import { useLocation, useHistory } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 // import p1 from "../../assets/products-pics/ip11.png"
 // import p2 from "../../assets/products-pics/macbook.png"
 import c1 from "../../db/db_c1.json";
-import c2 from "../../db/db_c2.json";
-import c3 from "../../db/db_c3.json";
-import c4 from "../../db/db_c4.json";
-import c5 from "../../db/db_c5.json";
-import c6 from "../../db/db_c6.json";
-import c7 from "../../db/db_c7.json";
-import c8 from "../../db/db_c8.json";
+// import c2 from "../../db/db_c2.json";
+// import c3 from "../../db/db_c3.json";
+// import c4 from "../../db/db_c4.json";
+// import c5 from "../../db/db_c5.json";
+// import c6 from "../../db/db_c6.json";
+// import c7 from "../../db/db_c7.json";
+// import c8 from "../../db/db_c8.json";
+import firebase from 'firebase'
+
 
 export const Category = () => {
   function useQuery() {
@@ -25,6 +27,20 @@ export const Category = () => {
   //   { name: "MacBook Pro 15\"", price: 47100, owner: "e_shop", time: "2020-04-22T22:59+0700", nbid: 21, img: p2, id: 5 },
   // ]
   // const category = db.filter(d => d.category == id);
+  const [product, setProduct] = useState([]);
+  let pd = []
+  useEffect(() => {
+    firebase.firestore().collection('Product').onSnapshot(snapshot => {
+      console.log('snap of Product')
+      pd = []
+      snapshot.forEach(doc => {
+        var pData = doc.data()
+        pData.pid = doc.id
+        pd.push(pData)
+      })
+      setProduct(pd)
+    })
+  }, [])
 
   return (
     <div className="category-main">
@@ -38,52 +54,45 @@ export const Category = () => {
             {
               (id === "1") ? (
                 <><h2><span role="img" aria-label="cartoon">&nbsp;🎭</span> การ์ตูน</h2>
-                  {c1.map(d => <ProductFrame details={d} />)}</>
+                  {product.filter(ele => ele.category === 1).map((d, index) => <ProductFrame details={d} key={index} />)}
+                  {/* {c1.map((d, index) => <ProductFrame details={d} key={index} />)} */}
+                </>
               )
                 : (id === "2") ? (
                   <><h2><span role="img" aria-label="crown">&nbsp;👑</span> ของสะสม</h2>
-                    {c2.map(d => <ProductFrame details={d} />)}</>
+                    {product.filter(ele => ele.category === 2).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                 )
                   : (id === "3") ? (
                     <><h2><span role="img" aria-label="joystick">&nbsp;🎮</span> ของเล่น | เกมส์</h2>
-                      {c3.map(d => <ProductFrame details={d} />)}</>
+                      {product.filter(ele => ele.category === 3).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                   )
                     : (id === "4") ? (
                       <><h2><span role="img" aria-label="laptop">&nbsp;💻</span> คอมพิวเตอร์ | โทรศัพท์มือถือ</h2>
-                        {c4.map(d => <ProductFrame details={d} />)}</>
+                        {product.filter(ele => ele.category === 4).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                     )
                       : (id === "5") ? (
                         <><h2><span role="img" aria-label="books">&nbsp;📚</span> หนังสือ | สิ่งพิมพ์</h2>
-                          {c5.map(d => <ProductFrame details={d} />)}</>
+                          {product.filter(ele => ele.category === 5).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                       )
                         : (id === "6") ? (
                           <><h2><span role="img" aria-label="fashion">&nbsp;👜</span> แฟชั่น</h2>
-                            {c6.map(d => <ProductFrame details={d} />)}</>
+                            {product.filter(ele => ele.category === 6).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                         )
                           : (id === "7") ? (
                             <><h2><span role="img" aria-label="dog">&nbsp;🎬</span> ภาพยนตร์ | วิดีโอ | ดีวีดี</h2>
-                              {c7.map(d => <ProductFrame details={d} />)}</>
+                              {product.filter(ele => ele.category === 7).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                           )
                             : (id === "8") ? (
                               <><h2><span role="img" aria-label="tv">&nbsp;📺</span> อิเล็กทรอนิกส์</h2>
-                                {c8.map(d => <ProductFrame details={d} />)}</>
+                                {product.filter(ele => ele.category === 8).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                             )
                               : (id === "9") ? (
                                 <><h2>&nbsp;สินค้าทั้งหมด</h2>
-                                  {c1.map(d => <ProductFrame details={d} />)}
-                                  {c2.map(d => <ProductFrame details={d} />)}
-                                  {c3.map(d => <ProductFrame details={d} />)}
-                                  {c4.map(d => <ProductFrame details={d} />)}
-                                  {c5.map(d => <ProductFrame details={d} />)}
-                                  {c6.map(d => <ProductFrame details={d} />)}
-                                  {c7.map(d => <ProductFrame details={d} />)}
-                                  {c8.map(d => <ProductFrame details={d} />)}</>
+                                  {product.map((d, index) => <ProductFrame details={d} key={index} />)}
+                                </>
                               )
                                 : history.push("/error")
             }
-            {/* {category.map(detail => <ProductFrame details={detail.lists} />)} */}
-            {/* {details.map(detail => <ProductFrame details={detail}/>)} */}
-            {/* {console.log(a)} */}
           </div>
         </div>
       </div>

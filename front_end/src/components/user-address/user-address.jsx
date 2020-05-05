@@ -15,24 +15,24 @@ import firebase from "firebase";
 //   image: addrPicture,
 // };
 
-export const UserAddress = () => {
+export const UserAddress = ({ userData }) => {
   const [state, setState] = useState(0);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   // const id = firebase.auth().currentUser.uid
-  const id ='VbcxIsGXNveiOjuaHuSDJ650dnI2'
+  const id = userData?.uid
 
   function updateAdress(e) {
     e.preventDefault();
     const data = {
-      recipient: document.getElementById("recipient"),
-      tell: document.getElementById("tell"),
-      address: document.getElementById("address"),
-      subDistrict: document.getElementById("subDistrict"),
-      district: document.getElementById("district"),
-      province: document.getElementById("province"),
-      postalCode: document.getElementById("postalCode")
+      recipient: document.getElementById("recipient").value,
+      tell: document.getElementById("tell").value,
+      address: document.getElementById("address").value,
+      subDistrict: document.getElementById("subDistrict").value,
+      district: document.getElementById("district").value,
+      province: document.getElementById("province").value,
+      postalCode: document.getElementById("postalCode").value
     }
     console.log('sending')
     console.log(data)
@@ -94,33 +94,33 @@ export const UserAddress = () => {
                 <div className="address-detail">
                   <nobr>
                     <b>ชื่อผู้รับ : </b>
-                    {userinfo.recipient}
+                    {userData.recipient}
                   </nobr>
                   <br />
                   <nobr>
                     <b>เบอร์โทรศัพท์ : </b>
-                    {userinfo.tell}
+                    {userData.tell}
                   </nobr>
                   <br />
                   <nobr>
                     <b>ที่อยู่ : </b>
-                    {userinfo.address}
+                    {userData.address}
                   </nobr>
                   <br />
                   <nobr>
                     <b>ตำบล/แขวง : </b>
-                    {userinfo.subDistrict} <b>อำเภอ/เขต : </b>
-                    {userinfo.district}
+                    {userData.subDistrict} <b>อำเภอ/เขต : </b>
+                    {userData.district}
                   </nobr>
                   <br />
                   <nobr>
                     <b>จังหวัด : </b>
-                    {userinfo.province}
+                    {userData.province}
                   </nobr>
                   <br />
                   <nobr>
                     <b>รหัสไปรษณีย์ : </b>
-                    {userinfo.postalCode}
+                    {userData.postalCode}
                   </nobr>
                   <div className="button">
                     <button
@@ -137,120 +137,134 @@ export const UserAddress = () => {
               return (
                 <div className="address-detail">
                   <br />
-                  <label>
-                    <b>ชื่อผู้รับ</b>
-                    <input
-                      type="text"
-                      placeholder="กรอกชื่อ-สกุล"
-                      className="inpName"
-                      id="recipient"
-                      name="Name"
-                      required
-                      minLength="20"
-                      defaultValue={userinfo.recipient}
-                    />
-                  </label>
-                  <br />
-                  <label>
-                    <b>ที่อยู่</b>
-                    <input
-                      type="text"
-                      className="inpAddressOther"
-                      placeholder="กรอกที่อยู่"
-                      id="address"
-                      name="OtherAddress"
-                      required
-                      minLength="5"
-                      defaultValue={userinfo.address}
-                    />
-                  </label>
-                  <br />
-                  <label>
-                    <b>ตำบล/แขวง</b>
-                    <input
-                      type="text"
-                      className="inpAddressSubDis"
-                      placeholder="กรอกตำบล/แขวง"
-                      id="subDistrict"
-                      name="Subdistrict"
-                      required
-                      minLength="5"
-                      defaultValue={userinfo.subDistrict}
-                    />
-                  </label>
-                  <br />
-                  <label>
-                    <b>อำเภอ/เขต</b>
-                    <input
-                      type="text"
-                      className="inpAddressDis"
-                      placeholder="กรอกอำเภอ/เขต"
-                      id="district"
-                      name="District"
-                      required
-                      minLength="5"
-                      defaultValue={userinfo.district}
-                    />
-                  </label>
-                  <br />
-                  <label>
-                    <b>จังหวัด</b>
-                    <input
-                      type="text"
-                      className="inpAddressProv"
-                      placeholder="กรอกจังหวัด"
-                      id="province"
-                      name="Province"
-                      required
-                      minLength="5"
-                      defaultValue={userinfo.province}
-                    />
-                  </label>
-                  <br />
-                  <label>
-                    <b>รหัสไปรษณีย์</b>
-                    <input
-                      type="number"
-                      className="inpPostalCode"
-                      placeholder="กรอกรหัสไปรษณีย์"
-                      id="postalCode"
-                      name="PostalCode"
-                      required
-                      minLength="5"
-                      defaultValue={userinfo.postalCode}
-                    />
-                  </label>
-                  <br />
-                  <label>
-                    <b>เบอร์โทร</b>
-                    <input
-                      type="tel"
-                      className="inpPhone"
-                      placeholder="กรอกเบอร์โทร"
-                      id="tell"
-                      name="Phone"
-                      required
-                      minLength="9"
-                      defaultValue={userinfo.tell}
-                    />
-                  </label>
-                  <br />
-                  <div className="button">
-                    <button
-                      type="submit"
-                      className="btn"
-                      onClick={() => setState(0)}
-                    >
-                      ยืนยันข้อมูล
+                  <form onSubmit={e => updateAdress(e)}>
+                    <label>
+                      <b>ชื่อผู้รับ</b>
+                      <input
+                        type="text"
+                        placeholder="กรอกชื่อ-สกุล"
+                        className="inpName"
+                        id="recipient"
+                        name="Name"
+                        required
+                        minLength="5"
+                        title="กรอกชื่อผู้รับเป็นภาษาไทยเท่านั้น"
+                        pattern="^[ก-๏\s]+$"
+                        defaultValue={userData.recipient}
+                      />
+                    </label>
+                    <br />
+                    <label>
+                      <b>ที่อยู่</b>
+                      <input
+                        type="text"
+                        className="inpAddressOther"
+                        placeholder="กรอกที่อยู่"
+                        id="address"
+                        name="OtherAddress"
+                        required
+                        minLength="4"
+                        title="กรอกชื่อผู้รับเป็นภาษาไทยเท่านั้น"
+                        pattern="^[ก-๏\s0-9]+$"
+                        defaultValue={userData.address}
+                      />
+                    </label>
+                    <br />
+                    <label>
+                      <b>ตำบล/แขวง</b>
+                      <input
+                        type="text"
+                        className="inpAddressSubDis"
+                        placeholder="กรอกตำบล/แขวง"
+                        id="subDistrict"
+                        name="Subdistrict"
+                        required
+                        minLength="3"
+                        title="กรอกเป็นภาษาไทยเท่านั้น"
+                        pattern="^[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+$"
+                        defaultValue={userData.subDistrict}
+                      />
+                    </label>
+                    <br />
+                    <label>
+                      <b>อำเภอ/เขต</b>
+                      <input
+                        type="text"
+                        className="inpAddressDis"
+                        placeholder="กรอกอำเภอ/เขต"
+                        id="district"
+                        name="District"
+                        required
+                        minLength="3"
+                        title="กรอกเป็นภาษาไทยเท่านั้น"
+                        pattern="^[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+$"
+                        defaultValue={userData.district}
+                      />
+                    </label>
+                    <br />
+                    <label>
+                      <b>จังหวัด</b>
+                      <input
+                        type="text"
+                        className="inpAddressProv"
+                        placeholder="กรอกจังหวัด"
+                        id="province"
+                        name="Province"
+                        required
+                        minLength="3"
+                        title="กรอกเป็นภาษาไทยเท่านั้น"
+                        pattern="^[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+$"
+                        defaultValue={userData.province}
+                      />
+                    </label>
+                    <br />
+                    <label>
+                      <b>รหัสไปรษณีย์</b>
+                      <input
+                        type="number"
+                        className="inpPostalCode"
+                        placeholder="กรอกรหัสไปรษณีย์"
+                        id="postalCode"
+                        name="PostalCode"
+                        required
+                        minLength="5"
+                        maxLength="5"
+                        defaultValue={userData.postalCode}
+                      />
+                    </label>
+                    <br />
+                    <label>
+                      <b>เบอร์โทร</b>
+                      <input
+                        type="tel"
+                        className="inpPhone"
+                        placeholder="กรอกเบอร์โทร"
+                        id="tell"
+                        name="Phone"
+                        required
+                        minLength="9"
+                        title="โปรดกรอกหมายเลขโทรศัพท์ให้ถูกต้อง"
+                        pattern="[0-9]{10}"
+                        defaultValue={userData.tell}
+                      />
+                    </label>
+                    <br />
+                    <div className="button">
+                      <button
+                        type="submit"
+                        className="btn"
+                      >
+                        ยืนยันข้อมูล
                     </button>
-                    <button
-                      type="button"
-                      className="btn_s"
-                      onClick={() => setState(0)}
-                    >
-                      ยกเลิก
+                      <button
+                        type="button"
+                        className="btn_s"
+                        onClick={() => setState(0)}
+                      >
+                        ยกเลิก
                     </button>
-                  </div>
+                    </div>
+                  </form>
                 </div>
               );
           }

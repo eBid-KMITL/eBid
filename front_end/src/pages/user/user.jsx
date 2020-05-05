@@ -18,7 +18,7 @@ import { useState } from "react";
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 
-export const Profile = ({ api }) => {
+export const Profile = ({ api, userData }) => {
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -28,7 +28,7 @@ export const Profile = ({ api }) => {
 
   return (
     <>
-      {firebase.auth().currentUser ?
+      {userData ?
         (<div>
           <div className="user-main">
             <Helmet><title>eBid - Online Bidding | Software Development Processes KMITL</title></Helmet>
@@ -143,24 +143,24 @@ export const Profile = ({ api }) => {
               {(() => {
                 switch (mode) {
                   case 0:
-                    return <UserProfile api={api}/>;
+                    return <UserProfile api={api} userData={userData}/>;
                   case 1:
-                    return <UserAccount api={api}/>;
+                    return <UserAccount api={api} userData={userData}/>;
                   case 2:
-                    return <UserAddress api={api}/>;
+                    return <UserAddress api={api} userData={userData}/>;
                   case 3:
-                    return <UserPassword api={api}/>;
+                    return <UserPassword api={api} userData={userData}/>;
                   case 4:
-                    return <UserMyStatement api={api}/>;
+                    return <UserMyStatement api={api} userData={userData}/>;
                   case 5:
-                    return <UserMyProduct api={api}/>;
+                    return <UserMyProduct api={api} userData={userData}/>;
                   default:
-                    return <UserProfile api={api}/>;
+                    return <UserProfile api={api} userData={userData}/>;
                 }
               })()}
             </div>
           </div>
-        </div>) : history.push("/login?from=profile?m=" + mode)
+        </div>) : history.push("/login?from=profile")
       }
     </>
   )

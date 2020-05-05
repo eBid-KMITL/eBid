@@ -43,5 +43,20 @@
       "../../assets/products-pics/macbook.png",
       "../../assets/products-pics/macbook.png"
     ]
+  },
+  {
+    "id": 292,
+    "category": 2,
+    "name": "sdfdgawdgf",
+    "nbid": 22,
+    "owner": "eShop",
+    "bidder": "admin",
+    "price": 1300,
+    "time": "2020-05-02T17:00+0700",
+    "img": [
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png",
+      "../../assets/products-pics/macbook.png"
+    ]
   }
 ]

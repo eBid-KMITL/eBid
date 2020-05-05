@@ -4,7 +4,7 @@ import moneyPicture from "../../assets/eGold.png";
 import firebase from "firebase";
 import userinfo from "../../db/userinfo.json";
 
-export const UserAccount = () => {
+export const UserAccount = ({ userData }) => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -19,13 +19,13 @@ export const UserAccount = () => {
         <img src={moneyPicture} alt="account-pic" />
       </div>
       <div className="account-detail">
-        <nobr><b>ชื่อผู้ใช้ : </b>{firebase.auth().currentUser.displayName}</nobr>
+        <nobr><b>ชื่อผู้ใช้ : </b>{userData.displayName}</nobr>
         <br />
-        <nobr><b>เงินในบัญชี : </b>{formatter.format(userinfo.balance)} eCoin</nobr>
+        <nobr><b>เงินในบัญชี : </b>{formatter.format(userData.balance)} eCoin</nobr>
         <br />
-        <nobr><b>ใช้เงินไปแล้ว : </b>{formatter.format(userinfo.used)} eCoin</nobr>
+        <nobr><b>ใช้เงินไปแล้ว : </b>{formatter.format(userData.used)} eCoin</nobr>
         <br />
-        <nobr><b>ได้รับเงินแล้ว : </b>{formatter.format(userinfo.recieve)} eCoin</nobr>
+        <nobr><b>ได้รับเงินแล้ว : </b>{formatter.format(userData.recieve)} eCoin</nobr>
         <br />
         <div className="button">
           <button type="button" className="btn">

@@ -6,15 +6,15 @@ import Modal from "react-responsive-modal";
 import moment from "moment";
 import userinfo from "../../db/userinfo.json";
 
-export const UserProfile = ({ api }) => {
-  
+export const UserProfile = ({ userData }) => {
+
   const now = moment().format("YYYY-MM-DD");
   const [state, setState] = useState(0);
   var genDer = ''
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const id = firebase.auth().currentUser.uid
+  const id = userData?.uid
 
   function checkGender(check) {
     genDer = check
@@ -22,20 +22,20 @@ export const UserProfile = ({ api }) => {
 
   function updateProfile(e) {
     e.preventDefault();
-    const data ={
-          firstName: document.getElementById("Name").value,
-          lastName: document.getElementById("SurName").value,
-          gender: genDer,
-          birthDay: document.getElementById("birthday").value,
-          phone: document.getElementById("phone").value
-      }
-      console.log('sending')
-      console.log(data)
-      firebase.firestore().collection('user').doc(id).update(data).then(()=>{
-        setState(0)
-      }).catch(err =>{
-        console.log(err)
-      })
+    const data = {
+      firstName: document.getElementById("Name").value,
+      lastName: document.getElementById("SurName").value,
+      gender: genDer ? (genDer) : "other",
+      birthDay: document.getElementById("birthday").value,
+      phone: document.getElementById("phone").value
+    }
+    console.log('sending')
+    console.log(data)
+    firebase.firestore().collection('user').doc(id).update(data).then(() => {
+      setState(0)
+    }).catch(err => {
+      console.log(err)
+    })
     // api({
     //   method: "get",
     //   url: "/Customeruser",
@@ -94,7 +94,7 @@ export const UserProfile = ({ api }) => {
         }}
       </NavigationPrompt>
       <div className="profile-box">
-        <h>ข้อมูลของฉัน</h>
+        <h1>ข้อมูลของฉัน</h1>
         <div className="profile-img">
           <img src={profilePicture} alt="profile-pic" />
         </div>
@@ -105,43 +105,45 @@ export const UserProfile = ({ api }) => {
                 <div className="profile-detail">
                   <nobr>
                     <b>ชื่อผู้ใช้ : </b>
-                    {firebase.auth().currentUser.displayName}
+                    {userData.displayName}
                   </nobr>
                   <br />
                   <nobr>
                     <b>ชื่อ : </b>
-                    {userinfo.firstName} <b>นามสกุล : </b>
-                    {userinfo.lastName}
+                    {userData.firstName} <b>นามสกุล : </b>
+                    {userData.lastName}
                   </nobr>
                   <br />
                   <nobr>
                     <b>เพศ : </b>
-                    {userinfo.gender}
+                    {(userData.gender) === "male" ? "ชาย"
+                      : (userData.gender) === "female" ? "หญิง"
+                        : (userData.gender) === "other" ? "ไม่ระบุ" : "ไม่มีข้อมูล"
+                    }
                   </nobr>
                   <br />
                   <nobr>
                     <b>วันเกิด : </b>
-                    {moment(userinfo.birthDay, "YYYY-MM-DD").format(
+                    {moment(userData.birthDay, "YYYY-MM-DD").format(
                       "DD MMMM YYYY"
                     )}
                   </nobr>
                   <br />
                   <nobr>
                     <b>เบอร์โทร : </b>
-                    {userinfo.phone}
+                    {userData.phone}
                   </nobr>
                   <br />
                   <nobr>
                     <b>อีเมล : </b>
-                    {firebase.auth().currentUser.email}
+                    {userData.email}
                   </nobr>
                   <br />
                   <div className="button">
                     <button
                       type="button"
                       className="btn"
-                      onClick={() => setState(1)}
-                    >
+                      onClick={() => setState(1)}>
                       แก้ไขข้อมูล
                     </button>
                   </div>
@@ -153,7 +155,7 @@ export const UserProfile = ({ api }) => {
                   <label>
                     <nobr>
                       <b>ชื่อผู้ใช้ : </b>
-                      {firebase.auth().currentUser.displayName}
+                      {userData.displayName}
                     </nobr>
                   </label>
                   <br />
@@ -167,8 +169,10 @@ export const UserProfile = ({ api }) => {
                         className="inpFirstname"
                         name="Firstname"
                         required
-                        minLength="5"
-                        defaultValue={userinfo.firstName}
+                        minLength="2"
+                        title="กรอกเป็นภาษาไทยเท่านั้น"
+                        pattern="^[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+$"
+                        defaultValue={userData.firstName}
                       />
                       <b>นามสกุล</b>
                       <input
@@ -178,8 +182,10 @@ export const UserProfile = ({ api }) => {
                         className="inpSurname"
                         name="Surename"
                         required
-                        minLength="5"
-                        defaultValue={userinfo.lastName}
+                        minLength="2"
+                        title="กรอกเป็นภาษาไทยเท่านั้น"
+                        pattern="^[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์]+$"
+                        defaultValue={userData.lastName}
                       />
                     </label>
                     <br />
@@ -192,8 +198,9 @@ export const UserProfile = ({ api }) => {
                           onClick={e => checkGender(e.target.value)}
                           name="gender"
                           value="male"
+                          required
                           defaultChecked={
-                            userinfo.gender === "male" ? true : false
+                            userData.gender === "male" ? true : false
                           }
                         />
                         <span className="checkmark"></span>{" "}
@@ -205,8 +212,9 @@ export const UserProfile = ({ api }) => {
                           onClick={e => checkGender(e.target.value)}
                           name="gender"
                           value="female"
+                          required
                           defaultChecked={
-                            userinfo.gender === "female" ? true : false
+                            userData.gender === "female" ? true : false
                           }
                         />
                         <span className="checkmark"></span>{" "}
@@ -218,8 +226,9 @@ export const UserProfile = ({ api }) => {
                           onClick={e => checkGender(e.target.value)}
                           name="gender"
                           value="other"
+                          required
                           defaultChecked={
-                            userinfo.gender === "other" ? true : false
+                            userData.gender === "other" ? true : false
                           }
                         />
                         <span className="checkmark"></span>{" "}
@@ -234,7 +243,7 @@ export const UserProfile = ({ api }) => {
                         name="Birthday"
                         id="birthday"
                         max={now}
-                        defaultValue={userinfo.birthDay}
+                        defaultValue={userData.birthDay}
                       />
                     </label>
                     <br />
@@ -246,16 +255,18 @@ export const UserProfile = ({ api }) => {
                         placeholder="กรอกเบอร์โทร"
                         name="Phone"
                         id="phone"
+                        title="โปรดกรอกหมายเลขโทรศัพท์ให้ถูกต้อง"
+                        pattern="[0-9]{10}"
                         required
                         minLength="9"
-                        defaultValue={userinfo.phone}
+                        defaultValue={userData.phone}
                       />
                     </label>
                     <br />
                     <label>
                       <nobr>
                         <b>อีเมล : </b>
-                        {firebase.auth().currentUser.email}
+                        {userData.email}
                       </nobr>
                     </label>
                     <br />

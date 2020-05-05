@@ -11,7 +11,7 @@ import { Ellipsis } from 'react-spinners-css';
 
 var pic = 0;
 
-export const AddProduct = () => {
+export const AddProduct = ({userData}) => {
   const now = moment().add("1", "d").format("YYYY-MM-DD");
   const history = useHistory();
   const imageMaxSize = 3000000; // bytes
@@ -30,10 +30,10 @@ export const AddProduct = () => {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const db = firebase.firestore();
-  // const id = firebase.auth().currentUser.uid
-  const id ='VbcxIsGXNveiOjuaHuSDJ650dnI2'
+  const id = userData?.uid
+  // const id ='VbcxIsGXNveiOjuaHuSDJ650dnI2'
   let keepurl = []
-
+  let keepproductid = userData.sellingPID
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     maxSize: imageMaxSize,
@@ -106,17 +106,21 @@ export const AddProduct = () => {
     else {
       db.collection("Product").add({
         name: document.getElementById('productName').value,
-        category: document.getElementById("category").value,
-        price : document.getElementById("productStartPrice").value,
+        category:  parseInt(document.getElementById("category").value),
+        price : parseInt(document.getElementById("productStartPrice").value),
         timeoutdate:document.getElementById("productTimeOut").value,
         timeoutclock:document.getElementById("productTimeOut2").value,
         description:document.getElementById("productDetail").value,
         nbid:0,
-        owner:"",
+        owner:userData.displayName,
         ownerid:id,
-        bidder:"",
-        bidderid:""
+        bidder:[],
+        
       }).then(record => {
+        keepproductid.push(record.id)
+        db.collection("user").doc(id).update({
+          sellingPID : keepproductid
+        })
         keepurl = []
         setLoading(true);
         const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(prepic1);
@@ -264,7 +268,7 @@ export const AddProduct = () => {
           }
         }}
       </NavigationPrompt>
-      {firebase.auth().currentUser ? (
+      {userData ? (
         <div className="addProduct-main">
           <Helmet>
             <title>
@@ -277,6 +281,7 @@ export const AddProduct = () => {
                 <input {...getInputProps()} disabled={countPic === 4} onInput={() => checkForActivatedAlert()} />
                 <img src={addSymbol} className="addlogo" alt="add-Logo" />
                 <p>ลากและวางไฟล์รูปเพื่อเพิ่มรูปภาพ</p>
+                <p>(ขนาดรูปละไม่เกิน 3 MB)</p>
               </div>
             ) : (
                 <div className="big-preview">
@@ -422,14 +427,14 @@ export const AddProduct = () => {
                 <label for="category">{"  "}หมวดหมู่ : </label>
                 <select id="category" required onInput={() => checkForActivatedAlert()}>
                   <option disabled>เลือกหมวดหมู่...</option>
-                  <option value="1">การ์ตูน</option>
-                  <option value="2">ของสะสม</option>
-                  <option value="3">ของเล่น | เกมส์</option>
-                  <option value="4">คอมพิวเตอร์ | โทรศัพท์มือถือ</option>
-                  <option value="5">หนังสือ | สิ่งพิมพ์</option>
-                  <option value="6">แฟชั่น</option>
-                  <option value="7">ภาพยนตร์ | วิดีโอ | ดีวีดี</option>
-                  <option value="8">อิเล็กทรอนิกส์</option>
+                  <option value={1}>การ์ตูน</option>
+                  <option value={2}>ของสะสม</option>
+                  <option value={3}>ของเล่น | เกมส์</option>
+                  <option value={4}>คอมพิวเตอร์ | โทรศัพท์มือถือ</option>
+                  <option value={5}>หนังสือ | สิ่งพิมพ์</option>
+                  <option value={6}>แฟชั่น</option>
+                  <option value={7}>ภาพยนตร์ | วิดีโอ | ดีวีดี</option>
+                  <option value={8}>อิเล็กทรอนิกส์</option>
                 </select>
                 <br />
                 <label>
@@ -439,7 +444,7 @@ export const AddProduct = () => {
                     placeholder="กรอกราคาเริ่มต้น"
                     id="productStartPrice"
                     name="productStartPrice"
-                    min="1"
+                    min={1}
                     required
                     onInput={() => checkForActivatedAlert()}
                   />
@@ -447,7 +452,7 @@ export const AddProduct = () => {
                 </label>
                 <br />
                 <label>
-                  หมดเวลา :{" "}
+                  ปิดประมูลวันที่ :{" "}
                   <input
                     type="date"
                     id="productTimeOut"
@@ -456,6 +461,7 @@ export const AddProduct = () => {
                     required
                     onInput={() => checkForActivatedAlert()}
                   />
+                  {"  "}เวลา :{" "}
                   <input
                     type="time"
                     id="productTimeOut2"

@@ -7,20 +7,36 @@ import { Helmet } from "react-helmet";
 import { IoIosArrowBack } from "react-icons/io";
 import { Ellipsis } from 'react-spinners-css';
 
-export const Login = () => {
+export const Login = ({setUserData}) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginFail, setFail] = useState(false);
   const [loading, setLoading] = useState(false);
+  
+  var data = {}
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
   const to = useQuery().get("from")
+
   function onLogin(e) {
     e.preventDefault();
     setLoading(true);
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+
+      firebase.firestore().collection('user').onSnapshot(snapshot => {
+        console.log('snap')
+        snapshot.forEach(doc => {
+          data = doc.data()
+          data.uid = doc.id  
+            if (firebase.auth().currentUser && data.uid === firebase.auth().currentUser.uid){
+              setUserData(data)
+              window.localStorage.setItem("user",JSON.stringify(data))
+              console.log(firebase.auth().currentUser.email)
+            }
+        })
+      })
       if (to) {
         history.push('/' + to);
       }
