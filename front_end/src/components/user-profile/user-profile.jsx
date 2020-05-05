@@ -10,22 +10,22 @@ export const UserProfile = ({ userData }) => {
 
   const now = moment().format("YYYY-MM-DD");
   const [state, setState] = useState(0);
-  var genDer = ''
+  // var genDer = ''
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const id = userData?.uid
 
-  function checkGender(check) {
-    genDer = check
-  }
+  // function checkGender(check) {
+  //   genDer = check
+  // }
 
   function updateProfile(e) {
     e.preventDefault();
     const data = {
       firstName: document.getElementById("Name").value,
       lastName: document.getElementById("SurName").value,
-      gender: genDer ? (genDer) : "other",
+      gender: document.getElementById("gender").value,
       birthDay: document.getElementById("birthday").value,
       phone: document.getElementById("phone").value
     }
@@ -189,51 +189,13 @@ export const UserProfile = ({ userData }) => {
                       />
                     </label>
                     <br />
-                    <label>
-                      <b>เพศ</b>
-                      <label className="container">
-                        ชาย
-                        <input
-                          type="radio"
-                          onClick={e => checkGender(e.target.value)}
-                          name="gender"
-                          value="male"
-                          required
-                          defaultChecked={
-                            userData.gender === "male" ? true : false
-                          }
-                        />
-                        <span className="checkmark"></span>{" "}
-                      </label>
-                      <label className="container">
-                        หญิง
-                        <input
-                          type="radio"
-                          onClick={e => checkGender(e.target.value)}
-                          name="gender"
-                          value="female"
-                          required
-                          defaultChecked={
-                            userData.gender === "female" ? true : false
-                          }
-                        />
-                        <span className="checkmark"></span>{" "}
-                      </label>
-                      <label className="container">
-                        ไม่ระบุ
-                        <input
-                          type="radio"
-                          onClick={e => checkGender(e.target.value)}
-                          name="gender"
-                          value="other"
-                          required
-                          defaultChecked={
-                            userData.gender === "other" ? true : false
-                          }
-                        />
-                        <span className="checkmark"></span>{" "}
-                      </label>
-                    </label>
+                    <label for="gender">เพศ : </label>
+                    <select id="gender" required>
+                      <option value="" disabled selected>เลือกเพศ...</option>
+                      <option value="male">ชาย</option>
+                      <option value="female">หญิง</option>
+                      <option value="other">ไม่ระบุ</option>
+                    </select>
                     <br />
                     <label>
                       <b>วันเกิด</b>
@@ -255,8 +217,8 @@ export const UserProfile = ({ userData }) => {
                         placeholder="กรอกเบอร์โทร"
                         name="Phone"
                         id="phone"
-                        title="โปรดกรอกหมายเลขโทรศัพท์ให้ถูกต้อง"
-                        pattern="[0-9]{10}"
+                        title="โปรดกรอกหมายเลขโทรศัพท์มือถือ 10 หลักให้ถูกต้อง"
+                        pattern="^[0]{1}[689]{1}[\d]{8}$"
                         required
                         minLength="9"
                         defaultValue={userData.phone}

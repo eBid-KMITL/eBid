@@ -54,41 +54,41 @@ export const Category = () => {
             {
               (id === "1") ? (
                 <><h2><span role="img" aria-label="cartoon">&nbsp;🎭</span> การ์ตูน</h2>
-                  {product.filter(ele => ele.category === 1).map((d, index) => <ProductFrame details={d} key={index} />)}
+                  {product.filter(ele => ele.category === 1 && new Date(ele.timeoutdate + "T" + ele.timeoutclock + "+0700") > Date.now()).map((d, index) => <ProductFrame details={d} key={index} />)}
                   {/* {c1.map((d, index) => <ProductFrame details={d} key={index} />)} */}
                 </>
               )
                 : (id === "2") ? (
                   <><h2><span role="img" aria-label="crown">&nbsp;👑</span> ของสะสม</h2>
-                    {product.filter(ele => ele.category === 2).map((d, index) => <ProductFrame details={d} key={index} />)}</>
+                    {product.filter(ele => ele.category === 2 && new Date(ele.timeoutdate + "T" + ele.timeoutclock + "+0700") > Date.now()).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                 )
                   : (id === "3") ? (
                     <><h2><span role="img" aria-label="joystick">&nbsp;🎮</span> ของเล่น | เกมส์</h2>
-                      {product.filter(ele => ele.category === 3).map((d, index) => <ProductFrame details={d} key={index} />)}</>
+                      {product.filter(ele => ele.category === 3 && new Date(ele.timeoutdate + "T" + ele.timeoutclock + "+0700") > Date.now()).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                   )
                     : (id === "4") ? (
                       <><h2><span role="img" aria-label="laptop">&nbsp;💻</span> คอมพิวเตอร์ | โทรศัพท์มือถือ</h2>
-                        {product.filter(ele => ele.category === 4).map((d, index) => <ProductFrame details={d} key={index} />)}</>
+                        {product.filter(ele => ele.category === 4 && new Date(ele.timeoutdate + "T" + ele.timeoutclock + "+0700") > Date.now()).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                     )
                       : (id === "5") ? (
                         <><h2><span role="img" aria-label="books">&nbsp;📚</span> หนังสือ | สิ่งพิมพ์</h2>
-                          {product.filter(ele => ele.category === 5).map((d, index) => <ProductFrame details={d} key={index} />)}</>
+                          {product.filter(ele => ele.category === 5 && new Date(ele.timeoutdate + "T" + ele.timeoutclock + "+0700") > Date.now()).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                       )
                         : (id === "6") ? (
                           <><h2><span role="img" aria-label="fashion">&nbsp;👜</span> แฟชั่น</h2>
-                            {product.filter(ele => ele.category === 6).map((d, index) => <ProductFrame details={d} key={index} />)}</>
+                            {product.filter(ele => ele.category === 6 && new Date(ele.timeoutdate + "T" + ele.timeoutclock + "+0700") > Date.now()).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                         )
                           : (id === "7") ? (
                             <><h2><span role="img" aria-label="dog">&nbsp;🎬</span> ภาพยนตร์ | วิดีโอ | ดีวีดี</h2>
-                              {product.filter(ele => ele.category === 7).map((d, index) => <ProductFrame details={d} key={index} />)}</>
+                              {product.filter(ele => ele.category === 7 && new Date(ele.timeoutdate + "T" + ele.timeoutclock + "+0700") > Date.now()).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                           )
                             : (id === "8") ? (
                               <><h2><span role="img" aria-label="tv">&nbsp;📺</span> อิเล็กทรอนิกส์</h2>
-                                {product.filter(ele => ele.category === 8).map((d, index) => <ProductFrame details={d} key={index} />)}</>
+                                {product.filter(ele => ele.category === 8 && new Date(ele.timeoutdate + "T" + ele.timeoutclock + "+0700") > Date.now()).map((d, index) => <ProductFrame details={d} key={index} />)}</>
                             )
                               : (id === "9") ? (
                                 <><h2>&nbsp;สินค้าทั้งหมด</h2>
-                                  {product.map((d, index) => <ProductFrame details={d} key={index} />)}
+                                  {product.filter(ele => new Date(ele.timeoutdate + "T" + ele.timeoutclock + "+0700") > Date.now()).map((d, index) => <ProductFrame details={d} key={index} />)}
                                 </>
                               )
                                 : history.push("/error")

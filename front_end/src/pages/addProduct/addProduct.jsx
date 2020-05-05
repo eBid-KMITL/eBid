@@ -115,7 +115,7 @@ export const AddProduct = ({userData}) => {
         owner:userData.displayName,
         ownerid:id,
         bidder:[],
-        
+        sent:false
       }).then(record => {
         keepproductid.push(record.id)
         db.collection("user").doc(id).update({

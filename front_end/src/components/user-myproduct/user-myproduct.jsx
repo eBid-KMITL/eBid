@@ -90,10 +90,6 @@ export const UserMyProduct = ({ userData }) => {
           ))}
         </table>
       </div>
-      <div className="page">
-        <button type="button" disabled={state.page === 1} className="btn" onClick={minPage}>&lt;</button>หน้า {state.page} จาก {maxPage}
-        <button type="button" disabled={state.page === maxPage} className="btn" onClick={addPage}>&gt;</button>
-      </div>
     </div>
   );
 };

@@ -52,7 +52,7 @@ export const NavBar = ({ userData }) => {
     window.location.replace("/");
   }
   const search = useQuery().get("search");
-
+  
   return (
     <>
       {

@@ -5,6 +5,7 @@ import moment from "moment";
 import firebase from 'firebase'
 export const ProductDetail = ({ details, userData }) => {
   const [due, setDue] = useState(moment(details.timeoutdate + "T" + details.timeoutclock + "+0700", "YYYY-MM-DD HH:mm Z").format("x"));
+  const [sent, setSent] = useState(false)
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -14,7 +15,7 @@ export const ProductDetail = ({ details, userData }) => {
   const [alluser, setAllUser] = useState([]);
   let ud = []
   useEffect(() => {
-      firebase.firestore().collection('user').onSnapshot(snapshot => {
+    firebase.firestore().collection('user').onSnapshot(snapshot => {
       console.log('snap of user')
       ud = []
       snapshot.forEach(doc => {
@@ -26,22 +27,42 @@ export const ProductDetail = ({ details, userData }) => {
       setAllUser(ud)
     })
   }, [])
-  
-  function confirmProduct(id,price){
+
+  function confirmProduct(id, price) {
     let newMyBalance = userData.balance - price
     let newMyUsed = userData.used - price
     firebase.firestore().collection('user').doc(userData.uid).update({
-      balance : newMyBalance,
-      used : newMyUsed
-    }).then(()=>{
+      balance: newMyBalance,
+      used: newMyUsed
+    }).then(() => {
       const batch = firebase.firestore().batch()
-      
+      let thatUser = alluser.filter(e => {
+        return e.uid === id
+      })
+      thatUser = thatUser[0] ? thatUser[0] : null
+      if (thatUser) {
+        batch.update(firebase.firestore().collection('user').doc(id), {
+          balance: thatUser.balance + price
+        })
+      }
+      batch.commit().then(() => {
+        console.log('Batch update success!')
+      }).catch(err => {
+        console.log('Batch update failed', err)
+      })
+
+      firebase.firestore().collection('Product').doc(details.pid).update({
+        sent: true
+      })
+
+    }).catch(err => {
+      console.log(err)
     })
 
     // firebase.firestore().collection('user').doc(id).update({
     //   balance : newTheirBalance
     // })
-    }
+  }
 
 
   return (
@@ -54,10 +75,12 @@ export const ProductDetail = ({ details, userData }) => {
           <div className="productdetail">
             <div className="product-title">{details?.name}</div>
             <div className="product-owner">
-              <Link to="#">{details.owner}</Link>
+              <p style={{margin: 0, color: "#0082FF",  textDecoration: "none"}}>{details.owner}</p>
             </div>
-            <div className={new Date(details.timeoutdate + "T" + details.timeoutclock + "+0700") < Date.now() ? "end" : "notend"}>
-              <Moment title={moment(due, "x").format("[หมดเวลาวันที่ ] DD MMMM YYYY [เวลา] HH:mm [น.]")} interval={1000} fromNow >{details.timeoutdate + "T" + details.timeoutclock + "+0700"}</Moment></div>
+            <div className="time">
+              <Moment style={{textDecoration: "underline"}} title={moment(due, "x").format("[หมดเวลาวันที่ ] DD MMMM YYYY [เวลา] HH:mm [น.]")} interval={1000} fromNow >{details.timeoutdate + "T" + details.timeoutclock + "+0700"}
+              </Moment>
+            </div>
           </div>
         </div>
       </td>
@@ -72,11 +95,10 @@ export const ProductDetail = ({ details, userData }) => {
       <td>
         <div className="bid-status">
           {
-            new Date(details.timeoutdate + "T" + details.timeoutclock + "+0700") > Date.now() ? 'notend' : details.currentWinner.uid === userData.uid ?
+            new Date(details.timeoutdate + "T" + details.timeoutclock + "+0700") > Date.now() ? "กำลังประมูล" : details.currentWinner.uid === userData.uid ?
               (<><p>ชนะการประมูล</p>
-                <button className="btn" 
-                // onClick={() => confirmProduct(details.ownerid,details.price)}
-                >ยืนยันการรับสินค้า</button></>)
+                <button className="btn" disabled={details.sent} onClick={() => confirmProduct(details.ownerid, details.price)}
+                > {details.sent ? "ยืนยันเรียบร้อยแล้ว" : "ยืนยันการรับสินค้า"}</button></>)
               : ('ประมูลไม่สำเร็จ')
           }
         </div>

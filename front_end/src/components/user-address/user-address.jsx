@@ -149,7 +149,7 @@ export const UserAddress = ({ userData }) => {
                         required
                         minLength="5"
                         title="กรอกชื่อผู้รับเป็นภาษาไทยเท่านั้น"
-                        pattern="^[ก-๏\s]+$"
+                        pattern="^[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์\s]+$"
                         defaultValue={userData.recipient}
                       />
                     </label>
@@ -164,8 +164,8 @@ export const UserAddress = ({ userData }) => {
                         name="OtherAddress"
                         required
                         minLength="4"
-                        title="กรอกชื่อผู้รับเป็นภาษาไทยเท่านั้น"
-                        pattern="^[ก-๏\s0-9]+$"
+                        title="กรอกที่อยู่เป็นภาษาไทยเท่านั้น"
+                        pattern="^[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์.\/\d\s]+$"
                         defaultValue={userData.address}
                       />
                     </label>
@@ -221,14 +221,14 @@ export const UserAddress = ({ userData }) => {
                     <label>
                       <b>รหัสไปรษณีย์</b>
                       <input
-                        type="number"
+                        type="text"
                         className="inpPostalCode"
                         placeholder="กรอกรหัสไปรษณีย์"
                         id="postalCode"
                         name="PostalCode"
+                        title="ใส่รหัสไปรษณีย์ 5 หลัก"
                         required
-                        minLength="5"
-                        maxLength="5"
+                        pattern="^[1-9]{1}[\d]{4}$"
                         defaultValue={userData.postalCode}
                       />
                     </label>
@@ -243,8 +243,8 @@ export const UserAddress = ({ userData }) => {
                         name="Phone"
                         required
                         minLength="9"
-                        title="โปรดกรอกหมายเลขโทรศัพท์ให้ถูกต้อง"
-                        pattern="[0-9]{10}"
+                        title="โปรดกรอกหมายเลขโทรศัพท์มือถือ 10 หลักให้ถูกต้อง"
+                        pattern="^[0]{1}[689]{1}[\d]{8}$"
                         defaultValue={userData.tell}
                       />
                     </label>

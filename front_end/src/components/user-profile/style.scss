@@ -127,6 +127,25 @@ $shadow: 0 3px 6px 0 #00000048;
         outline   : none;
       }
     }
+
+    select {
+      width           : 240px;
+      box-shadow      : 0 3px 3px 0 #00000041;
+      height          : 30px;
+      box-sizing      : border-box;
+      padding         : 5px 10px;
+      font-size       : 16px;
+      font-family     : "Noto Sans Thai UI", sans-serif;
+      background-color: white;
+      border          : 0px;
+      border-radius   : 5px;
+      transition      : all 250ms ease-in-out;
+
+      &:focus {
+        box-shadow: 0 7px 20px 2px #00000067;
+        outline   : none;
+      }
+    }
   }
 
   .button {
@@ -154,7 +173,7 @@ $shadow: 0 3px 6px 0 #00000048;
     }
 
     .btn_s {
-      margin-left: 1em;
+      margin-left     : 1em;
       font-size       : 18px;
       font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
       padding         : 10px 50px;

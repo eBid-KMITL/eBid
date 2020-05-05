@@ -8,7 +8,7 @@ import { FaExclamationCircle } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { Ellipsis } from 'react-spinners-css';
 
-export const Register = ({api}) => {
+export const Register = ({ api }) => {
   const history = useHistory();
   const [error, setError] = useState(false);
   const [name, setName] = useState('');
@@ -26,15 +26,18 @@ export const Register = ({api}) => {
         displayName: name,
         email: email,
         balance: 0,
-        used:0,
-        recieve:0,
-        biddingPID:[],
-        sellingPID:[]
+        used: 0,
+        recieve: 0,
+        biddingPID: [],
+        sellingPID: []
       })
     }).then(() => {
       history.push('/login');
+      setLoading(false);
     }).catch(err => {
       console.log(err)
+      setError(true);
+      setLoading(false);
     })
     // api({
     //   method : "get",
@@ -71,11 +74,11 @@ export const Register = ({api}) => {
     //   ).catch(err => {
     //     console.log(err)
     //   })
-      
+
     // })
     //   .catch(err => {
-    //     setError(true);
-    //     setLoading(false);
+    // setError(true);
+    // setLoading(false);
     //   });
   }
   function onOpenTerms() {
@@ -118,7 +121,7 @@ export const Register = ({api}) => {
               <div className="form-group">
                 <label htmlFor="password">รหัสผ่าน</label>
                 <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required title="รหัสผ่านต้องประกอบไปด้วยตัวอักษรภาษาอังกฤษและตัวเลขรวมกัน 8 ตัวขึ้นไป โดยมีตัวพิมพ์ใหญ่และตัวเลขอย่างน้อยอย่างละ 1 ตัว"
-                  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" value={password} onChange={e => setPassword(e.target.value)} />
+                  pattern="^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$" value={password} onChange={e => setPassword(e.target.value)} />
               </div>
               <div className="extra">
                 <p><input type="checkbox" required />ฉันยอมรับ <a href="/register#" onClick={() => onOpenTerms()}>ข้อตกลงและเงื่อนไข</a></p>
