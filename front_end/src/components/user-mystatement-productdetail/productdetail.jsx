@@ -67,39 +67,41 @@ export const ProductDetail = ({ details, userData }) => {
       <td>
         <div className="productdetail-box">
           <div className="productdetail-img">
+            <Link title="ไปที่หน้าสินค้านี้" to={"/product?id=" + details.pid}>
             <img src={details?.img[0]} alt="statement-pic" className="prod-pic" />
+            </Link>
+        </div>
+        <div className="productdetail">
+          <div className="product-title"><Link title="ไปที่หน้าสินค้านี้" to={"/product?id=" + details.pid}>{details?.name}</Link></div>
+          <div className="product-owner">
+            <p style={{ margin: 0 }}>{"โดย " + details.owner}</p>
           </div>
-          <div className="productdetail">
-            <div className="product-title"><Link to={"/product?id=" + details.pid}>{details?.name}</Link></div>
-            <div className="product-owner">
-              <p style={{ margin: 0}}>{"โดย "+details.owner}</p>
-            </div>
-            <div className="time">
-              <Moment style={{ textDecoration: "underline" }} title={moment(due, "x").format("[หมดเวลาวันที่ ] DD MMMM YYYY [เวลา] HH:mm [น.]")} interval={1000} fromNow >{details.timeoutdate + "T" + details.timeoutclock + "+0700"}
-              </Moment>
-            </div>
+          <div className="time">
+            <Moment style={{ textDecoration: "underline" }} title={moment(due, "x").format("[หมดเวลาวันที่ ] DD MMMM YYYY [เวลา] HH:mm [น.]")} interval={1000} fromNow >{details.timeoutdate + "T" + details.timeoutclock + "+0700"}
+            </Moment>
           </div>
         </div>
-      </td>
-      <td>
-        <div className="status">{formatter.format(details.price)}</div>
-      </td>
-      <td>
-        <div className={details.currentWinner.uid === userData.uid ? 'winstatus' : 'losestatus'}>{
-          details.currentWinner.uid === userData.uid ? <p style={{ color: "rgb(51, 194, 51)" }}>ชนะ</p> : <p style={{ color: "red" }}>ไม่ชนะ</p>
-        }</div>
-      </td>
-      <td>
-        <div className="bid-status">
-          {
-            new Date(details.timeoutdate + "T" + details.timeoutclock + "+0700") > Date.now() ? "กำลังประมูล" : details.currentWinner.uid === userData.uid ?
-              (<><p>ชนะการประมูล</p>
-                <button className="btn" disabled={details.sent} onClick={() => confirmProduct(details.ownerid, details.price)}
-                > {details.sent ? "ยืนยันเรียบร้อยแล้ว" : "ยืนยันการรับสินค้า"}</button></>)
-              : ('ประมูลไม่สำเร็จ')
-          }
         </div>
       </td>
-    </tr>
+    <td>
+      <div className="status">{formatter.format(details.price)}</div>
+    </td>
+    <td>
+      <div className={details.currentWinner.uid === userData.uid ? 'winstatus' : 'losestatus'}>{
+        details.currentWinner.uid === userData.uid ? <p style={{ color: "rgb(51, 194, 51)" }}>ชนะ</p> : <p style={{ color: "red" }}>ไม่ชนะ</p>
+      }</div>
+    </td>
+    <td>
+      <div className="bid-status">
+        {
+          new Date(details.timeoutdate + "T" + details.timeoutclock + "+0700") > Date.now() ? "กำลังประมูล" : details.currentWinner.uid === userData.uid ?
+            (<><p>ชนะการประมูล</p>
+              <button className="btn" disabled={details.sent} onClick={() => confirmProduct(details.ownerid, details.price)}
+              > {details.sent ? "ยืนยันเรียบร้อยแล้ว" : "ยืนยันการรับสินค้า"}</button></>)
+            : ('ประมูลไม่สำเร็จ')
+        }
+      </div>
+    </td>
+    </tr >
   );
 };
