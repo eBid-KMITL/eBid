@@ -330,7 +330,7 @@ export const Product = ({ userData }) => {
                 </div>
                 <div className="bidder">
                   <h3><FaUserCircle />&nbsp;ผู้เสนอราคาสูงสุด</h3>
-                  <a id="bidder" href="#">{product.currentWinner?.name}</a>
+                  <a id="bidder" href="#">{product.currentWinner?.name ? product.currentWinner?.name : "ยังไม่มีผู้เสนอราคา"}</a>
                 </div>
               </div>
               <div className="live-price">

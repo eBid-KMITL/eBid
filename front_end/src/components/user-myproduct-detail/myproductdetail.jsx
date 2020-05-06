@@ -85,11 +85,17 @@ export const MyProductDetail = ({ details }) => {
         }</div>
       </td>
       <td>
-        <div className="product-owner">{
-          (new Date(details.timeoutdate + "T" + details.timeoutclock + "+0700") < Date.now()) && (!details.currentWinner?.name) ? "ไม่มีผู้ร่วมประมูล" : <a title="ดูข้อมูลที่อยู่ของผู้ใช้นี้" href="#"
-            onClick={() => { onOpenAddr(); showUserAddress(details.currentWinner?.uid) }}
-          >{details.currentWinner?.name}</a>
+        <div className="product-owner">
+        {
+          (new Date(details.timeoutdate + "T" + details.timeoutclock + "+0700") < Date.now()) ? 
+          (!details.currentWinner?.name) ? 
+            "ไม่มีผู้ร่วมประมูล" : 
+            <a title="ดูข้อมูลที่อยู่ของผู้ใช้นี้" href="#"onClick={() => { onOpenAddr(); showUserAddress(details.currentWinner?.uid) }}>{details.currentWinner?.name}</a>:
+            (!details.currentWinner?.name)? 
+            'ไม่มีผู้ร่วมประมูล':
+            details.currentWinner?.name
         }
+      
         </div>
         <Modal open={addr} center={true} onClose={() => onCloseAddr()} little>
           <h1>ข้อมูลที่อยู่</h1>

@@ -8,10 +8,11 @@ import NavigationPrompt from "react-router-navigation-prompt";
 import Modal from "react-responsive-modal";
 import moment from "moment";
 import { Ellipsis } from 'react-spinners-css';
+import { useEffect } from "react";
 
 var pic = 0;
 
-export const AddProduct = ({userData}) => {
+export const AddProduct = ({ userData }) => {
   const now = moment().add("1", "d").format("YYYY-MM-DD");
   const history = useHistory();
   const imageMaxSize = 3000000; // bytes
@@ -31,7 +32,6 @@ export const AddProduct = ({userData}) => {
   const [loading, setLoading] = useState(false);
   const db = firebase.firestore();
   const id = userData?.uid
-  // const id ='VbcxIsGXNveiOjuaHuSDJ650dnI2'
   let keepurl = []
   let keepproductid = userData.sellingPID
   const { getRootProps, getInputProps } = useDropzone({
@@ -71,6 +71,10 @@ export const AddProduct = ({userData}) => {
     }, []),
   });
 
+  useEffect(() => {
+    resetPicture()
+  }, []);
+
   function checkForActivatedAlert() {
     if (
       pic !== 0 ||
@@ -106,20 +110,20 @@ export const AddProduct = ({userData}) => {
     else {
       db.collection("Product").add({
         name: document.getElementById('productName').value,
-        category:  parseInt(document.getElementById("category").value),
-        price : parseInt(document.getElementById("productStartPrice").value),
-        timeoutdate:document.getElementById("productTimeOut").value,
-        timeoutclock:document.getElementById("productTimeOut2").value,
-        description:document.getElementById("productDetail").value,
-        nbid:0,
-        owner:userData.displayName,
-        ownerid:id,
-        bidder:[],
-        sent:false
+        category: parseInt(document.getElementById("category").value),
+        price: parseInt(document.getElementById("productStartPrice").value),
+        timeoutdate: document.getElementById("productTimeOut").value,
+        timeoutclock: document.getElementById("productTimeOut2").value,
+        description: document.getElementById("productDetail").value,
+        nbid: 0,
+        owner: userData.displayName,
+        ownerid: id,
+        bidder: [],
+        sent: false
       }).then(record => {
         keepproductid.push(record.id)
         db.collection("user").doc(id).update({
-          sellingPID : keepproductid
+          sellingPID: keepproductid
         })
         keepurl = []
         setLoading(true);
@@ -172,13 +176,13 @@ export const AddProduct = ({userData}) => {
                                         setSent(true);
                                         setLoading(false);
                                         setAlerted(false)
-                                        history.push('/profile?m=5')
+                                        history.push('/product?id=' + record.id)
                                       }).catch(err => {
                                         db.collection("Product").doc(record.id).delete()
                                         firebase.storage().ref("imageProduct/").child(record.id).delete()
                                         console.log(err)
                                       })
-                                      // console.log(keepurl)
+                                      resetPicture()
                                     })
                                   }
                                 );
@@ -190,13 +194,13 @@ export const AddProduct = ({userData}) => {
                                   setSent(true);
                                   setLoading(false);
                                   setAlerted(false)
-                                  history.push('/profile?m=5')
+                                  history.push('/product?id=' + record.id)
                                 }).catch(err => {
                                   db.collection("Product").doc(record.id).delete()
                                   firebase.storage().ref("imageProduct/").child(record.id).delete()
                                   console.log(err)
                                 })
-                                // console.log(keepurl)
+                                resetPicture()
                               }
                             })
                           }
@@ -209,13 +213,13 @@ export const AddProduct = ({userData}) => {
                           setSent(true);
                           setLoading(false)
                           setAlerted(false)
-                          history.push('/profile?m=5')
+                          history.push('/product?id=' + record.id)
                         }).catch(err => {
                           db.collection("Product").doc(record.id).delete()
                           firebase.storage().ref("imageProduct/").child(record.id).delete()
                           console.log(err)
                         })
-                        // console.log(keepurl)
+                        resetPicture()
                       }
                     })
                   }
@@ -409,7 +413,7 @@ export const AddProduct = ({userData}) => {
           </div>
           <div className="addProduct-detail-box">
             <div className="addProduct-detail">
-              <form onSubmit={e => sendProduct(e)}>
+              <form onSubmit={e => sendProduct(e) }>
                 <label>
                   ชื่อสินค้า :{" "}
                   <input
@@ -444,6 +448,7 @@ export const AddProduct = ({userData}) => {
                     placeholder="กรอกราคาเริ่มต้น"
                     id="productStartPrice"
                     name="productStartPrice"
+                    pattern="^[\d]$"
                     min={1}
                     required
                     onInput={() => checkForActivatedAlert()}

@@ -29,7 +29,7 @@ export const ProductFrame = ({ details }) => {
             <p id="num"><IoMdPricetags title="จำนวนการเคาะ" style={{ fontSize: 16 }} />&nbsp;ประมูลแล้ว {details?.nbid} ครั้ง</p>
             <p id="user"><FaUserCircle title="ผู้ลงประมูล" style={{ fontSize: 14 }} />&nbsp;{details?.owner}</p>
           </div>
-          <div className="b-product-price">
+          <div className="b-product-price" title={`${formatter.format(details?.price)} eCoin`}>
             ฿{formatter.format(details?.price)}
           </div>
         </div>

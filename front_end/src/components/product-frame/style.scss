@@ -23,30 +23,11 @@ $shadow : 0 0 10px 0 #00000048;
     box-shadow: $shadow;
   }
 
-  // .b-product-img {
-  //   height         : 150px;
-  //   width          : 150px;
-  //   display        : flex;
-  //   justify-content: center;
-  //   align-items    : center;
-  //   object-fit     : scale-down;
-  //   overflow       : hidden;
-
-  //   img {
-  //     max-height      : 100%;
-  //     max-width       : 100%;
-  //     // border-radius: 10px 0 0 10px;
-  //   }
-  // }
   .b-product-img {
     height               : 150px;
     width                : 150px;
     border-radius        : 10px 0 0 10px;
-    // display              : flex;
-    // justify-content      : center;
-    // align-items          : center;
     object-fit           : scale-down;
-    // overflow             : hidden;
     background-size      : cover;
     background-repeat    : no-repeat;
     background-attachment: scroll;
@@ -80,10 +61,14 @@ $shadow : 0 0 10px 0 #00000048;
     }
 
     .b-product-price {
-      font-family: $font-semibold;
-      font-weight: bold;
-      font-size  : 30px;
-      color      : red;
+      white-space  : nowrap;
+      overflow     : hidden;
+      text-overflow: ellipsis;
+      width        : 166px;
+      font-family  : $font-semibold;
+      font-weight  : bold;
+      font-size    : 30px;
+      color        : red;
     }
   }
 }

@@ -26,6 +26,10 @@ export const Topup = ({ userData }) => {
       coin = 1000
       setSuccess(1)
     }
+    else if(getCode === "ebidmillion"){
+      coin = 1000000
+      setSuccess(1)
+    }
     else {
       setSuccess(2)
     }

@@ -58,10 +58,6 @@ export const ProductDetail = ({ details, userData }) => {
     }).catch(err => {
       console.log(err)
     })
-
-    // firebase.firestore().collection('user').doc(id).update({
-    //   balance : newTheirBalance
-    // })
   }
 
 
