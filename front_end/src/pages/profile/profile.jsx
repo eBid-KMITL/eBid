@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import firebase from "firebase";
 import { Helmet } from "react-helmet";
 
-export const Profile = () => {
+export const Profile = ({ userData }) => {
   const history = useHistory();
   function onLogout() {
     firebase.auth().signOut();
@@ -13,11 +13,11 @@ export const Profile = () => {
 
   return (
     <>
-      {firebase.auth().currentUser ?
+      {userData ?
         (<div className="welcome-main">
           <Helmet><title>Profile | eBid</title></Helmet>
           <div className="head-text">
-            ยินดีต้อนรับ {firebase.auth().currentUser.displayName}
+            ยินดีต้อนรับ {userData.displayName}
           </div>
           <div className="button-wrapper">
             <Link to="/">

@@ -4,19 +4,39 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import firebase from "firebase";
 import { FaExclamationCircle } from "react-icons/fa";
 import { Helmet } from "react-helmet";
+import { IoIosArrowBack } from "react-icons/io";
+import { Ellipsis } from 'react-spinners-css';
 
-export const Login = () => {
+export const Login = ({setUserData}) => {
   const history = useHistory();
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loginFail, setFail] = useState(false)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginFail, setFail] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+  var data = {}
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
   const to = useQuery().get("from")
+
   function onLogin(e) {
     e.preventDefault();
+    setLoading(true);
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+
+      firebase.firestore().collection('user').onSnapshot(snapshot => {
+        // console.log('snap')
+        snapshot.forEach(doc => {
+          data = doc.data()
+          data.uid = doc.id  
+            if (firebase.auth().currentUser && data.uid === firebase.auth().currentUser.uid){
+              setUserData(data)
+              window.localStorage.setItem("user",JSON.stringify(data))
+              // console.log(firebase.auth().currentUser.email)
+            }
+        })
+      })
       if (to) {
         history.push('/' + to);
       }
@@ -25,17 +45,18 @@ export const Login = () => {
       }
     })
       .catch(err => {
-        setFail(true)
+        setFail(true);
+        setLoading(false);
       });
   }
 
   return (
     <div className="login-page">
-      <Helmet><title>Login | eBid</title></Helmet>
+      <Helmet><title>Login | eBid</title ></Helmet >
       <div className="base-container">
         <div className="header">
-          <Link to="#" onClick={() => history.goBack()}>
-            ﹤ ย้อนกลับ
+          <Link to="#" onClick={() => history.push("/")} style={{ display: "flex", alignItems: "center" }} >
+            <IoIosArrowBack /> กลับหน้าหลัก
           </Link>
           <div className="image">
             <img src={logoID} alt="eID" />
@@ -43,9 +64,7 @@ export const Login = () => {
           <h1>ลงชื่อเข้าใช้</h1>
           {loginFail ? (
             <p id="input-error"><FaExclamationCircle /> &nbsp;อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
-          ) : (
-              null
-            )
+          ) : null
           }
         </div>
         <div className="content">
@@ -68,15 +87,14 @@ export const Login = () => {
                     <u>ลืมรหัสผ่าน</u>
                   </button>
                 </Link>
-                <button type="submit" className="btn">
-                  ลงชื่อเข้าใช้
-              </button>
+                <button type="submit" className="btn" disabled={loading} >
+                  {loading ? <Ellipsis color="white" size={40} /> : "ลงชื่อเข้าใช้"}
+                </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
-
 }

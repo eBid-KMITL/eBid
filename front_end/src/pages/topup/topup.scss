@@ -4,6 +4,54 @@
   text-align : left;
   padding-top: 150px;
 
+  p#input-error {
+    width           : 775px;
+    padding         : 5px 0;
+    font-size       : 18px;
+    font-weight     : normal;
+    font-family     : 'Roboto', 'Noto Sans Thai UI', sans-serif;
+    color           : white;
+    background-color: rgb(255, 38, 38);
+    box-shadow      : 0 0 7px 0 rgb(255, 38, 38);
+    width           : 100%;
+    border-radius   : 5px;
+    justify-content : center;
+    display         : flex;
+    align-items     : center;
+  }
+
+  p#sent-code {
+    width           : 775px;
+    padding         : 5px 0;
+    font-size       : 18px;
+    font-weight     : normal;
+    font-family     : 'Roboto', 'Noto Sans Thai UI', sans-serif;
+    color           : white;
+    background-color: rgb(51, 194, 51);
+    box-shadow      : 0 0 7px 0 rgb(43, 194, 43);
+    width           : 100%;
+    border-radius   : 5px;
+    justify-content : center;
+    display         : flex;
+    align-items     : center;
+  }
+
+  p#info {
+    width           : 775px;
+    padding         : 5px 0;
+    font-size       : 18px;
+    font-weight     : normal;
+    font-family     : 'Roboto', 'Noto Sans Thai UI', sans-serif;
+    color           : white;
+    background-color: #0082FF;
+    box-shadow      : 0 0 7px 0 #0082FF;
+    width           : 100%;
+    border-radius   : 5px;
+    justify-content : center;
+    display         : flex;
+    align-items     : center;
+  }
+
   .topup-wrap {
     display        : flex;
     flex-direction : row;
@@ -79,16 +127,15 @@
     }
 
     .button-wrapper {
-      flex-wrap     : wrap;
-      display       : flex;
-      flex-direction: row;
-      float         : right;
-      margin-top    : 9em;
+      float     : right;
+      margin-top: 5em;
 
       .btn {
+        width           : 145px;
+        height          : 45px;
         font-size       : 18px;
         font-family     : 'Roboto Bold', 'Noto Sans Thai UI Semibold', sans-serif;
-        padding         : 10px 50px;
+        padding         : 3px 0;
         border-radius   : 5px;
         border          : 0;
         color           : white;
@@ -104,6 +151,15 @@
 
         &:focus {
           outline: none;
+        }
+
+        &:disabled {
+          width           : 145px;
+          height          : 45px;
+          padding         : 3px;
+          cursor          : not-allowed;
+          background-color: #df8e25;
+          box-shadow      : 0 0 16px 3px #ffffff00;
         }
       }
     }

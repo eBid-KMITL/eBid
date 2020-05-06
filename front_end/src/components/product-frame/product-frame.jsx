@@ -1,36 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaClock, FaUserCircle } from "react-icons/fa";
 import { IoMdPricetags } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Moment from 'react-moment';
 import 'moment/locale/th';
+import moment from "moment";
 
 export const ProductFrame = ({ details }) => {
-  const link = "/product?id=" + details.id
+  const link = "/product?id=" + details?.pid
   var formatter = new Intl.NumberFormat('th-TH', {
     style: 'decimal',
   });
 
   return (
-    <Link to={link}>
-    <div className="product-box">
-      <div className="b-product-img">
-        <img src={details.image} alt="product-img" />
-      </div>
-      <div className="b-details">
-        <div className="b-product-title">
-          {details.name}
-      </div>
-        <div className="b-product-description">
-          <p id="time"><FaClock style={{ fontSize: 14 }}/>&nbsp;<Moment fromNow interval={1000} >{details.time}</Moment></p>
-          <p id="num"><IoMdPricetags style={{ fontSize: 16 }}/>&nbsp;ประมูลแล้ว {details.nbid} ครั้ง</p>
-          <p id="user"><FaUserCircle style={{ fontSize: 14 }}/>&nbsp;e_shop</p>
+    <Link to={link} >
+      <div className="product-box">
+        <div className="b-product-img" title={details?.name} style={{ 'backgroundImage': `url(${details?.img[0]})` }}>
+          {/* <img src={details?.img[0]} alt="product-img" /> */}
         </div>
-        <div className="b-product-price">
-            ฿{formatter.format(details.price)}
+        <div className="b-details">
+          <div className="b-product-title" title={details?.name}>
+            {details?.name}
+          </div>
+          <div className="b-product-description">
+            <p id="time" title={moment(details?.timeoutdate + "T" + details?.timeoutclock + "+0700", "YYYY-MM-DD HH:mm Z").format("D MMMM YYYY HH:mm [น.]")}>
+              <FaClock title="เวลาที่เหลือ" style={{ fontSize: 14 }} />&nbsp;<Moment fromNow interval={1000} >{details?.timeoutdate + "T" + details?.timeoutclock + "+0700"}</Moment>
+            </p>
+            <p id="num"><IoMdPricetags title="จำนวนการเคาะ" style={{ fontSize: 16 }} />&nbsp;ประมูลแล้ว {details?.nbid} ครั้ง</p>
+            <p id="user"><FaUserCircle title="ผู้ลงประมูล" style={{ fontSize: 14 }} />&nbsp;{details?.owner}</p>
+          </div>
+          <div className="b-product-price" title={`${formatter.format(details?.price)} eCoin`}>
+            ฿{formatter.format(details?.price)}
+          </div>
+        </div>
       </div>
-      </div>
-    </div>
     </Link>
   )
 }

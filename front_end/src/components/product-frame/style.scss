@@ -24,17 +24,14 @@ $shadow : 0 0 10px 0 #00000048;
   }
 
   .b-product-img {
-    height         : 150px;
-    width          : 150px;
-    display        : flex;
-    justify-content: center;
-    align-items    : center;
-    object-fit     : scale-down;
-
-    img {
-      width        : 100%;
-      border-radius: 10px 0 0 10px;
-    }
+    height               : 150px;
+    width                : 150px;
+    border-radius        : 10px 0 0 10px;
+    object-fit           : scale-down;
+    background-size      : cover;
+    background-repeat    : no-repeat;
+    background-attachment: scroll;
+    background-position  : center;
   }
 
   .b-details {
@@ -44,26 +41,34 @@ $shadow : 0 0 10px 0 #00000048;
     color         : black;
 
     .b-product-title {
-      font-size  : 20px;
-      font-family: $font-semibold;
-      font-weight: bold;
+      white-space  : nowrap;
+      overflow     : hidden;
+      text-overflow: ellipsis;
+      width        : 166px;
+      font-size    : 20px;
+      font-family  : $font-semibold;
+      font-weight  : bold;
     }
 
     .b-product-description {
       font-family: $font;
 
       p {
-        margin         : 0;
-        display        : flex;
-        align-items    : center;
+        margin     : 0;
+        display    : flex;
+        align-items: center;
       }
     }
 
     .b-product-price {
-      font-family: $font-semibold;
-      font-weight: bold;
-      font-size  : 30px;
-      color      : red;
+      white-space  : nowrap;
+      overflow     : hidden;
+      text-overflow: ellipsis;
+      width        : 166px;
+      font-family  : $font-semibold;
+      font-weight  : bold;
+      font-size    : 30px;
+      color        : red;
     }
   }
 }

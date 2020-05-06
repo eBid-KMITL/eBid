@@ -18,7 +18,7 @@ import { useState } from "react";
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 
-export const Profile = () => {
+export const Profile = ({ api, userData }) => {
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -28,7 +28,7 @@ export const Profile = () => {
 
   return (
     <>
-      {firebase.auth().currentUser ?
+      {userData ?
         (<div>
           <div className="user-main">
             <Helmet><title>eBid - Online Bidding | Software Development Processes KMITL</title></Helmet>
@@ -123,7 +123,7 @@ export const Profile = () => {
                 onClick={() => setMode(4)}
                 className={mode === 4 ? "selected" : ""}
               >
-                &nbsp;การซื้อของฉัน
+                &nbsp;การประมูลของฉัน
           </li>
               <li
                 onClick={() => setMode(5)}
@@ -143,24 +143,24 @@ export const Profile = () => {
               {(() => {
                 switch (mode) {
                   case 0:
-                    return <UserProfile />;
+                    return <UserProfile api={api} userData={userData}/>;
                   case 1:
-                    return <UserAccount />;
+                    return <UserAccount api={api} userData={userData}/>;
                   case 2:
-                    return <UserAddress />;
+                    return <UserAddress api={api} userData={userData}/>;
                   case 3:
-                    return <UserPassword />;
+                    return <UserPassword api={api} userData={userData}/>;
                   case 4:
-                    return <UserMyStatement />;
+                    return <UserMyStatement api={api} userData={userData}/>;
                   case 5:
-                    return <UserMyProduct />;
+                    return <UserMyProduct api={api} userData={userData}/>;
                   default:
-                    return <UserProfile />;
+                    return <UserProfile api={api} userData={userData}/>;
                 }
               })()}
             </div>
           </div>
-        </div>) : history.push("/login?from=profile?m=" + mode)
+        </div>) : history.push("/login?from=profile")
       }
     </>
   )

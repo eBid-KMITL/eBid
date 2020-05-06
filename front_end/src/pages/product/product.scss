@@ -45,6 +45,21 @@ $shadow : 0 3px 6px 0 #00000048;
       display       : flex;
       flex-direction: column;
 
+      .img-big {
+        width           : 375px;
+        height          : 375px;
+        background-color: white;
+        margin-bottom   : 3.5px;
+        display         : flex;
+        justify-content : center;
+        align-items     : center;
+
+        img {
+          max-width : 100%;
+          max-height: 100%;
+        }
+      }
+
       .img-small-cont {
         display       : flex;
         flex-direction: row;
@@ -56,16 +71,18 @@ $shadow : 0 3px 6px 0 #00000048;
           flex-direction: row;
           height        : 90px;
           width         : 90px;
-          object-fit    : scale-down;
-          color         : rgb(255, 0, 0);
 
           img {
-            width : 100%;
-            margin: 0 1.875px;
+            object-fit: scale-down;
+            max-width : 100%;
+            max-height: 100%;
+            margin    : 0 1.875px;
           }
 
           img#hovered {
-            width     : 100%;
+            object-fit: scale-down;
+            max-width : 100%;
+            max-height: 100%;
             margin    : 0 1.875px;
             box-shadow: 0 0 0 2px orange;
           }
@@ -227,7 +244,7 @@ $shadow : 0 3px 6px 0 #00000048;
           a#bidder {
             display    : flex;
             align-items: center;
-            width      : 120px;
+            width      : 160px;
             margin     : 10px 0;
             font-size  : 20px;
             color      : #0082FF;
@@ -288,7 +305,7 @@ $shadow : 0 3px 6px 0 #00000048;
         }
 
         .bid {
-          width           : 150px;
+          width           : 180px;
           height          : 50px;
           font-size       : 18px;
           font-family     : 'Noto Sans Thai UI Semibold', sans-serif;

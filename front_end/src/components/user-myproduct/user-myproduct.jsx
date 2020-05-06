@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MyProductDetail } from "../../components";
 import MacBook from "../../assets/products-pics/macbook.png";
 import iPhone from "../../assets/products-pics/ip11.png";
 import Watch from "../../assets/products-pics/watch.jpg";
 import Bag from "../../assets/products-pics/bag.jpg";
-import { useState } from "react";
-
+import firebase from 'firebase'
 var maxPage = 3;
 
-export const UserMyProduct = () => {
+export const UserMyProduct = ({ userData }) => {
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
 
   const details = [
     {
@@ -44,7 +46,20 @@ export const UserMyProduct = () => {
       image: Watch
     }
   ];
-
+  const [product, setProduct] = useState([]);
+  let pd = []
+  useEffect(() => {
+    firebase.firestore().collection('Product').onSnapshot(snapshot => {
+      // console.log('snap of Product')
+      pd = []
+      snapshot.forEach(doc => {
+        var pData = doc.data()
+        pData.pid = doc.id
+        pd.push(pData)
+      })
+      setProduct(pd)
+    })
+  }, [])
   const [state,setState] = useState({page : 1});
 
   const addPage = () => {
@@ -67,17 +82,13 @@ export const UserMyProduct = () => {
           <tr>
             <th>รายการ</th>
             <th>ราคาปัจจุบัน</th>
-            <th>สถานะการประมูล</th>
+            <th>สถานะปัจจุบัน</th>
             <th>ผู้เสนอราคาสูงสุด</th>
           </tr>
-          {details.map(detail => (
+          {product.filter(ele => ele.ownerid === userData.uid).map(detail => (
             <MyProductDetail details={detail} />
           ))}
         </table>
-      </div>
-      <div className="page">
-        <button type="button" disabled={state.page === 1} className="btn" onClick={minPage}>&lt;</button>หน้า {state.page} จาก {maxPage}
-        <button type="button" disabled={state.page === maxPage} className="btn" onClick={addPage}>&gt;</button>
       </div>
     </div>
   );

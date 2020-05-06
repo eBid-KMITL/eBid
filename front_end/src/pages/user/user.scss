@@ -41,7 +41,7 @@ $shadow: 0 3px 6px 0 #00000048;
 
     .selected {
       transition      : all 200ms ease-in-out;
-      font-weight     : bold;
+      font-family     : $font-semibold;
       color           : #ff9100;
       background-color: #ff91002f;
       border-radius   : 5px;
