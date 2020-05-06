@@ -349,7 +349,7 @@ export const Product = ({ userData }) => {
             <div className="bid-form">
               <form name="bid-price" onSubmit={e => onOpenConfirm(e)}>
                 <input name="bid-input" id="bid-price" type="number" placeholder="กรอกราคาที่มากกว่าราคาปัจจุบัน" min={product.price + 1} onInput={() => validateForm()} required />
-                <p id="ecoin-alert">{(userData?.proveadd && userData?.proveprofile) ? ((alert) ? "ยอดคงเหลือของท่านไม่พอ กรุณาเติมเงินก่อนเสนอราคา" : "เมื่อเสนอราคา eCoin ของท่านจะถูกกันไว้จนกว่าจะมีผู้เสนอราคาที่สูงกว่า") : "ท่านยังไม่ได้กรอกที่อยู่ในระบบ"}</p>
+                <p id="ecoin-alert">{(userData?.proveadd && userData?.proveprofile) ? ((alert) ? "ยอดคงเหลือของท่านไม่พอ กรุณาเติมเงินก่อนเสนอราคา" : "เมื่อเสนอราคา eCoin ของท่านจะถูกกันไว้จนกว่าจะมีผู้เสนอราคาที่สูงกว่า") : "ท่านยังไม่ได้กรอกข้อมูลผู้ใช้และที่อยู่ในระบบ"}</p>
                 <div className="form-foot">
                   <div className="price-container">
                     <p id="price-tag">ราคาปัจจุบัน</p>

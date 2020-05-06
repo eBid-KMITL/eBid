@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.scss";
 import moneyPicture from "../../assets/eGold.png";
 import firebase from "firebase";
@@ -24,7 +24,7 @@ export const UserAccount = ({ userData }) => {
 
   function getMoney(e) {
     e.preventDefault();
-    let withdrawMoney = parseInt(document.getElementById("bid-price").value) 
+    let withdrawMoney = parseInt(document.getElementById("bid-price").value)
     let newBalance = userData.balance - withdrawMoney
     firebase.firestore().collection('user').doc(userData.uid).update({
       balance: newBalance
@@ -58,14 +58,14 @@ export const UserAccount = ({ userData }) => {
       <Modal open={withdraw} center={true} onClose={() => onCloseWithdraw()} little>
         <h1>ถอนเงินจากบัญชี</h1>
         <form name="bid-price" onSubmit={e => getMoney(e)}>
-          <input name="withdraw-input" id="bid-price" type="number" placeholder="กรอกจำนวนเงินที่ต้องการถอน" max={userData.balance} required />
-          <p id="ecoin-alert">กรอกจำนวนเงินที่ต้องการถอน</p>
+          <input name="withdraw-input" id="withdraw" type="number" title="ใส่จำนวนเงินไม่เกินจำนวนเงินที่ถอนได้" placeholder="กรอกจำนวนเงินที่ต้องการถอน" min={1} max={userData.balance - userData.used} required />
+          <p id="ecoin-alert">ใส่จำนวนเงินไม่เกินจำนวนเงินที่ถอนได้</p>
           <div className="form-foot">
             <div className="price-container">
-              <p id="price-tag">เงินคงเหลือ</p>
+              <p id="price-tag">เงินคงเหลือที่ถอนได้</p>
               <h3 id="curPrice">
-                {formatter.format(userData.balance)} eCoin</h3>
-              <button className="btn-close" id="close-terms" type="submit" >ถอนเงิน</button>
+                {formatter.format(userData.balance - userData.used)} eCoin</h3>
+              <button className="btn_c" id="close-withdraw" type="submit" >ถอนเงิน</button>
             </div>
           </div>
         </form>
