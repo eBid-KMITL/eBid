@@ -444,11 +444,12 @@ export const AddProduct = ({ userData }) => {
                 <label>
                   ราคาเริ่มต้น :{" "}
                   <input
-                    type="number"
+                    type="text"
                     placeholder="กรอกราคาเริ่มต้น"
                     id="productStartPrice"
                     name="productStartPrice"
-                    pattern="^[\d]$"
+                    title="ใส่เฉพาะตัวเลขเท่านั้น"
+                    pattern="^[1-9][\d]*$"
                     min={1}
                     required
                     onInput={() => checkForActivatedAlert()}
