@@ -93,7 +93,7 @@ export const MyProductDetail = ({ details }) => {
             <a title="ดูข้อมูลที่อยู่ของผู้ใช้นี้" href="#"onClick={() => { onOpenAddr(); showUserAddress(details.currentWinner?.uid) }}>{details.currentWinner?.name}</a>:
             (!details.currentWinner?.name)? 
             'ไม่มีผู้ร่วมประมูล':
-            details.currentWinner?.name
+            <p style={{textDecoration: "none !important"}}>{details.currentWinner?.name}</p>
         }
       
         </div>

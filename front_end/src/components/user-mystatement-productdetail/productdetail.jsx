@@ -42,7 +42,8 @@ export const ProductDetail = ({ details, userData }) => {
       thatUser = thatUser[0] ? thatUser[0] : null
       if (thatUser) {
         batch.update(firebase.firestore().collection('user').doc(id), {
-          balance: thatUser.balance + price
+          balance: thatUser.balance + price,
+          recieve: thatUser.recieve + price
         })
       }
       batch.commit().then(() => {
@@ -69,12 +70,12 @@ export const ProductDetail = ({ details, userData }) => {
             <img src={details?.img[0]} alt="statement-pic" className="prod-pic" />
           </div>
           <div className="productdetail">
-            <div className="product-title">{details?.name}</div>
+            <div className="product-title"><Link to={"/product?id=" + details.pid}>{details?.name}</Link></div>
             <div className="product-owner">
-              <p style={{margin: 0, color: "#0082FF",  textDecoration: "none"}}>{details.owner}</p>
+              <p style={{ margin: 0}}>{"โดย "+details.owner}</p>
             </div>
             <div className="time">
-              <Moment style={{textDecoration: "underline"}} title={moment(due, "x").format("[หมดเวลาวันที่ ] DD MMMM YYYY [เวลา] HH:mm [น.]")} interval={1000} fromNow >{details.timeoutdate + "T" + details.timeoutclock + "+0700"}
+              <Moment style={{ textDecoration: "underline" }} title={moment(due, "x").format("[หมดเวลาวันที่ ] DD MMMM YYYY [เวลา] HH:mm [น.]")} interval={1000} fromNow >{details.timeoutdate + "T" + details.timeoutclock + "+0700"}
               </Moment>
             </div>
           </div>

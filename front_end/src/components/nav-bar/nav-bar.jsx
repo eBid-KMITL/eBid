@@ -72,7 +72,7 @@ export const NavBar = ({ userData }) => {
               {userData ? (
                 <div className="user-status">
                   <FaUserCircle /> <Link to="/profile" title="ไปที่หน้าโปรไฟล์">{userData?.displayName}</Link><br />
-                  <p title={formatter.format(userData?.balance) + " eCoin"} style={{ margin: 0, cursor: "default" }}><FaCoins /> {formatter.format(userData?.balance)} eCoins</p>
+                  <p title={formatter.format(userData?.balance - userData?.used) + " eCoin"} style={{ margin: 0, cursor: "default" }}><FaCoins /> {formatter.format(userData?.balance - userData?.used)} eCoins</p>
                 </div>
               ) : (
                   <Link to="/login">

@@ -12,6 +12,14 @@ export const UserAccount = ({ userData }) => {
     style: 'decimal',
   });
 
+  function getMoney(){
+    let newBalance = userData.balance - 0 
+    firebase.firestore().collection('user').doc(userData.uid).update({
+      balance : newBalance
+    })
+  }
+
+
   return (
     <div className="account-box">
       <h>เงินในบัญชีของฉัน</h>
