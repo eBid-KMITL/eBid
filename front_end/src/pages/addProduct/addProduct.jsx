@@ -178,7 +178,7 @@ export const AddProduct = ({userData}) => {
                                         firebase.storage().ref("imageProduct/").child(record.id).delete()
                                         console.log(err)
                                       })
-                                      console.log(keepurl)
+                                      // console.log(keepurl)
                                     })
                                   }
                                 );
@@ -196,7 +196,7 @@ export const AddProduct = ({userData}) => {
                                   firebase.storage().ref("imageProduct/").child(record.id).delete()
                                   console.log(err)
                                 })
-                                console.log(keepurl)
+                                // console.log(keepurl)
                               }
                             })
                           }
@@ -215,7 +215,7 @@ export const AddProduct = ({userData}) => {
                           firebase.storage().ref("imageProduct/").child(record.id).delete()
                           console.log(err)
                         })
-                        console.log(keepurl)
+                        // console.log(keepurl)
                       }
                     })
                   }

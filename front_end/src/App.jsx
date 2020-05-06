@@ -19,21 +19,21 @@ const App = () => {
     if(checkuser){
       setUserData(JSON.parse(checkuser))
       firebase.firestore().collection('user').onSnapshot(snapshot => {
-        console.log('snap')
+        // console.log('snap')
         snapshot.forEach(doc => {
           var data = doc.data()
           data.uid = doc.id  
             if (firebase.auth().currentUser && data.uid === firebase.auth().currentUser.uid){
               setUserData(data)
               window.localStorage.setItem("user",JSON.stringify(data))
-              console.log(firebase.auth().currentUser.email)
+              // console.log(firebase.auth().currentUser.email)
             }
         })
       })
     }
 
     firebase.firestore().collection('Product').onSnapshot(snapshot => {
-      console.log('snap of Product')
+      // console.log('snap of Product')
     })
   }
   

@@ -33,7 +33,7 @@ export const Topup = ({ userData }) => {
       balance: balance + coin
     }).then(() => {
       setLoading(false);
-      console.log("succes")
+      // console.log("succes")
     }).catch(err => {
       setLoading(false);
       console.log(err)

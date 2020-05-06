@@ -32,10 +32,11 @@ export const UserAddress = ({ userData }) => {
       subDistrict: document.getElementById("subDistrict").value,
       district: document.getElementById("district").value,
       province: document.getElementById("province").value,
-      postalCode: document.getElementById("postalCode").value
+      postalCode: document.getElementById("postalCode").value,
+      proveadd: true,
     }
-    console.log('sending')
-    console.log(data)
+    // console.log('sending')
+    // console.log(data)
     firebase.firestore().collection('user').doc(id).update(data).then(() => {
       setState(0)
     }).catch(err => {

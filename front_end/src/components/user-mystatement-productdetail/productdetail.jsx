@@ -16,14 +16,14 @@ export const ProductDetail = ({ details, userData }) => {
   let ud = []
   useEffect(() => {
     firebase.firestore().collection('user').onSnapshot(snapshot => {
-      console.log('snap of user')
+      // console.log('snap of user')
       ud = []
       snapshot.forEach(doc => {
         var uData = doc.data()
         uData.uid = doc.id
         ud.push(uData)
       })
-      console.log(ud)
+      // console.log(ud)
       setAllUser(ud)
     })
   }, [])

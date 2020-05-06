@@ -21,7 +21,7 @@ export const Register = ({ api }) => {
     e.preventDefault();
     setLoading(true);
     firebase.auth().createUserWithEmailAndPassword(email, password).then((userRecord) => {
-      console.log(userRecord.user.uid)
+      // console.log(userRecord.user.uid)
       firebase.firestore().collection('user').doc(userRecord.user.uid).set({
         displayName: name,
         email: email,
@@ -29,7 +29,9 @@ export const Register = ({ api }) => {
         used: 0,
         recieve: 0,
         biddingPID: [],
-        sellingPID: []
+        sellingPID: [],
+        proveadd:false,
+        proveprofile:false
       })
     }).then(() => {
       history.push('/login');
@@ -150,10 +152,13 @@ export const Register = ({ api }) => {
               3. การประมูลในเว็บไซต์นี้เป็นการจำลองการทำงานของระบบเท่านั้น ไม่สามารถประมูลซื้อขายได้จริง
             </p>
             <p>
-              4. ไม่สามารถนำเงินจริงเข้าระบบได้ เงินในระบบเป็นเงินใช้เพื่อการจำลองการทำงานเท่านั้น
+              4. กรุณากรอกข้อมูลในโปรไฟล์ของท่านก่อนทำการประมูล
             </p>
             <p>
-              5. ผู้จัดทำจะไม่รับผิดชอบความเสียหายใดๆ กรณีเกิดข้อผิดพลาดจากระบบจำลองนี้
+              5. ไม่สามารถนำเงินจริงเข้าระบบได้ เงินในระบบเป็นเงินใช้เพื่อการจำลองการทำงานเท่านั้น
+            </p>
+            <p>
+              6. ผู้จัดทำจะไม่รับผิดชอบความเสียหายใดๆ กรณีเกิดข้อผิดพลาดจากระบบจำลองนี้
             </p>
             <button className="btn" id="close-terms" type="button" onClick={() => onCloseTerms()}>ปิด</button>
           </Modal>

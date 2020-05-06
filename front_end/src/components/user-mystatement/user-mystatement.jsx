@@ -46,7 +46,7 @@ export const UserMyStatement = ({ userData }) => {
   let pd = []
   useEffect(() => {
     firebase.firestore().collection('Product').onSnapshot(snapshot => {
-      console.log('snap of Product')
+      // console.log('snap of Product')
       pd = []
       snapshot.forEach(doc => {
         var pData = doc.data()

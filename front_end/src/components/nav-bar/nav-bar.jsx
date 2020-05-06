@@ -8,33 +8,7 @@ import firebase from "firebase";
 
 export const NavBar = ({ userData }) => {
   const location = useLocation()
-  // const [Users, setUser] = useState("")
-  // var data = {}
-  // let users = []
-  // useEffect(() => {
-  //   firebase.firestore().collection('user').onSnapshot(snapshot => {
-  //     console.log('snap')
-  //     users = []
-  //     snapshot.forEach(doc => {
-  //       data = doc.data()
-  //       data.uid = doc.id
-  //       users.push(data)
-  //       if (firebase.auth().currentUser && data.uid === firebase.auth().currentUser.uid) {
-  //         userName = data.displayName
-  //         eCoin = data.balance
-  //         setUserName()
-  //         setUserData(data)
-  //         console.log(data)
-  //       }
-  //     })
-  //     // setUsers()
-  //     // setUser(users)
-  //   })
-  //   firebase.firestore().collection('Product').onSnapshot(snapshot => {
-  //     console.log('snap of Product')
-  //   })
-  // }, [])
-
+  
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
 

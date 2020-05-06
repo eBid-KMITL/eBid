@@ -27,10 +27,11 @@ export const UserProfile = ({ userData }) => {
       lastName: document.getElementById("SurName").value,
       gender: document.getElementById("gender").value,
       birthDay: document.getElementById("birthday").value,
-      phone: document.getElementById("phone").value
+      phone: document.getElementById("phone").value,
+      proveprofile: true
     }
-    console.log('sending')
-    console.log(data)
+    // console.log('sending')
+    // console.log(data)
     firebase.firestore().collection('user').doc(id).update(data).then(() => {
       setState(0)
     }).catch(err => {

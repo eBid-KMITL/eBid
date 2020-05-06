@@ -16,7 +16,7 @@ export const UserPassword = ({ userData }) => {
     const a = document.getElementById("email").value
     e.preventDefault();
     setLoading(true);
-    console.log(a + " " + userData.email)
+    // console.log(a + " " + userData.email)
     if (userData.email === a) {
       firebase.auth().sendPasswordResetEmail(email).then(() => {
         setSent(true);

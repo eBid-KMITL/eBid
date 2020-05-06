@@ -26,7 +26,7 @@ export const MyProductDetail = ({ details }) => {
   let ud = []
   useEffect(() => {
     firebase.firestore().collection('user').onSnapshot(snapshot => {
-      console.log('snap of user')
+      // console.log('snap of user')
       ud = []
       snapshot.forEach(doc => {
         var uData = doc.data()

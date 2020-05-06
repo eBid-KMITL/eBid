@@ -26,14 +26,14 @@ export const Login = ({setUserData}) => {
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
 
       firebase.firestore().collection('user').onSnapshot(snapshot => {
-        console.log('snap')
+        // console.log('snap')
         snapshot.forEach(doc => {
           data = doc.data()
           data.uid = doc.id  
             if (firebase.auth().currentUser && data.uid === firebase.auth().currentUser.uid){
               setUserData(data)
               window.localStorage.setItem("user",JSON.stringify(data))
-              console.log(firebase.auth().currentUser.email)
+              // console.log(firebase.auth().currentUser.email)
             }
         })
       })

@@ -52,21 +52,21 @@ export const Product = ({ userData }) => {
   const [product, setProduct] = useState(null);
   useEffect(() => {
     firebase.firestore().collection('Product').doc(id).onSnapshot(snapshot => {
-      console.log('snap of Product in Product.jsx')
+      // console.log('snap of Product in Product.jsx')
       setProduct(snapshot.data())
       setBigImg(snapshot.data().img[0])
       setDue(moment(snapshot.data().timeoutdate + "T" + snapshot.data().timeoutclock + "+0700", "YYYY-MM-DD HH:mm Z").format("x"))
     })
 
     firebase.firestore().collection('user').onSnapshot(snapshot => {
-      console.log('snap of user')
+      // console.log('snap of user')
       ud = []
       snapshot.forEach(doc => {
         var uData = doc.data()
         uData.uid = doc.id
         ud.push(uData)
       })
-      console.log(ud)
+      // console.log(ud)
       setAllUser(ud)
       // new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
       //   console.log(alluser)
@@ -107,19 +107,19 @@ export const Product = ({ userData }) => {
   function onCloseConfirm() {
     setConfirm(false);
   }
-  function toggleLove() {
-    if (userData) {
-      if (love) {
-        setLove(false);
-      }
-      else {
-        setLove(true);
-      }
-    }
-    else {
-      history.push("/login?from=product?id=" + id);
-    }
-  }
+  // function toggleLove() {
+  //   if (userData) {
+  //     if (love) {
+  //       setLove(false);
+  //     }
+  //     else {
+  //       setLove(true);
+  //     }
+  //   }
+  //   else {
+  //     history.push("/login?from=product?id=" + id);
+  //   }
+  // }
   function checkStatus() {
     if (product?.ownerid === userData?.uid) {
       setIsOwner(true)
@@ -175,7 +175,7 @@ export const Product = ({ userData }) => {
   }
   function validateForm() {
     var input = parseInt(document.forms["bid-price"]["bid-input"].value)
-    if (input > product.price && (input + userData.used) <= userData.balance) {
+    if (input > product.price && (input + userData.used) <= userData.balance && userData.proveadd && userData.proveprofile) {
       setBTN(false);
       setAlert(false);
     }
@@ -188,7 +188,7 @@ export const Product = ({ userData }) => {
     }
   }
   function payCoin() {
-    console.log('paying')
+    // console.log('paying')
     const newBidPrice = parseInt(document.getElementById('bid-price').value)
     let newUsed = 0
     if ((userData.used + newBidPrice) < userData.balance) {
@@ -229,11 +229,11 @@ export const Product = ({ userData }) => {
         product.bidder.forEach((ele, i) => {
           if (ele.uid != userData.uid) {
             //ไม่ใช่มึง
-            console.log(alluser,ud, ele.uid)
+            // console.log(alluser,ud, ele.uid)
             let thatUser = alluser.filter(e=>{
               return e.uid === ele.uid
             })
-            console.log('thatUser',thatUser)
+            // console.log('thatUser',thatUser)
             thatUser = thatUser[0]?thatUser[0]:null
             if (thatUser) {
               batch.update(firebase.firestore().collection('user').doc(ele.uid), {
@@ -253,7 +253,7 @@ export const Product = ({ userData }) => {
         firebase.firestore().collection('user').doc(userData.uid).update({
           used: newUsed
         }).then(() => {
-          console.log('Successfully bid!')
+          // console.log('Successfully bid!')
           onCloseConfirm();
         }).catch(err => {
           console.log('Failed to bid at UserUpdate', err)
@@ -339,7 +339,7 @@ export const Product = ({ userData }) => {
               </div>
             </div>
             <div className="btn-container">
-              <button type="button" className="love" onClick={() => toggleLove()}>{(love) ? (<FaHeart />) : (<FaRegHeart />)}&nbsp;เพิ่มในอยากได้</button>
+              {/* <button type="button" className="love" onClick={() => toggleLove()}>{(love) ? (<FaHeart />) : (<FaRegHeart />)}&nbsp;เพิ่มในอยากได้</button> */}
               <button type="button" className="bid" onClick={() => onOpenModal()} disabled={disable || isOwner}>{isOwner ? "คุณเป็นเจ้าของสินค้านี้" : ((status === 1) ? "ประมูล" : "หมดเวลาแล้ว")}</button>
             </div>
           </div>
