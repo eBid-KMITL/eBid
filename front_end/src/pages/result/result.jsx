@@ -51,21 +51,27 @@ export const Result = ({ userData }) => {
       if (name[index] === searchInputt[0]) {
         loopCount += 1
         let check = true
-        // console.log(name, ' c ', searchInputt)
+        console.log(name, ' c ', searchInputt)
         for (let index2 = 1; index2 < searchLength; index2++) {
-          // console.log(searchInputt[index2], ' b ', name[index + index2])
+          console.log(searchInputt[index2], ' b ', name[index + index2])
           if (searchInputt[index2] === name[index + index2]) {
-            //ไม่มีไร ไปต่อ
+
           } else {
             check = false
             break
           }
         }
+
         if (loopCount >= count) {
           if (check) {
             rc += 1
           }
           return check
+        }else{
+          if(check){
+            rc += 1
+            return check
+          }
         }
       }
     }
