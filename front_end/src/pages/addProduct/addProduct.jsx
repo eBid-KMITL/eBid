@@ -1,19 +1,25 @@
 import React, { useState, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
-import firebase from "firebase";
+import firebase, { firestore } from "firebase";
 import { useDropzone } from "react-dropzone";
 import addSymbol from "../../assets/add.svg";
 import NavigationPrompt from "react-router-navigation-prompt";
 import Modal from "react-responsive-modal";
 import moment from "moment";
+import { Ellipsis } from 'react-spinners-css';
+import { useEffect } from "react";
 
 var pic = 0;
 
-export const AddProduct = () => {
+export const AddProduct = ({ userData }) => {
   const now = moment().add("1", "d").format("YYYY-MM-DD");
   const history = useHistory();
   const imageMaxSize = 3000000; // bytes
+  const [prepic1, setprepic1] = useState(null);
+  const [prepic2, setprepic2] = useState(null);
+  const [prepic3, setprepic3] = useState(null);
+  const [prepic4, setprepic4] = useState(null);
   const [pic1, setPic1] = useState(null);
   const [pic2, setPic2] = useState(null);
   const [pic3, setPic3] = useState(null);
@@ -21,8 +27,13 @@ export const AddProduct = () => {
   const [bigImg, setBigImg] = useState(null);
   const [countPic, setCountPic] = useState(pic);
   const [outcome, setOutcome] = useState(1);
-  const [alerted,setAlerted] = useState(false);
-
+  const [alerted, setAlerted] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const db = firebase.firestore();
+  const id = userData?.uid
+  let keepurl = []
+  let keepproductid = userData.sellingPID
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     maxSize: imageMaxSize,
@@ -34,18 +45,22 @@ export const AddProduct = () => {
         reader.onload = () => {
           if (pic === 0) {
             setPic1(URL.createObjectURL(file));
+            setprepic1(file)
             setOutcome(0);
             pic++;
           } else if (pic === 1) {
             setPic2(URL.createObjectURL(file));
+            setprepic2(file)
             setOutcome(0);
             pic++;
           } else if (pic === 2) {
             setPic3(URL.createObjectURL(file));
+            setprepic3(file)
             setOutcome(0);
             pic++;
           } else if (pic === 3) {
             setPic4(URL.createObjectURL(file));
+            setprepic4(file)
             setOutcome(0);
             pic++;
           }
@@ -55,6 +70,10 @@ export const AddProduct = () => {
       });
     }, []),
   });
+
+  useEffect(() => {
+    resetPicture()
+  }, []);
 
   function checkForActivatedAlert() {
     if (
@@ -68,7 +87,7 @@ export const AddProduct = () => {
     ) {
       setAlerted(true);
     }
-    else{
+    else {
       setAlerted(false);
     }
   }
@@ -85,11 +104,133 @@ export const AddProduct = () => {
 
   function sendProduct(e) {
     e.preventDefault();
-    if (pic1 == null && pic2 == null) {
+    if (pic1 == null || pic2 == null) {
       alert("ไม่พบรูปภาพ กรุณาลงรูปสินค้าอย่างน้อย 2 รูป")
     }
     else {
-      // sendProduct to DB
+      db.collection("Product").add({
+        name: document.getElementById('productName').value,
+        category: parseInt(document.getElementById("category").value),
+        price: parseInt(document.getElementById("productStartPrice").value),
+        timeoutdate: document.getElementById("productTimeOut").value,
+        timeoutclock: document.getElementById("productTimeOut2").value,
+        description: document.getElementById("productDetail").value,
+        nbid: 0,
+        owner: userData.displayName,
+        ownerid: id,
+        bidder: [],
+        sent: false
+      }).then(record => {
+        keepproductid.push(record.id)
+        db.collection("user").doc(id).update({
+          sellingPID: keepproductid
+        })
+        keepurl = []
+        setLoading(true);
+        const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic1").put(prepic1);
+        storageRef.on("state_changed", snapshot => {
+        },
+          error => {
+            console.log(error.message)
+          },
+          () => {
+            storageRef.snapshot.ref.getDownloadURL().then((url) => {
+              keepurl.push(url)
+            }).then(() => {
+              if (prepic2) {
+                const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic2").put(prepic2);
+                storageRef.on("state_changed", snapshot => {
+                },
+                  error => {
+                    console.log(error.message)
+                  },
+                  () => {
+                    storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                      keepurl.push(url)
+                    }).then(() => {
+                      if (prepic3) {
+                        const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic3").put(prepic3);
+                        storageRef.on("state_changed", snapshot => {
+                        },
+                          error => {
+                            console.log(error.message)
+                          },
+                          () => {
+                            storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                              keepurl.push(url)
+                            }).then(() => {
+                              if (prepic4) {
+                                const storageRef = firebase.storage().ref("imageProduct/" + record.id).child("pic4").put(prepic4);
+                                storageRef.on("state_changed", snapshot => {
+                                },
+                                  error => {
+                                    console.log(error.message)
+                                  },
+                                  () => {
+                                    storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                                      keepurl.push(url)
+                                    }).then(() => {
+                                      db.collection("Product").doc(record.id).update({
+                                        img: keepurl
+                                      }).then(() => {
+                                        setSent(true);
+                                        setLoading(false);
+                                        setAlerted(false)
+                                        history.push('/product?id=' + record.id)
+                                      }).catch(err => {
+                                        db.collection("Product").doc(record.id).delete()
+                                        firebase.storage().ref("imageProduct/").child(record.id).delete()
+                                        console.log(err)
+                                      })
+                                      resetPicture()
+                                    })
+                                  }
+                                );
+                              }
+                              else {
+                                db.collection("Product").doc(record.id).update({
+                                  img: keepurl
+                                }).then(() => {
+                                  setSent(true);
+                                  setLoading(false);
+                                  setAlerted(false)
+                                  history.push('/product?id=' + record.id)
+                                }).catch(err => {
+                                  db.collection("Product").doc(record.id).delete()
+                                  firebase.storage().ref("imageProduct/").child(record.id).delete()
+                                  console.log(err)
+                                })
+                                resetPicture()
+                              }
+                            })
+                          }
+                        );
+                      }
+                      else {
+                        db.collection("Product").doc(record.id).update({
+                          img: keepurl
+                        }).then(() => {
+                          setSent(true);
+                          setLoading(false)
+                          setAlerted(false)
+                          history.push('/product?id=' + record.id)
+                        }).catch(err => {
+                          db.collection("Product").doc(record.id).delete()
+                          firebase.storage().ref("imageProduct/").child(record.id).delete()
+                          console.log(err)
+                        })
+                        resetPicture()
+                      }
+                    })
+                  }
+                );
+              }
+            })
+          }
+        );
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 
@@ -131,7 +272,7 @@ export const AddProduct = () => {
           }
         }}
       </NavigationPrompt>
-      {firebase.auth().currentUser ? (
+      {userData ? (
         <div className="addProduct-main">
           <Helmet>
             <title>
@@ -141,15 +282,16 @@ export const AddProduct = () => {
           <div className="addPicture-frame">
             {bigImg === null ? (
               <div {...getRootProps({ className: "dropzone" })}>
-                <input {...getInputProps()} disabled={countPic === 4} onInput={() => checkForActivatedAlert()}/>
+                <input {...getInputProps()} disabled={countPic === 4} onInput={() => checkForActivatedAlert()} />
                 <img src={addSymbol} className="addlogo" alt="add-Logo" />
                 <p>ลากและวางไฟล์รูปเพื่อเพิ่มรูปภาพ</p>
+                <p>(ขนาดรูปละไม่เกิน 3 MB)</p>
               </div>
             ) : (
-              <div className="big-preview">
-                <img src={bigImg} className="big-img" alt="img-preview" />
-              </div>
-            )}
+                <div className="big-preview">
+                  <img src={bigImg} className="big-img" alt="img-preview" />
+                </div>
+              )}
             {outcome === 0 ? (
               <div className="preview-box">
                 {countPic === 1 ? (
@@ -163,8 +305,8 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
                 {countPic === 2 ? (
                   <>
                     <div
@@ -183,8 +325,8 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
                 {countPic === 3 ? (
                   <>
                     <div
@@ -210,8 +352,8 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
                 {countPic === 4 ? (
                   <>
                     <div
@@ -244,12 +386,12 @@ export const AddProduct = () => {
                     </div>
                   </>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </div>
             ) : (
-              ""
-            )}
+                ""
+              )}
             <div
               className={countPic === 4 ? "page-contain-red" : "page-contain"}
             >
@@ -266,12 +408,12 @@ export const AddProduct = () => {
                 </button>
               </div>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
           <div className="addProduct-detail-box">
             <div className="addProduct-detail">
-              <form onSubmit={e => sendProduct(e)}>
+              <form onSubmit={e => sendProduct(e) }>
                 <label>
                   ชื่อสินค้า :{" "}
                   <input
@@ -282,30 +424,33 @@ export const AddProduct = () => {
                     required
                     minLength="5"
                     onInput={() => checkForActivatedAlert()}
+
                   />
                 </label>
                 <br />
                 <label for="category">{"  "}หมวดหมู่ : </label>
                 <select id="category" required onInput={() => checkForActivatedAlert()}>
                   <option disabled>เลือกหมวดหมู่...</option>
-                  <option value="1">การ์ตูน</option>
-                  <option value="2">ของสะสม</option>
-                  <option value="3">ของเล่น | เกมส์</option>
-                  <option value="4">คอมพิวเตอร์ | โทรศัพท์มือถือ</option>
-                  <option value="5">หนังสือ | สิ่งพิมพ์</option>
-                  <option value="6">แฟชั่น</option>
-                  <option value="7">ภาพยนตร์ | วิดีโอ | ดีวีดี</option>
-                  <option value="8">อิเล็กทรอนิกส์</option>
+                  <option value={1}>การ์ตูน</option>
+                  <option value={2}>ของสะสม</option>
+                  <option value={3}>ของเล่น | เกมส์</option>
+                  <option value={4}>คอมพิวเตอร์ | โทรศัพท์มือถือ</option>
+                  <option value={5}>หนังสือ | สิ่งพิมพ์</option>
+                  <option value={6}>แฟชั่น</option>
+                  <option value={7}>ภาพยนตร์ | วิดีโอ | ดีวีดี</option>
+                  <option value={8}>อิเล็กทรอนิกส์</option>
                 </select>
                 <br />
                 <label>
                   ราคาเริ่มต้น :{" "}
                   <input
-                    type="number"
+                    type="text"
                     placeholder="กรอกราคาเริ่มต้น"
                     id="productStartPrice"
                     name="productStartPrice"
-                    min="1"
+                    title="ใส่เฉพาะตัวเลขเท่านั้น"
+                    pattern="^[1-9][\d]*$"
+                    min={1}
                     required
                     onInput={() => checkForActivatedAlert()}
                   />
@@ -313,7 +458,7 @@ export const AddProduct = () => {
                 </label>
                 <br />
                 <label>
-                  หมดเวลา :{" "}
+                  ปิดประมูลวันที่ :{" "}
                   <input
                     type="date"
                     id="productTimeOut"
@@ -322,6 +467,7 @@ export const AddProduct = () => {
                     required
                     onInput={() => checkForActivatedAlert()}
                   />
+                  {"  "}เวลา :{" "}
                   <input
                     type="time"
                     id="productTimeOut2"
@@ -343,16 +489,16 @@ export const AddProduct = () => {
                     onInput={() => checkForActivatedAlert()}
                   />
                 </label>
-                <button type="submit" className="btn-submit">
-                  ยืนยันการลงประมูลสินค้า
+                <button type="submit" className="btn-submit" disabled={loading || sent}>
+                  {sent ? ("ลงข้อมูลสินค้าแล้ว") : (loading ? <Ellipsis color="white" size={40} /> : "ยืนยันการลงประมูลสินค้า")}
                 </button>
               </form>
             </div>
           </div>
         </div>
       ) : (
-        history.push("/login")
-      )}
+          history.push("/login")
+        )}
     </>
   );
 };

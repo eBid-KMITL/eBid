@@ -4,7 +4,7 @@ import firebase from "firebase"
 import { FaExclamationCircle } from "react-icons/fa";
 import { Ellipsis } from 'react-spinners-css';
 
-export const UserPassword = () => {
+export const UserPassword = ({ userData }) => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -16,8 +16,8 @@ export const UserPassword = () => {
     const a = document.getElementById("email").value
     e.preventDefault();
     setLoading(true);
-    console.log(a + " " + firebase.auth().currentUser.email)
-    if (firebase.auth().currentUser.email === a) {
+    // console.log(a + " " + userData.email)
+    if (userData.email === a) {
       firebase.auth().sendPasswordResetEmail(email).then(() => {
         setSent(true);
         setLoading(false);

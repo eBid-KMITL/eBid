@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Moment from 'react-moment';
 import 'moment/locale/th';
 import logo from "../../assets/eBid.png";
@@ -6,12 +6,12 @@ import { Link, useLocation } from "react-router-dom";
 import { FaUserCircle, FaCoins } from "react-icons/fa";
 import firebase from "firebase";
 
-export const NavBar = ({ userInfo }) => {
-  const location = useLocation();
-  const [name, setName] = useState("");
+export const NavBar = ({ userData }) => {
+  const location = useLocation()
+  
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      setName(firebase.auth().currentUser.displayName)
+
     }
   });
   var formatter = new Intl.NumberFormat('th-TH', {
@@ -22,10 +22,11 @@ export const NavBar = ({ userInfo }) => {
   }
   function onLogout() {
     firebase.auth().signOut();
+    window.localStorage.setItem("user",null)
     window.location.replace("/");
   }
   const search = useQuery().get("search");
-
+  
   return (
     <>
       {
@@ -37,7 +38,7 @@ export const NavBar = ({ userInfo }) => {
           <div className="nav-header">
             <Moment interval={1000} format={'[วันที่] D MMMM YYYY [เวลา] HH:mm:ss [น.]'} />
             <span className="nav-menu">
-              {firebase.auth().currentUser ? (
+              {userData ? (
                 <div>
                   <Link to="/addproduct">ลงประมูลสินค้า</Link>
                   <Link to="/profile?m=4">การประมูลของฉัน</Link>
@@ -68,10 +69,10 @@ export const NavBar = ({ userInfo }) => {
               </form>
             </div>
             <div className="nav-btn">
-              {firebase.auth().currentUser ? (
+              {userData ? (
                 <div className="user-status">
-                  <FaUserCircle /> <Link to="/profile" title="ไปที่หน้าโปรไฟล์">{name}</Link><br />
-                  <p title={formatter.format(userInfo.amount) + " eCoin"} style={{ margin: 0, cursor: "default" }}><FaCoins /> {formatter.format(userInfo.amount)} eCoins</p>
+                  <FaUserCircle /> <Link to="/profile" title="ไปที่หน้าโปรไฟล์">{userData?.displayName}</Link><br />
+                  <p title={formatter.format(userData?.balance) + " eCoin"} style={{ margin: 0, cursor: "default" }}><FaCoins /> {formatter.format(userData?.balance)} eCoins</p>
                 </div>
               ) : (
                   <Link to="/login">

@@ -8,7 +8,7 @@ import { FaExclamationCircle } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { Ellipsis } from 'react-spinners-css';
 
-export const Register = () => {
+export const Register = ({ api }) => {
   const history = useHistory();
   const [error, setError] = useState(false);
   const [name, setName] = useState('');
@@ -16,19 +16,72 @@ export const Register = () => {
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
   const [loading, setLoading] = useState(false);
+
   function onRegister(e) {
     e.preventDefault();
     setLoading(true);
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-      firebase.auth().currentUser.updateProfile({
-        displayName: name
+    firebase.auth().createUserWithEmailAndPassword(email, password).then((userRecord) => {
+      // console.log(userRecord.user.uid)
+      firebase.firestore().collection('user').doc(userRecord.user.uid).set({
+        displayName: name,
+        email: email,
+        balance: 0,
+        used: 0,
+        recieve: 0,
+        biddingPID: [],
+        sellingPID: [],
+        proveadd:false,
+        proveprofile:false
       })
+    }).then(() => {
       history.push('/login');
+      setLoading(false);
+    }).catch(err => {
+      console.log(err)
+      setError(true);
+      setLoading(false);
     })
-      .catch(err => {
-        setError(true);
-        setLoading(false);
-      });
+    // api({
+    //   method : "get",
+    //   url : "/Createuser",
+    //   headers : {
+    //     email : email,
+    //     password : password,
+    //     name : name
+    //   }
+    // }).then(res => {
+    //       console.log(res)
+    //       history.push('/login');
+    //     }
+    //     ).catch(err => {
+    //       console.log(err)
+    //       setError(true);
+    //       setLoading(false);
+    //     });
+    // firebase.auth().createUserWithEmailAndPassword(email, password).then((userrecord) => {
+    //   api({
+    //     method : "post",
+    //     url : "/Createuser",
+    //     headers : {
+    //         uid : userrecord.uid,
+    //         username : name
+    //     }
+    //   }).then(res => {
+    //     console.log(res)
+    //     firebase.auth().currentUser.updateProfile({
+    //       displayName: name
+    //     })
+    //     history.push('/login');
+    //   }
+    //   ).catch(err => {
+    //     console.log(err)
+    //   })
+
+    // })
+    //   .catch(err => {
+    // setError(true);
+    // setLoading(false);
+    //   });
   }
   function onOpenTerms() {
     setTerms(true);
@@ -70,7 +123,7 @@ export const Register = () => {
               <div className="form-group">
                 <label htmlFor="password">รหัสผ่าน</label>
                 <input type="password" name="Password" placeholder="กรอกรหัสผ่าน" required title="รหัสผ่านต้องประกอบไปด้วยตัวอักษรภาษาอังกฤษและตัวเลขรวมกัน 8 ตัวขึ้นไป โดยมีตัวพิมพ์ใหญ่และตัวเลขอย่างน้อยอย่างละ 1 ตัว"
-                  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" value={password} onChange={e => setPassword(e.target.value)} />
+                  pattern="^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$" value={password} onChange={e => setPassword(e.target.value)} />
               </div>
               <div className="extra">
                 <p><input type="checkbox" required />ฉันยอมรับ <a href="/register#" onClick={() => onOpenTerms()}>ข้อตกลงและเงื่อนไข</a></p>
@@ -99,10 +152,13 @@ export const Register = () => {
               3. การประมูลในเว็บไซต์นี้เป็นการจำลองการทำงานของระบบเท่านั้น ไม่สามารถประมูลซื้อขายได้จริง
             </p>
             <p>
-              4. ไม่สามารถนำเงินจริงเข้าระบบได้ เงินในระบบเป็นเงินใช้เพื่อการจำลองการทำงานเท่านั้น
+              4. กรุณากรอกข้อมูลในโปรไฟล์ของท่านก่อนทำการประมูล
             </p>
             <p>
-              5. ผู้จัดทำจะไม่รับผิดชอบความเสียหายใดๆ กรณีเกิดข้อผิดพลาดจากระบบจำลองนี้
+              5. ไม่สามารถนำเงินจริงเข้าระบบได้ เงินในระบบเป็นเงินใช้เพื่อการจำลองการทำงานเท่านั้น
+            </p>
+            <p>
+              6. ผู้จัดทำจะไม่รับผิดชอบความเสียหายใดๆ กรณีเกิดข้อผิดพลาดจากระบบจำลองนี้
             </p>
             <button className="btn" id="close-terms" type="button" onClick={() => onCloseTerms()}>ปิด</button>
           </Modal>
