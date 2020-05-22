@@ -15,8 +15,8 @@ export const ProductFrame = ({ details }) => {
   return (
     <Link to={link}>
       <div className="product-box">
-        <div className="b-product-img" title={details.name}>
-          <img src={details.img[0]} alt="product-img" />
+        <div className="b-product-img" title={details.name} style={{ 'backgroundImage': `url(${details.img})` }}>
+          {/* <img src={details.img[0]} alt="product-img" /> */}
         </div>
         <div className="b-details">
           <div className="b-product-title" title={details.name}>

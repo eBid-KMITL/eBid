@@ -24,17 +24,18 @@ $shadow : 0 0 10px 0 #00000048;
   }
 
   .b-product-img {
-    height         : 150px;
-    width          : 150px;
-    display        : flex;
-    justify-content: center;
-    align-items    : center;
-    object-fit     : scale-down;
-
-    img {
-      width        : 100%;
-      border-radius: 10px 0 0 10px;
-    }
+    height               : 150px;
+    width                : 150px;
+    border-radius        : 10px 0 0 10px;
+    // display              : flex;
+    // justify-content      : center;
+    // align-items          : center;
+    object-fit           : scale-down;
+    // overflow             : hidden;
+    background-size      : cover;
+    background-repeat    : no-repeat;
+    background-attachment: scroll;
+    background-position  : center;
   }
 
   .b-details {
