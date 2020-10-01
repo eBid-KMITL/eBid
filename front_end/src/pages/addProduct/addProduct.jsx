@@ -33,7 +33,7 @@ export const AddProduct = ({ userData }) => {
   const db = firebase.firestore();
   const id = userData?.uid
   let keepurl = []
-  let keepproductid = userData.sellingPID
+  let keepproductid = userData?.sellingPID
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     maxSize: imageMaxSize,

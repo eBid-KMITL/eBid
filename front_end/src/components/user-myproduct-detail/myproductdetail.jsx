@@ -64,13 +64,15 @@ export const MyProductDetail = ({ details }) => {
       <td>
         <div className="productdetail-box">
           <div className="productdetail-img">
-            <img src={details?.img[0]} alt="product-pic" className="prod-pic" />
+            <Link title="ไปที่หน้าสินค้านี้" to={"/product?id=" + details.pid}>
+              <img src={details?.img[0]} alt="product-pic" className="prod-pic" />
+            </Link>
           </div>
           <div className="productdetail">
-            <Link to={"/product?id=" + details.pid}>
+            <Link title="ไปที่หน้าสินค้านี้" to={"/product?id=" + details.pid}>
               <div className="product-title">{details?.name}</div>
             </Link>
-            <div className={new Date(details.timeoutdate + "T" + details.timeoutclock + "+0700") < Date.now() ? "end" : "notend"}><Moment title={moment(due, "x").format("[หมดเวลาวันที่ ] DD MMMM YYYY [เวลา] HH:mm [น.]")} interval={1000} fromNow >{details.timeoutdate + "T" + details.timeoutclock + "+0700"}</Moment></div>
+            <div className="timeout" style={{ textDecoration: "underline" }}><Moment title={moment(due, "x").format("[หมดเวลาวันที่ ] DD MMMM YYYY [เวลา] HH:mm [น.]")} interval={1000} fromNow >{details.timeoutdate + "T" + details.timeoutclock + "+0700"}</Moment></div>
           </div>
         </div>
       </td>
@@ -86,16 +88,16 @@ export const MyProductDetail = ({ details }) => {
       </td>
       <td>
         <div className="product-owner">
-        {
-          (new Date(details.timeoutdate + "T" + details.timeoutclock + "+0700") < Date.now()) ? 
-          (!details.currentWinner?.name) ? 
-            "ไม่มีผู้ร่วมประมูล" : 
-            <a title="ดูข้อมูลที่อยู่ของผู้ใช้นี้" href="#"onClick={() => { onOpenAddr(); showUserAddress(details.currentWinner?.uid) }}>{details.currentWinner?.name}</a>:
-            (!details.currentWinner?.name)? 
-            'ไม่มีผู้ร่วมประมูล':
-            details.currentWinner?.name
-        }
-      
+          {
+            (new Date(details.timeoutdate + "T" + details.timeoutclock + "+0700") < Date.now()) ?
+              (!details.currentWinner?.name) ?
+                "ไม่มีผู้ร่วมประมูล" :
+                <a title="ดูข้อมูลที่อยู่ของผู้ใช้นี้" href="#" onClick={() => { onOpenAddr(); showUserAddress(details.currentWinner?.uid) }}>{details.currentWinner?.name}</a> :
+              (!details.currentWinner?.name) ?
+                'ไม่มีผู้ร่วมประมูล' :
+                <p style={{ textDecoration: "none !important" }}>{details.currentWinner?.name}</p>
+          }
+
         </div>
         <Modal open={addr} center={true} onClose={() => onCloseAddr()} little>
           <h1>ข้อมูลที่อยู่</h1>

@@ -287,12 +287,10 @@ export const Product = ({ userData }) => {
         <div className="base-container">
           <div className="img-container">
             <div className="img-big">
-              <img src={bigImg} alt="product-pic" />
+              <img src={bigImg} title="คลิกเพื่อดูรูปขนาดเต็ม" alt="product-pic" style={{cursor: "pointer"}} onClick={() => window.open(bigImg)}/>
             </div>
             <div className="img-small-cont">
               <div className="img-small">
-                {/* {product.img ? product.img.map((d, index) => <img src={d} id={pic[index]} alt={'product-pic' + index} onMouseOver={() => picSelect(index)} />) : 'No image'} */}
-                {/* {console.log(product.img)} */}
                 {product.img && product.img[0] ? <img src={product.img[0]} id={pic[0]} alt="product-pic1" onMouseOver={() => picSelect(1)} /> : null}
                 {product.img && product.img[1] ? <img src={product.img[1]} id={pic[1]} alt="product-pic2" onMouseOver={() => picSelect(2)} /> : null}
                 {product.img && product.img[2] ? <img src={product.img[2]} id={pic[2]} alt="product-pic3" onMouseOver={() => picSelect(3)} /> : null}
@@ -349,7 +347,7 @@ export const Product = ({ userData }) => {
             <div className="bid-form">
               <form name="bid-price" onSubmit={e => onOpenConfirm(e)}>
                 <input name="bid-input" id="bid-price" type="number" placeholder="กรอกราคาที่มากกว่าราคาปัจจุบัน" min={product.price + 1} onInput={() => validateForm()} required />
-                <p id="ecoin-alert">{(userData?.proveadd && userData?.proveprofile) ? ((alert) ? "ยอดคงเหลือของท่านไม่พอ กรุณาเติมเงินก่อนเสนอราคา" : "เมื่อเสนอราคา eCoin ของท่านจะถูกกันไว้จนกว่าจะมีผู้เสนอราคาที่สูงกว่า") : "ท่านยังไม่ได้กรอกที่อยู่ในระบบ"}</p>
+                <p id="ecoin-alert">{(userData?.proveadd && userData?.proveprofile) ? ((alert) ? "ยอดคงเหลือของท่านไม่พอ กรุณาเติมเงินก่อนเสนอราคา" : "เมื่อเสนอราคา eCoin ของท่านจะถูกกันไว้จนกว่าจะมีผู้เสนอราคาที่สูงกว่า") : "ท่านยังไม่ได้กรอกข้อมูลผู้ใช้และที่อยู่ในระบบ"}</p>
                 <div className="form-foot">
                   <div className="price-container">
                     <p id="price-tag">ราคาปัจจุบัน</p>

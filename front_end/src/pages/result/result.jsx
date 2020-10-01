@@ -51,21 +51,27 @@ export const Result = ({ userData }) => {
       if (name[index] === searchInputt[0]) {
         loopCount += 1
         let check = true
-        // console.log(name, ' c ', searchInputt)
+        console.log(name, ' c ', searchInputt)
         for (let index2 = 1; index2 < searchLength; index2++) {
-          // console.log(searchInputt[index2], ' b ', name[index + index2])
+          console.log(searchInputt[index2], ' b ', name[index + index2])
           if (searchInputt[index2] === name[index + index2]) {
-            //ไม่มีไร ไปต่อ
+
           } else {
             check = false
             break
           }
         }
+
         if (loopCount >= count) {
           if (check) {
             rc += 1
           }
           return check
+        } else {
+          if (check) {
+            rc += 1
+            return check
+          }
         }
       }
     }
@@ -79,17 +85,15 @@ export const Result = ({ userData }) => {
         <div className="result-main">
           <Helmet><title>eBid - Online Bidding | Software Development Processes KMITL</title></Helmet>
           <div className="search-content">
-
             <div className="content">
-
               {
                 loading &&
                 <>
-                  <div className="loading" style={{
-                    position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",
-                  }}>
-                    <Ellipsis color="orange" size={150} />
+                  <h2 style={{ margin: 0, fontSize: 32 }}>ผลการค้นหา</h2>
+                  <div className="btn-wrap">
+                    <Ellipsis color="orange" size={150} style={{ width: "1100px", marginTop: "5em", display: "flex", alignItems: "center", justifyContent: "center" }} />
                   </div>
+                  <p id="no-match" style={{ marginTop: "1em", marginBottom: "5em", alignItems: "center" }}>โปรดรอสักครู่...</p>
                 </>
               }
 
@@ -120,12 +124,18 @@ export const Result = ({ userData }) => {
                         }
                       }
                     } else {
-                      return 0
+                      if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                        return 1
+                      } else if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                        return -1
+                      } else {
+                        return -1
+                      }
                     }
                   }).map(detail => <ProductFrame details={detail} />)
                   }
                 </>
-                )
+              )
                 : (
                   <>
                     <h2 style={{ margin: 0, fontSize: 32 }}>ไม่พบผลการค้นหา</h2>
@@ -139,7 +149,7 @@ export const Result = ({ userData }) => {
                       </Link>
                     </div>
                   </>
-                  )
+                )
               )
               }
             </div>

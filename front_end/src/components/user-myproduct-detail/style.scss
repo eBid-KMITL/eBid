@@ -37,20 +37,27 @@ $shadow: 0 3px 6px 0 #00000048;
       font-size  : 18px;
       font-family: $font-semibold;
       font-weight: bold;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    a {
+      color: rgb(0, 130, 255);
     }
   }
 }
 
 .product-owner {
-  font-size      : 16px;
-  font-family    : $font-semibold;
-  font-weight    : bold;
-  text-decoration: underline;
-  margin-bottom  : 5px;
+  font-size    : 16px;
+  font-family  : $font-semibold;
+  font-weight  : bold;
+  margin-bottom: 5px;
 
   a {
-    text-decoration: none;
-    color          : #0082ff;
+    color: rgb(0, 130, 255);
+    text-decoration: underline;
   }
 }
 
